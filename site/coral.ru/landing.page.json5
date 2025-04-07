@@ -1,0 +1,10 @@
+{
+	env: {
+		brand: 'coral-next',
+		cmsWidgetContainer: '<div>{{{ widget_markup }}}</div>',
+		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/',
+	},
+	contents: [
+		'/site/coral.ru/pages/main.html',
+	]
+}

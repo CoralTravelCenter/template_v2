@@ -1,0 +1,218 @@
+@import "utils";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.coral {
+  .banner__title {
+    font-size: 56px;
+    line-height: 64px;
+    color: #FFFFFF;
+    font-weight: 300;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: 1280px) {
+      font-size: 40px;
+      line-height: 48px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  .banner__subtitle {
+    font-size: 20px;
+    line-height: 28px;
+    color: #FFFFFF;
+
+    @media screen and (max-width: 1280px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  .banner__button {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    padding-inline: 20px;
+    background-color: #FFFFFF;
+    color: black;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 48px;
+    width: fit-content;
+    margin-top: 24px;
+    text-decoration: none;
+  }
+
+  .banner + .text {
+    margin-top: 14px;
+  }
+
+  .title-1 {
+    font-size: 36px;
+    line-height: 44px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  .title-2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .title-3 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .title-4 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .title-5 {
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 8px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .label {
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  ul {
+    padding-left: 20px;
+
+    li + li {
+      margin-top: 5px;
+    }
+  }
+}
+
+a.coral-button {
+  display: flex;
+  padding-inline: 20px;
+  color: #FFFFFF;
+  font-size: 16px;
+  height: 48px;
+  align-items: center;
+  border-radius: 48px;
+  background-color: #0092D0;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.bg-white {
+  background-color: #FFFFFF;
+}
+
+.slider__pagination.swiper-pagination {
+
+  &.swiper-pagination-horizontal {
+    bottom: -27px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #33C2FF4D;
+    opacity: 1;
+
+    &.swiper-pagination-bullet-active {
+      background-color: #077DAD;
+    }
+  }
+}
+
+.layout-container-limit:has(section.coral) {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+section > article {
+  max-width: 1528px;
+  margin: auto;
+}
+
+section > article .wrapper {
+  padding-inline: 80px;
+  padding-block: 40px;
+
+  @media screen and (max-width: 768px) {
+    padding-inline: 16px;
+    padding-block: 30px;
+  }
+}
+
+section.full-width > article {
+  max-width: 100%;
+}
+
+section.full-width > article .wrapper {
+  padding-inline: 0;
+}
+
+section:has(.banner) .wrapper {
+  padding-bottom: 0;
+}
+
+.ant-col:has(section.coral) > div {
+  padding: 0;
+}
+
+.d-hidden {
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+
+.m-hidden {
+  display: block;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}

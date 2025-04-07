@@ -1,0 +1,63 @@
+@use 'sass:math';
+@use "sass:selector";
+
+/*
+Миксин для расчета размера шрифта
+$px - задаем размер шрифта в px
+*/
+@mixin font($px) {
+  $em-value: math.div($px, 20);
+  font-size: #{$em-value}em;
+}
+
+/*
+Миксин для подстановки любого правила и расчета его значения
+$property - задаем любое свойство, для которого нужны размеры в em
+$px - задаем значение для предыдущего свойства в px
+*/
+@mixin property($property, $px) {
+  $em-value: math.div($px, 20);
+  #{$property}: #{$em-value}em;
+}
+
+/*
+Миксин для установки размера шрифта и вычисления значения свойства относительно него
+$font-size-px - задаем размер шрифта в px
+$property - задаем любое свойство, для которого нужны размеры в em
+$px - задаем значение для предыдущего свойства в px
+*/
+@mixin fontAndProperty($font-size-px, $property, $property-px) {
+  $font-size-em: math.div($font-size-px, 20) * 1em;
+  font-size: $font-size-em;
+
+  $base-pixel-size: math.div($font-size-em * 20, 1em);
+  #{$property}: math.div($property-px, $base-pixel-size) * 1em;
+}
+
+/*
+Миксин для установки тега к классу
+$child - задаем тег, для которого хотим повысить специфичность
+пример: &__link {} - хотим добавить 'a' вначале правила и получить a.text__link {}
+делаем так: &__link { @include(parentTag)(a) {} }
+получаем: a.text__link {}
+*/
+@mixin parentTag($child) {
+  @at-root #{selector.unify(&, $child)} {
+    @content;
+  }
+}
+
+/*
+Миксин для пропорционального уменьшения картинки
+$original-width - задаем ширину в px
+$original-height - задаем высоту в px
+$reduce-by - задаем значение в px на которое хотим уменьшить картинку
+*/
+@mixin resizeImage($original-width, $original-height, $reduce-by) {
+  $ratio: math.div($original-width, $original-height);
+  $new-width: $original-width - $reduce-by;
+  $new-height: math.div($new-width, $ratio);
+
+  width: $new-width;
+  height: $new-height;
+}
