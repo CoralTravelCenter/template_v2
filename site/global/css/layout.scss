@@ -1,4 +1,5 @@
 @import "utils";
+@import "heading";
 
 * {
   box-sizing: border-box;
@@ -66,48 +67,34 @@ ul {
     margin-top: 14px;
   }
 
-  .title-1 {
-    font-size: 36px;
-    line-height: 44px;
-
-    @media screen and (max-width: 768px) {
-      font-size: 28px;
-      line-height: 36px;
-    }
-  }
-
-  .title-2 {
-    font-size: 32px;
-    line-height: 40px;
-  }
-
-  .title-3 {
-    font-size: 28px;
-    line-height: 36px;
-    font-weight: 600;
-
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      line-height: 28px;
-    }
-  }
-
-  .title-4 {
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: 600;
-
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      line-height: 28px;
-    }
-  }
-
-  .title-5 {
-    font-size: 20px;
-    line-height: 28px;
-    margin-bottom: 8px;
-  }
+  //.title-1 {
+  //  font-size: 36px;
+  //  line-height: 44px;
+  //  font-weight: 600;
+  //}
+  //
+  //.title-2 {
+  //  font-size: 32px;
+  //  line-height: 40px;
+  //  font-weight: 600;
+  //}
+  //
+  //.title-3 {
+  //  font-size: 28px;
+  //  line-height: 36px;
+  //  font-weight: 600;
+  //}
+  //
+  //.title-4 {
+  //  font-size: 24px;
+  //  line-height: 32px;
+  //  font-weight: 600;
+  //}
+  //
+  //.title-5 {
+  //  font-size: 20px;
+  //  line-height: 28px;
+  //}
 
   .text {
     font-size: 16px;
