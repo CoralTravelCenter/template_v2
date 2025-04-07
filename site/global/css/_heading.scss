@@ -1,0 +1,25 @@
+$font-sizes: (
+        title-1: 36px,
+        title-2: 32px,
+        title-3: 28px,
+        title-4: 24px,
+        title-5: 20px
+);
+
+$line-heights: (
+        title-1: 44px,
+        title-2: 40px,
+        title-3: 36px,
+        title-4: 32px,
+        title-5: 28px
+);
+
+$font-weight: 600;
+
+@each $name, $size in $font-sizes {
+  .#{$name} {
+    font-size: $size;
+    line-height: map-get($line-heights, $name);
+    font-weight: $font-weight;
+  }
+}
