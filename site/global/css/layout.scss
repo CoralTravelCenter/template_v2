@@ -60,6 +60,12 @@ ul {
     width: fit-content;
     margin-top: 24px;
     text-decoration: none;
+    border: 1px solid white;
+
+    &:hover {
+      color: #077DAD;
+      border: 1px solid #077DAD;
+    }
   }
 
   .banner + .text {
@@ -79,6 +85,11 @@ ul {
   .title-2 {
     font-size: 32px;
     line-height: 40px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
   }
 
   .title-3 {
@@ -106,7 +117,7 @@ ul {
   .title-5 {
     font-size: 20px;
     line-height: 28px;
-    margin-bottom: 8px;
+    font-weight: 600;
   }
 
   .text {
@@ -213,6 +224,14 @@ section:has(.banner) .wrapper {
   display: block;
 
   @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.d-1024 {
+  display: block;
+
+  @media screen and (max-width: 1024px) {
     display: none;
   }
 }

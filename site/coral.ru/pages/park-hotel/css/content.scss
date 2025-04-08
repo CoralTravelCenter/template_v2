@@ -1,0 +1,99 @@
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px;
+  grid-auto-rows: 250px;
+
+  @media screen and (max-width: 1024px) {
+    grid-auto-rows: 350px;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 100%;
+  }
+
+  &__block {
+    border-radius: 20px;
+    padding-inline: 24px;
+    padding-block: 16px;
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+
+    @media screen and (max-width: 1280px) {
+      background-position: 120%;
+    }
+
+    @media screen and (max-width: 1024px) {
+      background-position: bottom right;
+      background-size: 300px;
+    }
+
+    &--1 {
+      background-color: #F7EDDB;
+      background-image: url("site/coral.ru/assets/img_1.webp");
+
+      @media screen and (max-width: 1024px) {
+        background-image: url("site/coral.ru/assets/img_1m.webp");
+      }
+    }
+
+    &--2 {
+      background-color: #D2E9FB;
+      background-image: url("site/coral.ru/assets/img_2.webp");
+
+      @media screen and (max-width: 1024px) {
+        background-image: url("site/coral.ru/assets/img_2m.webp");
+      }
+    }
+
+    &--3 {
+      background-color: #D9F7BE;
+      background-image: url("site/coral.ru/assets/img_3.webp");
+
+      @media screen and (max-width: 1024px) {
+        background-image: url("site/coral.ru/assets/img_3m.webp");
+      }
+    }
+
+    &--4 {
+      background-color: #FCDF9C;
+      background-image: url("site/coral.ru/assets/img_4.webp");
+
+      @media screen and (max-width: 1024px) {
+        background-image: url("site/coral.ru/assets/img_4m.webp");
+      }
+    }
+
+    &--5 {
+      background-color: #C2E4F6;
+      background-image: url("site/coral.ru/assets/img_5.webp");
+
+      @media screen and (max-width: 1024px) {
+        background-image: url("site/coral.ru/assets/img_5m.webp");
+      }
+    }
+
+    &--6 {
+      background-color: #F2DFD5;
+      background-image: url("site/coral.ru/assets/img_6.webp");
+
+      @media screen and (max-width: 1024px) {
+        background-image: url("site/coral.ru/assets/img_6m.webp");
+      }
+    }
+  }
+
+  &__info {
+    max-width: 337px;
+
+    @media screen and (max-width: 1280px) {
+      max-width: 247px;
+    }
+
+    @media screen and (max-width: 1024px) {
+      max-width: 100%;
+    }
+  }
+}

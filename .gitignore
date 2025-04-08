@@ -3,3 +3,7 @@
 /dev/
 /prod/
 /@CMS/
+/tools/node_modules/
+/tools/package-lock.json
+/img/
+/img-webp/
