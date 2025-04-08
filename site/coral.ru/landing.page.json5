@@ -5,7 +5,6 @@
 		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/park-hotels',
 	},
 	contents: [
-		'/site/coral.ru/pages/park-hotel/banner.html',
-		'/site/coral.ru/pages/park-hotel/content.html',
+		'/site/coral.ru/pages/space/banner.html',
 	]
 }

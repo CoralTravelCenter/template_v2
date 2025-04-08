@@ -1,0 +1,89 @@
+
+.banner {
+  background-image: url("/site/coral.ru/assets/banner.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 520px;
+  position: relative;
+}
+
+.stars {
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+  cursor: pointer;
+  pointer-events: auto;
+  animation: blink 8s infinite;
+
+  &:hover {
+    opacity: 1;
+    animation: none;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  &--1 {
+    left: 111px;
+    top: 27px;
+  }
+
+  &--2 {
+    bottom: 13px;
+    left: 168px;
+  }
+
+  &--3 {
+    left: 403px;
+    top: 117px;
+  }
+
+  &--4 {
+    bottom: 14px;
+    left: 516px;
+  }
+
+  &--5 {
+    right: 417px;
+    top: 14px;
+  }
+
+  &--6 {
+    right: 407px;
+    bottom: 70px;
+  }
+
+  &--7 {
+    right: 176px;
+    top: 89px;
+  }
+
+  &--8 {
+    right: 111px;
+    bottom: 56px;
+  }
+}
+
+.stars--1 { animation-delay: 1s; }
+.stars--2 { animation-delay: 2s; }
+.stars--3 { animation-delay: 0s; }
+.stars--4 { animation-delay: 7s; }
+.stars--5 { animation-delay: 6s; }
+.stars--6 { animation-delay: 5s; }
+.stars--7 { animation-delay: 4s; }
+.stars--8 { animation-delay: 3s; }
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+//.banner:hover .stars {
+//  animation-play-state: paused;
+//}
