@@ -5,40 +5,173 @@
     <article>
         <div class="wrapper">
             <div class="banner">
-                <div class="stars stars--1">
+                <div class="stars stars--1 js-space" data-popup="maldives">
                     <img src="/site/coral.ru/assets/stars_1.svg" alt="">
                 </div>
 
-                <div class="stars stars--2">
+                <div class="stars stars--2 js-space" data-popup="turkey">
                     <img src="/site/coral.ru/assets/stars_2.svg" alt="">
                 </div>
 
-                <div class="stars stars--3">
+                <div class="stars stars--3 js-space" data-popup="uae">
                     <img src="/site/coral.ru/assets/stars_3.svg" alt="">
                 </div>
 
-                <div class="stars stars--4">
+                <div class="stars stars--4 js-space" data-popup="thailand">
                     <img src="/site/coral.ru/assets/stars_4.svg" alt="">
                 </div>
 
-                <div class="stars stars--5">
+                <div class="stars stars--5 js-space" data-popup="vietnam">
                     <img src="/site/coral.ru/assets/stars_5.svg" alt="">
                 </div>
 
-                <div class="stars stars--6">
+                <div class="stars stars--6 js-space" data-popup="egypt">
                     <img src="/site/coral.ru/assets/stars_6.svg" alt="">
                 </div>
 
-                <div class="stars stars--7">
+                <div class="stars stars--7 js-space" data-popup="srilanka">
                     <img src="/site/coral.ru/assets/stars_7.svg" alt="">
                 </div>
 
-                <div class="stars stars--8">
+                <div class="stars stars--8 js-space" data-popup="bahrain">
                     <img src="/site/coral.ru/assets/stars_8.svg" alt="">
                 </div>
             </div>
         </div>
     </article>
 </section>
+
+<div id="s-popup-container"></div>
+
+<!--<div class="s-popup" data-popup="egypt">-->
+<!--    <div class="s-popup__wrapper">-->
+<!--        <div class="s-popup__header mb-24">-->
+<!--            <h3 class="s-popup__title">-->
+<!--                Египет — под защитой Ориона, где звёзды хранят тайны древности-->
+<!--            </h3>-->
+<!--            <div class="s-popup__close">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">-->
+<!--                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1406 1.827C13.141 1.827 13.1413 1.82735 13.1421 1.82807L14.1722 2.85843C14.173 2.85896 14.1731 2.85932 14.1733 2.85985C14.1734 2.86021 14.1734 2.86057 14.1733 2.86093C14.1733 2.86146 14.173 2.86182 14.1722 2.86253L9.03474 8.00003L14.1722 13.1375C14.173 13.1382 14.1731 13.1386 14.1733 13.1391C14.1734 13.1395 14.1734 13.14 14.1733 13.1404C14.1733 13.1407 14.173 13.1411 14.1722 13.1418L13.1419 14.172C13.1413 14.1727 13.141 14.1729 13.1406 14.1731C13.1402 14.1732 13.1398 14.1732 13.1394 14.1731C13.1388 14.1731 13.1385 14.1727 13.1378 14.172L8.00028 9.0345L2.86278 14.172C2.86206 14.1727 2.86171 14.1729 2.86117 14.1731C2.86076 14.1732 2.86033 14.1732 2.85992 14.1731C2.85956 14.1731 2.85921 14.1727 2.85849 14.172L1.82831 13.1416C1.8276 13.1411 1.82742 13.1407 1.82724 13.1404C1.82712 13.14 1.82712 13.1395 1.82724 13.1391C1.82724 13.1386 1.8276 13.1382 1.82831 13.1375L6.96581 8.00003L1.82831 2.86253C1.8276 2.86182 1.82742 2.86146 1.82724 2.86093C1.82712 2.86052 1.82712 2.86008 1.82724 2.85968C1.82724 2.85932 1.8276 2.85896 1.82831 2.85825L2.85867 1.82807C2.85921 1.82735 2.85956 1.82718 2.85992 1.827C2.86033 1.82687 2.86076 1.82687 2.86117 1.827C2.86171 1.827 2.86206 1.82735 2.86278 1.82807L8.00028 6.96557L13.1378 1.82807C13.1385 1.82735 13.1388 1.82718 13.1394 1.827C13.1398 1.82687 13.1402 1.82687 13.1406 1.827Z" fill="#535353"/>-->
+<!--                </svg>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="s-popup__content">-->
+<!--            <div class="s-popup__img">-->
+<!--                <img src="/site/coral.ru/assets/ball_1.webp" alt="">-->
+<!--            </div>-->
+<!--            <div class="s-popup__info">-->
+<!--                <p class="text mb-8">-->
+<!--                    Путешествие идеально сочетается с вашей зодиакальной энергией:-->
+<!--                </p>-->
+<!--                <div class="s-popup__energy mb-24 js-energy">-->
+<!--                    <div class="s-popup__energy-block" style="background-color: #E4F7FF" data-element="fire">-->
+<!--                        <p class="text">-->
+<!--                            <strong>♈ Овен</strong>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                    <div class="s-popup__energy-block" style="background-color: #FFDBCC" data-element="earth">-->
+<!--                        <p class="text">-->
+<!--                            <strong>♉ Телец</strong>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                    <div class="s-popup__energy-block" style="background-color: #93CFFF" data-element="water">-->
+<!--                        <p class="text">-->
+<!--                            <strong>♓ Рыбы</strong>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="s-popup__footer">-->
+<!--                    <p class="text mb-24">-->
+<!--                        Промокод: <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 3%</strong> на туры и отели до 14 апреля-->
+<!--                    </p>-->
+<!--                    <a href="" class="s-popup__link">-->
+<!--                        Выбрать тур-->
+<!--                    </a>-->
+<!--                    <div class="s-popup__elements">-->
+<!--                        <div class="s-popup__earth js-element" data-element="earth">-->
+<!--                            <img src="/site/coral.ru/assets/earth.webp" alt="Стихия земли">-->
+<!--                        </div>-->
+<!--                        <div class="s-popup__water js-element" data-element="water">-->
+<!--                            <img src="/site/coral.ru/assets/water.webp" alt="Стихия воды">-->
+<!--                        </div>-->
+<!--                        <div class="s-popup__fire js-element" data-element="fire">-->
+<!--                            <img src="/site/coral.ru/assets/fire.webp" alt="Стихия огня">-->
+<!--                        </div>-->
+<!--                        <div class="s-popup__air js-element" data-element="air">-->
+<!--                            <img src="/site/coral.ru/assets/air.webp" alt="Стихия воздуха">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="s-popup" data-popup="uae">-->
+<!--    <div class="s-popup__wrapper">-->
+<!--        <div class="s-popup__header mb-24">-->
+<!--            <h3 class="s-popup__title">-->
+<!--                ОАЭ — в сиянии Павлина, где блеск небес не уступает огням города-->
+<!--            </h3>-->
+<!--            <div class="s-popup__close">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">-->
+<!--                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1406 1.827C13.141 1.827 13.1413 1.82735 13.1421 1.82807L14.1722 2.85843C14.173 2.85896 14.1731 2.85932 14.1733 2.85985C14.1734 2.86021 14.1734 2.86057 14.1733 2.86093C14.1733 2.86146 14.173 2.86182 14.1722 2.86253L9.03474 8.00003L14.1722 13.1375C14.173 13.1382 14.1731 13.1386 14.1733 13.1391C14.1734 13.1395 14.1734 13.14 14.1733 13.1404C14.1733 13.1407 14.173 13.1411 14.1722 13.1418L13.1419 14.172C13.1413 14.1727 13.141 14.1729 13.1406 14.1731C13.1402 14.1732 13.1398 14.1732 13.1394 14.1731C13.1388 14.1731 13.1385 14.1727 13.1378 14.172L8.00028 9.0345L2.86278 14.172C2.86206 14.1727 2.86171 14.1729 2.86117 14.1731C2.86076 14.1732 2.86033 14.1732 2.85992 14.1731C2.85956 14.1731 2.85921 14.1727 2.85849 14.172L1.82831 13.1416C1.8276 13.1411 1.82742 13.1407 1.82724 13.1404C1.82712 13.14 1.82712 13.1395 1.82724 13.1391C1.82724 13.1386 1.8276 13.1382 1.82831 13.1375L6.96581 8.00003L1.82831 2.86253C1.8276 2.86182 1.82742 2.86146 1.82724 2.86093C1.82712 2.86052 1.82712 2.86008 1.82724 2.85968C1.82724 2.85932 1.8276 2.85896 1.82831 2.85825L2.85867 1.82807C2.85921 1.82735 2.85956 1.82718 2.85992 1.827C2.86033 1.82687 2.86076 1.82687 2.86117 1.827C2.86171 1.827 2.86206 1.82735 2.86278 1.82807L8.00028 6.96557L13.1378 1.82807C13.1385 1.82735 13.1388 1.82718 13.1394 1.827C13.1398 1.82687 13.1402 1.82687 13.1406 1.827Z" fill="#535353"/>-->
+<!--                </svg>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="s-popup__content">-->
+<!--            <div class="s-popup__img">-->
+<!--                <img src="/site/coral.ru/assets/ball_2.webp" alt="">-->
+<!--            </div>-->
+<!--            <div class="s-popup__info">-->
+<!--                <p class="text mb-8">-->
+<!--                    Путешествие идеально сочетается с вашей зодиакальной энергией:-->
+<!--                </p>-->
+<!--                <div class="s-popup__energy mb-24 js-energy">-->
+<!--                    <div class="s-popup__energy-block" style="background-color: #93CFFF" data-element="water">-->
+<!--                        <p class="text">-->
+<!--                            <strong>♋ Рак</strong>-->
+<!--                        </p>-->
+<!--                    </div>-->
+
+<!--                    <div class="s-popup__energy-block" style="background-color: #E4F7FF" data-element="air">-->
+<!--                        <p class="text">-->
+<!--                            <strong>♎ Весы</strong>-->
+<!--                        </p>-->
+<!--                    </div>-->
+
+<!--                    <div class="s-popup__energy-block" style="background-color: #E5FFCE" data-element="earth">-->
+<!--                        <p class="text">-->
+<!--                            <strong>♑ Козерог</strong>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="s-popup__footer">-->
+<!--                    <p class="text mb-24">-->
+<!--                        Промокод: <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 3%</strong> на туры и отели до 14 апреля-->
+<!--                    </p>-->
+<!--                    <a href="" class="s-popup__link">-->
+<!--                        Выбрать тур-->
+<!--                    </a>-->
+<!--                    <div class="s-popup__elements">-->
+<!--                        <div class="s-popup__earth js-element" data-element="earth">-->
+<!--                            <img src="/site/coral.ru/assets/earth.webp" alt="Стихия земли">-->
+<!--                        </div>-->
+<!--                        <div class="s-popup__water js-element" data-element="water">-->
+<!--                            <img src="/site/coral.ru/assets/water.webp" alt="Стихия воды">-->
+<!--                        </div>-->
+<!--                        <div class="s-popup__fire js-element" data-element="fire">-->
+<!--                            <img src="/site/coral.ru/assets/fire.webp" alt="Стихия огня">-->
+<!--                        </div>-->
+<!--                        <div class="s-popup__air js-element" data-element="air">-->
+<!--                            <img src="/site/coral.ru/assets/air.webp" alt="Стихия воздуха">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 <script type="module" src="./js/script.js"></script>
 </body>
