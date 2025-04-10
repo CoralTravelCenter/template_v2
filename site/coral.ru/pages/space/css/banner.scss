@@ -303,3 +303,11 @@
 .is-hidden {
   display: none;
 }
+
+.s-br {
+  display: none;
+
+  @media screen and (max-width: 515px) {
+    display: block;
+  }
+}

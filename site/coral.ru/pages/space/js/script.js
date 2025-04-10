@@ -57,7 +57,8 @@ hostReactAppReady().then(() => {
                             </div>
                             <div class="s-popup__footer">
                                 <p class="text mb-24">
-                                    Промокод <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 5 000 ₽ <br class="d-hidden"> от 150 000 ₽ или 10 000 ₽ от 300 000 ₽.</strong>
+                                    <strong>Скидка 5 000 ₽ от 150 000 ₽ <br class="s-br"> или 10 000 ₽ от 300 000 ₽.</strong> <br>
+                                    Промокод <strong style="color: #0092D0">КОСМОС</strong>
                                 </p>
                                 <a href="${linkHref}" target="_blank" class="s-popup__link js-metrika">
                                     Выбрать тур
