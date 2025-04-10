@@ -197,7 +197,7 @@ section > article .wrapper {
   padding-block: 40px;
 
   @media screen and (max-width: 768px) {
-    padding-inline: 16px;
+    padding-inline: 0;
     padding-block: 30px;
   }
 }

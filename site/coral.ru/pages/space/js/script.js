@@ -5,9 +5,6 @@ hostReactAppReady().then(() => {
     class PopupComponent {
         constructor(containerId) {
             this.container = document.getElementById(containerId);
-            if (!this.container) {
-                throw new Error(`Контейнер с ID "${containerId}" не найден.`);
-            }
 
             document.querySelectorAll('.js-space').forEach(button => {
                 button.addEventListener('click', (event) => {
@@ -28,7 +25,7 @@ hostReactAppReady().then(() => {
         }
 
         createPopup(data) {
-            const { popupId, title, imageSrc, zodiacSigns } = data;
+            const {popupId, title, linkHref, imageSrc, zodiacSigns} = data;
 
             const popupTemplate = `
             <div class="s-popup js-popup is-hidden" data-popup="${popupId}">
@@ -60,9 +57,9 @@ hostReactAppReady().then(() => {
                             </div>
                             <div class="s-popup__footer">
                                 <p class="text mb-24">
-                                    Промокод <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 5 000 ₽ от 150 000 ₽ или 10 000 ₽ от 300 000 ₽.</strong>
+                                    Промокод <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 5 000 ₽ <br class="d-hidden"> от 150 000 ₽ или 10 000 ₽ от 300 000 ₽.</strong>
                                 </p>
-                                <a href="" class="s-popup__link">
+                                <a href="${linkHref}" target="_blank" class="s-popup__link js-metrika">
                                     Выбрать тур
                                 </a>
                                 <div class="s-popup__elements">
@@ -91,6 +88,11 @@ hostReactAppReady().then(() => {
             const popup = this.container.querySelector(`[data-popup="${popupId}"]`);
             popup.querySelector('.js-close').addEventListener('click', () => {
                 this.closePopup(popupId);
+            });
+
+            const link = popup.querySelector('.js-metrika');
+            link.addEventListener('click', (e) => {
+                ym(96674199, 'reachGoal', 'space_day_select_tour', { country: popupId });
             });
         }
 
@@ -143,10 +145,11 @@ hostReactAppReady().then(() => {
         popupId: 'egypt',
         title: 'Египет — под защитой Ориона, где звёзды хранят тайны древности',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_1.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-egipet-tours/?qp=lWOJw1XDa14WeujkN6zDTkiSEw7vty54I7GrRwglhfZJM8Q8DxbVVCoGPzovRkfNw%2bDoTwXjm3j9sbO6sc74XalNfa246XkWSeUhjZxF00dPv665GiFVzg%2fV1WWYG7TddnOfUESGOvkXGcJ11J%2fp6l%2f0l3ohyqaGD7%2bmCJDcwpEaWOmse%2bZOB%2b2SCOsaSi84NfHzoMUI77j%2fevWVTZiYsCKxYknVD6KneAgdH13PbFwFaQZgiPKLByrWrXK9b883vauLnf9c8mOhrJoODb5EwgCR6oHlsmBkd19Xwht1vHDsOKyfF25Y3rhj51MBzlXW&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♈', name: 'Овен', element: 'fire' },
-            { symbol: '♉', name: 'Телец', element: 'earth' },
-            { symbol: '♓', name: 'Рыбы', element: 'water' }
+            {symbol: '♈', name: 'Овен', element: 'fire'},
+            {symbol: '♉', name: 'Телец', element: 'earth'},
+            {symbol: '♓', name: 'Рыбы', element: 'water'}
         ]
     };
 
@@ -154,10 +157,11 @@ hostReactAppReady().then(() => {
         popupId: 'uae',
         title: 'ОАЭ — в сиянии Павлина, где блеск небес не уступает огням города',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_2.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-oae-tours/?qp=lWOJw1XDa14WeujkN6zDTkiSEw7vty54I7GrRwglhfZJM8Q8DxbVVCoGPzovRkfNw%2BDoTwXjm3j9sbO6sc74XalNfa246XkWSeUhjZxF00dPv665GiFVzg%2FV1WWYG7Tdq05rmoYNbVd6rcJO4OM3chHQdGIMPsPozB5P6WuQWeT0BK1Z3OV9XOK9tyJCf6zLjlJ9ElIEnXdYHhQ8IjEOqqOZ3EWQF1QHxOeQplcJkuo9HaVupkvmynuqrCdRyNffRBFtUGR1E4oKqLxFkYZObFPqxCMYui4klG8q9CCeOwn9NqJO6J%2B83HOEkFXWEsBc&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♋', name: 'Рак', element: 'water' },
-            { symbol: '♎', name: 'Весы', element: 'air' },
-            { symbol: '♑', name: 'Козерог', element: 'earth' }
+            {symbol: '♋', name: 'Рак', element: 'water'},
+            {symbol: '♎', name: 'Весы', element: 'air'},
+            {symbol: '♑', name: 'Козерог', element: 'earth'}
         ]
     };
 
@@ -165,10 +169,11 @@ hostReactAppReady().then(() => {
         popupId: 'thailand',
         title: 'Таиланд — на крыле Дракона, что несёт тебя между джунглями и храмами',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_3.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-tailand-tours/?qp=lWOJw1XDa14WeujkN6zDTj0ex1IHs4OpD2x%2BMBrqkbYQB%2FIIOz9bXiFV3KWzk%2BiCV32zCueQ%2Bul%2BU3I%2B3xUAnbjRofPk1s8NPja%2BtDlT4j2uAYyAiY7q9oCRKeettPyYltv%2FJtY268spXn2VGHk1fTOht8eCTKnQXix1oce0TUOFy3jffhtia%2BQW5e6b%2F0Lp%2FYJtuT0DSl%2BzYnrP93PngkqObjQvqISiH7cGVelSyQy44AlojSNnnwzUpHC%2FJtps3TjHElBThp4Bz1c5T4SE7MfqHofpuUe3CDSdF3ApYKt8CdUm9JiUbe7g%2FE40l3wJtmx5PWELe%2F9zxiwIshZ1qw%3D%3D&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♉', name: 'Телец', element: 'earth' },
-            { symbol: '♐', name: 'Стрелец', element: 'fire' },
-            { symbol: '♒', name: 'Водолей', element: 'air' }
+            {symbol: '♉', name: 'Телец', element: 'earth'},
+            {symbol: '♐', name: 'Стрелец', element: 'fire'},
+            {symbol: '♒', name: 'Водолей', element: 'air'}
         ]
     };
 
@@ -176,10 +181,11 @@ hostReactAppReady().then(() => {
         popupId: 'bahrain',
         title: 'Бахрейн — в глубине Южной Рыбы, где покой встречается с восточной сказкой',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_7.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-bahreyn-tours/?qp=lWOJw1XDa14WeujkN6zDTk5EW8Fox9dkoRWWrhSJ5NBi4ckszLEMapDvZRNw7tlL%2FrgfKmMqOHsg46D3mMauDwhLSwokaCNUBS0BFEBEiKplFFzMIwjIUggYrYWfc%2Fxzevaf8jxh3pyXQqK%2FJiURN56V4bwoEZyCt04bEZ61MrQxD3hWtcm48TIIItlGLWQ4tq0teWSeTn13xOacbYDkNFAlH0rTw6%2B3bJJJqVx4iXosOn%2B3nIBZV%2BXYPdYwmB3C6G%2FLuibYayAZ5pNLhm%2FoxviwGelsViAV4P%2FV8CmzRuKmlcMaGDf3c0FQyNi3Z8se&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♊', name: 'Близнецы', element: 'air' },
-            { symbol: '♈', name: 'Овен', element: 'fire' },
-            { symbol: '♏', name: 'Скорпион', element: 'water' }
+            {symbol: '♊', name: 'Близнецы', element: 'air'},
+            {symbol: '♈', name: 'Овен', element: 'fire'},
+            {symbol: '♏', name: 'Скорпион', element: 'water'}
         ]
     };
 
@@ -187,10 +193,11 @@ hostReactAppReady().then(() => {
         popupId: 'turkey',
         title: 'Турция — в пламени Феникса, где каждый рассвет — перерождение',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_4.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-turtsiya-tours/?qp=lWOJw1XDa14WeujkN6zDTkiSEw7vty54I7GrRwglhfZJM8Q8DxbVVCoGPzovRkfNw%2bDoTwXjm3j9sbO6sc74XalNfa246XkWSeUhjZxF00dPv665GiFVzg%2fV1WWYG7TdDC%2fmv%2f8UGIkBTfl2dHVK75lLZ9aN6gGTlvR3THhN2gKN68zzh6TiDLagpJ0WiUYJPjhuBxTwwl2lN2ESusar0oIOTFprKga4E8HuAd88AqwRIM%2bZnoHs6lz59gvBxswpfjXIkbPOmeRVwtF9KrD1dMO5cVsvH6RWQC5uxDS3qlc7uO%2bR6CJaqrotCGnNGFg2&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♍', name: 'Дева', element: 'earth' },
-            { symbol: '♌', name: 'Лев', element: 'fire' },
-            { symbol: '♊', name: 'Близнецы', element: 'air' }
+            {symbol: '♍', name: 'Дева', element: 'earth'},
+            {symbol: '♌', name: 'Лев', element: 'fire'},
+            {symbol: '♊', name: 'Близнецы', element: 'air'}
         ]
     };
 
@@ -198,10 +205,11 @@ hostReactAppReady().then(() => {
         popupId: 'vietnam',
         title: 'Вьетнам — в переменчивом свете Хамелеона, где каждый день — новое лицо',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_6.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-vyetnam-tours/?qp=3mXCNsoTYgYvGGFvTswFgzGsMOgUkWbLH1LdddBhrUrJgwaPIVpc%2FkdQf1fLJVo8fIaff8GctIKK5SUTRf5QLPaOPK8eTv073vO6egC06WZ0T1VwNWTm1v5Icdg5RNlH%2BPPNx4zbFGfiOgUGDosiI25aIE9Jv82f7yY3TyTk%2BhBUIdwP3paR%2Fn7Jhd5mw8t0TEX12cW4vnfh6qFzzWtRuKesdeureCxns7%2Fs7BGAJ0R42UW7%2Fnc3pAw%2F75mWsEXrmXJIRmTEnDB5jZRxgU2oDAxUmAkZii3ky4zk6%2BNva2JtZLtYp7vnzyd%2BHwYFpwr2p%2BRYCWukipP9KFr1QdXGpA%3D%3D&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♏', name: 'Скорпион', element: 'water' },
-            { symbol: '♍', name: 'Дева', element: 'earth' },
-            { symbol: '♒', name: 'Водолей', element: 'air' }
+            {symbol: '♏', name: 'Скорпион', element: 'water'},
+            {symbol: '♍', name: 'Дева', element: 'earth'},
+            {symbol: '♒', name: 'Водолей', element: 'air'}
         ]
     };
 
@@ -209,10 +217,11 @@ hostReactAppReady().then(() => {
         popupId: 'srilanka',
         title: 'Шри-Ланка — в нежности Южной Короны, где мир наполняется чаем и океаном',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_5.webp',
+        linkHref: 'https://www.coral.ru/main/srilanka/',
         zodiacSigns: [
-            { symbol: '♋', name: 'Рак', element: 'water' },
-            { symbol: '♌', name: 'Лев', element: 'fire' },
-            { symbol: '♑', name: 'Козерог', element: 'earth' }
+            {symbol: '♋', name: 'Рак', element: 'water'},
+            {symbol: '♌', name: 'Лев', element: 'fire'},
+            {symbol: '♑', name: 'Козерог', element: 'earth'}
         ]
     };
 
@@ -220,10 +229,11 @@ hostReactAppReady().then(() => {
         popupId: 'maldives',
         title: 'Мальдивы — в свете Голубя, где звёзды шепчут о любви и безмятежности',
         imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_8.webp',
+        linkHref: 'https://www.coral.ru/packagetours/moskva-to-malydivy-tours/?qp=lWOJw1XDa14WeujkN6zDTt4J%2FpGFxgyLxfHRgfoTvvSIgIfTIuhVvATK%2BkJptO2V1w1jAiLTZOnQNCb%2BuWijbPcPaK8AmSw8wqfef1K7x6EKuxhJSW7rM%2B6xR0Cer1JX4S9gyNNXNIeau3c7XzVDdQODQDwgubkC4XcECiQQV3lBRVdLdibNrqi%2BZqWs7IulaHaEGLxvbXfYz4ga92JaxpI1dhFHEXKU6Uq83Gw%2F9SuyhK5J55f2U%2B9upLXeVHsYdbTv9U4XA4vBnRZsQXeXP9F38pRCNhSvkpAxCaVLmgC3Q1eImZtqykfpAyK4rk6r&p=1&w=0&s=0',
         zodiacSigns: [
-            { symbol: '♎', name: 'Весы', element: 'air' },
-            { symbol: '♓', name: 'Рыбы', element: 'water' },
-            { symbol: '♐', name: 'Стрелец', element: 'fire' }
+            {symbol: '♎', name: 'Весы', element: 'air'},
+            {symbol: '♓', name: 'Рыбы', element: 'water'},
+            {symbol: '♐', name: 'Стрелец', element: 'fire'}
         ]
     };
 
@@ -248,9 +258,9 @@ hostReactAppReady().then(() => {
     }
 
     async function performScroll() {
-        await smoothScroll(scrollBlock, { left: 100, behavior: 'smooth' }, 1000);
+        await smoothScroll(scrollBlock, {left: 100, behavior: 'smooth'}, 2000);
 
-        await smoothScroll(scrollBlock, { left: -100, behavior: 'smooth' }, 300);
+        await smoothScroll(scrollBlock, {left: -100, behavior: 'smooth'}, 300);
     }
 
     performScroll();
