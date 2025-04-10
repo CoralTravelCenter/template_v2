@@ -6,5 +6,6 @@
 	},
 	contents: [
 		'/site/coral.ru/pages/space/banner.html',
+		'/site/coral.ru/pages/space/content.html',
 	]
 }

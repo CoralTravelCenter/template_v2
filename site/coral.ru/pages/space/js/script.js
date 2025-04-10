@@ -60,23 +60,23 @@ hostReactAppReady().then(() => {
                             </div>
                             <div class="s-popup__footer">
                                 <p class="text mb-24">
-                                    Промокод: <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 3%</strong> на туры и отели до 14 апреля
+                                    Промокод <strong style="color: #0092D0">КОСМОС</strong>. <strong>Скидка 5 000 ₽ от 150 000 ₽ или 10 000 ₽ от 300 000 ₽.</strong>
                                 </p>
                                 <a href="" class="s-popup__link">
                                     Выбрать тур
                                 </a>
                                 <div class="s-popup__elements">
                                     <div class="s-popup__element js-element" data-element="earth">
-                                        <img src="/site/coral.ru/assets/earth.webp" alt="Стихия земли" title="Стихия земли">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/earth.webp" alt="Стихия земли" title="Стихия земли">
                                     </div>
                                     <div class="s-popup__element js-element" data-element="water">
-                                        <img src="/site/coral.ru/assets/water.webp" alt="Стихия воды" title="Стихия воды">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/water.webp" alt="Стихия воды" title="Стихия воды">
                                     </div>
                                     <div class="s-popup__element js-element" data-element="fire">
-                                        <img src="/site/coral.ru/assets/fire.webp" alt="Стихия огня" title="Стихия огня">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/fire.webp" alt="Стихия огня" title="Стихия огня">
                                     </div>
                                     <div class="s-popup__element js-element" data-element="air">
-                                        <img src="/site/coral.ru/assets/air.webp" alt="Стихия воздуха" title="Стихия воздуха">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/air.webp" alt="Стихия воздуха" title="Стихия воздуха">
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@ hostReactAppReady().then(() => {
     const egyptData = {
         popupId: 'egypt',
         title: 'Египет — под защитой Ориона, где звёзды хранят тайны древности',
-        imageSrc: '/site/coral.ru/assets/ball_1.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_1.webp',
         zodiacSigns: [
             { symbol: '♈', name: 'Овен', element: 'fire' },
             { symbol: '♉', name: 'Телец', element: 'earth' },
@@ -153,7 +153,7 @@ hostReactAppReady().then(() => {
     const uaeData = {
         popupId: 'uae',
         title: 'ОАЭ — в сиянии Павлина, где блеск небес не уступает огням города',
-        imageSrc: '/site/coral.ru/assets/ball_2.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_2.webp',
         zodiacSigns: [
             { symbol: '♋', name: 'Рак', element: 'water' },
             { symbol: '♎', name: 'Весы', element: 'air' },
@@ -164,7 +164,7 @@ hostReactAppReady().then(() => {
     const thailandData = {
         popupId: 'thailand',
         title: 'Таиланд — на крыле Дракона, что несёт тебя между джунглями и храмами',
-        imageSrc: '/site/coral.ru/assets/ball_3.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_3.webp',
         zodiacSigns: [
             { symbol: '♉', name: 'Телец', element: 'earth' },
             { symbol: '♐', name: 'Стрелец', element: 'fire' },
@@ -175,7 +175,7 @@ hostReactAppReady().then(() => {
     const bahrainData = {
         popupId: 'bahrain',
         title: 'Бахрейн — в глубине Южной Рыбы, где покой встречается с восточной сказкой',
-        imageSrc: '/site/coral.ru/assets/ball_7.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_7.webp',
         zodiacSigns: [
             { symbol: '♊', name: 'Близнецы', element: 'air' },
             { symbol: '♈', name: 'Овен', element: 'fire' },
@@ -186,7 +186,7 @@ hostReactAppReady().then(() => {
     const turkeyData = {
         popupId: 'turkey',
         title: 'Турция — в пламени Феникса, где каждый рассвет — перерождение',
-        imageSrc: '/site/coral.ru/assets/ball_4.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_4.webp',
         zodiacSigns: [
             { symbol: '♍', name: 'Дева', element: 'earth' },
             { symbol: '♌', name: 'Лев', element: 'fire' },
@@ -197,7 +197,7 @@ hostReactAppReady().then(() => {
     const vietnamData = {
         popupId: 'vietnam',
         title: 'Вьетнам — в переменчивом свете Хамелеона, где каждый день — новое лицо',
-        imageSrc: '/site/coral.ru/assets/ball_6.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_6.webp',
         zodiacSigns: [
             { symbol: '♏', name: 'Скорпион', element: 'water' },
             { symbol: '♍', name: 'Дева', element: 'earth' },
@@ -208,7 +208,7 @@ hostReactAppReady().then(() => {
     const srilankaData = {
         popupId: 'srilanka',
         title: 'Шри-Ланка — в нежности Южной Короны, где мир наполняется чаем и океаном',
-        imageSrc: '/site/coral.ru/assets/ball_5.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_5.webp',
         zodiacSigns: [
             { symbol: '♋', name: 'Рак', element: 'water' },
             { symbol: '♌', name: 'Лев', element: 'fire' },
@@ -219,7 +219,7 @@ hostReactAppReady().then(() => {
     const maldivesData = {
         popupId: 'maldives',
         title: 'Мальдивы — в свете Голубя, где звёзды шепчут о любви и безмятежности',
-        imageSrc: '/site/coral.ru/assets/ball_8.webp',
+        imageSrc: 'https://b2ccdn.coral.ru/content/landing-pages/promo/space-day/ball_8.webp',
         zodiacSigns: [
             { symbol: '♎', name: 'Весы', element: 'air' },
             { symbol: '♓', name: 'Рыбы', element: 'water' },
@@ -235,4 +235,23 @@ hostReactAppReady().then(() => {
     popupComponent.createPopup(vietnamData);
     popupComponent.createPopup(srilankaData);
     popupComponent.createPopup(maldivesData);
+
+    const scrollBlock = document.querySelector('.js-scroll');
+
+    function smoothScroll(element, options, delay) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                element.scrollBy(options);
+                resolve();
+            }, delay);
+        });
+    }
+
+    async function performScroll() {
+        await smoothScroll(scrollBlock, { left: 100, behavior: 'smooth' }, 1000);
+
+        await smoothScroll(scrollBlock, { left: -100, behavior: 'smooth' }, 300);
+    }
+
+    performScroll();
 });
