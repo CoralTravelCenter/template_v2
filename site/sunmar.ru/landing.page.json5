@@ -2,9 +2,9 @@
 	env: {
 		brand: 'sunmar-next',
 		cmsWidgetContainer: '<div>{{{ widget_markup }}}</div>',
-		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/',
+		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/cosmos',
 	},
 	contents: [
-		'/site/sunmar.ru/pages/main.html',
-	]
+		'/site/sunmar.ru/pages/markup/main.html',
+	],
 }
