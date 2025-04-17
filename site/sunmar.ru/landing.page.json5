@@ -5,6 +5,6 @@
 		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/cosmos',
 	},
 	contents: [
-		'/site/sunmar.ru/pages/markup/main.html',
+		'/site/sunmar.ru/pages/park-hotel/banner.html',
 	],
 }
