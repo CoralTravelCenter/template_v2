@@ -1,5 +1,5 @@
 @import "utils";
-@import "fonts";
+//@import "fonts";
 @import "mixins";
 
 * {
@@ -12,11 +12,6 @@
 h1, h2, h3, h4, h5, h6, p, a {
   margin: 0;
   padding: 0;
-}
-
-ul {
-  font-size: 16px;
-  line-height: 24px;
 }
 
 .coral {
@@ -74,57 +69,52 @@ ul {
     margin-top: 14px;
   }
 
-  //.title-1 {
-  //  font-size: 36px;
-  //  line-height: 44px;
-  //
-  //  @media screen and (max-width: 768px) {
-  //    font-size: 28px;
-  //    line-height: 36px;
-  //  }
-  //}
-  //
-  //.title-2 {
-  //  font-size: 32px;
-  //  line-height: 40px;
-  //
-  //  @media screen and (max-width: 1024px) {
-  //    font-size: 28px;
-  //    line-height: 36px;
-  //  }
-  //}
-  //
-  //.title-3 {
-  //  font-size: 28px;
-  //  line-height: 36px;
-  //  font-weight: 600;
-  //
-  //  @media screen and (max-width: 768px) {
-  //    font-size: 20px;
-  //    line-height: 28px;
-  //  }
-  //}
-  //
-  //.title-4 {
-  //  font-size: 24px;
-  //  line-height: 32px;
-  //  font-weight: 600;
-  //
-  //  @media screen and (max-width: 768px) {
-  //    font-size: 20px;
-  //    line-height: 28px;
-  //  }
-  //}
-  //
-  //.title-5 {
-  //  font-size: 20px;
-  //  line-height: 28px;
-  //  font-weight: 600;
-  //}
+  .title-1 {
+    font-size: 36px;
+    line-height: 44px;
 
-  .text {
-    font-size: 16px;
-    line-height: 24px;
+    @media screen and (max-width: 768px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  .title-2 {
+    font-size: 32px;
+    line-height: 40px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  .title-3 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .title-4 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .title-5 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
   }
 
   .label {
@@ -135,14 +125,51 @@ ul {
 
   ul {
     padding-left: 20px;
+    font-size: 16px;
+    line-height: 24px;
 
     li + li {
       margin-top: 5px;
     }
   }
+}
 
-  @include parentTag(a) {
-    text-decoration: none!important;
+.text {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.sunmar {
+  .banner__title {
+    font-size: 56px!important;
+    line-height: 60px!important;
+    color: white;
+    margin-bottom: 24px;
+    font-weight: 600!important;
+  }
+
+  .banner__subtitle {
+    font-size: 16px;
+    line-height: 20px;
+    color: white;
+  }
+
+  .title-1 {
+
+  }
+
+  .title-2 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .title-4 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #0E2855;
   }
 }
 
@@ -161,6 +188,10 @@ a.coral-button {
 
 .bg-white {
   background-color: #FFFFFF;
+}
+
+.bg-grey {
+  background-color: #F5F5F8;
 }
 
 .slider__pagination.swiper-pagination {
@@ -195,6 +226,7 @@ section > article {
 section > article .wrapper {
   padding-inline: 80px;
   padding-block: 40px;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     padding-inline: 0;
@@ -214,7 +246,12 @@ section:has(.banner) .wrapper {
   padding-bottom: 0;
 }
 
-.ant-col:has(section.coral) > div {
+section:has(.banner.banner--text) .wrapper {
+  padding-bottom: 40px;
+}
+
+.ant-col:has(section.coral) > div,
+.ant-col:has(section.sunmar) > div {
   padding: 0;
 }
 
