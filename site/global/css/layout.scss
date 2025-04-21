@@ -139,6 +139,17 @@ h1, h2, h3, h4, h5, h6, p, a {
   line-height: 24px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 .sunmar {
   .banner__title {
     font-size: 56px!important;
@@ -146,6 +157,16 @@ h1, h2, h3, h4, h5, h6, p, a {
     color: white;
     margin-bottom: 24px;
     font-weight: 600!important;
+
+    @media screen and (max-width: 1280px) {
+      font-size: 40px!important;
+      line-height: 48px!important;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 32px!important;
+      line-height: 40px!important;
+    }
   }
 
   .banner__subtitle {
@@ -161,6 +182,11 @@ h1, h2, h3, h4, h5, h6, p, a {
   .title-2 {
     font-size: 40px;
     line-height: 44px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 32px;
+      line-height: 36px;
+    }
   }
 
   .title-4 {
@@ -212,7 +238,8 @@ a.coral-button {
   }
 }
 
-.layout-container-limit:has(section.coral) {
+.layout-container-limit:has(section.coral),
+.layout-container-limit:has(section.sunamr) {
   max-width: 100% !important;
   width: 100% !important;
   padding: 0 !important;
@@ -240,6 +267,12 @@ section.full-width > article {
 
 section.full-width > article .wrapper {
   padding-inline: 0;
+}
+
+section.full-width-428 > article .wrapper {
+  @media screen and (max-width: 428px) {
+    padding-inline: 0;
+  }
 }
 
 section:has(.banner) .wrapper {
