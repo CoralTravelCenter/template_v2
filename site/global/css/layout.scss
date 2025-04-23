@@ -94,10 +94,10 @@ h1, h2, h3, h4, h5, h6, p, a {
     line-height: 36px;
     font-weight: 600;
 
-    @media screen and (max-width: 768px) {
-      font-size: 20px;
-      line-height: 28px;
-    }
+    //@media screen and (max-width: 768px) {
+    //  font-size: 20px;
+    //  line-height: 28px;
+    //}
   }
 
   .title-4 {
@@ -281,6 +281,10 @@ section:has(.banner) .wrapper {
 
 section:has(.banner.banner--text) .wrapper {
   padding-bottom: 40px;
+}
+
+section:has(.anchors) .wrapper {
+  padding-block: 0;
 }
 
 .ant-col:has(section.coral) > div,

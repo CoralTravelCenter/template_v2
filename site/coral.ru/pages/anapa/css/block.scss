@@ -1,0 +1,125 @@
+
+section:has(.block__line) .wrapper {
+  padding-bottom: 0;
+}
+
+.text-panel {
+  background-color: white;
+  border-radius: 24px;
+  padding: 32px;
+
+  @media screen and (max-width: 768px) {
+    padding-inline: 24px;
+    padding-block: 16px;
+  }
+}
+
+.block {
+  display: flex;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  & + .block {
+    margin-top: 24px;
+  }
+
+  &__col {
+    flex: 1;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+
+    @media screen and (max-width: 768px) {
+      border-radius: 0 0 20px 20px;
+      order: 2;
+    }
+  }
+
+  &__info {
+    padding-inline: 32px;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    padding-block: 16px;
+
+    @media screen and (max-width: 768px) {
+      padding-inline: 24px;
+    }
+  }
+
+  &__img {
+    display: flex;
+    flex: 1;
+    position: relative;
+
+    img {
+      border-radius: 0 20px 20px 0;
+      object-fit: cover;
+
+      @media screen and (max-width: 768px) {
+        order: 1;
+      }
+
+      @media screen and (max-width: 768px) {
+        border-radius: 20px 20px 0 0;
+      }
+    }
+  }
+
+  &--reverse {
+    flex-direction: row-reverse;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    .block__img {
+      img {
+        border-radius: 20px 0 0 20px;
+
+        @media screen and (max-width: 768px) {
+          border-radius: 20px 20px 0 0;
+        }
+      }
+    }
+
+    .block__col {
+      border-radius: 0 20px 20px 0;
+
+      @media screen and (max-width: 768px) {
+        border-radius: 0 0 20px 20px;
+      }
+    }
+
+    .block__label {
+      right: unset;
+      left: 16px;
+    }
+  }
+
+  &__line {
+    height: 1px;
+    margin-top: 40px;
+    border-bottom: 1px solid #78ABDC;
+  }
+
+  &__label {
+    position: absolute;
+    display: flex;
+    gap: 6px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.80);
+    padding: 10px;
+    bottom: 16px;
+    right: 16px;
+
+    @media screen and (max-width: 768px) {
+      top: 12px;
+      left: 12px;
+      right: unset;
+      bottom: unset;
+    }
+  }
+}
