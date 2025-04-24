@@ -37,7 +37,7 @@ hostReactAppReady().then(() => {
     if (anchorsBlock) {
         const placeholder = document.querySelector(".js-placeholder");
 
-        const hotelsBlock = document.querySelector('.js-hotels-block');
+        const hotelsBlocks = document.querySelectorAll('.js-hotels-block');
 
         placeholder.style.width = `${anchorsBlock.offsetWidth}px`;
         placeholder.style.height = `${anchorsBlock.offsetHeight}px`;
@@ -46,18 +46,36 @@ hostReactAppReady().then(() => {
         const rect = anchorsBlock.getBoundingClientRect();
         const initialOffsetTop = rect.top + window.scrollY;
 
-        const appBanner = document.querySelector(".welcome-to-app");
-        const closeBanner = document.querySelector('.welcome-to-app__close');
+        let appBanner = null;
+
+        setTimeout(() => {
+            appBanner = document.querySelector(".welcome-to-app");
+
+            const closeBanner = appBanner?.querySelector('.welcome-to-app__close');
+
+            if (closeBanner) {
+                closeBanner.addEventListener('click', () => {
+                    anchorsBlock.style.top = "56px";
+                });
+            }
+        }, 500);
 
         const onScroll = () => {
             const scrollY = window.scrollY;
 
             if (window.innerWidth < 768) {
-                if (hotelsBlock && (scrollY >= hotelsBlock.offsetTop && scrollY <= (hotelsBlock.offsetTop + hotelsBlock.offsetHeight))) {
-                    anchorsBlock.style.display = "none";
-                } else {
-                    anchorsBlock.style.display = "block";
-                }
+                let insideAnyHotelBlock = false;
+
+                hotelsBlocks.forEach(block => {
+                    const blockTop = block.offsetTop;
+                    const blockBottom = blockTop + block.offsetHeight;
+
+                    if (scrollY >= blockTop && scrollY <= blockBottom) {
+                        insideAnyHotelBlock = true;
+                    }
+                });
+
+                anchorsBlock.style.display = insideAnyHotelBlock ? "none" : "block";
             }
 
             if (scrollY >= initialOffsetTop) {
@@ -81,12 +99,6 @@ hostReactAppReady().then(() => {
                 }
             }
         };
-
-        closeBanner.addEventListener('click', () => {
-            anchorsBlock.style.top = "56px";
-            appBanner.style.display = "none";
-            appBanner.classList.add("js-hidden");
-        });
 
         window.addEventListener("scroll", onScroll);
     }
