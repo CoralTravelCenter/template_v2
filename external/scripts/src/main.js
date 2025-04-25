@@ -13,9 +13,8 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 }
 
 hostReactAppReady().then(() => {
-    if (__NEXT_DATA__.props.pageProps.meta.departure === "2671-5") {
+    if (__NEXT_DATA__.props.pageProps.departure === "2671-5") {
         const searchPanel = document.querySelector('.quick-search-wrapper');
-        const recentlyTours = searchPanel.querySelector('[data-testid="quickSearchPackageToursRecentlyViewedBlock"]');
 
         const style = document.createElement('style');
         style.textContent = `
@@ -114,35 +113,35 @@ hostReactAppReady().then(() => {
 
         const popularData = [
             {
-                link: 'https://coral.ru/packagetoursctx/?ctx_destination=vn&nights=10&departure=msk&depthDays=20&other_stat=none|1|premium',
-                places: ['Москва', 'Вьетнам'],
-                dates: '09.09.2025-20.09.2025',
+                link: 'https://coral.ru/packagetoursctx/?ctx_destination=tr&nights=7&departure=msk&depthDays=4&other_stat=none|1|premium',
+                places: ['Москва', 'Турция'],
+                dates: '29.04.2025-07.05.2025',
                 nights: 7,
                 adults: 2,
                 label: 'Тур'
             },
             {
-                link: 'https://www.sunmar.ru/',
-                places: ['Москва', 'Мальдивы'],
-                dates: '11.02.2025-01.05.2025',
-                nights: 15,
-                adults: 1,
+                link: 'https://coral.ru/packagetoursctx/?ctx_destination=eg&nights=7&departure=msk&depthDays=17&other_stat=none|1|premium',
+                places: ['Москва', 'Египет'],
+                dates: '12.05.2025-25.05.2025',
+                nights: 7,
+                adults: 2,
                 label: 'Тур'
             },
             {
-                link: 'https://www.sunmar.ru/',
-                places: ['Венера'],
-                dates: '15.07.2025-25.07.2025',
-                nights: 10,
-                adults: 3,
+                link: 'https://www.coral.ru/onlyhotelctx/?ctx_destination=vn&nights=7&departure=msk&depthDays=120',
+                places: ['Вьетнам'],
+                dates: '22.08.2025-29.08.2025',
+                nights: 7,
+                adults: 2,
                 label: 'Отель'
             },
             {
-                link: 'https://www.sunmar.ru/',
-                places: ['Плутон'],
-                dates: '15.07.2025-25.07.2025',
-                nights: 1,
-                adults: 10,
+                link: 'https://www.coral.ru/onlyhotelctx/?ctx_destination=ae&nights=7&departure=msk&depthDays=30',
+                places: ['ОАЭ'],
+                dates: '24.05.2025-31.05.2025',
+                nights: 7,
+                adults: 2,
                 label: 'Отель'
             }
         ];
@@ -150,13 +149,12 @@ hostReactAppReady().then(() => {
         function createPopularBlock(blockData, index) {
             const point = blockData.places.map(place => `<span>${place}</span>`).join(', ') || '<span>Москва, Турция</span>';
 
-            // Определяем страну для метрики
             const country = blockData.places.length > 1 ? blockData.places[1] : blockData.places[0];
 
             const displayIndex = index + 1;
 
             return `
-        <a href="${blockData.link}" target="_blank" class="popular-block" data-index="${displayIndex}" data-country="${country}" data-date="${blockData.dates}" data-label="${blockData.label}">
+        <a href="${blockData.link}" class="popular-block" data-index="${displayIndex}" data-country="${country}" data-date="${blockData.dates}" data-label="${blockData.label}">
           <div class="popular-block__info">
             <p class="popular-block__text">
               ${point}
@@ -219,20 +217,25 @@ hostReactAppReady().then(() => {
             return popularWrapper;
         }
 
-        if (recentlyTours && recentlyTours.children.length === 0) {
-            recentlyTours.insertAdjacentElement('beforeend', createPopularWrapper(popularData));
-        }
+        setInterval(() => {
+            const recentlyTours = searchPanel.querySelector('[data-testid="quickSearchPackageToursRecentlyViewedBlock"]');
+            if (recentlyTours && !recentlyTours.querySelector('div')) {
+                recentlyTours.insertAdjacentElement('beforeend', createPopularWrapper(popularData));
+            }
+        }, 200);
 
-        const hotelButton = document.querySelector('[aria-controls="rc-tabs-0-panel-2"]');
+        // const hotelButton = document.querySelector('[aria-controls="rc-tabs-0-panel-2"]');
+        //
+        // hotelButton.addEventListener('click', () => {
+        //
+        // });
 
-        hotelButton.addEventListener('click', () => {
-            setTimeout(() => {
-                const recentlyHotels = document.querySelector('[data-testid="quickSearchOnlyHotelRecentlyViewedBlock"]');
+        setInterval(() => {
+            const recentlyHotels = document.querySelector('[data-testid="quickSearchOnlyHotelRecentlyViewedBlock"]');
 
-                if (recentlyHotels && recentlyHotels.children.length === 0) {
-                    recentlyHotels.insertAdjacentElement('beforeend', createPopularWrapper(popularData));
-                }
-            }, 500)
-        });
+            if (recentlyHotels && !recentlyHotels.querySelector('div')) {
+                recentlyHotels.insertAdjacentElement('beforeend', createPopularWrapper(popularData));
+            }
+        }, 200);
     }
 });
