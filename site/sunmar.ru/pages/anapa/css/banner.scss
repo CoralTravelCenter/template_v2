@@ -1,0 +1,41 @@
+
+.banner {
+  background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/russia/anapa/banner.webp");
+  height: 520px;
+  width: 100%;
+  background-size: cover;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media screen and (max-width: 1280px) {
+    height: 420px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    height: 380px;
+  }
+
+  @media screen and (max-width: 428px) {
+    background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/park-hotels/banner_m.webp");
+    height: 520px;
+    border-radius: 0;
+  }
+
+  &__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 64px;
+
+    @media screen and (max-width: 768px) {
+      padding-inline: 32px;
+    }
+
+    @media screen and (max-width: 428px) {
+      padding: 24px;
+      justify-content: flex-start;
+    }
+  }
+}

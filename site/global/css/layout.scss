@@ -189,6 +189,11 @@ h1, h2, h3, h4, h5, h6, p, a {
     }
   }
 
+  .title-3 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
   .title-4 {
     font-size: 28px;
     line-height: 32px;
@@ -208,6 +213,19 @@ a.coral-button {
   align-items: center;
   border-radius: 48px;
   background-color: #0092D0;
+  text-decoration: none;
+  width: fit-content;
+}
+
+a.sunmar-button {
+  display: flex;
+  padding-inline: 32px;
+  color: #FFFFFF;
+  font-size: 16px;
+  height: 48px;
+  align-items: center;
+  border-radius: 40px;
+  background: linear-gradient(245deg, var(--Gradient-color_Gradinet_Primary_Second, #D8242A) 15.84%, var(--Gradient-color_Gradient_Primary_First, #E7317D) 84.16%);
   text-decoration: none;
   width: fit-content;
 }
