@@ -3,9 +3,65 @@
 .tab-content {
   display: none;
 }
+
 .tab-content.active {
   display: block;
 }
+
 .tab-button.active {
+  background-color: #061A3E;
+  color: #FFF;
+}
+
+.tab-button {
+  display: flex;
+  height: 43px;
+  flex: 1;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  cursor: pointer;
   font-weight: bold;
+  font-size: 16px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+  border-radius: 40px;
+  padding: 8px;
+  background-color: #F5F5F8;
+}
+
+.content {
+  margin-top: 24px;
+}
+
+.block {
+  display: flex;
+  border-radius: 16px;
+  background-color: #F5F5F8;
+  margin-bottom: 24px;
+
+  &__img {
+    display: flex;
+    flex: 1;
+
+    img {
+      border-radius: 16px 0 0 16px;
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex: 1;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 32px;
+  }
 }
