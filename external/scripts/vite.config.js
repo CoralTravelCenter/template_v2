@@ -4,11 +4,12 @@ import monkey from 'vite-plugin-monkey';
 export default defineConfig({
   plugins: [
     monkey({
-      entry: 'src/hotel-search.js',
+      entry: 'src/hotel-empty.js',
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/onlyhotel/turtsiya-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEguv1H7LZyYGtroqvW1KltkMPxE2glq6douCLUmS2dA1Qi9x5bz1Y9R0bOkvp9nRVSp57ZN5UFff8Ef67lGGfN99aDSmCX4XdHGJIcpQxC1t3YQkN9F3dxAId333yYWEN85xnksqXta4hP1R7eqIMvx0AzcYNN%2BNZepX3huzJN%2B9KQR%2Fyv0c4M%2BOV91pWZfGtnNUJ%2BMpLsXCicZKx2mc6FYvCtaRm7wXlTyoDp0wYtZq62Hj46qAhjSMJtYeX5%2FZSTaz%2F1blEzmv9z1q3M8u22CQf%2ByycwsnrGnnpibuD%2Bsc&p=2&w=0&s=0'],
+        // match: ['https://www.coral.ru/packagetours/moskva-to-turtsiya-tours/?qp=lWOJw1XDa14WeujkN6zDTvUQqPbS3jAkXnSbQAEtmkYGE6L0gA1gc8OzJhHjufIYfJqkGUXwgPJHWDim9VUFkfMtSxY4oaQWgoiqIg6LaeGcKjurDdX9GhrIMQo3Z3KJizkUR1DHWoTTJ17wt1WwjgpTQ6znQrW%2BbB93IUrQXXLYrOQosfg8wbHJUEWNm3sY%2FJxGfrmL2Qj7RZvnE%2Bt%2BkIRfsNS6fSgXT72Js4nRTqktY5SS3Q48%2Bo1aJ2svsB3hJKgrh7xNvsIlMoM6zCFVWn7a7pBE13Zr9Ts3%2ByWW4RNy2DsgTkiF%2FCf%2FTxR153k0&p=1&w=0&s=0'],
+        match: ['https://www.coral.ru/hotels/turkey/armonia-holiday-village-spa-bodrum/?qp=lWOJw1XDa14WeujkN6zDTvUQqPbS3jAkXnSbQAEtmkYGE6L0gA1gc8OzJhHjufIYfJqkGUXwgPJHWDim9VUFkfMtSxY4oaQWgoiqIg6LaeGcKjurDdX9GhrIMQo3Z3KJqNKAi0axRe1Ju%2bQENR3lHlgXVKegn4CgUpF2OBVyC3Ie6hykyjZ6aeQm0tpIKP%2bDxDWQUxaAXYOu292nje%2bWL75msfCVKr7tahcT2xEKGHixNqQP8Wz9gd%2fvfGCiJPTW4NenhDYfnoalkgh3327nuqyT3Zc207OMU8TILAd9s4qoTEK0GqVuJsFgpvoiQlOL6FeaK6XK%2bAYSH3e8hY9SWXiqLl1Xh%2b1i14Tn7jwIj8M%3d&p=1&w=0&s=5&hlu=packagetours/moskva-to-turtsiya-tours&hlqp=lWOJw1XDa14WeujkN6zDTvUQqPbS3jAkXnSbQAEtmkYGE6L0gA1gc8OzJhHjufIYfJqkGUXwgPJHWDim9VUFkfMtSxY4oaQWgoiqIg6LaeGcKjurDdX9GhrIMQo3Z3KJizkUR1DHWoTTJ17wt1WwjgpTQ6znQrW+bB93IUrQXXLYrOQosfg8wbHJUEWNm3sY/JxGfrmL2Qj7RZvnE+t+kIRfsNS6fSgXT72Js4nRTqktY5SS3Q48+o1aJ2svsB3hJKgrh7xNvsIlMoM6zCFVWn7a7pBE13Zr9Ts3+yWW4RNy2DsgTkiF/Cf/TxR153k0'],
       },
     }),
   ],
