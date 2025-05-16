@@ -1,0 +1,244 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+    margin: 0;
+    padding: 0;
+}
+
+.coral .banner__title {
+    font-size: 56px;
+    line-height: 64px;
+    color: #FFFFFF;
+    font-weight: 300;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 1280px) {
+    .coral .banner__title {
+        font-size: 40px;
+        line-height: 48px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .coral .banner__title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
+.coral .banner__subtitle {
+    font-size: 20px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 1280px) {
+    .coral .banner__subtitle {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.coral .banner__button {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    padding-inline: 20px;
+    background-color: #FFFFFF;
+    color: black;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 48px;
+    width: fit-content;
+    margin-top: 24px;
+    text-decoration: none;
+    border: 1px solid white;
+}
+
+.coral .banner__button:hover {
+    color: #077DAD;
+    border: 1px solid #077DAD;
+}
+
+.coral .banner + .text {
+    margin-top: 14px;
+}
+
+.coral .title-1 {
+    font-size: 36px;
+    line-height: 44px;
+}
+
+@media screen and (max-width: 768px) {
+    .coral .title-1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+}
+
+.coral .title-2 {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+    .coral .title-2 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+}
+
+.coral .title-3 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .coral .title-3 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+}
+
+.coral .title-4 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .coral .title-4 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+}
+
+.coral .title-5 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+}
+
+.coral .label {
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.coral ul {
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.coral ul li + li {
+    margin-top: 5px;
+}
+
+.text {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.text + .text {
+    margin-top: 16px;
+}
+
+.text + a.coral-button {
+    margin-top: 16px;
+}
+
+a.coral-button {
+    display: flex;
+    padding-inline: 20px;
+    color: #FFFFFF;
+    font-size: 16px;
+    height: 48px;
+    align-items: center;
+    border-radius: 48px;
+    background-color: #0092D0;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.bg-white {
+    background-color: #FFFFFF;
+}
+
+.bg-grey {
+    background-color: #F5F5F8;
+}
+
+.slider__pagination.swiper-pagination.swiper-pagination-horizontal {
+    bottom: -27px;
+}
+
+.slider__pagination.swiper-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #33C2FF4D;
+    opacity: 1;
+}
+
+.slider__pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #077DAD;
+}
+
+.layout-container-limit:has(section.coral),
+.layout-container-limit:has(section.sunamr) {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+section > article {
+    max-width: 1528px;
+    margin: auto;
+}
+
+section > article .wrapper {
+    padding-inline: 80px;
+    padding-block: 40px;
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    section > article .wrapper {
+        padding-inline: 0;
+        padding-block: 30px;
+    }
+}
+
+section.full-width > article {
+    max-width: 100%;
+}
+
+section.full-width > article .wrapper {
+    padding-inline: 0;
+}
+
+@media screen and (max-width: 428px) {
+    section.full-width-428 > article .wrapper {
+        padding-inline: 0;
+    }
+}
+
+section:has(.banner) .wrapper {
+    padding-bottom: 0;
+}
+
+section:has(.banner.banner--text) .wrapper {
+    padding-bottom: 40px;
+}
+
+.ant-col:has(section.coral) > div,
+.ant-col:has(section.sunmar) > div {
+    padding: 0;
+}

@@ -1,0 +1,60 @@
+<body>
+<link rel="stylesheet" href="./style.css"/>
+<style>
+    .banner {
+        background-image: url("https://placehold.co/1368x520");
+        height: 520px;
+        width: 100%;
+        background-size: cover;
+        border-radius: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        @media screen and (max-width: 1280px) {
+            height: 420px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            height: 380px;
+        }
+
+        @media screen and (max-width: 428px) {
+            /*background-image: url("site/coral.ru/assets/banner_m.webp");*/
+            height: 520px;
+        }
+    }
+
+    .banner__content {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        padding-inline: 64px;
+
+        @media screen and (max-width: 768px) {
+            padding-inline: 32px;
+        }
+
+        @media screen and (max-width: 428px) {
+            padding: 24px;
+            justify-content: flex-start;
+        }
+    }
+</style>
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <div class="banner">
+                <div class="banner__content">
+                    <h1 class="banner__title">
+                        Туры в Стамбул 2025
+                    </h1>
+                    <a href="#hotels" class="banner__button">
+                        Выбрать тур
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
