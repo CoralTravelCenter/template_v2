@@ -8,5 +8,6 @@
 		'/site/coral.ru/template/banner.html',
 		'/site/coral.ru/template/anchors.html',
 		'/site/coral.ru/template/text.html',
+		'/site/coral.ru/template/stambul.html',
 	]
 }

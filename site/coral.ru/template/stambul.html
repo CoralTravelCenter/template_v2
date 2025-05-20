@@ -1,0 +1,85 @@
+<body>
+<style>
+    .panel {
+        display: flex;
+        background-color: white;
+        border-radius: 20px;
+        margin-top: 32px;
+    }
+
+    .panel__col {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .panel__info {
+        padding-inline: 24px;
+        padding-block: 28px;
+    }
+
+    .panel__img {
+        display: flex;
+        flex: 1;
+        border-radius: 0 20px 20px 0;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .panel.panel--reverse {
+        flex-direction: row-reverse;
+    }
+
+    .panel.panel--reverse .panel__img {
+        border-radius: 20px 0 0 20px;
+    }
+</style>
+<section class="coral" style="background-color: #f5f5f5;">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-1 mb-8">
+                Что делать в Стамбуле?
+            </h2>
+            <p class="text">
+                Большинство достопримечательностей вы сможете увидеть в рамках наших экскурсионных туров в Стамбул.
+                Мы предлагаем увлекательные путешествия с опытными гидами и полным погружением в историю города.
+            </p>
+
+            <div class="panel">
+                <div class="panel__col">
+                    <div class="panel__info">
+                        <p class="text">
+                            В любое время года можно отправиться на Принцевы острова. Там туристов ждут не только
+                            живописные
+                            пейзажи, но и комфортабельные отели, рестораны и кафе. В летний сезон можно искупаться
+                            в тёплых
+                            водах Чёрного моря, а в прохладную погоду, даже зимой, – с комфортом прогуляться
+                            по колоритным
+                            улочкам и сделать прекрасные фотографии.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel__img" style="background-image: url('https://placehold.co/600x400');">
+
+                </div>
+            </div>
+
+            <div class="panel panel--reverse">
+                <div class="panel__col">
+                    <div class="panel__info">
+                        <p class="text">
+                            Посетить район Султанахмет, который внесён в список культурного наследия ЮНЕСКО. Здесь можно
+                            увидеть Софийский собор, Голубую мечеть, площадь Ипподром.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel__img" style="background-image: url('https://placehold.co/300x200');">
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+</body>
