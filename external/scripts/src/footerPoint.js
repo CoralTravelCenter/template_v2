@@ -4,7 +4,7 @@ if (footer) {
     function addUserFooterStyles() {
         const style = document.createElement('style');
         style.textContent = `
-        .user-footer-score {
+        .с-user-footer-score {
             padding: 12px;
             background-color: #C2E4F6;
             border-radius: 12px;
@@ -19,7 +19,7 @@ if (footer) {
             }
         }
         
-        .user-footer-score::before {
+        .с-user-footer-score::before {
             content: '';
             position: absolute;
             background-image: url("https://b2ccdn.coral.ru/content/mindbox/user-score/img.webp ");
@@ -32,14 +32,14 @@ if (footer) {
             top: -50px;
         }
         
-        .user-footer-score__text {
+        .с-user-footer-score__text {
             font-size: 12px;
             font-weight: 600;
             margin: 0;
             margin-bottom: 12px;
         }
         
-        .user-footer-score__button {
+        .с-user-footer-score__button {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -56,11 +56,11 @@ if (footer) {
 
     function insertUserFooterScore(targetElement, position = 'beforeend') {
         const html = `
-        <div class="user-footer-score">
-            <p class="user-footer-score__text">
+        <div class="с-user-footer-score">
+            <p class="с-user-footer-score__text">
                 На сколько удобно <br> пользоваться нашим сайтом?
             </p>
-            <div class="user-footer-score__button" onclick="PopMechanic.show(120292, true);">
+            <div class="с-user-footer-score__button" onclick="PopMechanic.show(120292, true);">
                 Отправить отзыв
             </div>
         </div>
