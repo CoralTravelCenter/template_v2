@@ -8,7 +8,7 @@ export default defineConfig({
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/hotels/turkey/begonville-beach-hotel-marmaris/?qp=3mXCNsoTYgYvGGFvTswFg7WttRIuaez1MPj%2bn7IFwfxcbYwX1pX8SY2iTZ9CKvFqLLyJxvPQq0k4kVH4LRY1Aruo0pBYfQeBMmiEbov9M3GHRxdCOVFu2JpxynhvNWOxWuErJZM3xaum1vo10RoKDt%2fM9cjtRuz2W16qpXTlPFrNY6CUYVZlwYHPHj4W9HmT3sbzBwXjyMg9KUWZ2XLlZXSzZxC7zB48vzPoDjnCKAo9jTIWPc1CVKeNQgGIbt9quyl5sGCI%2f0AWgtQxIZECKjO5bQZ0LIWV0wQBMHr8Y09I%2fdJrPU5AlRryyh99z7IK&p=1&w=0&s=0'],
+        match: ['https://www.coral.ru/packagetours/moskva-to-turtsiya-tours/?qp=lWOJw1XDa14WeujkN6zDTp30fQ%2Fdipb2EYnQqq%2FoKB%2FMgn%2Ftl4sU5bcTJ8iNQKiajHCmsuFzFa3LIS%2Fn5ueIGQjz0J747jOfcGrTtc%2BSQxAK01HjDEDMvNfFF1ILpcWMfTLbRAT48zBQeb980aqjy4CAkQqMIXMHUJwqncCTUl%2BsFFWLWBRDYjz2m8HdLeXdVsghV2k5u8jr1SN0S02eib0LZp%2Fse%2FqdNbk1lHM8Vwv9CzVYc0S67MliaH6HQx3%2BVdKAWd%2FYPCtQi%2Bf0cczipLt9oERP7luLdxPt%2FG59plku5DOmiyp3RIqLD1%2B79KTL&p=1&w=0&s=0'],
       },
     }),
   ],

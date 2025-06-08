@@ -5,11 +5,14 @@ if (!document.getElementById(styleId)) {
     style.id = styleId;
     style.textContent = `
     .survey {
-      display: flex;
-      flex-direction: column;
-      padding: 16px 24px;
+        padding: 16px 24px;
       background-color: white;
       border-radius: 20px;
+    }
+    
+    .survey__wrapper {
+      display: flex;
+      flex-direction: column;
     }
     
     .survey__title {
@@ -28,11 +31,35 @@ if (!document.getElementById(styleId)) {
     .survey__field {
         display: flex;
         align-items: center;
+        gap: 8px;
+    }
+    
+    .survey__field input {
+        margin: 0;
+    }
+    
+    .survey__field label {
+        cursor: pointer;
     }
     
     .survey__field--col {
         flex-direction: column;
         align-items: flex-start;
+    }
+    
+    .survey__field--col input {
+        border-radius: 6px;
+        border: 1px solid #e5e5e5;
+        padding-block: 12px;
+        padding-inline: 16px;
+        width: 100%;
+        max-width: 435px;
+        font-size: 14px;
+    }
+    
+    .survey__field--col input::placeholder {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.25);
     }
     
     .survey__content {
@@ -63,15 +90,44 @@ if (!document.getElementById(styleId)) {
     .survey__head {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        cursor: pointer;
+    }
+    
+    .survey__arrow {
+        margin-left: auto;
+        padding-left: 8px;
     }
     
     .survey__button {
         display: flex;
         align-items: center;
         height: 48px;
-        padding-inline: 14px;
+        padding-inline: 50px;
         background-color: #0092D0;
+        color: white;
+        border-radius: 12px;
+        width: fit-content;
+        cursor: pointer;
+    }
+    
+    .survey__icon {
+        font-size: 32px;
+        margin-right: 16px;
+        margin-block: 0;
+        
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    
+    .survey__text {
+        margin: 0;
+        margin-top: 8px;
+    }
+    
+    .survey__final {
+        flex-direction: column;
+        align-items: center;
     }
 
   `;
@@ -79,11 +135,16 @@ if (!document.getElementById(styleId)) {
 }
 
 const mapBlock = document.getElementById('hotelDetailMap');
-const parentMapBlock = mapBlock.parentNode;
+if (mapBlock) {
+    const parentMapBlock = mapBlock.parentNode;
 
-const surveyHTML = `
+    const surveyHTML = `
 <div class="survey">
+    <div class="survey__wrapper">
     <div class="survey__head">
+        <p class="survey__icon">
+            👋
+        </p>
       <div class="survey__head-text">
         <h4 class="survey__title">
           Расскажите как вы обычно бронируете туры от Соral Travel?
@@ -100,42 +161,42 @@ const surveyHTML = `
     </div>
     <div class="survey__content">
         <div class="survey__field">
-            <input type="radio" id="point_1" name="survey" value="Смотрю тур на сайте и покупаю в фирменном турагентстве Coral Travel">
+            <input type="radio" id="point_1" name="survey" value="Смотрю тур на сайте, но покупаю в фирменном турагентстве Coral Travel">
             <label for="point_1">
-                Смотрю тур на сайте и покупаю в фирменном турагентстве Coral Travel
+                Смотрю тур на сайте, но покупаю в фирменном турагентстве Coral Travel
             </label>
         </div>
 
         <div class="survey__field">
-            <input type="radio" id="point_2" name="survey" value="Смотрю тур на сайте и покупаю в агентстве (не фирменном)">
+            <input type="radio" id="point_2" name="survey" value="Смотрю тур на сайте, но покупаю в любом турагентстве">
             <label for="point_2">
-                Смотрю тур на сайте и покупаю в агентстве (не фирменном)
+                Смотрю тур на сайте, но покупаю в любом турагентстве
             </label>
         </div>
         
         <div class="survey__field">
-            <input type="radio" id="point_3" name="survey" value="Смотрю и покупаю тур онлайн на сайте coral.ru">
+            <input type="radio" id="point_3" name="survey" value="Смотрю и покупаю тур онлайн на сайте coral.ru">
             <label for="point_3">
-                Смотрю и покупаю тур онлайн на сайте coral.ru
+                Смотрю и покупаю тур онлайн на сайте coral.ru
             </label>
         </div>
         
         <div class="survey__field">
-            <input type="radio" id="point_4" name="survey" value="Смотрю тур на сайте coral.ru, но покупаю на другом сайте">
+            <input type="radio" id="point_4" name="survey" value="Смотрю тур на сайте coral.ru, но покупаю на другом сайте">
             <label for="point_4">
-                Смотрю тур на сайте coral.ru, но покупаю на другом сайте
+                Смотрю тур на сайте coral.ru, но покупаю на другом сайте
             </label>
         </div>
         
         <div class="survey__field">
-            <input type="radio" id="point_5" name="survey" value="Смотрю туры на другом сайте, но покупаю на coral.ru">
+            <input type="radio" id="point_5" name="survey" value="Смотрю тур на другом сайте, но покупаю на coral.ru">
             <label for="point_5">
-                Смотрю туры на другом сайте, но покупаю на coral.ru
+                Смотрю тур на другом сайте, но покупаю на coral.ru
             </label>
         </div>
         
         <div class="survey__field survey__field--col">
-            <div style="display: flex;">
+            <div style="display: flex; gap: 8px;">
                 <input type="radio" id="point_6" name="survey" value="другое">
                 <label for="point_6">
                     Другое
@@ -148,94 +209,106 @@ const surveyHTML = `
             Отправить
         </div>
     </div>
+    </div>
+    
+    <div class="survey__final" style="display: none;">
+    
+        <h4 class="survey__title">
+            Спасибо за участие!
+        </h4>
+        <p class="survey__text">
+            Ваш ответ поможет улучшить наш сервис
+        </p>
+    </div>
 </div>
 `;
 
-const surveyElement = document.createElement('div');
-surveyElement.innerHTML = surveyHTML;
+    const surveyElement = document.createElement('div');
+    surveyElement.innerHTML = surveyHTML;
 
-parentMapBlock.parentNode.insertBefore(surveyElement, parentMapBlock);
+    parentMapBlock.parentNode.insertBefore(surveyElement, parentMapBlock);
 
-const head = surveyElement.querySelector('.survey__head');
-const content = surveyElement.querySelector('.survey__content');
-const arrow = surveyElement.querySelector('.survey__arrow');
+    const head = surveyElement.querySelector('.survey__head');
+    const content = surveyElement.querySelector('.survey__content');
+    const arrow = surveyElement.querySelector('.survey__arrow');
 
-content.style.maxHeight = content.scrollHeight + 'px';
+    content.style.maxHeight = content.scrollHeight + 'px';
 
-head.addEventListener('click', () => {
-    const isCollapsed = content.classList.contains('survey__content--collapsed');
+    head.addEventListener('click', () => {
+        const isCollapsed = content.classList.contains('survey__content--collapsed');
 
-    if (isCollapsed) {
-        content.classList.remove('survey__content--collapsed');
+        if (isCollapsed) {
+            content.classList.remove('survey__content--collapsed');
 
-        content.style.maxHeight = '0px';
-
-        requestAnimationFrame(() => {
-            const fullHeight = content.scrollHeight;
-            content.style.maxHeight = fullHeight + 'px';
-        });
-    } else {
-        content.style.maxHeight = content.scrollHeight + 'px';
-        requestAnimationFrame(() => {
             content.style.maxHeight = '0px';
-        });
 
-        setTimeout(() => {
-            content.classList.add('survey__content--collapsed');
-        }, 300);
-    }
+            requestAnimationFrame(() => {
+                const fullHeight = content.scrollHeight + 100;
+                content.style.maxHeight = fullHeight + 'px';
+            });
+        } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+                content.style.maxHeight = '0px';
+            });
 
-    arrow.classList.toggle('survey__arrow--rotated');
-});
-
-const radioOther = surveyElement.querySelector('#point_6');
-const inputOther = surveyElement.querySelector('input[name="other"]');
-
-radioOther.addEventListener('change', () => {
-    if (radioOther.checked) {
-        inputOther.focus();
-    }
-});
-
-inputOther.addEventListener('input', () => {
-    if (inputOther.value.trim()) {
-        radioOther.checked = true;
-    }
-});
-
-inputOther.addEventListener('focus', () => {
-    radioOther.checked = true;
-});
-
-
-const sendButton = surveyElement.querySelector('#survey-send-button');
-
-sendButton.addEventListener('click', () => {
-    const selectedOption = surveyElement.querySelector('input[name="survey"]:checked');
-    const otherInputValue = inputOther.value.trim();
-
-    if (!selectedOption) {
-        console.warn('Пользователь не выбрал вариант ответа');
-        return;
-    }
-
-    const answer = selectedOption.value;
-
-    if (selectedOption.id === 'point_6') {
-        const yaParams = {
-            'Другое': {
-                'Текст': otherInputValue
-            }
+            setTimeout(() => {
+                content.classList.add('survey__content--collapsed');
+            }, 300);
         }
 
-        ym(96674199, 'reachGoal', 'purchase_survey', yaParams);
-    } else {
-        ym(96674199, 'reachGoal', 'purchase_survey', {
-            answer: answer
-        });
-    }
-});
+        arrow.classList.toggle('survey__arrow--rotated');
+    });
+
+    const radioOther = surveyElement.querySelector('#point_6');
+    const inputOther = surveyElement.querySelector('input[name="other"]');
+
+    radioOther.addEventListener('change', () => {
+        if (radioOther.checked) {
+            inputOther.focus();
+        }
+    });
+
+    inputOther.addEventListener('input', () => {
+        if (inputOther.value.trim()) {
+            radioOther.checked = true;
+        }
+    });
+
+    inputOther.addEventListener('focus', () => {
+        radioOther.checked = true;
+    });
 
 
+    const sendButton = surveyElement.querySelector('#survey-send-button');
 
+    const wrapper = surveyElement.querySelector('.survey__wrapper');
+    const final = surveyElement.querySelector('.survey__final');
 
+    sendButton.addEventListener('click', () => {
+        const selectedOption = surveyElement.querySelector('input[name="survey"]:checked');
+        const otherInputValue = inputOther.value.trim();
+
+        if (!selectedOption) {
+            return;
+        }
+
+        const answer = selectedOption.value;
+
+        if (selectedOption.id === 'point_6') {
+            const yaParams = {
+                'Другое': {
+                    'Текст': otherInputValue
+                }
+            };
+            ym(96674199, 'reachGoal', 'purchase_survey', yaParams);
+        } else {
+            ym(96674199, 'reachGoal', 'purchase_survey', {
+                answer: answer
+            });
+        }
+
+        wrapper.style.display = 'none';
+        final.style.display = 'flex';
+    });
+}
