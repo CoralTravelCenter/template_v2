@@ -1,238 +1,321 @@
-async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
-    return new Promise(resolve => {
-        const waiter = () => {
-            const host_el = document.querySelector(selector);
-            if (host_el?.getBoundingClientRect().height) {
-                resolve();
-            } else {
-                setTimeout(waiter, timeout);
-            }
-        };
-        waiter();
+// (function replaysCustom() {
+//
+// })();
+
+const SURVEY_CLASS = 'injected-survey';
+const SURVEY_HTML = `
+    <div class="survey">
+    <div class="survey__wrapper">
+    <div class="survey__head">
+        <p class="survey__icon">
+            👋
+        </p>
+      <div class="survey__head-text">
+        <h4 class="survey__title">
+          Расскажите как вы обычно бронируете туры от Соral Travel?
+        </h4>
+        <p class="survey__subtitle">
+          Ответ анонимен, займёт не больше 10 секунд
+        </p>
+      </div>
+      <div class="survey__arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+          <path d="M11 6L6 0.999999L1 6" stroke="#535353" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="survey__content survey__content--collapsed">
+        <div class="survey__field">
+            <input type="radio" id="point_1" name="survey" value="Смотрю тур на сайте, но покупаю в фирменном турагентстве Coral Travel">
+            <label for="point_1">
+                Смотрю тур на сайте, но покупаю в фирменном турагентстве Coral Travel
+            </label>
+        </div>
+
+        <div class="survey__field">
+            <input type="radio" id="point_2" name="survey" value="Смотрю тур на сайте, но покупаю в любом турагентстве">
+            <label for="point_2">
+                Смотрю тур на сайте, но покупаю в любом турагентстве
+            </label>
+        </div>
+        
+        <div class="survey__field">
+            <input type="radio" id="point_3" name="survey" value="Смотрю и покупаю тур онлайн на сайте coral.ru">
+            <label for="point_3">
+                Смотрю и покупаю тур онлайн на сайте coral.ru
+            </label>
+        </div>
+        
+        <div class="survey__field">
+            <input type="radio" id="point_4" name="survey" value="Смотрю тур на сайте coral.ru, но покупаю на другом сайте">
+            <label for="point_4">
+                Смотрю тур на сайте coral.ru, но покупаю на другом сайте
+            </label>
+        </div>
+        
+        <div class="survey__field">
+            <input type="radio" id="point_5" name="survey" value="Смотрю тур на другом сайте, но покупаю на coral.ru">
+            <label for="point_5">
+                Смотрю тур на другом сайте, но покупаю на coral.ru
+            </label>
+        </div>
+        
+        <div class="survey__field survey__field--col">
+            <div style="display: flex; gap: 8px;">
+                <input type="radio" id="point_6" name="survey" value="другое">
+                <label for="point_6">
+                    Другое
+                </label>
+            </div>
+            <input type="text" name="other" placeholder="Введите свой вариант">
+        </div>
+        
+        <div class="survey__button" id="survey-send-button">
+            Отправить
+        </div>
+    </div>
+    </div>
+    
+    <div class="survey__final" style="display: none;">
+    
+        <h4 class="survey__title">
+            Спасибо за участие!
+        </h4>
+        <p class="survey__text">
+            Ваш ответ поможет улучшить наш сервис
+        </p>
+    </div>
+</div>
+  `;
+
+const styleId = 'survey-styles';
+if (!document.getElementById(styleId)) {
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+    .survey {
+        padding: 16px 24px;
+      background-color: white;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    
+    .survey__wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .survey__title {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .survey__subtitle {
+        font-size: 14px;
+        line-height: 22px;
+        margin: 0;
+    }
+    
+    .survey__field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .survey__field input {
+        margin: 0;
+    }
+    
+    .survey__field label {
+        cursor: pointer;
+    }
+    
+    .survey__field--col {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .survey__field--col input {
+        border-radius: 6px;
+        border: 1px solid #e5e5e5;
+        padding-block: 12px;
+        padding-inline: 16px;
+        width: 100%;
+        max-width: 435px;
+        font-size: 14px;
+    }
+    
+    .survey__field--col input::placeholder {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.25);
+    }
+    
+    .survey__content {
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        will-change: max-height;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .survey__content--collapsed {
+        max-height: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .survey__arrow svg {
+        transition: transform 0.3s ease;
+    }
+
+    .survey__arrow--rotated svg {
+        transform: rotate(180deg);
+    }
+    
+    .survey__head {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .survey__arrow {
+        margin-left: auto;
+        padding-left: 8px;
+    }
+    
+    .survey__button {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        padding-inline: 50px;
+        background-color: #0092D0;
+        color: white;
+        border-radius: 12px;
+        width: fit-content;
+        cursor: pointer;
+    }
+    
+    .survey__icon {
+        font-size: 32px;
+        margin-right: 16px;
+        margin-block: 0;
+        
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    
+    .survey__text {
+        margin: 0;
+        margin-top: 8px;
+    }
+    
+    .survey__final {
+        flex-direction: column;
+        align-items: center;
+    }
+
+  `;
+    document.head.appendChild(style);
+}
+
+function initSurvey(surveyElement) {
+    const head = surveyElement.querySelector('.survey__head');
+    const content = surveyElement.querySelector('.survey__content');
+    const arrow = surveyElement.querySelector('.survey__arrow');
+    const wrapper = surveyElement.querySelector('.survey__wrapper');
+    const final = surveyElement.querySelector('.survey__final');
+    const radioOther = surveyElement.querySelector('[value="другое"]');
+    const inputOther = surveyElement.querySelector('input[name="other"]');
+    const sendButton = surveyElement.querySelector('#survey-send-button');
+
+    head.addEventListener('click', () => {
+        const isCollapsed = content.classList.contains('survey__content--collapsed');
+        if (isCollapsed) {
+            content.classList.remove('survey__content--collapsed');
+            content.style.maxHeight = content.scrollHeight + 100 + 'px';
+        } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+                content.style.maxHeight = '0px';
+            });
+            setTimeout(() => {
+                content.classList.add('survey__content--collapsed');
+            }, 300);
+        }
+        arrow.classList.toggle('survey__arrow--rotated');
+    });
+
+    radioOther.addEventListener('change', () => {
+        if (radioOther.checked) inputOther.focus();
+    });
+
+    inputOther.addEventListener('input', () => {
+        if (inputOther.value.trim()) radioOther.checked = true;
+    });
+
+    inputOther.addEventListener('focus', () => {
+        radioOther.checked = true;
+    });
+
+    sendButton.addEventListener('click', () => {
+        const selectedOption = surveyElement.querySelector('input[name="survey"]:checked');
+        const otherInputValue = inputOther.value.trim();
+        if (!selectedOption) return;
+
+        const answer = selectedOption.value;
+        if (selectedOption.value === 'другое') {
+            const yaParams = {'Другое': {'Текст': otherInputValue}};
+            ym(96674199, 'reachGoal', 'purchase_survey', yaParams);
+        } else {
+            ym(96674199, 'reachGoal', 'purchase_survey', {answer});
+        }
+
+        wrapper.style.display = 'none';
+        final.style.display = 'flex';
     });
 }
 
-hostReactAppReady().then(() => {
-    if (__NEXT_DATA__.props.pageProps.meta.departure === "2671-5") {
-        const searchPanel = document.querySelector('.quick-search-wrapper');
-        const recentlyTours = searchPanel.querySelector('[data-testid="quickSearchPackageToursRecentlyViewedBlock"]');
+function injectIntoHotelCards() {
+    const hotelCards = document.querySelectorAll('.hotel-list-item');
 
-        const style = document.createElement('style');
-        style.textContent = `
-      .popular-wrapper {
-        width: 100%;
-        margin-top: 10px;
-        margin-bottom: 20px;
-      }
-      
-      .popular-container {
-        display: flex;
-        gap: 10px;
-        padding-top: 10px;
-        width: 100%;
-        overflow: auto;
-      }
-      
-      .popular-block {
-        position: relative;
-        background-color: rgb(230, 244, 255);
-        padding-inline: 10px;
-        padding-block: 8px;
-        border-radius: 7px;
-        flex: 1;
-        min-width: 213px;
-        color: inherit;
-      }
-      
-      @media screen and (max-width: 768px) {
-        .popular-block {
-            min-width: 175px;
-        }
-      }
-      
-      .popular-block:hover {
-        color: inherit;
-      }
-      
-      .popular-block__info {
-        display: flex;
-        flex-direction: column;
-      }
-      
-      .popular-block__text {
-        font-size: 12px;
-        line-height: 14px;
-        font-weight: 400;
-        margin: 0;
-      }
-      
-      .popular-block__text + .popular-block__text {
-        margin-top: 2px;
-      }
-      
-      .popular-block__label {
-        position: absolute;
-        right: 10px;
-        top: -9px;
-        padding-inline: 10px;
-        border-radius: 30px;
-        display: flex;
-        padding-block: 3px;
-      }
-      
-      .popular-block__label span {
-        color: white;
-      }
-      
-      .popular-block__label--blue {
-        background-color: #0093D0;
-      }
-      
-      .popular-block__label--orange {
-        background-color: #EE762D;
-      }
-      
-      .popular-block__label span {
-        font-size: 11px;
-        font-weight: 600;
-      }
-      
-      .popular-title {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      
-      .popular-title span {
-        color: #E84E0F;
-        font-size: 16px;
-        font-weight: 600;
-      }
-    `;
+    hotelCards.forEach(card => {
+        if (card.querySelector(`.${SURVEY_CLASS}`)) return;
 
-        document.head.append(style);
+        const hasSlider = card.querySelector('.slick-slider');
+        const boIgRa = card.querySelector('.boIgRa');
+        const containsText = boIgRa && boIgRa.textContent.includes('Предоплата');
 
-        const popularData = [
-            {
-                link: 'https://coral.ru/packagetoursctx/?ctx_destination=vn&nights=10&departure=msk&depthDays=20&other_stat=none|1|premium',
-                places: ['Москва', 'Вьетнам'],
-                dates: '09.09.2025-20.09.2025',
-                nights: 7,
-                adults: 2,
-                label: 'Тур'
-            },
-            {
-                link: 'https://www.sunmar.ru/',
-                places: ['Москва', 'Мальдивы'],
-                dates: '11.02.2025-01.05.2025',
-                nights: 15,
-                adults: 1,
-                label: 'Тур'
-            },
-            {
-                link: 'https://www.sunmar.ru/',
-                places: ['Венера'],
-                dates: '15.07.2025-25.07.2025',
-                nights: 10,
-                adults: 3,
-                label: 'Отель'
-            },
-            {
-                link: 'https://www.sunmar.ru/',
-                places: ['Плутон'],
-                dates: '15.07.2025-25.07.2025',
-                nights: 1,
-                adults: 10,
-                label: 'Отель'
-            }
-        ];
+        if (hasSlider && containsText) {
+            const container = document.createElement('div');
+            const uniqueSuffix = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
-        function createPopularBlock(blockData, index) {
-            const point = blockData.places.map(place => `<span>${place}</span>`).join(', ') || '<span>Москва, Турция</span>';
-
-            // Определяем страну для метрики
-            const country = blockData.places.length > 1 ? blockData.places[1] : blockData.places[0];
-
-            const displayIndex = index + 1;
-
-            return `
-        <a href="${blockData.link}" target="_blank" class="popular-block" data-index="${displayIndex}" data-country="${country}" data-date="${blockData.dates}" data-label="${blockData.label}">
-          <div class="popular-block__info">
-            <p class="popular-block__text">
-              ${point}
-            </p>
-            <p class="popular-block__text">
-              <strong>${blockData.dates}</strong>
-            </p>
-            <p class="popular-block__text">
-              <strong>Ночей:</strong> ${blockData.nights}, <strong>Взрослых:</strong> ${blockData.adults}
-            </p>
-          </div>
-          <div class="popular-block__label popular-block__label--${blockData.label === 'Тур' ? 'blue' : 'orange'}">
-            <span>${blockData.label}</span>
-          </div>
-        </a>
-      `;
-        }
-
-        const popularTitle = `
-      <div class="popular-title">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
-          <path d="M0.916504 5.83325H3.83317V13.3333H0.916504V5.83325Z" stroke="#E84E0F" stroke-linejoin="round"/>
-          <path d="M3.8335 5.83333H5.29183L7.16683 3.75L7.77725 1.91875C8.07109 1.03721 9.18992 0.77309 9.84698 1.43015L10.015 1.59813C10.3172 1.90033 10.444 2.33598 10.3513 2.75318L9.66683 5.83333H13.0058C14.0721 5.83333 14.8641 6.82069 14.6328 7.86155L13.6343 12.3545C13.5073 12.9264 13 13.3333 12.4141 13.3333H3.8335V5.83333Z" stroke="#E84E0F" stroke-linejoin="round"/>
-        </svg>
-        <span>Выбор туристов</span>
-      </div>
-    `;
-
-        function createPopularWrapper(popularData) {
-            const popularContainer = document.createElement('div');
-            popularContainer.classList.add('popular-container');
-
-            popularData.forEach((block, index) => {
-                const createBlock = createPopularBlock(block, index);
-                popularContainer.insertAdjacentHTML('beforeend', createBlock);
-
-                const blockList = popularContainer.lastElementChild;
-
-                blockList.addEventListener('click', () => {
-                    const dataIndex = blockList.dataset.index;
-                    const dataCountry = blockList.dataset.country;
-                    const dataDate = blockList.dataset.date;
-                    const dataLabel = blockList.dataset.label;
-
-                    ym(96674199, 'reachGoal', 'quick_search', {
-                        'index': dataIndex,
-                        'country': dataCountry,
-                        'date': dataDate,
-                        'type': dataLabel
-                    });
-                });
+            let uniqueHTML = SURVEY_HTML.replace(/id="(point_\d)"/g, (match, id) => {
+                return `id="${id}_${uniqueSuffix}"`;
             });
 
-            const popularWrapper = document.createElement('div');
-            popularWrapper.classList.add('popular-wrapper');
+            uniqueHTML = uniqueHTML.replace(/for="(point_\d)"/g, (match, id) => {
+                return `for="${id}_${uniqueSuffix}"`;
+            });
 
-            popularWrapper.insertAdjacentHTML('beforeend', popularTitle);
-            popularWrapper.appendChild(popularContainer);
+            container.innerHTML = uniqueHTML;
+            const survey = container.firstElementChild;
 
-            return popularWrapper;
+            boIgRa.replaceWith(survey);
+            initSurvey(survey);
         }
+    });
+}
 
-        if (recentlyTours && recentlyTours.children.length === 0) {
-            recentlyTours.insertAdjacentElement('beforeend', createPopularWrapper(popularData));
-        }
 
-        const hotelButton = document.querySelector('[aria-controls="rc-tabs-0-panel-2"]');
-
-        hotelButton.addEventListener('click', () => {
-            setTimeout(() => {
-                const recentlyHotels = document.querySelector('[data-testid="quickSearchOnlyHotelRecentlyViewedBlock"]');
-
-                if (recentlyHotels && recentlyHotels.children.length === 0) {
-                    recentlyHotels.insertAdjacentElement('beforeend', createPopularWrapper(popularData));
-                }
-            }, 500)
-        });
-    }
+const observer = new MutationObserver(() => {
+    setTimeout(injectIntoHotelCards, 100);
 });
+
+observer.observe(document.body, {childList: true, subtree: true});
+injectIntoHotelCards();
