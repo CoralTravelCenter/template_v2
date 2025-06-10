@@ -166,6 +166,7 @@ h1, h2, h3, h4, h5, h6, p, a {
     @media screen and (max-width: 768px) {
       font-size: 32px!important;
       line-height: 40px!important;
+      margin-bottom: 8px;
     }
   }
 
@@ -182,6 +183,7 @@ h1, h2, h3, h4, h5, h6, p, a {
   .title-2 {
     font-size: 40px;
     line-height: 44px;
+    font-weight: 600;
 
     @media screen and (max-width: 768px) {
       font-size: 32px;

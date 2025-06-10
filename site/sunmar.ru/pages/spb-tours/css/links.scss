@@ -1,0 +1,48 @@
+
+.seo-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+}
+
+
+.sunmar-toggler {
+  border-radius: 12px;
+  border: 1px solid #DFDFE8;
+  background-color: #FFF;
+  box-shadow: 0 16px 40px 0 rgba(20, 20, 22, 0.10);
+
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 32px;
+
+    svg {
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    list-style: none;
+  }
+
+  &.active {
+    .sunmar-toggler__header svg {
+      transform: rotate(180deg);
+    }
+
+    .sunmar-toggler__body {
+      padding-inline: 32px;
+      padding-bottom: 32px;
+    }
+  }
+}

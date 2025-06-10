@@ -17,10 +17,14 @@
     height: 380px;
   }
 
-  @media screen and (max-width: 428px) {
-    background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/park-hotels/banner_m.webp");
+  @media screen and (max-width: 768px) {
+    background-image: url("/site/sunmar.ru/assets/banner_turkey_m.webp");
     height: 520px;
     border-radius: 0;
+  }
+
+  @media screen and (max-width: 428px) {
+
   }
 
   &__links {
@@ -58,11 +62,20 @@
 
     @media screen and (max-width: 768px) {
       padding-inline: 32px;
-    }
-
-    @media screen and (max-width: 428px) {
       padding: 24px;
       justify-content: flex-start;
     }
+
+    //@media screen and (max-width: 428px) {
+    //
+    //}
+  }
+}
+
+.wrapper {
+  &-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

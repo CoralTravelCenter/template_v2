@@ -2,10 +2,11 @@
 	env: {
 		brand: 'sunmar-next',
 		cmsWidgetContainer: '<div>{{{ widget_markup }}}</div>',
-		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/cosmos',
+		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/russia/spb',
 	},
 	contents: [
 		'/site/sunmar.ru/pages/spb-tours/banner.html',
-//		'/site/sunmar.ru/pages/park-hotel/slider.html',
+		'/site/sunmar.ru/pages/spb-tours/text.html',
+		'/site/sunmar.ru/pages/spb-tours/seo-links.html',
 	],
 }
