@@ -31,6 +31,16 @@
     gap: 10px;
     text-align: center;
 
+    @media screen and (max-width: 768px) {
+      width: 49%;
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
     &:hover {
       background-color: #0E2855;
       color: #FFFFFF;
@@ -43,6 +53,18 @@
 
     &--dropdown {
       position: relative;
+
+      .ideas__link {
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        justify-content: space-between;
+      }
 
       &:hover,
       &.active {
@@ -59,7 +81,8 @@
   }
 
   &__menu {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
     flex-direction: column;
     position: absolute;
     left: 0;
@@ -69,9 +92,17 @@
     max-width: 208px;
     width: 100%;
     z-index: 20;
+    padding: 8px 4px;
+    transition: all 0.2s linear;
+    display: flex;
+
+    @media screen and (max-width: 768px) {
+      max-width: unset;
+    }
 
     &.active {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
     }
   }
 
@@ -112,7 +143,7 @@
     padding-inline: 16px;
     display: flex;
     justify-content: center;
-    border-radius: 16px;
+    border-radius: 14px;
     background-color: #F5F5F8;
     width: 100%;
   }
