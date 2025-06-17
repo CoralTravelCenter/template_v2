@@ -2,9 +2,13 @@
 	env: {
 		brand: 'sunmar-next',
 		cmsWidgetContainer: '<div>{{{ widget_markup }}}</div>',
-		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/cosmos',
+		cdnAssetsURL: '//b2ccdn.sunmar.ru/content/landing-pages/russia',
 	},
 	contents: [
-		'/site/sunmar.ru/pages/ideas/ideas.html',
+		'/site/sunmar.ru/pages/russia-hotels/banner.html',
+		'/site/sunmar.ru/pages/russia-hotels/text.html',
+		'/site/sunmar.ru/pages/russia-hotels/benefits.html',
+		'/site/sunmar.ru/pages/russia-hotels/text-2.html',
+		'/site/sunmar.ru/pages/russia-hotels/hotels.html',
 	],
 }

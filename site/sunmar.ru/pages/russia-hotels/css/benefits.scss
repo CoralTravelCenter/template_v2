@@ -1,0 +1,124 @@
+
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 190px;
+  grid-gap: 32px;
+  margin-top: 12px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-auto-rows: auto;
+  }
+
+  &__block {
+    background-color: white;
+    border-radius: 16px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 32px;
+
+    @media screen and (max-width: 768px) {
+      justify-content: flex-start;
+      padding-top: 20px;
+      padding-bottom: 130px;
+      background-size: 120px;
+    }
+
+    &--1 {
+      grid-column: span 2;
+      background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/russia/hotels/img_1.webp");
+
+      @media screen and (max-width: 1024px) {
+        grid-column: auto;
+      }
+      
+      .text {
+        max-width: 316px;
+
+        @media screen and (max-width: 1024px) {
+          max-width: 80%;
+        }
+
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+        }
+      }
+    }
+
+    &--2 {
+      grid-column: span 3;
+      background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/russia/hotels/img_2.webp");
+      background-position: 95% bottom;
+
+      @media screen and (max-width: 1024px) {
+        grid-column: auto;
+      }
+
+      @media screen and (max-width: 768px) {
+        background-size: 90px;
+      }
+
+      .text {
+        max-width: 548px;
+
+        @media screen and (max-width: 1024px) {
+          max-width: 80%;
+        }
+
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+        }
+      }
+    }
+
+    &--3 {
+      grid-column: span 3;
+      background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/russia/hotels/img_3.webp");
+
+      @media screen and (max-width: 1024px) {
+        grid-column: auto;
+      }
+
+      .text {
+        max-width: 519px;
+
+        @media screen and (max-width: 1024px) {
+          max-width: 80%;
+        }
+
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+        }
+      }
+    }
+
+    &--4 {
+      grid-column: span 2;
+      background-image: url("https://b2ccdn.sunmar.ru/content/landing-pages/russia/hotels/img_4.webp");
+
+      @media screen and (max-width: 1024px) {
+        grid-column: auto;
+      }
+
+      .text {
+        max-width: 316px;
+
+        @media screen and (max-width: 1024px) {
+          max-width: 80%;
+        }
+
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

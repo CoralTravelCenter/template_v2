@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6, p, a {
     font-size: 56px!important;
     line-height: 60px!important;
     color: white;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     font-weight: 600!important;
 
     @media screen and (max-width: 1280px) {
@@ -173,6 +173,22 @@ h1, h2, h3, h4, h5, h6, p, a {
     font-size: 16px;
     line-height: 20px;
     color: white;
+  }
+
+  .banner__button {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    padding-inline: 32px;
+    color: inherit!important;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    width: fit-content;
+    text-decoration: none!important;
+    border: 1px solid #E5E5E5;
+    background-color: #FFF;
+    margin-top: 32px;
   }
 
   .title-1 {
@@ -270,7 +286,8 @@ section.full-width > article .wrapper {
   padding-inline: 0;
 }
 
-section.full-width-428 > article .wrapper {
+section.full-width-428 > article .wrapper,
+section.full-width-m > article .wrapper {
   @media screen and (max-width: 428px) {
     padding-inline: 0;
   }
