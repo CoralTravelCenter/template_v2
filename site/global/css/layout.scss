@@ -1,5 +1,4 @@
 @import "utils";
-//@import "fonts";
 @import "mixins";
 
 * {
@@ -307,4 +306,8 @@ section:has(.banner.banner--text) .wrapper {
 
 .text-center {
   text-align: center;
+}
+
+.text + .text {
+  margin-top: 8px;
 }
