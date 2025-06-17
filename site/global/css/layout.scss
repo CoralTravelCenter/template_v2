@@ -180,12 +180,13 @@ h1, h2, h3, h4, h5, h6, p, a {
   }
 
   .title-2 {
-    font-size: 40px;
-    line-height: 44px;
+    font-size: 40px!important;
+    line-height: 44px!important;
+    font-weight: 600!important;
 
     @media screen and (max-width: 768px) {
-      font-size: 32px;
-      line-height: 36px;
+      font-size: 32px!important;
+      line-height: 36px!important;
     }
   }
 
@@ -256,7 +257,7 @@ section > article .wrapper {
   position: relative;
 
   @media screen and (max-width: 768px) {
-    padding-inline: 0;
+    padding-inline: 16px;
     padding-block: 30px;
   }
 }
@@ -302,4 +303,8 @@ section:has(.banner.banner--text) .wrapper {
   @media screen and (max-width: 768px) {
     display: none;
   }
+}
+
+.text-center {
+  text-align: center;
 }
