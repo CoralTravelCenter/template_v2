@@ -88,6 +88,7 @@ hostReactAppReady().then(() => {
 
 
     const anchors = document.querySelector('.js-anchor');
+
     if (anchors) {
         const anchorsOffsetTop = anchors.getBoundingClientRect().top + window.scrollY;
 
@@ -134,7 +135,8 @@ hostReactAppReady().then(() => {
         });
     }
 
-    const anchorLinks = anchors.querySelectorAll('a[href^="#"]');
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const hash = this.getAttribute('href');
@@ -143,7 +145,8 @@ hostReactAppReady().then(() => {
             const target = document.querySelector(hash);
             if (!target) return;
 
-            let offset = 0;
+            let offset = anchors.offsetHeight;
+
             if (anchors.classList.contains('anchors--fixed')) {
                 offset = anchors.offsetHeight;
             }
