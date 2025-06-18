@@ -123,12 +123,12 @@ h1, h2, h3, h4, h5, h6, p, a {
   }
 
   ul {
-    padding-left: 20px;
-    font-size: 16px;
-    line-height: 24px;
+    //padding-left: 20px;
+    //font-size: 16px;
+    //line-height: 24px;
 
     li + li {
-      margin-top: 5px;
+      //margin-top: 5px;
     }
   }
 }
@@ -220,10 +220,16 @@ a.coral-button {
   background-color: #F5F5F8;
 }
 
+.slider.swiper {
+  &:not(:has(.swiper-pagination-lock)) {
+    padding-bottom: 24px;
+  }
+}
+
 .slider__pagination.swiper-pagination {
 
   &.swiper-pagination-horizontal {
-    bottom: -27px;
+    bottom: 0;
   }
 
   .swiper-pagination-bullet {
