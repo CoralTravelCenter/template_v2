@@ -1,4 +1,4 @@
-export async function hostReactAppReady(
+async function hostReactAppReady(
     selector = "#__next > div",
     timeout = 500,
 ) {
@@ -17,8 +17,22 @@ export async function hostReactAppReady(
 
 hostReactAppReady().then(() => {
     const swiper = new Swiper(".js-slider", {
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 24,
+        breakpoints: {
+            1280: {
+                slidesPerView: 4,
+                spaceBetween: 24,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+        },
         loop: true,
         pagination: {
             el: ".js-pagination",
@@ -31,8 +45,18 @@ hostReactAppReady().then(() => {
     });
 
     const food_swiper = new Swiper(".js-food-slider", {
-        slidesPerView: 3,
+        slidesPerView: 1,
         spaceBetween: 24,
+        breakpoints: {
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+        },
         loop: true,
         pagination: {
             el: ".js-food-pagination",
@@ -45,8 +69,18 @@ hostReactAppReady().then(() => {
     });
 
     const actions_swiper = new Swiper(".js-actions-slider", {
-        slidesPerView: 3,
+        slidesPerView: 1,
         spaceBetween: 24,
+        breakpoints: {
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+        },
         loop: true,
         pagination: {
             el: ".js-actions-pagination",
@@ -99,8 +133,10 @@ hostReactAppReady().then(() => {
         anchors.parentNode.insertBefore(placeholder, anchors);
 
         function hotelsNav() {
-            return !!document.querySelector('.el-affix--fixed');
+            const fixedNav = document.querySelector('.el-affix--fixed');
+            return !!(fixedNav && fixedNav.querySelector('.controls'));
         }
+
 
         function onScroll() {
             const scrollY = window.scrollY;

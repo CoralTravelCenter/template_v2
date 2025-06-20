@@ -2,7 +2,7 @@
 	env: {
 		brand: 'coral-next',
 		cmsWidgetContainer: '<div>{{{ widget_markup }}}</div>',
-		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/park-hotels',
+		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/turkey/stambul',
 	},
 	contents: [
 		'/site/coral.ru/template/banner.html',

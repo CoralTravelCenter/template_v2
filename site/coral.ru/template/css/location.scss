@@ -7,6 +7,14 @@
   padding: 8px;
   background-position: right;
   margin-top: 54px;
+  background-image: url('/site/coral.ru/assets/bg.webp');
+
+  @media screen and (max-width: 1024px) {
+    min-height: 712px;
+    display: flex;
+    align-items: flex-end;
+    background-image: url("/site/coral.ru/assets/bg_m.webp");
+  }
 
   &__block {
     max-width: 548px;
@@ -14,6 +22,18 @@
     background-color: rgba(0, 0, 0, 0.50);
     backdrop-filter: blur(15px);
     padding: 24px;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      max-width: unset;
+    }
+
+    a.coral-button {
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   }
 
   &__title {

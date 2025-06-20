@@ -3,6 +3,7 @@
 .weather {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 
   &__block {
     display: flex;

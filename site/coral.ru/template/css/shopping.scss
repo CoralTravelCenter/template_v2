@@ -3,22 +3,34 @@
 .point {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: 176px;
   grid-gap: 24px;
   margin-top: 32px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 100%;
+  }
 
   &__block {
     border-radius: 20px;
     background-color: #FFFFFF;
     padding-inline: 32px;
     padding-top: 24px;
+    padding-bottom: 24px;
 
     &--medium {
       grid-column: span 2;
+
+      @media screen and (max-width: 1024px) {
+        grid-column: auto;
+      }
     }
 
     &--large {
       grid-column: span 3;
+
+      @media screen and (max-width: 1024px) {
+        grid-column: auto;
+      }
     }
   }
 
@@ -37,6 +49,7 @@
     justify-content: center;
     background-color: #C2E4F6;
     border-radius: 40px;
+    flex-shrink: 0;
   }
 
   &__title {

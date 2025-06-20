@@ -5,10 +5,18 @@
   margin-top: 32px;
   min-height: 184px;
 
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+
   &__col {
     flex: 1;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 1024px) {
+      order: 2;
+    }
   }
 
   &__info {
@@ -23,13 +31,27 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
+    @media screen and (max-width: 1024px) {
+      order: 1;
+      min-height: 280px;
+      border-radius: 20px 20px 0 0;
+    }
   }
 
   &--reverse {
     flex-direction: row-reverse;
 
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+    }
+
     .panel__img {
       border-radius: 20px 0 0 20px;
+
+      @media screen and (max-width: 1024px) {
+        border-radius: 20px 20px 0 0;
+      }
     }
   }
 }

@@ -210,6 +210,10 @@ a.coral-button {
   background-color: #0092D0;
   text-decoration: none;
   width: fit-content;
+
+  &:hover {
+    background-color: #077DAD;
+  }
 }
 
 .bg-white {
