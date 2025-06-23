@@ -214,6 +214,18 @@ a.coral-button {
   &:hover {
     background-color: #077DAD;
   }
+
+  &--white {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: inherit;
+
+    &:hover {
+      color: #077DAD;
+      border: 1px solid #077DAD;
+      background-color: transparent;
+    }
+  }
 }
 
 .bg-white {

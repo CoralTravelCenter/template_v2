@@ -6,10 +6,10 @@
 	},
 	contents: [
 		'/site/coral.ru/template/banner.html',
-		'/site/coral.ru/template/hotels-block.html',
+//		'/site/coral.ru/template/hotels-block.html',
 //		'/site/coral.ru/template/anchors.html',
 //		'/site/coral.ru/template/text.html',
-//		'/site/coral.ru/template/stambul.html',
+		'/site/coral.ru/template/stambul.html',
 //		'/site/coral.ru/template/hotels.html',
 //		'/site/coral.ru/template/slider.html',
 //		'/site/coral.ru/template/shopping.html',
