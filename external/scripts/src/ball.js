@@ -26,7 +26,7 @@ const html = `
         <div class="disco-ball__ball" id="disco-ball">
             <div class="disco-ball__content" style="display: none;" id="disco-content">
                 <p class="disco-ball__text">
-                    Скидка от 5 000 ₽ <br>
+                    <strong>Скидка от 5 000 ₽</strong> <br>
                     Оторвитесь этим <br>
                     летом!
                 </p>
@@ -74,10 +74,23 @@ style.textContent = `
         right: 20px;
         bottom: 250px;
         cursor: pointer;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .disco-ball__content {
         flex-direction: column;
+    }
+    
+    .disco-ball__text {
+        font-size: 14px;
+        line-height: 15px;
+        text-align: center;
+        color: #fff;
+        max-width: 158px;
+        margin: 0;
     }
     
     .disco-ball__star {
@@ -87,6 +100,7 @@ style.textContent = `
     
     .disco-ball__star--red {
         top: 10px;
+        left: 0;
         animation: pulse-red 1.5s infinite ease-in-out;
     }
     
