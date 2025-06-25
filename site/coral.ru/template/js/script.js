@@ -16,9 +16,7 @@ async function hostReactAppReady(
 }
 
 hostReactAppReady().then(() => {
-    const swiper = new Swiper(".js-slider", {
-        slidesPerView: 1,
-        spaceBetween: 24,
+    const sliderStambul = new Swiper(".js-slider-stambul", {
         breakpoints: {
             1280: {
                 slidesPerView: 4,
@@ -33,18 +31,20 @@ hostReactAppReady().then(() => {
                 spaceBetween: 24,
             },
         },
+        slidesPerView: 1,
+        spaceBetween: 24,
         loop: true,
         pagination: {
-            el: ".js-pagination",
+            el: ".js-pagination-stambul",
             clickable: true,
         },
         navigation: {
-            nextEl: ".js-next",
-            prevEl: ".js-prev",
+            nextEl: ".js-next-stambul",
+            prevEl: ".js-prev-stambul",
         },
     });
 
-    const food_swiper = new Swiper(".js-food-slider", {
+    const sliderFood = new Swiper(".js-slider-food", {
         slidesPerView: 1,
         spaceBetween: 24,
         breakpoints: {
@@ -59,16 +59,16 @@ hostReactAppReady().then(() => {
         },
         loop: true,
         pagination: {
-            el: ".js-food-pagination",
+            el: ".js-pagination-food",
             clickable: true,
         },
         navigation: {
-            nextEl: ".js-food-next",
-            prevEl: ".js-food-prev",
+            nextEl: ".js-next-food",
+            prevEl: ".js-prev-food",
         },
     });
 
-    const actions_swiper = new Swiper(".js-actions-slider", {
+    const sliderActions = new Swiper(".js-slider-actions", {
         slidesPerView: 1,
         spaceBetween: 24,
         breakpoints: {
@@ -83,12 +83,12 @@ hostReactAppReady().then(() => {
         },
         loop: true,
         pagination: {
-            el: ".js-actions-pagination",
+            el: ".js-pagination-actions",
             clickable: true,
         },
         navigation: {
-            nextEl: ".js-actions-next",
-            prevEl: ".js-actions-prev",
+            nextEl: ".js-next-actions",
+            prevEl: ".js-prev-actions",
         },
     });
 
