@@ -3,7 +3,12 @@
 const body = document.getElementById('__next');
 
 const html = `
-    <div class="disco-ball">
+    <div class="disco-ball" id="disco-wrapper">
+        <div class="disco-ball__close" id="disco-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7188 0.931762C15.7193 0.931762 15.7197 0.932229 15.7207 0.933163L17.0671 2.27986C17.0681 2.28056 17.0683 2.28102 17.0685 2.28172C17.0686 2.28218 17.0686 2.28267 17.0685 2.28313C17.0685 2.28383 17.0681 2.28429 17.0671 2.28523L10.3523 9.00003L17.0671 15.7148C17.0681 15.7158 17.0683 15.7162 17.0685 15.7169C17.0687 15.7175 17.0687 15.718 17.0685 15.7186C17.0685 15.719 17.0681 15.7195 17.0671 15.7204L15.7204 17.0669C15.7197 17.0678 15.7193 17.0681 15.7188 17.0683C15.7183 17.0685 15.7177 17.0685 15.7172 17.0683C15.7165 17.0683 15.716 17.0678 15.7151 17.0669L9.00026 10.3521L2.28546 17.0669C2.28452 17.0678 2.28406 17.0681 2.28336 17.0683C2.28282 17.0685 2.28226 17.0685 2.28172 17.0683C2.28126 17.0683 2.28079 17.0678 2.27986 17.0669L0.933394 15.7202C0.932461 15.7195 0.932228 15.719 0.931994 15.7186C0.931832 15.718 0.931832 15.7175 0.931994 15.7169C0.931994 15.7162 0.932461 15.7158 0.933394 15.7148L7.6482 9.00003L0.933394 2.28523C0.932461 2.28429 0.932228 2.28383 0.931994 2.28313C0.931832 2.28259 0.931832 2.28202 0.931994 2.28149C0.931994 2.28102 0.932461 2.28056 0.933394 2.27962L2.28009 0.933163C2.28079 0.932229 2.28126 0.931996 2.28172 0.931762C2.28226 0.9316 2.28282 0.9316 2.28336 0.931762C2.28406 0.931762 2.28452 0.932229 2.28546 0.933163L9.00026 7.64797L15.7151 0.933163C15.716 0.932229 15.7165 0.931996 15.7172 0.931762C15.7177 0.9316 15.7183 0.9316 15.7188 0.931762Z" fill="#535353"/>
+</svg>
+        </div>
         <div class="disco-ball__star disco-ball__star--red js-hide">
             <svg xmlns="http://www.w3.org/2000/svg" width="75" height="77" viewBox="0 0 75 77" fill="none">
   <g filter="url(#filter0_d_5909_1065)">
@@ -30,7 +35,7 @@ const html = `
                     Оторвитесь этим <br>
                     летом!
                 </p>
-                <a href="/" class="disco-ball__link">
+                <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/" class="disco-ball__link" id="disco-ball-metric">
                     Подробнее
                 </a>
             </div>
@@ -60,17 +65,65 @@ const html = `
 body.insertAdjacentHTML("afterbegin", html);
 
 const discoBall = document.getElementById('disco-ball');
-const discoContent = document.getElementById('disco-content');
-const hideEl = document.querySelectorAll('.js-hide');
 
-discoBall.addEventListener('click', (e) => {
-    discoContent.style.display = 'flex';
-    discoBall.classList.add('darken');
+if (discoBall) {
+    const discoContent = document.getElementById('disco-content');
+    const hideEl = document.querySelectorAll('.js-hide');
 
-    hideEl.forEach((el) => {
-        el.style.display = 'none';
-    });
-});
+    if (window.innerWidth > 768) {
+        discoBall.addEventListener('click', (e) => {
+            discoContent.style.display = 'flex';
+            discoBall.classList.add('darken');
+
+            hideEl.forEach((el) => {
+                el.style.display = 'none';
+            });
+        });
+    } else {
+        const discoWrapper = document.getElementById('disco-wrapper');
+        const discoClose = document.getElementById('disco-close');
+
+        discoBall.addEventListener('click', (e) => {
+           discoWrapper.classList.add('opened');
+
+            discoContent.style.display = 'flex';
+            discoBall.classList.add('darken');
+
+            hideEl.forEach((el) => {
+                el.style.display = 'none';
+            });
+        });
+
+        discoClose.addEventListener('click', (e) => {
+            if (discoWrapper.classList.contains('opened')) {
+                discoWrapper.classList.remove('opened');
+                discoContent.style.display = 'none';
+                discoBall.classList.remove('darken');
+
+                hideEl.forEach((el) => {
+                    el.style.display = 'block';
+                });
+            } else {
+                discoWrapper.remove();
+            }
+        });
+    }
+
+    const discoMetric = document.getElementById('disco-ball-metric');
+
+    if (discoMetric) {
+        discoMetric.addEventListener('click', (e) => {
+            const yaParams = {
+                name_stock: {
+                    den_molodezhi: {
+                        name_point: "disco_ball"
+                    }
+                }
+            }
+            ym(96674199, "reachGoal", "entry-point", yaParams);
+        });
+    }
+}
 
 const style = document.createElement('style');
 style.textContent = `
@@ -84,6 +137,48 @@ style.textContent = `
         display: flex;
         align-items: center;
         justify-content: center;
+        
+        @media screen and (max-width: 768px) {
+            left: 20px;
+            right: unset;
+            bottom: 170px;
+        }
+    }
+    
+    .disco-ball.opened {
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #00000096;
+        z-index: 99999;
+        cursor: default;
+    }
+    
+    .disco-ball__close {
+        display: none;
+        
+        @media screen and (max-width: 768px) {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            right: 0;
+            top: 0;
+            z-index: 2;
+            width: 32px;
+            height: 32px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+    }
+    
+    .opened .disco-ball__close {
+        top: 30%;
+        right: 15%;
     }
     
     .disco-ball__content {
@@ -96,27 +191,38 @@ style.textContent = `
     }
     
     .disco-ball__text {
-        font-size: 14px;
-        line-height: 15px;
+        font-size: 13px;
+        line-height: 14px;
         text-align: center;
         color: #fff;
         max-width: 158px;
         margin: 0;
+        
+        @media screen and (max-width: 768px) {
+            font-size: 24px;
+            line-height: 31px;
+            max-width: unset;
+        }
     }
     
     a.disco-ball__link {
-        font-size: 14px;
+        font-size: 13px;
         background-color: white;
         border-radius: 8px;
         display: flex;
         align-items: center;
-        padding-inline: 16px;
+        padding-inline: 10px;
         color: inherit!important;
         width: fit-content;
         height: 32px;
         text-decoration: none!important;
         margin-top: 8px;
         font-weight: 600;
+        
+        @media screen and (max-width: 768px) {
+            height: 40px;
+            padding-inline: 24px;
+        }
     }
     
     a.disco-ball__link:hover {
@@ -126,6 +232,13 @@ style.textContent = `
     .disco-ball__star {
         position: absolute;
         z-index: 2;
+    }
+    
+    .disco-ball__star svg {
+       @media screen and (max-width: 768px) {
+            width: 45px;
+            height: 45px;
+        } 
     }
     
     .disco-ball__star--red {
@@ -177,11 +290,19 @@ style.textContent = `
         background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_1.webp');
         background-repeat: no-repeat;
         background-size: contain;
+        background-position: center;
         
         @media screen and (max-width: 768px) {
+            width: 113px;
+            height: 113px;
+        }
+    }
+    
+    .opened .disco-ball__ball {
+       @media screen and (max-width: 768px) {
             width: 375px;
             height: 298px;
-        }
+       } 
     }
     
     .disco-ball__ball.darken {

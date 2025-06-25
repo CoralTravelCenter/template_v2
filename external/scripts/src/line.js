@@ -1,7 +1,9 @@
-const header = document.querySelector('.header-client-side-desktop');
 
-const html = `
-    <a href="/" class="marquee-container" id="marquee-ticker">
+if (window.innerWidth > 992) {
+    const header = document.querySelector('.header-client-side-desktop');
+
+    const html = `
+    <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/" class="marquee-container" id="marquee-ticker">
         <div class="marquee">
             <img src="https://b2ccdn.coral.ru/content/promo/young-day/ticker-1.webp" alt="">
             <img src="https://b2ccdn.coral.ru/content/promo/young-day/ticker-1.webp" alt="">
@@ -9,10 +11,12 @@ const html = `
     </a>
 `;
 
-header.insertAdjacentHTML("beforebegin", html);
+    if (header) {
+        header.insertAdjacentHTML("beforebegin", html);
+    }
 
-const style = document.createElement('style');
-style.textContent = `
+    const style = document.createElement('style');
+    style.textContent = `
     .marquee-container {
         width: 4351px;
         overflow: hidden;
@@ -29,7 +33,7 @@ style.textContent = `
         height: 40px;
         width: auto;
         display: inline-block;
-        animation: line 20s linear infinite;
+        animation: line 40s linear infinite;
     }
 
     @keyframes line {
@@ -41,17 +45,20 @@ style.textContent = `
         }
     }
 `;
-document.head.append(style);
+    document.head.append(style);
 
-const line = document.getElementById('marquee-ticker');
+    const line = document.getElementById('marquee-ticker');
 
-line.addEventListener('click', (e) => {
-    const yaParams = {
-        name_stock: {
-            den_molodezhi: {
-                name_point: "running_line"
+    if (line) {
+        line.addEventListener('click', (e) => {
+            const yaParams = {
+                name_stock: {
+                    den_molodezhi: {
+                        name_point: "running_line"
+                    }
+                }
             }
-        }
+            ym(96674199, "reachGoal", "entry-point", yaParams);
+        });
     }
-    ym(96674199, "reachGoal", "entry-point", yaParams);
-});
+}
