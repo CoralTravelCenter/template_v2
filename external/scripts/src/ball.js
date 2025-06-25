@@ -4,7 +4,7 @@ const body = document.getElementById('__next');
 
 const html = `
     <div class="disco-ball">
-        <div class="disco-ball__star disco-ball__star--red">
+        <div class="disco-ball__star disco-ball__star--red js-hide">
             <svg xmlns="http://www.w3.org/2000/svg" width="75" height="77" viewBox="0 0 75 77" fill="none">
   <g filter="url(#filter0_d_5909_1065)">
     <path d="M36.5936 0.292969L46.24 26.3618L72.3089 36.0082L46.24 45.6545L36.5936 71.7234L26.9473 45.6545L0.878418 36.0082L26.9473 26.3618L36.5936 0.292969Z" fill="#FF8800"/>
@@ -35,7 +35,7 @@ const html = `
                 </a>
             </div>
         </div>
-        <div class="disco-ball__star disco-ball__star--yellow">
+        <div class="disco-ball__star disco-ball__star--yellow js-hide">
             <svg xmlns="http://www.w3.org/2000/svg" width="75" height="77" viewBox="0 0 75 77" fill="none">
   <g filter="url(#filter0_d_5909_1064)">
     <path d="M35.9735 0.292969L45.6199 26.3618L71.6887 36.0082L45.6199 45.6545L35.9735 71.7234L26.3272 45.6545L0.258301 36.0082L26.3272 26.3618L35.9735 0.292969Z" fill="#FFF700"/>
@@ -61,9 +61,15 @@ body.insertAdjacentHTML("afterbegin", html);
 
 const discoBall = document.getElementById('disco-ball');
 const discoContent = document.getElementById('disco-content');
+const hideEl = document.querySelectorAll('.js-hide');
 
 discoBall.addEventListener('click', (e) => {
     discoContent.style.display = 'flex';
+    discoBall.classList.add('darken');
+
+    hideEl.forEach((el) => {
+        el.style.display = 'none';
+    });
 });
 
 const style = document.createElement('style');
@@ -82,6 +88,11 @@ style.textContent = `
     
     .disco-ball__content {
         flex-direction: column;
+        align-items: center;
+        padding-right: 1px;
+        padding-top: 7px;
+        justify-content: center;
+        height: 100%;
     }
     
     .disco-ball__text {
@@ -93,6 +104,25 @@ style.textContent = `
         margin: 0;
     }
     
+    a.disco-ball__link {
+        font-size: 14px;
+        background-color: white;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        padding-inline: 16px;
+        color: inherit!important;
+        width: fit-content;
+        height: 32px;
+        text-decoration: none!important;
+        margin-top: 8px;
+        font-weight: 600;
+    }
+    
+    a.disco-ball__link:hover {
+        color: #0092d0!important;
+    }
+    
     .disco-ball__star {
         position: absolute;
         z-index: 2;
@@ -100,7 +130,7 @@ style.textContent = `
     
     .disco-ball__star--red {
         top: 10px;
-        left: 0;
+        left: -10px;
         animation: pulse-red 1.5s infinite ease-in-out;
     }
     
@@ -135,16 +165,16 @@ style.textContent = `
     }
     
     .disco-ball__star--yellow {
-        right: 20px;
+        right: 0;
         bottom: 0;
         animation: pulse-yellow 2s infinite ease-out;
     }
     
     .disco-ball__ball {
         position: relative;
-        width: 216px;
-        height: 158px;
-        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/disco.webp');
+        width: 173px;
+        height: 172px;
+        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_1.webp');
         background-repeat: no-repeat;
         background-size: contain;
         
@@ -152,6 +182,10 @@ style.textContent = `
             width: 375px;
             height: 298px;
         }
+    }
+    
+    .disco-ball__ball.darken {
+        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_2.webp');
     }
 `;
 document.head.append(style);

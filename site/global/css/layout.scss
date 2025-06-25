@@ -114,23 +114,12 @@ h1, h2, h3, h4, h5, h6, p, a {
   .title-5 {
     font-size: 20px;
     line-height: 28px;
-    font-weight: 600;
   }
 
   .label {
     font-size: 12px;
     line-height: 20px;
     color: rgba(0, 0, 0, 0.65);
-  }
-
-  ul {
-    padding-left: 20px;
-    font-size: 16px;
-    line-height: 24px;
-
-    li + li {
-      margin-top: 5px;
-    }
   }
 }
 
