@@ -20,6 +20,7 @@ const observerDisco = new MutationObserver((mutations) => {
                             <div class="disco-search__info">
                                 
                                 <p class="disco-search__text">Скидка от <strong>5 000 ₽</strong>. Оторвитесь этим летом!</p>
+                                <span class="disco-search__ad">Реклама. ООО "Центрбронь"</span>
                             </div>
                         </a>
                     `;
@@ -113,6 +114,15 @@ if (!document.getElementById('disco-style')) {
         line-height: 14px;
         color: white;
         margin: 0;
+        padding-bottom: 4px;
+    }
+    
+    .disco-search__ad {
+        position: absolute;
+        right: 4px;
+        bottom: 2px;
+        font-size: 6px;
+        color: white;
     }
   `;
     document.head.appendChild(style);

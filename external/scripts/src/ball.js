@@ -35,7 +35,7 @@ const html = `
                     Оторвитесь этим <br>
                     летом!
                 </p>
-                <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/" class="disco-ball__link" id="disco-ball-metric">
+                <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/?erid=2W5zFHftwJx" class="disco-ball__link" id="disco-ball-metric">
                     Подробнее
                 </a>
             </div>

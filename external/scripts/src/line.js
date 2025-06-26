@@ -3,10 +3,10 @@ if (window.innerWidth > 992) {
     const header = document.querySelector('.header-client-side-desktop');
 
     const html = `
-    <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/" class="marquee-container" id="marquee-ticker">
+    <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/?erid=2W5zFJbxTgk" class="marquee-container" id="marquee-ticker">
         <div class="marquee">
-            <img src="https://b2ccdn.coral.ru/content/promo/young-day/ticker-1.webp" alt="">
-            <img src="https://b2ccdn.coral.ru/content/promo/young-day/ticker-1.webp" alt="">
+            <img src="https://b2ccdn.coral.ru/content/promo/young-day/ticker-3.webp" alt="">
+            <img src="https://b2ccdn.coral.ru/content/promo/young-day/ticker-3.webp" alt="">
         </div>
     </a>
 `;
