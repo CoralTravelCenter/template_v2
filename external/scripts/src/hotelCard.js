@@ -28,7 +28,7 @@ const observerDisco = new MutationObserver((mutations) => {
                         const yaParams = {
                             name_stock: {
                                 den_molodezhi: {
-                                    name_point: "search"
+                                    name_point: "search_card"
                                 }
                             }
                         };

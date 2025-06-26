@@ -287,7 +287,7 @@ style.textContent = `
         position: relative;
         width: 173px;
         height: 172px;
-        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_1.webp');
+        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_4.webp');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -306,7 +306,7 @@ style.textContent = `
     }
     
     .disco-ball__ball.darken {
-        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_2.webp');
+        background-image: url('https://b2ccdn.coral.ru/content/promo/young-day/ball_d4.webp');
     }
 `;
 document.head.append(style);
