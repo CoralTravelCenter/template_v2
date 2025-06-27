@@ -36,7 +36,7 @@
 // });
 
 
-// const mainMetricBanner = 'https://www.coral.ru/main/turkey/goryashchie-tyru/?banner_on_site=main-turtsiya-leto';
+// const mainMetricBanner = 'https://www.coral.ru/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/?banner_on_site=main-molodezhnye-oteli';
 //
 // const slides = document.querySelectorAll('.swiper-slide');
 //
@@ -59,26 +59,26 @@
 
 
 
-// const searchMetricLink = "https://www.coral.ru/visit-turkey/fly-turkish-airlines/";
-//
-// const observerMetric = new MutationObserver(mutation => {
-//     const link = document.querySelector(`[href="${searchMetricLink}"]`);
-//
-//     if (link) {
-//         link.addEventListener('click', (e) => {
-//             const yaParams = {
-//                 name_stock: {
-//                     den_molodezhi: {
-//                         name_point: "search"
-//                     }
-//                 }
-//             };
-//             ym(96674199, "reachGoal", "entry-point", yaParams);
-//         });
-//     }
-// });
-//
-// observerMetric.observe(document.body, {
-//     childList: true,
-//     subtree: true,
-// });
+const searchMetricLink = "https://www.coral.ru/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/?banner_on_site=search-molodezhnye-oteli";
+
+const observerMetric = new MutationObserver(mutation => {
+    const link = document.querySelector(`[href="${searchMetricLink}"]`);
+
+    if (link) {
+        link.addEventListener('click', (e) => {
+            const yaParams = {
+                name_stock: {
+                    den_molodezhi: {
+                        name_point: "search"
+                    }
+                }
+            };
+            ym(96674199, "reachGoal", "entry-point", yaParams);
+        });
+    }
+});
+
+observerMetric.observe(document.body, {
+    childList: true,
+    subtree: true,
+});

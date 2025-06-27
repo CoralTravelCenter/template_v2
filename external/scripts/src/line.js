@@ -17,6 +17,9 @@ if (window.innerWidth > 992) {
 
     const style = document.createElement('style');
     style.textContent = `
+    body {
+        overflow-x: hidden;
+    }
     .marquee-container {
         width: 4351px;
         overflow: hidden;

@@ -12,7 +12,7 @@ const observerDisco = new MutationObserver((mutations) => {
                     const promoBlock = document.createElement('div');
                     promoBlock.classList.add('disco-search-wrapper');
                     promoBlock.innerHTML = `
-                        <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/" class="disco-search"
+                        <a href="/poleznaya-informatsiya/offers/hot-offers/molodezhnye-oteli/?erid=2W5zFGSwxbr" class="disco-search"
                         onclick="yMetricDiscoSearch(); return true;">
                             <div class="disco-search__ball">
                                 <img src="https://b2ccdn.coral.ru/content/promo/young-day/disco-search.webp" alt="">
