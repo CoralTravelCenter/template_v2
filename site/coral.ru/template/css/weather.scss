@@ -1,0 +1,21 @@
+
+
+.weather {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  &__block {
+    display: flex;
+    align-items: center;
+    border-radius: 24px;
+    background-color: #D2E9FB;
+    padding-inline: 12px;
+    height: 36px;
+    gap: 12px;
+  }
+
+  &__text {
+    color: rgba(0, 0, 0, 0.85);
+  }
+}
