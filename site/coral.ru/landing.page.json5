@@ -17,11 +17,11 @@
 //		'/site/coral.ru/template/f-slider.html',
 //		'/site/coral.ru/template/chill.html',
 //		'/site/coral.ru/template/pad.html',
-//		'/site/coral.ru/template/weather.html',
+		'/site/coral.ru/template/weather.html',
 //		'/site/coral.ru/template/actions.html',
 //		'/site/coral.ru/template/contacts.html',
 //		'/site/coral.ru/template/links.html',
 //		'/site/coral.ru/template/links-2.html',
-		'/site/coral.ru/template/card.html',
+//		'/site/coral.ru/template/card.html',
 	]
 }

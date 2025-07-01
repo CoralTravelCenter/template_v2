@@ -2,17 +2,53 @@
 
 .weather {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 24px;
+  flex-direction: column;
+
+  &__info {
+    background-color: #FFFFFF;
+    padding: 32px;
+    border-radius: 20px;
+  }
+
+  &__inner {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+
+    @media screen and (max-width: 1024px) {
+      flex-wrap: wrap;
+    }
+  }
 
   &__block {
     display: flex;
-    align-items: center;
     border-radius: 24px;
     background-color: #D2E9FB;
-    padding-inline: 12px;
-    height: 36px;
-    gap: 12px;
+    padding-inline: 16px;
+    gap: 8px;
+    flex-direction: column;
+    padding-block: 12px;
+    flex: 1;
+
+    @media screen and (max-width: 1024px) {
+      flex-basis: calc(50% - 24px);
+    }
+
+    @media screen and (max-width: 515px) {
+      flex-basis: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 28px;
   }
 
   &__text {
