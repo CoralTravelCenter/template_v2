@@ -174,6 +174,26 @@ h1, h2, h3, h4, h5, h6, p, a {
     color: white;
   }
 
+  .banner__button {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    padding-inline: 32px;
+    background: linear-gradient(245deg, #D8242A 15.84%, #E7317D 84.16%);
+    color: white;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 48px;
+    width: fit-content;
+    margin-top: 24px;
+    text-decoration: none;
+    border: 1px solid transparent;
+
+    &:hover {
+      background: linear-gradient(90deg, #D8242A 15.84%, #E7317D 84.16%);
+    }
+  }
+
   .title-1 {
 
   }
@@ -226,6 +246,35 @@ a.coral-button {
       background-color: transparent;
     }
   }
+}
+
+a.sunmar-button {
+  display: flex;
+  padding-inline: 32px;
+  color: #FFFFFF;
+  font-size: 16px;
+  height: 48px;
+  align-items: center;
+  border-radius: 48px;
+  background: linear-gradient(245deg, #D8242A 15.84%, #E7317D 84.16%);
+  text-decoration: none;
+  width: fit-content;
+
+  &:hover {
+    background: linear-gradient(90deg, #D8242A 15.84%, #E7317D 84.16%);
+  }
+
+  //&--white {
+  //  background-color: transparent;
+  //  border: 1px solid rgba(0, 0, 0, 0.15);
+  //  color: inherit;
+  //
+  //  &:hover {
+  //    color: #077DAD;
+  //    border: 1px solid #077DAD;
+  //    background-color: transparent;
+  //  }
+  //}
 }
 
 .bg-white {
@@ -308,26 +357,6 @@ section:has(.banner.banner--text) .wrapper {
 .ant-col:has(section.coral) > div,
 .ant-col:has(section.sunmar) > div {
   padding: 0;
-}
-
-.d-hidden {
-  display: none;
-
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
-}
-
-.m-hidden {
-  display: block;
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-}
-
-.text-center {
-  text-align: center;
 }
 
 .text + .text {

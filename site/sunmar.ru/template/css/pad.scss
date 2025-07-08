@@ -1,0 +1,111 @@
+.sunmar {
+    &--benefits {
+        padding-block: 32px;
+        background-color: #F5F5F8;
+        position: relative;
+
+        .wrapper {
+            z-index: 1;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            background-image: url("/site/sunmar.ru/assets/bg_left.webp");
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 482px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            background-image: url("/site/sunmar.ru/assets/bg_right.webp");
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 482px;
+            height: 100%;
+            top: 0;
+            right: 0;
+            z-index: 0;
+        }
+    }
+}
+
+.pad {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 107px;
+    grid-gap: 24px;
+
+    &--4 {
+        .pad__block {
+            grid-column: span 3;
+
+            @media screen and (max-width: 768px) {
+                grid-column: auto;
+            }
+        }
+    }
+
+    &--5 {
+        .pad__block:nth-child(-n + 2) {
+            grid-column: span 3;
+
+            @media screen and (max-width: 768px) {
+                grid-column: auto;
+            }
+        }
+
+        .pad__block:nth-last-child(-n + 3) {
+            grid-column: span 2;
+
+            @media screen and (max-width: 768px) {
+                grid-column: auto;
+            }
+        }
+    }
+
+    &--6 {
+        .pad__block {
+            grid-column: span 2;
+
+            @media screen and (max-width: 768px) {
+                grid-column: auto;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: auto;
+    }
+
+    &__block {
+        border-radius: 16px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        padding-inline: 32px;
+        justify-content: center;
+
+        //&--large {
+        //  grid-column: span 3;
+        //
+        //  @media screen and (max-width: 768px) {
+        //    grid-column: auto;
+        //  }
+        //}
+        //
+        //&--medium {
+        //  grid-column: span 2;
+        //
+        //  @media screen and (max-width: 768px) {
+        //    grid-column: auto;
+        //  }
+        //}
+    }
+}

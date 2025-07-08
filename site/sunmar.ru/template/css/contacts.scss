@@ -1,0 +1,132 @@
+
+
+.contacts {
+  justify-content: space-between;
+  gap: 24px;
+  display: flex
+}
+
+@media screen and (max-width: 1024px) {
+  .contacts {
+    flex-direction: column
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contacts {
+    flex-direction: column;
+    gap: 16px
+  }
+}
+
+.contacts__block {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, .06);
+  border-radius: 16px;
+  align-items: center;
+  padding: 24px;
+  display: flex
+}
+
+@media screen and (max-width: 768px) {
+  .contacts__block {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px
+  }
+}
+
+.contacts__info {
+  flex-direction: column;
+  align-items: flex-start;
+  display: flex
+}
+
+.contacts__icon {
+  aspect-ratio: 1;
+  background: #e5f7ff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
+  display: flex
+}
+
+@media screen and (max-width: 768px) {
+  .contacts__icon {
+    width: 48px;
+    height: 48px
+  }
+}
+
+.contacts__tel {
+  color: #0093d0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px
+}
+
+@media screen and (max-width: 768px) {
+  .contacts__tel {
+    font-size: 16px
+  }
+}
+
+a.contacts__link {
+  color: #fff;
+  background-color: #0092d0;
+  border-radius: 48px;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  margin-left: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none !important;
+  display: flex;
+  transition: all 300ms ease
+}
+
+@media screen and (max-width: 1024px) {
+  a.contacts__link {
+    margin-left: auto
+  }
+}
+
+@media screen and (max-width: 768px) {
+  a.contacts__link {
+    height: 30px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 12px
+  }
+}
+
+@media screen and (max-width: 428px) {
+  a.contacts__link {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+a.contacts__link:hover {
+  background: #077DAD;
+}
+
+.contacts__text {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .contacts__text {
+    font-size: 12px
+  }
+}

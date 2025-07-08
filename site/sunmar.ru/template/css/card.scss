@@ -1,0 +1,35 @@
+
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 515px) {
+    grid-template-columns: auto;
+  }
+
+  &__info {
+    padding-inline: 24px;
+    padding-block: 16px;
+    border-radius: 0 0 20px 20px;
+    background-color: white;
+  }
+
+  &__img {
+    display: flex;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    min-height: 168px;
+    object-fit: cover;
+    object-position: center;
+
+    @media screen and (max-width: 1024px) {
+      min-height: 240px;
+    }
+  }
+}
