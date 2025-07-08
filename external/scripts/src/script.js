@@ -47,9 +47,9 @@ const eventMapping = {
             }
         })
     },
-    view_item: {
+    view_room: {
         operation: 'Website.SelectRoom',
-        buildRequest: (itemID, itemPrice) => ({
+        buildRequest: (itemID, itemPrice, roomName) => ({
             viewProduct: {
                 price: itemPrice,
                 product: {
@@ -59,73 +59,124 @@ const eventMapping = {
                 },
                 customerAction: {
                     customFields: {
-                        roomName: "test"
+                        roomName: roomName
                     }
                 }
-            },
+            }
         })
-    }
+    },
+    view_item: [
+        {
+            operation: 'Website.ViewHotel',
+            buildRequest: (itemID, itemPrice, roomName) => ({
+                viewProduct: {
+                    price: itemPrice,
+                    product: {
+                        ids: {
+                            hotels: itemID
+                        }
+                    },
+                    customerAction: {
+                        customFields: {
+                            roomName: roomName
+                        }
+                    }
+                }
+            })
+        },
+        {
+            operation: 'Website.ViewCategory',
+            buildRequest: (itemCategory, roomName) => ({
+                viewProductCategory: {
+                    productCategory: {
+                        ids: {
+                            hotels: itemCategory
+                        }
+                    },
+                    customerAction: {
+                        customFields: {
+                            roomName: roomName
+                        }
+                    }
+                }
+            })
+        }
+    ]
 };
 
+function handleEvent(eventData) {
+    const eventName = eventData.event;
+    const mapping = eventMapping[eventName];
+
+    if (!mapping) {
+        console.warn(`Нет обработчика для события: ${eventName}`);
+        return;
+    }
+
+    const handlers = Array.isArray(mapping) ? mapping : [mapping];
+
+    handlers.forEach(handler => {
+        const { operation, buildRequest } = handler;
+
+        const itemID = eventData.ecommerce?.items?.[0]?.item_id;
+        const itemPrice = eventData.ecommerce?.items?.[0]?.price;
+        const roomName = eventData.ecommerce?.items?.[0]?.room_name || "test";
+        const itemCategory = eventData.ecommerce?.items?.[0]?.item_category;
+
+        let args = [];
+
+        if (operation === 'Website.ViewHotel') {
+            args = [itemID, itemPrice, roomName];
+        } else if (operation === 'Website.ViewCategory') {
+            args = [itemCategory, roomName];
+        } else if (operation === 'Website.SelectRoom') {
+            args = [itemID, itemPrice, roomName];
+        } else if (operation.startsWith('Website.AddToFavourites') ||
+            operation.startsWith('Website.RemoveFromFavourites') ||
+            operation.startsWith('Website.AddToComparison') ||
+            operation.startsWith('Website.RemoveFromComparison')) {
+            args = [itemID];
+        }
+
+        sendWithExponentialBackoff({
+            operation,
+            buildRequest: () => buildRequest(...args)
+        });
+    });
+}
+
 if (window.dataLayer) {
-    console.log(1)
     const originalPush = window.dataLayer.push;
 
     window.dataLayer.push = function (...args) {
-        console.log(2)
         originalPush.apply(this, args);
 
         if (args.length > 0 && typeof args[0] === 'object' && args[0] !== null) {
-            const eventData = args[0];
-
-            const mapping = eventMapping[eventData.event];
-
-            if (mapping) {
-                const itemID = eventData.ecommerce?.items?.[0]?.item_id;
-                const itemPrice = eventData.ecommerce?.items?.[0]?.price;
-
-                if (itemID) {
-                    console.log(`Обнаружено событие: ${eventData.event}, item_id: ${itemID}`);
-
-                    sendWithExponentialBackoff({
-                        itemID,
-                        itemPrice,
-                        operation: mapping.operation,
-                        buildRequest: mapping.buildRequest
-                    });
-                } else {
-                    console.warn(`item_id не найден в событии: ${eventData.event}`);
-                }
-            }
+            handleEvent(args[0]);
         }
     };
-} else {
-    console.warn('dataLayer не определён');
 }
 
 function sendWithExponentialBackoff(data, attempt = 1, maxAttempts = 5) {
     if (attempt > maxAttempts) {
-        console.error(`Превышено количество попыток для ${data.operation}`);
         return;
     }
 
-    const { itemID, itemPrice, operation, buildRequest } = data;
+    const { operation, buildRequest } = data;
     const delay = Math.pow(2, attempt) * 1000;
 
     setTimeout(() => {
         try {
-            console.log(`Попытка ${attempt}: Отправляем в Mindbox — ${operation}`, itemID);
+            console.log(`Попытка ${attempt}: Отправляем в Mindbox — ${operation}`);
 
             window.mindbox("async", {
                 operation,
-                data: buildRequest(itemID, itemPrice)
+                data: buildRequest()
             });
 
-            console.log('Успешно отправлено:', itemID, 'операция:', operation);
-
+            console.log('Успешно отправлено:', operation);
         } catch (error) {
-            console.error(`Ошибка при попытке ${attempt} для ${operation}:`, error);
-            console.warn(`Повтор через ${delay / 1000} секунд...`);
+            console.error(error);
 
             sendWithExponentialBackoff(data, attempt + 1, maxAttempts);
         }
