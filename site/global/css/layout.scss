@@ -122,13 +122,21 @@ h1, h2, h3, h4, h5, h6, p, a {
     color: rgba(0, 0, 0, 0.65);
   }
 
-  ul {
-    //padding-left: 20px;
-    //font-size: 16px;
-    //line-height: 24px;
+  .slider__pagination.swiper-pagination {
 
-    li + li {
-      //margin-top: 5px;
+    &.swiper-pagination-horizontal {
+      bottom: 0;
+    }
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: #33C2FF4D;
+      opacity: 1;
+
+      &.swiper-pagination-bullet-active {
+        background-color: #077DAD;
+      }
     }
   }
 }
@@ -214,8 +222,27 @@ h1, h2, h3, h4, h5, h6, p, a {
     line-height: 32px;
   }
 
-  .swiper-pagination-bullet-active {
-    background: #0E2855;
+  .title-5 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .slider__pagination.swiper-pagination {
+
+    &.swiper-pagination-horizontal {
+      bottom: 0;
+    }
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: #afafaf;
+      opacity: 1;
+
+      &.swiper-pagination-bullet-active {
+        background-color: #0E2855;
+      }
+    }
   }
 }
 
@@ -264,17 +291,15 @@ a.sunmar-button {
     background: linear-gradient(90deg, #D8242A 15.84%, #E7317D 84.16%);
   }
 
-  //&--white {
-  //  background-color: transparent;
-  //  border: 1px solid rgba(0, 0, 0, 0.15);
-  //  color: inherit;
-  //
-  //  &:hover {
-  //    color: #077DAD;
-  //    border: 1px solid #077DAD;
-  //    background-color: transparent;
-  //  }
-  //}
+  &--white {
+    background: white;
+    border: 1px solid #D8242A;
+    color: inherit;
+
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 .bg-white {
@@ -288,24 +313,6 @@ a.sunmar-button {
 .slider.swiper {
   &:not(:has(.swiper-pagination-lock)) {
     padding-bottom: 24px;
-  }
-}
-
-.slider__pagination.swiper-pagination {
-
-  &.swiper-pagination-horizontal {
-    bottom: 0;
-  }
-
-  .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
-    background-color: #33C2FF4D;
-    opacity: 1;
-
-    &.swiper-pagination-bullet-active {
-      background-color: #077DAD;
-    }
   }
 }
 

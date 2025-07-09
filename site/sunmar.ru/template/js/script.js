@@ -197,4 +197,24 @@ hostReactAppReady().then(() => {
             });
         });
     });
+
+    document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+        const tabs = tabsBlock.querySelectorAll('.tabs__tab');
+        const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+
+                tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                tab.classList.add('tabs__tab--active');
+                const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                if (activePane) {
+                    activePane.classList.add('tabs__pane--active');
+                }
+            });
+        });
+    });
 });

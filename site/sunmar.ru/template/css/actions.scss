@@ -50,20 +50,18 @@
   &__link {
     margin-top: auto;
     border-radius: 50px;
-    border: 1px solid #FFF;
-    background-color: #FFF;
+    color: white!important;
+    background: linear-gradient(245deg, #D8242A 15.84%, #E7317D 84.16%);
     height: 48px;
     display: flex;
     align-items: center;
     font-size: 16px;
-    color: inherit!important;
     text-decoration: none!important;
     padding-inline: 24px;
     width: fit-content;
 
     &:hover {
-      color: #077DAD!important;
-      border: 1px solid #077DAD!important;
+      background: linear-gradient(90deg, #D8242A 15.84%, #E7317D 84.16%);
     }
   }
 }

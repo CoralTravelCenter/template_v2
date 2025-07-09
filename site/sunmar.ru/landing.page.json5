@@ -9,7 +9,7 @@
 //    '/site/sunmar.ru/template/hotels-block.html',
     '/site/sunmar.ru/template/anchors.html',
     '/site/sunmar.ru/template/text.html',
-//    '/site/sunmar.ru/template/stambul.html',
+    '/site/sunmar.ru/template/stambul.html',
 //    '/site/sunmar.ru/template/hotels.html',
 //    '/site/sunmar.ru/template/slider.html',
 //    '/site/sunmar.ru/template/shopping.html',
@@ -19,9 +19,11 @@
     '/site/sunmar.ru/template/pad.html',
     '/site/sunmar.ru/template/weather.html',
     '/site/sunmar.ru/template/actions.html',
-    '/site/sunmar.ru/template/contacts.html',
+//    '/site/sunmar.ru/template/contacts.html',
     '/site/sunmar.ru/template/links.html',
-    '/site/sunmar.ru/template/links-2.html',
-    '/site/sunmar.ru/template/card.html'
+//    '/site/sunmar.ru/template/links-2.html',
+    '/site/sunmar.ru/template/card.html',
+    '/site/sunmar.ru/template/tabs.html',
+    '/site/sunmar.ru/template/grid-hotels.html',
   ]
 }

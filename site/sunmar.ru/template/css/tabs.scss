@@ -1,0 +1,43 @@
+
+.tabs {
+
+    &__pane {
+        display: none;
+
+        &--active {
+            display: block;
+        }
+    }
+
+    &__tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;
+        background-color: #F5F5F8;
+        min-width: 150px;
+        font-weight: 600;
+
+        &--active {
+            background-color: #061A3E;
+            color: #FFFfff;
+        }
+    }
+
+    &__nav {
+        padding: 8px;
+        border-radius: 40px;
+        background-color: #F5F5F8;
+        display: flex;
+        width: 100%;
+        gap: 8px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+    }
+}
