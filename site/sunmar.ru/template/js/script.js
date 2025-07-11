@@ -16,33 +16,33 @@ async function hostReactAppReady(
 }
 
 hostReactAppReady().then(() => {
-    // const sliderStambul = new Swiper(".js-slider-stambul", {
-    //     breakpoints: {
-    //         1280: {
-    //             slidesPerView: 4,
-    //             spaceBetween: 24,
-    //         },
-    //         1024: {
-    //             slidesPerView: 3,
-    //             spaceBetween: 24,
-    //         },
-    //         768: {
-    //             slidesPerView: 2,
-    //             spaceBetween: 24,
-    //         },
-    //     },
-    //     slidesPerView: 1,
-    //     spaceBetween: 24,
-    //     loop: true,
-    //     pagination: {
-    //         el: ".js-pagination-stambul",
-    //         clickable: true,
-    //     },
-    //     navigation: {
-    //         nextEl: ".js-next-stambul",
-    //         prevEl: ".js-prev-stambul",
-    //     },
-    // });
+    const sliderStambul = new Swiper(".js-slider-stambul", {
+        breakpoints: {
+            1280: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+        },
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        pagination: {
+            el: ".js-pagination-stambul",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".js-next-stambul",
+            prevEl: ".js-prev-stambul",
+        },
+    });
 
     // const sliderFood = new Swiper(".js-slider-food", {
     //     slidesPerView: 1,
