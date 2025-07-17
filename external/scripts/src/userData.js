@@ -15,7 +15,8 @@ function addStyles() {
       height: 100%;
     }
 
-    .custom-tel-box {
+    .custom-tel-box,
+    .custom-email-box {
       display: flex;
       flex: 1;
       position: relative;
@@ -69,11 +70,12 @@ function addStyles() {
       border-width: 1px;
       border-style: solid;
       border-color: rgba(0, 0, 0, 0.15);
+      width: 100%;
     }
     
     .custom-input-field:focus {
         border-color: #0093d0;
-        box-shadow: 0 0 0 2px rgba(19, 182, 255, 0.11);
+        // box-shadow: 0 0 0 2px rgba(19, 182, 255, 0.11);
         outline: 0;
         opacity: 0.8;
     }
@@ -82,14 +84,10 @@ function addStyles() {
       opacity: 0.3;
     }
 
-    .custom-input-field--email {
-      flex: 1;
-    }
-
     .skeleton-loader {
       position: absolute;
-      top: -1px;
-      left: 0;
+      top: 0px;
+      left: 0px;
       width: 100%;
       height: 100%;
       background: linear-gradient(to right, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
@@ -97,7 +95,8 @@ function addStyles() {
       animation: skeleton-animation 1.5s ease infinite;
       z-index: 1;
       border-radius: 8px;
-      padding-block: 2px;
+      box-sizing: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.15);
     }
 
     @keyframes skeleton-animation {
@@ -133,18 +132,20 @@ if (card.length > 0) {
                 <input type="tel" placeholder="+7" value="+7" id="custom-code" class="custom-input-field custom-input-field--code">
                 <input type="tel" placeholder="Номер телефона" id="custom-tel" class="custom-input-field custom-input-field--tel">
             </div>
-            <input type="email" placeholder="e-mail" id="custom-email" class="custom-input-field custom-input-field--email">
+            <div class="custom-email-box">
+                <input type="email" placeholder="e-mail" id="custom-email" class="custom-input-field custom-input-field--email">
+            </div>
         </div>
     </div>
     `
     );
 }
 
-const input = document.getElementById('custom-tel');
+const telInput = document.getElementById('custom-tel');
 
-if (input) {
-    input.addEventListener('input', () => {
-        let value = input.value.replace(/\D/g, '');
+if (telInput) {
+    telInput.addEventListener('input', () => {
+        let value = telInput.value.replace(/\D/g, '');
 
         if (value.length === 10) {
             const telBox = document.querySelector('.custom-tel-box');
@@ -204,6 +205,86 @@ if (input) {
                     if (skeletonLoader) {
                         telBox.removeChild(skeletonLoader);
                     }
+                });
+        }
+    });
+}
+
+const emailInput = document.getElementById('custom-email');
+if (emailInput) {
+    emailInput.addEventListener('input', () => {
+        const value = emailInput.value.trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(value)) {
+            const emailBox = emailInput.closest('.custom-email-box');
+
+            // Удаляем предыдущий скелетон, если он есть
+            const existingLoader = emailBox.querySelector('.skeleton-loader');
+            if (existingLoader) {
+                emailBox.removeChild(existingLoader);
+            }
+
+            // Создаем новый скелетон
+            const skeletonLoader = document.createElement('div');
+            skeletonLoader.className = 'skeleton-loader';
+            emailBox.appendChild(skeletonLoader);
+
+            const payload = {
+                email: value,
+            };
+
+            fetch('https://www.coral.ru/endpoints/Customer/GetCheckExistCustomerByEmail ', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+
+                    // Удаляем скелетон
+                    const skeletonLoader = emailBox.querySelector('.skeleton-loader');
+                    if (skeletonLoader) {
+                        emailBox.removeChild(skeletonLoader);
+                    }
+
+                    // Удаляем старые статусные классы
+                    emailBox.classList.remove('custom-success', 'custom-error');
+
+                    if (data.result && data.result.isAvailable) {
+                        const loginWidget = document.querySelector('[data-testid="test-login-widget"]');
+                        loginWidget.style.display = 'flex';
+
+                        if (loginWidget && !loginWidget.closest('.custom-modal-login')) {
+                            const wrapper = document.createElement('div');
+                            wrapper.className = 'custom-modal-login';
+
+                            loginWidget.parentNode.insertBefore(wrapper, loginWidget);
+                            wrapper.appendChild(loginWidget);
+                        }
+
+                        emailBox.classList.add('custom-success');
+                    } else {
+                        emailBox.classList.add('custom-error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    // Удаляем скелетон при ошибке
+                    const skeletonLoader = emailBox.querySelector('.skeleton-loader');
+                    if (skeletonLoader) {
+                        emailBox.removeChild(skeletonLoader);
+                    }
+
                 });
         }
     });
