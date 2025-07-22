@@ -1,0 +1,107 @@
+
+
+.promo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 24px;
+
+    @media screen and (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 100%;
+    }
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+        background-color: white;
+        border-radius: 20px;
+        padding-block: 24px;
+        padding-inline: 32px;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        height: 280px;
+
+        @media screen and (max-width: 1024px) {
+            height: 250px;
+        }
+
+        @media screen and (max-width: 768px) {
+            height: 220px;
+            background-size: 100px;
+        }
+
+        &--1 {
+            background-image: url("/site/coral.ru/assets/icon_1.webp");
+        }
+
+        &--2 {
+            background-image: url("/site/coral.ru/assets/icon_2.webp");
+        }
+
+        &--3 {
+            background-image: url("/site/coral.ru/assets/icon_3.webp");
+        }
+
+        &--4 {
+            background-image: url("/site/coral.ru/assets/icon_4.webp");
+        }
+    }
+
+    &__number {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(210, 233, 251, 1);
+        border-radius: 50%;
+        color: rgba(0, 147, 208, 1);
+        font-weight: 600;
+    }
+
+    &__social {
+        display: flex;
+        gap: 16px;
+    }
+}
+
+.time {
+    display: flex;
+    gap: 24px;
+
+    @media screen and (max-width: 1024px) {
+        flex-direction: column;
+    }
+
+    &__block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        background-color: #FFF;
+        height: 76px;
+        padding-inline: 64px;
+        flex: 1;
+
+        @media screen and (max-width: 1024px) {
+            flex: unset;
+        }
+    }
+
+    .title-5 {
+        color: rgba(0, 147, 208, 1);
+        text-align: center;
+    }
+}
+
+.cert {
+    display: flex;
+    justify-content: center;
+}
