@@ -241,8 +241,16 @@
     }
 
     function buildUI() {
-        const card = document.querySelector('.ant-card-body');
-        if (!card) return;
+        const cards = document.querySelectorAll('.ant-card-body');
+
+        const targetCard = Array.from(cards).find(card => {
+            return Array.from(card.querySelectorAll('*')).some(element =>
+                element.textContent.includes('Данные заказчика для оформления договора')
+            );
+        });
+
+        if (!targetCard) return;
+
 
         const html = `
       <div class="custom-block">
@@ -289,7 +297,7 @@
         </div>
       </div>
     `;
-        card.insertAdjacentHTML('afterbegin', html);
+        targetCard.insertAdjacentHTML('afterbegin', html);
     }
 
     const utils = {
