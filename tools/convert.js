@@ -4,11 +4,22 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import sharp from 'sharp';
 
+const target = process.argv[2];
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const inputDir = join(__dirname, '../img');
-const outputDir = join(__dirname, '../img-webp');
+
+let outputDir;
+if (target === 'coral') {
+    outputDir = join(__dirname, '../site/coral.ru/assets');
+} else if (target === 'sunmar') {
+    outputDir = join(__dirname, '../site/sunmar.ru/assets');
+} else {
+    console.error('❌ Укажи флаг: coral или sunmar');
+    process.exit(1);
+}
 
 await fs.mkdir(outputDir, { recursive: true });
 
@@ -24,9 +35,9 @@ for (const file of files) {
 
     try {
         await sharp(inputPath)
-            .webp({ quality: 90 })
+            .webp({ quality: 80 })
             .toFile(outputPath);
-        console.log(`✅ Converted: ${file}`);
+        console.log(`✅ Converted: ${file} → ${target}/assets`);
     } catch (err) {
         console.error(`❌ Failed to convert ${file}:`, err.message);
     }
