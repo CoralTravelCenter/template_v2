@@ -246,6 +246,10 @@
             cursor: pointer;
         }
         
+        .custom-button:hover {
+            background: #66D1FF;
+        }
+        
         .custom-text {
             font-size: 16px;
             margin: 0;
@@ -300,14 +304,7 @@
           </div>
           <div class="custom-button" id="button-check">Проверить</div>
         </div>
-        <div class="custom-row" style="margin-top:14px; flex-direction: column;">
-            <span>
-              Вводя свои данные в форму, вы подтверждаете <a href="https://www.coral.ru/soglasie-на-обработку-дannyh/" target="_blank">согласие</a>
-              на обработку персональных данных. 
-              <a href="https://cdn.coral.ru/content/doc/legal/privacy_policy_coral.pdf" target="_blank">
-              Политика обработки персональных данных</a>
-            </span>
-        </div>
+
         <div id="error-quote" class="custom-error-quote" role="alert">
           <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
             <path d="M8.12598 1.0661C4.26035 1.0661 1.12598 4.20048 1.12598 8.0661C1.12598 11.9317 4.26035 15.0661 8.12598 15.0661C11.9916 15.0661 15.126 11.9317 15.126 8.0661C15.126 4.20048 11.9916 1.0661 8.12598 1.0661ZM10.7104 10.7255L9.6791 10.7208L8.12598 8.86923L6.57441 10.7192L5.5416 10.7239C5.47285 10.7239 5.4166 10.6692 5.4166 10.5989C5.4166 10.5692 5.42754 10.5411 5.44629 10.5177L7.4791 8.09579L5.44629 5.67548C5.42741 5.65258 5.41693 5.6239 5.4166 5.59423C5.4166 5.52548 5.47285 5.46923 5.5416 5.46923L6.57441 5.47391L8.12598 7.32548L9.67754 5.47548L10.7088 5.47079C10.7775 5.47079 10.8338 5.52548 10.8338 5.59579C10.8338 5.62548 10.8229 5.6536 10.8041 5.67704L8.77441 8.09735L10.8057 10.5192C10.8244 10.5427 10.8354 10.5708 10.8354 10.6005C10.8354 10.6692 10.7791 10.7255 10.7104 10.7255Z" fill="#E84F0E"/>
@@ -369,20 +366,11 @@
         const telInput   = document.getElementById('custom-tel');
         const emailInput = document.getElementById('custom-email');
         const codeSelect = document.getElementById('custom-code');
-        const checkbox   = document.getElementById('custom-check');
+        // const button = document.getElementById('button-check');
         const telBox     = document.getElementById('tel-box');
         const emailBox   = document.getElementById('email-box');
         const telMsg     = telBox.querySelector('span');
         const emailMsg   = emailBox.querySelector('span');
-
-        // function validateConsent() {
-        //     if (!checkbox.checked) {
-        //         document.getElementById('custom-label').classList.add('custom-error');
-        //         return false;
-        //     }
-        //     document.getElementById('custom-label').classList.remove('custom-error');
-        //     return true;
-        // }
 
         function checkField(inputEl, boxEl, msgEl, url, buildPayload, onFound, onNotFound) {
             boxEl.querySelector('.skeleton-loader')?.remove();
@@ -438,8 +426,6 @@
                 return utils.showError(telMsg,'Введите корректный номер');
             }
 
-            // if (!validateConsent()) return;
-
             const digits = raw.replace(/\D/g, '');
             const fullPhone = codeSelect.value + digits;
 
@@ -479,7 +465,6 @@
                 emailBox.classList.add('custom-error');
                 return utils.showError(emailMsg, 'Введите корректный адрес почты');
             }
-            // if (!validateConsent()) return;
 
             checkField(
                 emailInput,
@@ -504,11 +489,6 @@
                 }
             );
         }, 200));
-
-        // checkbox.addEventListener('change', () => {
-        //     document.getElementById('custom-label')
-        //         .classList.toggle('custom-error', !checkbox.checked);
-        // });
     }
 
     function openModal() {
