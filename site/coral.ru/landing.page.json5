@@ -7,6 +7,7 @@
 	contents: [
 		'/site/coral.ru/pages/300k/promo.html',
 		'/site/coral.ru/pages/300k/time.html',
-		'/site/coral.ru/pages/300k/rules.html'
+		'/site/coral.ru/pages/300k/rules.html',
+		'/site/coral.ru/pages/300k/timer.html',
 	]
 }
