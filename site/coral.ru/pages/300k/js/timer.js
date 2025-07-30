@@ -67,26 +67,42 @@ hostReactAppReady().then(() => {
         const textSecondsElement = document.getElementById('text-seconds');
 
         if (!timeLeft) {
-            daysElement.textContent = '0';
-            textDaysElement.textContent = 'дней';
-            hoursElement.textContent = '0';
-            textHoursElement.textContent = 'часов';
-            minutesElement.textContent = '0';
-            textMinutesElement.textContent = 'мин';
-            secondsElement.textContent = '0';
-            textSecondsElement.textContent = 'сек';
+            if (daysElement) daysElement.textContent = '00';
+            if (textDaysElement) textDaysElement.textContent = 'дней';
+            if (hoursElement) hoursElement.textContent = '00';
+            if (textHoursElement) textHoursElement.textContent = 'часов';
+            if (minutesElement) minutesElement.textContent = '00';
+            if (textMinutesElement) textMinutesElement.textContent = 'мин';
+            if (secondsElement) secondsElement.textContent = '00';
+            if (textSecondsElement) textSecondsElement.textContent = 'сек';
             return;
         }
 
-        daysElement.textContent = timeLeft.days.toString().padStart(2, '0');
-        hoursElement.textContent = timeLeft.hours.toString().padStart(2, '0');
-        minutesElement.textContent = timeLeft.minutes.toString().padStart(2, '0');
-        secondsElement.textContent = timeLeft.seconds.toString().padStart(2, '0');
+        if (daysElement) {
+            daysElement.textContent = timeLeft.days.toString().padStart(2, '0');
+        }
+        if (hoursElement) {
+            hoursElement.textContent = timeLeft.hours.toString().padStart(2, '0');
+        }
+        if (minutesElement) {
+            minutesElement.textContent = timeLeft.minutes.toString().padStart(2, '0');
+        }
+        if (secondsElement) {
+            secondsElement.textContent = timeLeft.seconds.toString().padStart(2, '0');
+        }
 
-        textDaysElement.textContent = getDeclension(timeLeft.days, 'день', 'дня', 'дней');
-        textHoursElement.textContent = getDeclension(timeLeft.hours, 'час', 'часа', 'часов');
-        textMinutesElement.textContent = 'мин';
-        textSecondsElement.textContent = 'сек';
+        if (textDaysElement) {
+            textDaysElement.textContent = getDeclension(timeLeft.days, 'день', 'дня', 'дней');
+        }
+        if (textHoursElement) {
+            textHoursElement.textContent = getDeclension(timeLeft.hours, 'час', 'часа', 'часов');
+        }
+        if (textMinutesElement) {
+            textMinutesElement.textContent = 'мин';
+        }
+        if (textSecondsElement) {
+            textSecondsElement.textContent = 'сек';
+        }
     }
 
     setInterval(updateCountdown, 1000);
