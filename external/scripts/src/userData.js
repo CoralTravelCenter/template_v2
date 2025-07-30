@@ -232,6 +232,25 @@
           white-space: nowrap;
           border: 0;
         }
+        
+        .custom-button {
+            display: flex;
+            align-items: center;
+            padding-inline: 16px;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            background: #0093d0;
+            height: 40px;
+            cursor: pointer;
+        }
+        
+        .custom-text {
+            font-size: 16px;
+            margin: 0;
+            margin-bottom: 8px;
+        }
 
     `;
         const style = document.createElement('style');
@@ -255,6 +274,9 @@
         const html = `
       <div class="custom-block">
         <h4 id="custom-title" class="custom-title">Давайте проверим, есть ли у вас аккаунт</h4>
+            <p class="custom-text">
+                Проверка наличия аккаунта поможет сэкономить ваше время — если вы уже регистрировались, мы автоматически заполним поля для вас.
+            </p>
         <div class="custom-row">
           <div class="custom-tel-box" id="tel-box">
             <label for="custom-tel" class="visually-hidden">Номер телефона</label>
@@ -276,18 +298,15 @@
             <input type="email" id="custom-email" class="custom-input-field" placeholder="e-mail">
             <span style="color: #e84f0e;"></span>
           </div>
+          <div class="custom-button" id="button-check">Проверить</div>
         </div>
-        <div class="custom-row" style="margin-top:14px;">
-          <label class="custom-label" id="custom-label" for="custom-check">
-            <input type="checkbox" id="custom-check">
-            <span class="custom-label__checkbox"></span>
+        <div class="custom-row" style="margin-top:14px; flex-direction: column;">
             <span>
-              Даю <a href="https://www.coral.ru/soglasie-на-обработку-дannyh/" target="_blank">согласие</a>
+              Вводя свои данные в форму, вы подтверждаете <a href="https://www.coral.ru/soglasie-на-обработку-дannyh/" target="_blank">согласие</a>
               на обработку персональных данных. 
               <a href="https://cdn.coral.ru/content/doc/legal/privacy_policy_coral.pdf" target="_blank">
               Политика обработки персональных данных</a>
             </span>
-          </label>
         </div>
         <div id="error-quote" class="custom-error-quote" role="alert">
           <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -356,14 +375,14 @@
         const telMsg     = telBox.querySelector('span');
         const emailMsg   = emailBox.querySelector('span');
 
-        function validateConsent() {
-            if (!checkbox.checked) {
-                document.getElementById('custom-label').classList.add('custom-error');
-                return false;
-            }
-            document.getElementById('custom-label').classList.remove('custom-error');
-            return true;
-        }
+        // function validateConsent() {
+        //     if (!checkbox.checked) {
+        //         document.getElementById('custom-label').classList.add('custom-error');
+        //         return false;
+        //     }
+        //     document.getElementById('custom-label').classList.remove('custom-error');
+        //     return true;
+        // }
 
         function checkField(inputEl, boxEl, msgEl, url, buildPayload, onFound, onNotFound) {
             boxEl.querySelector('.skeleton-loader')?.remove();
@@ -419,7 +438,7 @@
                 return utils.showError(telMsg,'Введите корректный номер');
             }
 
-            if (!validateConsent()) return;
+            // if (!validateConsent()) return;
 
             const digits = raw.replace(/\D/g, '');
             const fullPhone = codeSelect.value + digits;
@@ -460,7 +479,7 @@
                 emailBox.classList.add('custom-error');
                 return utils.showError(emailMsg, 'Введите корректный адрес почты');
             }
-            if (!validateConsent()) return;
+            // if (!validateConsent()) return;
 
             checkField(
                 emailInput,
@@ -486,10 +505,10 @@
             );
         }, 200));
 
-        checkbox.addEventListener('change', () => {
-            document.getElementById('custom-label')
-                .classList.toggle('custom-error', !checkbox.checked);
-        });
+        // checkbox.addEventListener('change', () => {
+        //     document.getElementById('custom-label')
+        //         .classList.toggle('custom-error', !checkbox.checked);
+        // });
     }
 
     function openModal() {
