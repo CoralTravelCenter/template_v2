@@ -4,11 +4,11 @@ import monkey from 'vite-plugin-monkey';
 export default defineConfig({
   plugins: [
     monkey({
-      entry: 'src/main.js',
+      entry: 'src/metric.js',
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/'],
+        match: ['https://www.sunmar.ru/'],
       },
     }),
   ],
