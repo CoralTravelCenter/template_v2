@@ -12,7 +12,31 @@ const attentionSlider = document.querySelector('.coral-custom-section.pay-attent
 const newsSlider = document.querySelector('.news-slider-block');
 const popSlider = document.querySelector('.pop-slider');
 
-const booking = document.querySelector('.coral-custom-section.bronirovanie');
+const section1 = document.getElementById('section-row-9');
+const section2 = document.getElementById('section-row-13');
+const section3 = document.getElementById('section-row-7');
+const section4 = document.getElementById('section-row-14');
+const section5 = document.getElementById('section-row-12');
+
+if (section1) {
+    section1.remove();
+}
+
+if (section2) {
+    section2.remove();
+}
+
+if (section3) {
+    section4.remove();
+}
+
+if (section4) {
+    section4.remove();
+}
+
+if (section5) {
+    section5.remove();
+}
 
 const bonusBanner = document.querySelector('.coral-custom-section.bonus-banner');
 const bonusSlider = document.getElementById('coral-bonus-slider');
@@ -25,20 +49,33 @@ if (bonusBanner) {
 
 if (actionsSlider) {
     actionsSlider.style.display = 'block';
+    ym(96674199, 'reachGoal', 'min_home_page_show');
+    metric(actionsSlider, 'Наши акции');
 }
 
 if (bonusSlider) {
     bonusSlider.style.display = 'block';
+    metric(bonusSlider, 'Coral Bonus');
 }
 
-if (booking) {
-    const bookingSection = booking.querySelector('.coral-custom-section-wrapper');
+function metric(sliderElement, sliderTitle) {
+    const slides = sliderElement.querySelectorAll('.swiper-slide');
 
-    if (bookingSection) {
-        bookingSection.insertAdjacentHTML('beforeend', `
-        <a href="https://www.coral.ru/packagetours/moskva-to-turtsiya-tours/?qp=lWOJw1XDa14WeujkN6zDTskRAKRR%2Bfx%2FNQhRhzTkB8670%2FokdjRaHzgKL%2FK6r4khCF3fkNq6jr32VpophSQYAi%2F9dcU5IJoUvx8U9JjiBwF%2BBLMHLeg6zDZSeXfyVIAIqH%2FzMA89XsUO667lWQjV%2Fc5g416%2FFWp2eDwNhlatn4Wb9Os4G03G9EMmyqANMqthieeszyqRzJ1ax7qgNYQYyshoyITdiyX10qEB%2FvtC86mCqXJQ4Wv4hH7db2nIGwtT2p0fR3d5lDXsgpq3aKqfdhH1MpabIA8DtckpMwGSOO4KhKlPFo2hY4fT72AzOETGaXKnbqQnOJxdUAMuBfLD6w%3D%3D&p=1&w=0&s=0&ws=10" style="margin-top: 10px;" class="coral-button-rounded">Выбрать отель</a>
-`);
-    }
+    slides.forEach(slide => {
+        const title = slide.dataset.title;
+        const button = slide.querySelector('.actions__link');
+
+        button.addEventListener('click', () => {
+            ym(96674199, "reachGoal", "min_home_page_click", {
+                name_block: {
+                    [sliderTitle]: {
+                        name_banner: title,
+                    },
+                },
+            });
+            console.log(sliderTitle, title);
+        });
+    });
 }
 
 const hotelsOfTheWeek = document.querySelector('.coral-custom-section.hotels-week');
@@ -92,6 +129,27 @@ style.textContent = `
       
       #coral-bonus-slider .slider__next {
         top: 45%;
+      }
+      
+      .coral .slider__prev {
+        border: 1px solid white;
+        transition: 0.2s linear;
+      }
+      
+      .coral .slider__prev:hover {
+        border-color: #66d1ff;
+      }
+      
+      .coral .slider__prev:hover path {
+        fill: #66d1ff;
+      }
+      
+      .coral .slider__next:hover {
+        border-color: #66d1ff;
+      }
+      
+      .coral .slider__next:hover path {
+        fill: #66d1ff;
       }
       
       @media screen and (max-width: 1200px) {
