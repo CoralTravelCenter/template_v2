@@ -16,26 +16,36 @@
         const item = evt?.ecommerce?.items?.[0];
         if (!item || !Array.isArray(item.destination_id)) return;
 
-        const countryIds = item.destination_id.filter(id => typeof id === 'string' && id.endsWith('-0'));
+        const isTourEvent = evt.event === 'search_tour';
+        const searchType = isTourEvent ? 1 : 2;
+
+        const countryIds = item.destination_id.filter(id => typeof id === 'string' && !id.endsWith('-7'));
         const hotelIdsRaw = item.destination_id.filter(id => typeof id === 'string' && id.endsWith('-7'));
 
+        // --- Страны ---
         countryIds.forEach((destId, i) => {
+            const customFields = {
+                adultCount: item.item_adult_count,
+                childCount: item.item_child_count,
+                nights: item.nights,
+                searchType
+            };
+
+            if (isTourEvent) {
+                customFields.departures = item.departure;
+                customFields.flightDateFrom = item.period_flight?.[0];
+                customFields.flightDateTo = item.period_flight?.[1];
+            } else {
+                customFields.hotelDateFrom = item.period_hotel?.[0];
+                customFields.hotelDateTo = item.period_hotel?.[1];
+            }
+
             const payload = {
                 operation: "Website.ViewCategory",
                 data: {
                     viewProductCategory: {
                         productCategory: { ids: { hotels: destId } },
-                        customerAction: {
-                            customFields: {
-                                adultCount: item.item_adult_count,
-                                childCount: item.item_child_count,
-                                departures: item.departure,
-                                nights: item.nights,
-                                flightDateFrom: item.period_flight?.[0],
-                                flightDateTo: item.period_flight?.[1],
-                                searchType: 1
-                            }
-                        }
+                        customerAction: { customFields }
                     }
                 },
                 onSuccess: function () {
@@ -53,41 +63,30 @@
             }
         });
 
+        // --- Отели ---
         hotelIdsRaw
             .map(id => id.replace(/-7$/, ''))
             .forEach((hotelId, i) => {
+                const customFields = {
+                    adultCount: item.item_adult_count,
+                    childCount: item.item_child_count,
+                    nights: item.nights,
+                    hotelId,
+                    searchType
+                };
+
+                if (isTourEvent) {
+                    customFields.departures = item.departure;
+                    customFields.flightDateFrom = item.period_flight?.[0];
+                    customFields.flightDateTo = item.period_flight?.[1];
+                } else {
+                    customFields.hotelDateFrom = item.period_hotel?.[0];
+                    customFields.hotelDateTo = item.period_hotel?.[1];
+                }
+
                 const payload = {
                     operation: "Website.SearchHotel",
-                    data: {
-                        customerAction: {
-                            customFields: {
-                                adultCount: item.item_adult_count,
-                                childCount: item.item_child_count,
-                                distanceToTheAirportInMeters: undefined,
-                                distanceToTheBeachInMeters: undefined,
-                                flightDateFrom: item.period_flight?.[0],
-                                flightDateTo: item.period_flight?.[1],
-                                hotelDateFrom: item.period_hotel?.[0],
-                                hotelDateTo: item.period_hotel?.[1],
-                                hotelId,
-                                isRecommended: undefined,
-                                roomName: undefined,
-                                roomSelected: undefined,
-                                searchType: 1,
-                                beachTypes: undefined,
-                                childrenServices: undefined,
-                                departures: item.departure,
-                                hotelCategoryNames: undefined,
-                                hotelConcepts: undefined,
-                                hotelFeatures: undefined,
-                                mealTypes: undefined,
-                                nights: item.nights,
-                                roomFeatures: undefined,
-                                roomTypes: undefined,
-                                waterParkAndPoolServices: undefined
-                            }
-                        }
-                    },
+                    data: { customerAction: { customFields } },
                     onSuccess: function () {
                         console.log(`✅ SearchHotel успех (${i + 1}/${hotelIdsRaw.length}) hotelId=${hotelId}`, payload);
                     },
