@@ -1,0 +1,96 @@
+<body>
+<style>
+    .slogan {
+        display: flex;
+        gap: 24px;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+
+    .slogan__col {
+        flex: 1;
+        background-color: white;
+        border-radius: 20px;
+        padding-block: 24px;
+        padding-inline: 32px;
+        display: flex;
+        gap: 24px;
+        position: relative;
+    }
+
+    .slogan__img {
+        display: flex;
+        align-self: center;
+
+        @media screen and (max-width: 1024px) {
+            position: absolute;
+            width: 60px;
+            right: 10px;
+            top: 10px;
+        }
+    }
+
+    .slogan__br {
+        display: none;
+
+        @media screen and (max-width: 1024px) {
+            display: block;
+        }
+    }
+</style>
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-2 mb-16">
+                Требования к слогану:
+            </h2>
+            <div class="slogan">
+                <div class="slogan__col">
+                    <div class="slogan__info slogan__info--1">
+                        <p class="title-5">
+                            <strong>
+                                Как надо
+                            </strong>
+                        </p>
+                        <ul class="lottery__list">
+                            <li>
+                                Слоган должен быть авторским.
+                            </li>
+                            <li>
+                                Допускаются любые формы слоганов: с рифмой,  в виде призыва к покупке, четверостишия и т.д.
+                            </li>
+                            <li>
+                                Отправить свой слоган до  7 сентября 23:59 по Мск.
+                            </li>
+                        </ul>
+                    </div>
+                    <img class="slogan__img" src="https://b2ccdn.coral.ru/content/promo/frazomania/yes.webp" alt="">
+                </div>
+                <div class="slogan__col">
+                    <div class="slogan__info slogan__info--2">
+                        <p class="title-5">
+                            <strong>
+                                Как не надо
+                            </strong>
+                        </p>
+                        <ul class="lottery__list">
+                            <li>
+                                Слоган не должен содержать <br class="slogan__br"> ненормативную лексику.  В том числе замена частей слов другими символами.
+                            </li>
+                            <li>
+                                Текст не должен нарушать законы РФ.
+                            </li>
+                            <li>
+                                Не рекомендуется использовать эмодзи и смайлики.
+                            </li>
+                        </ul>
+                    </div>
+                    <img class="slogan__img" src="https://b2ccdn.coral.ru/content/promo/frazomania/no.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>

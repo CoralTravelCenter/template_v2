@@ -1,0 +1,140 @@
+<body>
+<link rel="stylesheet" href="/site/global/css/layout.scss"/>
+<style>
+    .lottery {
+        background-image: url("https://b2ccdn.coral.ru/content/promo/frazomania/cert.webp");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        width: 100%;
+        border-radius: 20px;
+        padding-block: 40px;
+        padding-inline: 32px;
+
+        @media screen and (max-width: 1440px) {
+            background-image: url("https://b2ccdn.coral.ru/content/promo/frazomania/cert_1280.webp");
+        }
+
+        @media screen and (max-width: 1280px) {
+            background-image: url("https://b2ccdn.coral.ru/content/promo/frazomania/cert_1024.webp");
+        }
+
+        @media screen and (max-width: 1024px) {
+            background-image: url("https://b2ccdn.coral.ru/content/promo/frazomania/cert_768.webp");
+            background-position: center bottom;
+            height: 556px;
+        }
+
+        @media screen and (max-width: 768px) {
+            height: 601px;
+            background-image: url("https://b2ccdn.coral.ru/content/promo/frazomania/cert_m.webp");
+            background-position: center bottom;
+        }
+    }
+
+    .lottery__icon {
+        width: 48px;
+        height: 48px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lottery .title-2 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .lottery__info {
+        max-width: 584px;
+
+        @media screen and (max-width: 1280px) {
+            max-width: 440px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            max-width: unset;
+        }
+    }
+
+    .lottery__list {
+        /*padding-left: 16px;*/
+        list-style: none;
+        margin-top: 8px;
+    }
+
+    .lottery__list li {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        padding-left: 20px;
+    }
+
+    .lottery__list li + li {
+        margin-top: 6px;
+    }
+
+    .lottery__list li::before {
+        content: "";
+        position: absolute;
+        background-image: url("https://b2ccdn.coral.ru/content/promo/frazomania/dot.svg");
+        background-size: contain;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        left: 0;
+        top: 4px;
+    }
+</style>
+
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <div class="lottery">
+                <div class="lottery__info">
+                    <h3 class="title-2">
+                    <span class="lottery__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M5 0C4.44772 0 4 0.447715 4 1V10.5C4 12.7091 5.79086 14.5 8 14.5H12C14.2091 14.5 16 12.7091 16 10.5V1C16 0.447715 15.5523 0 15 0H5Z"
+        fill="#0092D0"/>
+  <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M8 12.5C7.44772 12.5 7 12.9477 7 13.5V16C7 16.5523 7.44772 17 8 17H12C12.5523 17 13 16.5523 13 16V13.5C13 12.9477 12.5523 12.5 12 12.5H8Z"
+        fill="#0092D0"/>
+  <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M4 17C4 15.8954 4.89543 15 6 15H14C15.1046 15 16 15.8954 16 17V21C16 21.5523 15.5523 22 15 22H5C4.44772 22 4 21.5523 4 21V17ZM12 17.5H8V19.5H12V17.5Z"
+        fill="#0092D0"/>
+  <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M14 3C14 2.44772 14.4477 2 15 2H16.694C18.5196 2 19.922 3.61696 19.6638 5.42426L19.2353 8.42427C19.0241 9.90221 17.7584 11 16.2654 11H15C14.4477 11 14 10.5523 14 10V3ZM16 4V9H16.2654C16.7631 9 17.185 8.63407 17.2554 8.14142L17.6839 5.14142C17.77 4.53899 17.3025 4 16.694 4H16Z"
+        fill="#0092D0"/>
+  <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M6 3C6 2.44772 5.55228 2 5 2H3.30602C1.48037 2 0.0779853 3.61696 0.336171 5.42426L0.764742 8.42427C0.975878 9.90221 2.24164 11 3.73459 11H5C5.55228 11 6 10.5523 6 10V3ZM4 4V9H3.73459C3.23694 9 2.81502 8.63407 2.74464 8.14142L2.31607 5.14142C2.23001 4.53899 2.69747 4 3.30602 4H4Z"
+        fill="#0092D0"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M3 20L17.2485 20L17.2485 22L3 22L3 20Z" fill="#0092D0"/>
+</svg>
+                    </span>
+                        Что мы разыгрываем
+                    </h3>
+
+                    <ul class="lottery__list">
+                        <li>
+                            Победитель с самым оригинальным слоганом получит Подарочную карту  с номиналом 100 000 ₽ на отпуск мечты.
+                        </li>
+                        <li>
+                            Всем, кто принимал участие в конкурсе, мы начислим по 4 000 ₽ на счет карты CoralBonus.
+                        </li>
+                    </ul>
+                    <p class="text mt-8">
+                        <strong>
+                            Рвите шаблоны, придумывайте, творите.  Именно ваш слоган может стать визитной карточкой наших Подарочных карт!
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
