@@ -8,7 +8,12 @@ if (holidayBlock) {
         slide.addEventListener('click', () => {
             const title = slide.querySelector('.title').textContent;
 
-            ym(96674199,'reachGoal', 'main_block_news_guide', {'block': holidayBlockTitle, 'banner': title});
+            const yaParams = {
+                [holidayBlockTitle]: {
+                    'banner': title
+                }
+            }
+            ym(215233,'reachGoal', 'main_block_news_guide', yaParams);
         });
     });
 }
@@ -17,7 +22,8 @@ const attentionBlock = document.querySelector('.pay-attention');
 
 if (attentionBlock) {
     const attentionBlockTitle = attentionBlock.querySelector('h2').textContent;
-    const attentionBlockSlides = attentionBlock.querySelectorAll('swiper-slide');
+    // const attentionBlockSlides = attentionBlock.querySelectorAll('swiper-slide');
+    const attentionBlockSlides = attentionBlock.querySelectorAll('.pay-attention-block');
 
     attentionBlockSlides.forEach(slide => {
         const link = slide.querySelector('a');
@@ -26,7 +32,12 @@ if (attentionBlock) {
             link.addEventListener('click', () => {
                 const title = slide.querySelector('h3').textContent;
 
-                ym(96674199,'reachGoal', 'main_block_news_guide', {'block': attentionBlockTitle, 'banner': title});
+                const yaParams = {
+                    [attentionBlockTitle]: {
+                        'banner': title
+                    }
+                }
+                ym(215233,'reachGoal', 'main_block_news_guide', yaParams);
             });
         }
     });
@@ -54,7 +65,12 @@ window.addEventListener('scroll', () => {
                     if (links.length > 0) {
                         links.forEach(link => {
                             link.addEventListener('click', () => {
-                                ym(96674199,'reachGoal', 'main_block_news_guide', {'block': newsBlockTitle, 'banner': title});
+                                const yaParams = {
+                                    [newsBlockTitle]: {
+                                        'banner': title
+                                    }
+                                }
+                                ym(215233,'reachGoal', 'main_block_news_guide', yaParams);
                             });
                         });
                     }
