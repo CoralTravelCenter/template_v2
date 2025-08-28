@@ -19,12 +19,12 @@ hostReactAppReady().then(() => {
     const ideasData = [
         {
             title: "Мобильное приложение Sunmar",
-            image: "https://b2ccdn.sunmar.ru/content/img/Ideas_Banner_600x400_guide.webp",
+            image: "https://cdn.sunmar.ru/content/actions/otdykh-avgust445.jpg",
             category: ["пляжный отдых", "идеи отдыха"],
             link: "https://www.sunmar.ru/yacht-charter-tour/"
         },
         {
-            title: "Туры в Турцию",
+            title: "ТЛетняя коллекция отелей по России России",
             image: "https://b2ccdn.sunmar.ru/content/img/Sunmar_Guide_445x300.webp",
             category: ["пляжный отдых"],
             link: "/"
@@ -42,7 +42,7 @@ hostReactAppReady().then(() => {
             link: "/"
         },
         {
-            title: "Летняя коллекция отелей по России",
+            title: "Летняя коллекция отелей по России России",
             image: "https://cdn.sunmar.ru/content/img/idei_otdyha/440x292_gid_summer_collection_hotels_russia.jpg",
             category: ["советы", "россия", "турция"],
             link: "/"
@@ -64,23 +64,35 @@ hostReactAppReady().then(() => {
         contentContainer.innerHTML = '';
         cards.forEach(card => {
             const cardHTML = `
-      <a href="${card.link}" class="ideas__block" data-filter="${card.category}" style="background-image: url('${card.image}')">
-        <div class="ideas__info">
-          <p class="ideas__text">${card.title}</p>
-        </div>
-      </a>
+              <a href="${card.link}" class="ideas__block" data-filter="${card.category}">
+                <img class="ideas__img" src="${card.image}" alt="">
+                <div class="ideas__info">
+                  <p class="ideas__text">${card.title}</p>
+                </div>
+              </a>
     `;
             contentContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
     }
 
     function handleCategoryClick(e) {
-        if (!e.target.classList.contains('js-ideas-link')) return;
+        const link = e.target.closest('.js-ideas-link');
+        if (!link) return;
 
-        navLinks.forEach(link => link.classList.remove('active'));
-        e.target.classList.add('active');
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
 
-        const selectedCategory = e.target.dataset.category;
+        const selectedCategory = link.dataset.category;
+
+        if (link.closest('.js-menu')) {
+            const dropdownTitle = menuButton.querySelector('span');
+            if (dropdownTitle) {
+                dropdownTitle.textContent = link.textContent.trim();
+            }
+
+            menuBlock.classList.remove('active');
+            menuButton.classList.remove('active');
+        }
 
         if (selectedCategory === 'смотреть все') {
             renderCards(ideasData);
