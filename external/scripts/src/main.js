@@ -336,7 +336,7 @@ function createPopularWrapper(popularData) {
 }
 
 hostReactAppReady().then(() => {
-    if (__NEXT_DATA__.props.pageProps.departure === "2671-5") {
+    if (__NEXT_DATA__.props.pageProps.pageData.meta.departures[0].id === "2671-5" && __NEXT_DATA__.props.pageProps.pageData.meta.departures[0].isCurrent) {
         waitForPopularTours().then(async (popularData) => {
             const searchPanel = document.querySelector('.quick-search-wrapper');
             const recentlyTours = searchPanel?.querySelector('[data-testid="quickSearchPackageToursRecentlyViewedBlock"]');
