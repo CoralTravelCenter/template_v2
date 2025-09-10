@@ -372,11 +372,14 @@ hostReactAppReady().then(() => {
             const tabsDiv = searchPanel?.querySelector('.ant-row');
 
             if (closeRecentBlock !== undefined) {
+                let isExecuted = false;
+
                 closeRecentBlock.forEach((block) => {
                     block.addEventListener('click', () => {
                         setTimeout(() => {
-                            if ((tabsDiv && tabsDiv.nextElementSibling && tabsDiv.nextElementSibling.tagName === 'DIV') === null) {
+                            if ((tabsDiv && tabsDiv.nextElementSibling && tabsDiv.nextElementSibling.tagName === 'DIV') === null && !isExecuted) {
                                 searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
+                                isExecuted = true;
                             }
                         }, 1500);
                     });
