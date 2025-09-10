@@ -338,29 +338,53 @@ function createPopularWrapper(popularData) {
 hostReactAppReady().then(() => {
     if (__NEXT_DATA__.props.pageProps.pageData.meta.departures[0].id === "2671-5" && __NEXT_DATA__.props.pageProps.pageData.meta.departures[0].isCurrent) {
         waitForPopularTours().then(async (popularData) => {
-            const searchPanel = document.querySelector('.quick-search-wrapper');
-            const recentlyTours = searchPanel?.querySelector('[data-testid="quickSearchPackageToursRecentlyViewedBlock"]');
-            if (!recentlyTours) return;
+            const searchPanel = document.querySelector('[data-testid="quickSearchBarBlock"]');
+            const searchToursPanel = searchPanel?.querySelector('.ant-tabs-content-holder');
+
+            if (!searchToursPanel) return;
 
             const enriched = await Promise.all(popularData.map(enrichPopularItem));
 
-            setTimeout(() => {
-                if (!recentlyTours.querySelector('div')) {
-                    recentlyTours.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
-                }
-            }, 1000);
+            const recentBlock = searchPanel?.querySelector('.swiper-wrapper');
+            if (!recentBlock) {
+                searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
+            }
 
-            const hotelButton = document.querySelector('[aria-controls="rc-tabs-0-panel-2"]');
+            const hotelButton = searchPanel.querySelector('[data-node-key="2"]');
+            const popularWrapperBlock = searchPanel?.querySelector('.popular-wrapper');
+
             hotelButton?.addEventListener('click', () => {
-                setTimeout(() => {
-                    const recentlyHotels = document.querySelector('[data-testid="quickSearchOnlyHotelRecentlyViewedBlock"]');
-                    if (recentlyHotels && !recentlyHotels.querySelector('div')) {
-                        recentlyHotels.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
-                    }
-                }, 1000);
+                if (popularWrapperBlock) {
+                    popularWrapperBlock.style.display = 'none';
+                }
             });
+
+            const tourButton = searchPanel.querySelector('[data-node-key="1"]');
+
+            tourButton?.addEventListener('click', () => {
+                if (popularWrapperBlock) {
+                    popularWrapperBlock.style.display = 'block';
+                }
+            });
+
+            const closeRecentBlock = recentBlock?.querySelectorAll('.icon-container');
+
+            const tabsDiv = searchPanel?.querySelector('.ant-row');
+
+            if (closeRecentBlock !== undefined) {
+                closeRecentBlock.forEach((block) => {
+                    block.addEventListener('click', () => {
+                        setTimeout(() => {
+                            if ((tabsDiv && tabsDiv.nextElementSibling && tabsDiv.nextElementSibling.tagName === 'DIV') === null) {
+                                searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
+                            }
+                        }, 1500);
+                    });
+                });
+            }
+
         }).catch(err => {
-            console.warn('Не удалось получить данные для популярного поиска', err);
+            console.warn('Не удалось получить данные для быстрого поиска', err);
         });
     }
 });
