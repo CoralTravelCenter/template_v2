@@ -1,28 +1,31 @@
-;(function() {
-    if (__NEXT_DATA__.props.pageProps.initialState.User.isLoggedIn) return;
+;(function () {
+    const doubleBlock = document.querySelector('.js-custom-block');
 
-    ym(96674199,'reachGoal', 'form_show');
+    if (!doubleBlock) {
+        if (__NEXT_DATA__.props.pageProps.initialState.User.isLoggedIn) return;
 
-    const TEMP_ID = __NEXT_DATA__.props.pageProps.meta.bookingTransactionDetails.details.summary.voucherId;
-    const STYLE_ID = 'custom-login-styles';
-    const PHONE_URL = 'https://www.coral.ru/endpoints/Customer/GetCheckExistCustomerByMobilePhone';
-    const EMAIL_URL = 'https://www.coral.ru/endpoints/Customer/GetCheckExistCustomerByEmail';
+        ym(96674199, 'reachGoal', 'form_show');
 
-    const alertContainer = document.querySelector('.ant-alert-info');
+        const TEMP_ID = __NEXT_DATA__.props.pageProps.meta.bookingTransactionDetails.details.summary.voucherId;
+        const STYLE_ID = 'custom-login-styles';
+        const PHONE_URL = 'https://www.coral.ru/endpoints/Customer/GetCheckExistCustomerByMobilePhone';
+        const EMAIL_URL = 'https://www.coral.ru/endpoints/Customer/GetCheckExistCustomerByEmail';
 
-    if (window.innerWidth > 768) {
-        if (alertContainer) {
-            alertContainer.style.opacity = '0';
-            alertContainer.style.visibility = 'hidden';
-            alertContainer.style.position = 'absolute';
-            alertContainer.style.left = '-9999px';
+        const alertContainer = document.querySelector('.ant-alert-info');
+
+        if (window.innerWidth > 768) {
+            if (alertContainer) {
+                alertContainer.style.opacity = '0';
+                alertContainer.style.visibility = 'hidden';
+                alertContainer.style.position = 'absolute';
+                alertContainer.style.left = '-9999px';
+            }
         }
-    }
 
-    function injectStyles() {
-        if (document.getElementById(STYLE_ID)) return;
+        function injectStyles() {
+            if (document.getElementById(STYLE_ID)) return;
 
-        const css = `
+            const css = `
       .custom-modal-login {
           display: flex;
           position: fixed;
@@ -257,26 +260,26 @@
         }
 
     `;
-        const style = document.createElement('style');
-        style.id = STYLE_ID;
-        style.textContent = css;
-        document.head.appendChild(style);
-    }
+            const style = document.createElement('style');
+            style.id = STYLE_ID;
+            style.textContent = css;
+            document.head.appendChild(style);
+        }
 
-    function buildUI() {
-        const cards = document.querySelectorAll('.ant-card-body');
+        function buildUI() {
+            const cards = document.querySelectorAll('.ant-card-body');
 
-        const targetCard = Array.from(cards).find(card => {
-            return Array.from(card.querySelectorAll('*')).some(element =>
-                element.textContent.includes('Данные заказчика для оформления договора')
-            );
-        });
+            const targetCard = Array.from(cards).find(card => {
+                return Array.from(card.querySelectorAll('*')).some(element =>
+                    element.textContent.includes('Данные заказчика для оформления договора')
+                );
+            });
 
-        if (!targetCard) return;
+            if (!targetCard) return;
 
 
-        const html = `
-      <div class="custom-block">
+            const html = `
+      <div class="custom-block js-custom-block">
         <h4 id="custom-title" class="custom-title">Давайте проверим, есть ли у вас аккаунт</h4>
             <p class="custom-text">
                 Проверка наличия аккаунта поможет сэкономить ваше время — если вы уже регистрировались, мы автоматически заполним поля для вас.
@@ -313,209 +316,211 @@
         </div>
       </div>
     `;
-        targetCard.insertAdjacentHTML('afterbegin', html);
-    }
-
-    const utils = {
-        isValidPhone(raw) {
-            const digits = raw.replace(/\D/g, '');
-            return digits.length >= 6;
-        },
-        isValidEmail(str) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
-        },
-        debounce(fn, ms = 300) {
-            let t;
-            return (...args) => {
-                clearTimeout(t);
-                t = setTimeout(() => fn(...args), ms);
-            };
-        },
-        showError(el, msg) {
-            el.textContent = msg;
-        },
-        clearError(el) {
-            el.textContent = '';
+            targetCard.insertAdjacentHTML('afterbegin', html);
         }
-    };
 
-    function checkExist(url, payload) {
-        return fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-            .then(res => {
-                if (!res.ok) throw new Error('network');
-                return res.json();
-            });
-    }
+        const utils = {
+            isValidPhone(raw) {
+                const digits = raw.replace(/\D/g, '');
+                return digits.length >= 6;
+            },
+            isValidEmail(str) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
+            },
+            debounce(fn, ms = 300) {
+                let t;
+                return (...args) => {
+                    clearTimeout(t);
+                    t = setTimeout(() => fn(...args), ms);
+                };
+            },
+            showError(el, msg) {
+                el.textContent = msg;
+            },
+            clearError(el) {
+                el.textContent = '';
+            }
+        };
 
-    let telChecked = false, telAvailable = false;
-    let emailChecked = false, emailAvailable = false;
-    function updateErrorQuote() {
-        const quote = document.getElementById('error-quote');
-        if (telChecked && emailChecked && !telAvailable && !emailAvailable) {
-            quote.style.display = 'flex';
-        } else {
-            quote.style.display = 'none';
-        }
-    }
-
-    function bindEvents() {
-        const telInput   = document.getElementById('custom-tel');
-        const emailInput = document.getElementById('custom-email');
-        const codeSelect = document.getElementById('custom-code');
-        // const button = document.getElementById('button-check');
-        const telBox     = document.getElementById('tel-box');
-        const emailBox   = document.getElementById('email-box');
-        const telMsg     = telBox.querySelector('span');
-        const emailMsg   = emailBox.querySelector('span');
-
-        function checkField(inputEl, boxEl, msgEl, url, buildPayload, onFound, onNotFound) {
-            boxEl.querySelector('.skeleton-loader')?.remove();
-
-            const loader = document.createElement('div');
-            loader.className = 'skeleton-loader';
-            boxEl.appendChild(loader);
-
-            checkExist(url, buildPayload(inputEl.value))
-                .then(data => {
-                    loader.remove();
-                    boxEl.classList.remove('custom-success','custom-error');
-                    const ok = data.result?.isAvailable === true;
-                    boxEl.classList.add(ok ? 'custom-success' : 'custom-error');
-
-                    if (ok) {
-                        utils.clearError(msgEl);
-                        onFound();
-                    } else {
-                        onNotFound && onNotFound();
-                    }
-
-                    if (inputEl === telInput) {
-                        telChecked   = true;
-                        telAvailable = ok;
-                    } else {
-                        emailChecked   = true;
-                        emailAvailable = ok;
-                    }
-
-                    updateErrorQuote();
-                })
-                .catch(err => {
-                    loader.remove();
-                    boxEl.classList.remove('custom-success','custom-error');
-                    boxEl.classList.add('custom-error');
-                    utils.showError(msgEl, err.message === 'network'
-                        ? 'Ошибка соединения. Попробуйте позже.'
-                        : 'Сервис недоступен.');
-                    if (inputEl === telInput) telChecked = false;
-                    else emailChecked = false;
-                    updateErrorQuote();
+        function checkExist(url, payload) {
+            return fetch(url, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('network');
+                    return res.json();
                 });
         }
 
-        telInput.addEventListener('blur', utils.debounce(() => {
-            const raw = telInput.value;
-            utils.clearError(telMsg);
-            telBox.classList.remove('custom-success','custom-error');
+        let telChecked = false, telAvailable = false;
+        let emailChecked = false, emailAvailable = false;
 
-            if (!utils.isValidPhone(raw)) {
-                telBox.classList.add('custom-error');
-                return utils.showError(telMsg,'Введите корректный номер');
-            }
-
-            const digits = raw.replace(/\D/g, '');
-            const fullPhone = codeSelect.value + digits;
-
-            checkField(
-                telInput,
-                telBox,
-                telMsg,
-                PHONE_URL,
-                () => ({
-                    mobilePhonePrefix: codeSelect.value,
-                    mobilePhone: `(${digits.slice(0,3)}) ${digits.slice(3,6)} ${digits.slice(6,8)} ${digits.slice(8)}`
-                }),
-                () => {
-                    openModal();
-                    ym(96674199, 'reachGoal', 'data', {
-                        phone: fullPhone,
-                        temporary_id: TEMP_ID
-                    });
-                },
-                () => {
-                    utils.showError(telMsg, 'Мы не нашли вас по номеру, попробуйте ввести почту');
-
-                    ym(96674199, 'reachGoal', 'data', {
-                        phone: fullPhone,
-                        temporary_id: TEMP_ID
-                    });
-                }
-            );
-        }, 200));
-
-        emailInput.addEventListener('blur', utils.debounce(() => {
-            const rawEmail = emailInput.value.trim();
-            utils.clearError(emailMsg);
-            emailBox.classList.remove('custom-success','custom-error');
-
-            if (!utils.isValidEmail(rawEmail)) {
-                emailBox.classList.add('custom-error');
-                return utils.showError(emailMsg, 'Введите корректный адрес почты');
-            }
-
-            checkField(
-                emailInput,
-                emailBox,
-                emailMsg,
-                EMAIL_URL,
-                () => ({ email: rawEmail }),
-                () => {
-                    openModal();
-                    ym(96674199, 'reachGoal', 'data', {
-                        email: rawEmail,
-                        temporary_id: TEMP_ID
-                    });
-                },
-                () => {
-                    // utils.showError(emailMsg, 'Мы не нашли вас по почте, попробуйте номер телефона');
-
-                    ym(96674199, 'reachGoal', 'data', {
-                        email: rawEmail,
-                        temporary_id: TEMP_ID
-                    });
-                }
-            );
-        }, 200));
-    }
-
-    function openModal() {
-        if (window.innerWidth <= 768) {
-            const mobileHeader = document.querySelector('.header-mobile');
-
-            if (mobileHeader) {
-                const rightSide = mobileHeader.querySelector('.right-group');
-
-                if (rightSide) {
-                    const loginButton = rightSide.querySelector('button');
-
-                    if (loginButton) {
-                        loginButton.click();
-                    }
-                }
-            }
-        } else if (alertContainer) {
-            const loginButton = alertContainer.querySelector('.link');
-
-            if (loginButton) {
-                loginButton.click();
+        function updateErrorQuote() {
+            const quote = document.getElementById('error-quote');
+            if (telChecked && emailChecked && !telAvailable && !emailAvailable) {
+                quote.style.display = 'flex';
+            } else {
+                quote.style.display = 'none';
             }
         }
-    }
 
-    injectStyles();
-    buildUI();
-    bindEvents();
+        function bindEvents() {
+            const telInput = document.getElementById('custom-tel');
+            const emailInput = document.getElementById('custom-email');
+            const codeSelect = document.getElementById('custom-code');
+            // const button = document.getElementById('button-check');
+            const telBox = document.getElementById('tel-box');
+            const emailBox = document.getElementById('email-box');
+            const telMsg = telBox.querySelector('span');
+            const emailMsg = emailBox.querySelector('span');
+
+            function checkField(inputEl, boxEl, msgEl, url, buildPayload, onFound, onNotFound) {
+                boxEl.querySelector('.skeleton-loader')?.remove();
+
+                const loader = document.createElement('div');
+                loader.className = 'skeleton-loader';
+                boxEl.appendChild(loader);
+
+                checkExist(url, buildPayload(inputEl.value))
+                    .then(data => {
+                        loader.remove();
+                        boxEl.classList.remove('custom-success', 'custom-error');
+                        const ok = data.result?.isAvailable === true;
+                        boxEl.classList.add(ok ? 'custom-success' : 'custom-error');
+
+                        if (ok) {
+                            utils.clearError(msgEl);
+                            onFound();
+                        } else {
+                            onNotFound && onNotFound();
+                        }
+
+                        if (inputEl === telInput) {
+                            telChecked = true;
+                            telAvailable = ok;
+                        } else {
+                            emailChecked = true;
+                            emailAvailable = ok;
+                        }
+
+                        updateErrorQuote();
+                    })
+                    .catch(err => {
+                        loader.remove();
+                        boxEl.classList.remove('custom-success', 'custom-error');
+                        boxEl.classList.add('custom-error');
+                        utils.showError(msgEl, err.message === 'network'
+                            ? 'Ошибка соединения. Попробуйте позже.'
+                            : 'Сервис недоступен.');
+                        if (inputEl === telInput) telChecked = false;
+                        else emailChecked = false;
+                        updateErrorQuote();
+                    });
+            }
+
+            telInput.addEventListener('blur', utils.debounce(() => {
+                const raw = telInput.value;
+                utils.clearError(telMsg);
+                telBox.classList.remove('custom-success', 'custom-error');
+
+                if (!utils.isValidPhone(raw)) {
+                    telBox.classList.add('custom-error');
+                    return utils.showError(telMsg, 'Введите корректный номер');
+                }
+
+                const digits = raw.replace(/\D/g, '');
+                const fullPhone = codeSelect.value + digits;
+
+                checkField(
+                    telInput,
+                    telBox,
+                    telMsg,
+                    PHONE_URL,
+                    () => ({
+                        mobilePhonePrefix: codeSelect.value,
+                        mobilePhone: `(${digits.slice(0, 3)}) ${digits.slice(3, 6)} ${digits.slice(6, 8)} ${digits.slice(8)}`
+                    }),
+                    () => {
+                        openModal();
+                        ym(96674199, 'reachGoal', 'data', {
+                            phone: fullPhone,
+                            temporary_id: TEMP_ID
+                        });
+                    },
+                    () => {
+                        utils.showError(telMsg, 'Мы не нашли вас по номеру, попробуйте ввести почту');
+
+                        ym(96674199, 'reachGoal', 'data', {
+                            phone: fullPhone,
+                            temporary_id: TEMP_ID
+                        });
+                    }
+                );
+            }, 200));
+
+            emailInput.addEventListener('blur', utils.debounce(() => {
+                const rawEmail = emailInput.value.trim();
+                utils.clearError(emailMsg);
+                emailBox.classList.remove('custom-success', 'custom-error');
+
+                if (!utils.isValidEmail(rawEmail)) {
+                    emailBox.classList.add('custom-error');
+                    return utils.showError(emailMsg, 'Введите корректный адрес почты');
+                }
+
+                checkField(
+                    emailInput,
+                    emailBox,
+                    emailMsg,
+                    EMAIL_URL,
+                    () => ({email: rawEmail}),
+                    () => {
+                        openModal();
+                        ym(96674199, 'reachGoal', 'data', {
+                            email: rawEmail,
+                            temporary_id: TEMP_ID
+                        });
+                    },
+                    () => {
+                        // utils.showError(emailMsg, 'Мы не нашли вас по почте, попробуйте номер телефона');
+
+                        ym(96674199, 'reachGoal', 'data', {
+                            email: rawEmail,
+                            temporary_id: TEMP_ID
+                        });
+                    }
+                );
+            }, 200));
+        }
+
+        function openModal() {
+            if (window.innerWidth <= 768) {
+                const mobileHeader = document.querySelector('.header-mobile');
+
+                if (mobileHeader) {
+                    const rightSide = mobileHeader.querySelector('.right-group');
+
+                    if (rightSide) {
+                        const loginButton = rightSide.querySelector('button');
+
+                        if (loginButton) {
+                            loginButton.click();
+                        }
+                    }
+                }
+            } else if (alertContainer) {
+                const loginButton = alertContainer.querySelector('.link');
+
+                if (loginButton) {
+                    loginButton.click();
+                }
+            }
+        }
+
+        injectStyles();
+        buildUI();
+        bindEvents();
+    }
 })();

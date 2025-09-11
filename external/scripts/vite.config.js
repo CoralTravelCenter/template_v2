@@ -8,7 +8,7 @@ export default defineConfig({
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/booking/add-passenger/?bti=2519d280-b224-48f6-a3a7-9401eb93786b&p=1'],
+        match: ['https://www.coral.ru/booking/add-passenger/?bti=5395452b-9364-4196-82f2-978bde2a7d76&p=1'],
       },
     }),
   ],
