@@ -1,0 +1,210 @@
+<body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<style>
+    .slider__slide.swiper-slide {
+        background-color: #fff;
+        border-radius: 20px;
+        flex-direction: column;
+        height: auto;
+        display: flex
+    }
+
+    .slider__info {
+        border-radius: 0 0 20px 20px;
+        flex: 1;
+        padding: 16px 24px
+    }
+
+    .slider__img {
+        object-fit: cover;
+        object-position: center;
+        border-radius: 20px 20px 0 0;
+        height: 164px;
+        display: flex
+    }
+
+    .slider__title {
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px
+    }
+
+    .slider__prev {
+        left: 20px
+    }
+
+    .slider__next {
+        right: 20px
+    }
+
+    .slider__prev, .slider__next {
+        z-index: 1;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: #fff;
+        border-radius: 40px;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        position: absolute;
+        top: 50%;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+    }
+
+    .slider__prev--beach, .slider__next--beach {
+        display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        .slider__prev, .slider__next {
+            display: none
+        }
+    }
+</style>
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-3 mb-16">
+                Пляжи в других регионах Таиланда
+            </h2>
+            <div class="swiper slider slider--beach js-slider-beach">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slider__slide">
+                        <img class="slider__img" src="/site/coral.ru/assets/card_1.webp" alt="">
+                        <div class="slider__info">
+                            <h4 class="slider__title">
+                                Пляжи Ко Чанга
+                            </h4>
+                            <p class="text">
+                                Остров в Сиамском заливе. Вдоль всего побережья находятся идеалистические пляжи, резорты
+                                и рестораны.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider__slide">
+                        <img class="slider__img" src="/site/coral.ru/assets/card_2.webp" alt="">
+                        <div class="slider__info">
+                            <h4 class="slider__title">
+                                Пляжи Ко Самуи
+                            </h4>
+                            <p class="text">
+                                Главный плюс пляжей — отсутствие сильных волн, поэтому здесь будет комфортно отдыхать
+                                тем, кто прилетел в страну первый раз.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider__slide">
+                        <img class="slider__img" src="/site/coral.ru/assets/card_3.webp" alt="">
+                        <div class="slider__info">
+                            <h4 class="slider__title">
+                                Пляжи Ко Ланта
+                            </h4>
+                            <p class="text">
+                                Остров известен живописными пляжами с кристальной водой и симпатичными бухтами. Идеально
+                                подходит для спокойного отдыха.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__pagination swiper-pagination js-pagination-beach"></div>
+            </div>
+            <div class="slider__next slider__next--beach js-next-beach">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M5.64645 3.64645C5.45118 3.84171 5.45118 4.15829 5.64645 4.35355L9.29289 8L5.64645 11.6464C5.45118 11.8417 5.45118 12.1583 5.64645 12.3536C5.84171 12.5488 6.15829 12.5488 6.35355 12.3536L10.3536 8.35355C10.5488 8.15829 10.5488 7.84171 10.3536 7.64645L6.35355 3.64645C6.15829 3.45118 5.84171 3.45118 5.64645 3.64645Z"
+                          fill="#535353"/>
+                </svg>
+            </div>
+            <div class="slider__prev slider__prev--beach js-prev-beach">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M10.3536 3.64645C10.5488 3.84171 10.5488 4.15829 10.3536 4.35355L6.70711 8L10.3536 11.6464C10.5488 11.8417 10.5488 12.1583 10.3536 12.3536C10.1583 12.5488 9.84171 12.5488 9.64645 12.3536L5.64645 8.35355C5.45118 8.15829 5.45118 7.84171 5.64645 7.64645L9.64645 3.64645C9.84171 3.45118 10.1583 3.45118 10.3536 3.64645Z"
+                          fill="#535353"/>
+                </svg>
+            </div>
+        </div>
+    </article>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        const sliderBeach = new Swiper(".js-slider-beach", {
+            breakpoints: {
+                1280: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+            },
+            slidesPerView: 1,
+            spaceBetween: 24,
+            loop: true,
+            pagination: {
+                el: ".js-pagination-beach",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".js-next-beach",
+                prevEl: ".js-prev-beach",
+            },
+        });
+
+        const sliderLocale = new Swiper(".js-slider-locale", {
+            breakpoints: {
+                1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 24,
+                },
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+            },
+            slidesPerView: 1,
+            spaceBetween: 24,
+            loop: true,
+            pagination: {
+                el: ".js-pagination-locale",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".js-next-locale",
+                prevEl: ".js-prev-locale",
+            },
+        });
+    });
+</script>
+</body>

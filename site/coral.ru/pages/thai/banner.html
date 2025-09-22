@@ -1,0 +1,248 @@
+<body>
+<link rel="stylesheet" href="/site/global/css/layout.scss"/>
+
+<style>
+    .banner {
+        background-image: url('/site/coral.ru/assets/banner.webp');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 20px;
+        width: 100%;
+        height: 520px
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner {
+            height: 420px
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .banner {
+            height: 380px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .banner {
+            height: 520px;
+            background-image: url('/site/coral.ru/assets/banner_m.webp');
+        }
+    }
+
+    .banner__content {
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding-left: 64px;
+        padding-right: 64px;
+        display: flex
+    }
+
+    @media screen and (max-width: 768px) {
+        .banner__content {
+            padding-left: 32px;
+            padding-right: 32px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .banner__content {
+            justify-content: flex-start;
+            padding: 24px
+        }
+    }
+
+    .banner__title {
+        color: #fff;
+        margin-bottom: 12px;
+        font-size: 56px;
+        font-weight: 300;
+        line-height: 64px
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner__title {
+            font-size: 40px;
+            line-height: 48px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .banner__title {
+            font-size: 32px;
+            line-height: 40px
+        }
+    }
+
+    .banner__subtitle {
+        color: #fff;
+        font-size: 20px;
+        line-height: 28px
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner__subtitle {
+            font-size: 16px;
+            line-height: 24px
+        }
+    }
+
+    .banner__button {
+        font-weight: 600;
+        color: #000 !important;
+        background-color: #fff;
+        border: 1px solid #fff;
+        border-radius: 48px;
+        align-items: center;
+        width: fit-content;
+        height: 48px;
+        margin-top: 24px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: none !important;
+        display: flex
+    }
+
+    .banner__button:hover {
+        color: #077dad !important;
+        border: 1px solid #077dad
+    }
+
+    .vimeo-video-box {
+        position: relative;
+        z-index: 2;
+    }
+
+    .vimeo-player {
+        aspect-ratio: 1368 / 520;
+
+        @media screen and (max-width: 768px) {
+            aspect-ratio: 320 / 485;
+        }
+
+        iframe {
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+        }
+    }
+</style>
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <div class="vimeo-video-box">
+                <div class="vimeo-player" data-vimeo-vid="783234531"></div>
+            </div>
+            <div class="banner">
+                <div class="banner__content">
+                    <h1 class="banner__title">
+                        Поездка в Таиланд
+                    </h1>
+                    <p class="banner__subtitle">
+                        Незабываемый отдых для двоих
+                    </p>
+                    <a href="#anchor-6" class="banner__button">
+                        Выбрать тур
+                    </a>
+                </div>
+            </div>
+            <p class="text">
+                Таиланд впервые? Умножаем впечатления на два! Вас ждёт море красоты, океан душевности и гастрономический
+                восторг. Мы собрали гид по стране, в котором расскажем про все самое важное перед путешествием: курорты,
+                пляжи, что попробовать и посмотреть в Стране улыбок!
+            </p>
+        </div>
+    </article>
+</section>
+<script>
+    function getScript(scriptUrl, callback) {
+        const script = document.createElement("script");
+        script.async;
+        script.src = scriptUrl;
+        script.onload = callback;
+        document.body.appendChild(script);
+    }
+
+    function vimeoAutoPlay() {
+        const vimeoBoxes = document.querySelectorAll(
+            ".vimeo-video-box [data-vimeo-vid]",
+        );
+
+        console.log(1)
+
+        let players = {};
+        if (vimeoBoxes.length) {
+            getScript("https://player.vimeo.com/api/player.js", doio);
+        }
+        const io_options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.33,
+        };
+
+        function doio() {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const target = entry.target;
+                    if (entry.isIntersecting) {
+                        if (players[target.dataset.vimeoVid]) {
+                            players[target.dataset.vimeoVid].play();
+                        } else {
+                            players[target.dataset.vimeoVid] = new Vimeo.Player(
+                                target,
+                                {
+                                    id: target.dataset.vimeoVid,
+                                    background: 1,
+                                    playsinline: 1,
+                                    autopause: 0,
+                                    title: 0,
+                                    byline: 0,
+                                    portrait: 0,
+                                    autoplay: 1,
+                                    muted: 1,
+                                },
+                            );
+                            players[target.dataset.vimeoVid].play();
+                            players[target.dataset.vimeoVid].on("play", function () {
+                                this.element.parentElement.classList.add(
+                                    "playback",
+                                );
+                            });
+                        }
+                    } else {
+                        players[target.dataset.vimeoVid]?.pause();
+                    }
+                });
+            }, io_options);
+            vimeoBoxes.forEach((box) => {
+                io.observe(box);
+            });
+        }
+    }
+
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        vimeoAutoPlay();
+    });
+</script>
+</body>

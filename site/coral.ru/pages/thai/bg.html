@@ -1,0 +1,93 @@
+<body>
+<style>
+    .big-card {
+        background-image: url('/site/coral.ru/assets/bg.webp');
+        background-position: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 20px;
+        margin-top: 54px;
+        padding: 8px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .big-card {
+            background-image: url('/site/coral.ru/assets/bg_m.webp');
+            align-items: flex-end;
+            min-height: 712px;
+            display: flex;
+            background-position: center;
+        }
+    }
+
+    .big-card__block {
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        background-color: rgba(0, 0, 0, .5);
+        border-radius: 16px;
+        max-width: 548px;
+        padding: 24px;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media screen and (max-width: 1024px) {
+            min-height: 284px;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .big-card__block {
+            width: 100%;
+            max-width: unset
+        }
+
+        .big-card__block a.coral-button {
+            justify-content: center;
+            width: 100%
+        }
+    }
+
+    .big-card__title {
+        color: #fff;
+        margin-bottom: 8px
+    }
+
+    .big-card .text {
+        color: #fff
+    }
+
+    .big-card .coral-button {
+        margin-top: 8px
+    }
+</style>
+<section class="coral" id="anchor-3">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-1 mb-16">
+                Экскурсии
+            </h2>
+            <p class="text">
+                В Таиланде будет интересно безудержным любителям всего экзотического. Здесь так много локаций, которые
+                можно посмотреть с комфортом — в составе экскурсионной группы. Вы вместе с русскоговорящим гидом
+                съездите на острова, изучите буддийские храмы, побываете на настоящем тайском массаже и даже покормите
+                слонят.
+            </p>
+            <div class="big-card">
+                <div class="big-card__block">
+                    <h4 class="big-card__title title-3">
+                        Только для туристов Coral Travel:
+                        Бесплатная обзорная экскурсия по Пхукету или Паттайе
+                    </h4>
+                    <p class="text">
+                        При бронировании полного пакетного тура на Пхукет или в Паттайю весь зимний сезон
+                        предоставляется бесплатная обзорная экскурсия.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>

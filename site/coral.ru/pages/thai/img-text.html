@@ -1,0 +1,161 @@
+<body>
+<style>
+    .panel {
+        background-color: #fff;
+        border-radius: 20px;
+        min-height: 184px;
+        display: flex
+    }
+
+    .panel + .panel {
+        margin-top: 32px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .panel {
+            flex-direction: column
+        }
+    }
+
+    .panel__col {
+        flex: 1;
+        align-items: center;
+        display: flex;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .panel__col--beach {
+        min-height: 344px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .panel__col {
+            order: 2
+        }
+    }
+
+    .panel__info {
+        padding: 28px 24px
+    }
+
+    .panel__img {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0 20px 20px 0;
+        flex: 1;
+        display: flex;
+        position: relative
+    }
+
+    @media screen and (max-width: 1024px) {
+        .panel__img {
+            border-radius: 20px 20px 0 0;
+            order: 1;
+            min-height: 280px
+        }
+    }
+
+    .panel--reverse {
+        flex-direction: row-reverse
+    }
+
+    @media screen and (max-width: 1024px) {
+        .panel--reverse {
+            flex-direction: column
+        }
+    }
+
+    .panel--reverse .panel__img {
+        border-radius: 20px 0 0 20px
+    }
+
+    .panel--reverse .panel__col {
+        border-radius: 0 20px 20px 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .panel--reverse .panel__img {
+            border-radius: 20px 20px 0 0
+        }
+    }
+
+    .panel--reverse .panel__label {
+        right: unset;
+        left: 16px
+    }
+
+    .panel__buttons {
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 24px;
+        display: flex
+    }
+
+    .panel__label {
+        background-color: rgba(255, 255, 255, .8);
+        border-radius: 16px;
+        align-items: center;
+        gap: 8px;
+        height: 40px;
+        padding-left: 12px;
+        padding-right: 12px;
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 16px
+    }
+
+    @media screen and (max-width: 1024px) {
+        .panel__label {
+            right: unset;
+            left: 16px
+        }
+    }
+</style>
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel__col panel__col--beach">
+                    <div class="panel__info">
+                        <h2 class="title-3 mb-8">
+                            Пляжи Пхукета
+                        </h2>
+                        <p class="text">
+                            Пхукет — пляжная столица Тая! Никаких камней, кораллов у берега и неприятных сюрпризов —
+                            только чистейший песок, ласковая бирюза и пейзажи, как с открыток. Идеальный курорт,
+                            если хотите познакомиться с пляжным отдыхом страны или провести время с любимыми на шикарных
+                            пляжах.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel__img" style="background-image: url('/site/coral.ru/assets/img_1.webp');">
+
+                </div>
+            </div>
+
+            <div class="panel panel--reverse">
+                <div class="panel__col panel__col--beach">
+                    <div class="panel__info">
+                        <h2 class="title-3 mb-8">
+                            Пляжи Паттайи
+                        </h2>
+                        <p class="text">
+                            Курорт, который никогда не спит! Это идеальное место для тех, кто ищет не только пляжный
+                            отдых, но и яркие впечатления, активную ночную жизнь и множество развлечений. И да, здесь
+                            тоже есть свои уголки для релаксации.
+                        </p>
+                    </div>
+                </div>
+                <div class="panel__img" style="background-image: url('/site/coral.ru/assets/img_2.webp');">
+
+                </div>
+            </div>
+
+        </div>
+    </article>
+</section>
+
+</body>

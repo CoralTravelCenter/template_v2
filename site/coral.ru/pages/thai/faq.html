@@ -1,0 +1,292 @@
+<body>
+<style>
+    .coral-toggle {
+        background-color: #fff;
+        border-radius: 20px;
+        flex-direction: column;
+        height: max-content;
+        display: flex
+    }
+
+    .coral--faq .coral-toggle + .coral-toggle {
+        margin-top: 16px;
+    }
+
+    .coral-toggle__header {
+        cursor: pointer;
+        justify-content: space-between;
+        align-items: center;
+        padding: 32px;
+        display: flex
+    }
+
+    .coral-toggle__header p {
+        color: inherit;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px
+    }
+
+    .coral-toggle__header svg {
+        flex-shrink: 0;
+        margin-left: 8px;
+        transition: transform .3s
+    }
+
+    .coral-toggle__body {
+        max-height: 0;
+        margin-left: 32px;
+        margin-right: 32px;
+        list-style: none;
+        transition: max-height .3s;
+        overflow: hidden
+    }
+
+    .coral-toggle__body li + li {
+        margin-top: 8px
+    }
+
+    .coral-toggle.active .coral-toggle__header svg {
+        transform: rotate(180deg)
+    }
+
+    .coral-toggle.active .coral-toggle__body {
+        margin-bottom: 32px
+    }
+</style>
+<section class="coral coral--faq" id="anchor-9">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-2 mb-8">
+                Вопросы и ответы
+            </h2>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Когда сезон в Тайланде?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Круглый год. Но большинство туристов любят отдыхать в осенне-зимний сезон – с ноября по февраль.
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Какое море в Тайланде?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        На территории Тайланда два моря: Андаманское и Южно-Китайское.
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Какие в Тайланде курорты?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        В Тайланде два популярных курорта – Пхукет и Паттайя. Но есть другие: остров Ко Чанг, Краби, Као
+                        Лак, Пхи-Пхи, Районг
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Где лучше отдыхать в Тайланде?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Зависит от цели отдыха. Если хотите пляжный релакс и высокий уровень сервиса, то можно выбрать
+                        Пхукет. А если хотите развлечений и экзотики, то присмотритесь к Паттайе. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Как платить в Тайланде сейчас россиянам?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Карты российских банков не работают на территории страны. Единственный вариант безналичного
+                        расчета – карта иностранного банка. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Какую валюту брать в Тайланд?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Лучший вариант взять с собой доллары и перевести их в баты в пункте обмена валюты. Их много: в
+                        аэропорту, торговых центрах, рядом с отелями, остановками. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Принимают ли в тайланде доллары?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Да, но выгоднее платить батами. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Нужна ли страховка в Таиланд?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Мы рекомендуем оформлять страховку на время путешествия в Тайланд. Она по умолчанию входит в
+                        пакетный тур. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Есть в Таиланде опасные насекомые?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Да, есть. Это комары, сколопендры, азиатский шершень и другие. Мы рекомендуем соблюдать меры
+                        безопасности: носить более закрытую одежду, если отправляйтесь на экскурсию, и обязательно
+                        пшикать ноги и руки средствами от насекомых.  
+                    </p>
+                </div>
+            </div>
+
+            <div class="coral-toggle js-toggle">
+                <div class="coral-toggle__header js-toggle-header">
+                    <p>
+                        Как с безопасностью в Таиланде?
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                        <path d="M1 1L6 6L11 1" stroke="#0E2855" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="coral-toggle__body js-toggle-body">
+                    <p class="text">
+                        Точного ответа нет. Тай считается безопасной страной, а местное население миролюбивым. За кражи
+                        и грабежи на законодательном уровне предусмотрено сильное телесное наказание.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </article>
+</section>
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        const toggles = document.querySelectorAll(".js-toggle");
+
+        toggles.forEach(toggle => {
+            const header = toggle.querySelector(".js-toggle-header");
+            const body = toggle.querySelector(".js-toggle-body");
+
+            header.addEventListener("click", () => {
+                const isOpen = toggle.classList.contains("active");
+
+                if (isOpen) {
+                    closeAccordion(toggle, body);
+                } else {
+                    openAccordion(toggle, body);
+                }
+            });
+        });
+
+        function openAccordion(container, body) {
+            container.classList.add("active");
+            body.style.maxHeight = body.scrollHeight + "px";
+        }
+
+        function closeAccordion(container, body) {
+            container.classList.remove("active");
+            body.style.maxHeight = 0;
+        }
+    });
+</script>
+</body>

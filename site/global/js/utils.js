@@ -15,6 +15,14 @@ export async function hostReactAppReady(
     });
 }
 
+export function getScript(scriptUrl, callback) {
+    const script = document.createElement("script");
+    script.async;
+    script.src = scriptUrl;
+    script.onload = callback;
+    document.body.appendChild(script);
+}
+
 export function vimeoAutoPlay() {
     const vimeoBoxes = document.querySelectorAll(
         ".vimeo-video-box [data-vimeo-vid]",
