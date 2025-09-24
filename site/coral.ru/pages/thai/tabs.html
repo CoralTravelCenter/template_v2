@@ -1,0 +1,124 @@
+<body>
+<style>
+    .tabs__pane {
+        display: none
+    }
+
+    .tabs__pane--active {
+        display: block
+    }
+
+    .tabs__tab {
+        height: 46px;
+        color: inherit;
+        cursor: pointer;
+        background-color: transparent;
+        border-radius: 24px;
+        padding-inline: 20px;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        border: 1px solid black;
+    }
+
+    .tabs__tab--active {
+        color: #fff;
+        background-color: #0092d0;
+        border-color: #0092d0;
+    }
+
+    .tabs__nav {
+        background-color: transparent;
+        border-radius: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+        /*width: 100%;*/
+        margin-bottom: 32px;
+        padding: 8px;
+        display: flex
+    }
+</style>
+<body>
+<section class="coral" style="background-color: #FFF7E6;">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-2 mb-16">
+                Мы рекомендуем
+            </h2>
+            <p class="text mb-16">
+                Ваше путешествие с нами – это безупречный сервис на каждом этапе. Мы предлагаем специальную подборку
+                проверенных отелей, с которыми у нас прямые контракты, а значит, для вас – выгодные цены.
+            </p>
+            <div class="tabs" data-tabs="">
+                <div class="tabs__nav">
+                    <button class="tabs__tab tabs__tab--active" data-tab="1">Все отели</button>
+                    <button class="tabs__tab" data-tab="2">Лучшие пляжи</button>
+                    <button class="tabs__tab" data-tab="3">Для гурманов</button>
+                    <button class="tabs__tab" data-tab="4">СПА и массаж</button>
+                    <button class="tabs__tab" data-tab="5">Красивые виды</button>
+                </div>
+                <div class="tabs__content">
+                    <div class="tabs__pane tabs__pane--active" data-tab="1">
+                        sdfsdfsdf
+                    </div>
+                    <div class="tabs__pane" data-tab="2">
+                        213123123
+                    </div>
+                    <div class="tabs__pane" data-tab="3">
+                        xzcxzcxzc
+                    </div>
+                    <div class="tabs__pane" data-tab="4">
+                        xzcxzcxzc
+                    </div>
+                    <div class="tabs__pane" data-tab="5">
+                        xzcxzcxzc
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+            const tabs = tabsBlock.querySelectorAll('.tabs__tab');
+            const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                    panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                    tab.classList.add('tabs__tab--active');
+                    const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                    if (activePane) {
+                        activePane.classList.add('tabs__pane--active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>
