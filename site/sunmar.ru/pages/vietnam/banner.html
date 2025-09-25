@@ -1,0 +1,490 @@
+<body>
+<style>
+    .mb-24 {
+        margin-bottom: 24px
+    }
+
+    .mb-16 {
+        margin-bottom: 16px
+    }
+
+    .mb-8 {
+        margin-bottom: 8px
+    }
+
+    .mb-4 {
+        margin-bottom: 4px
+    }
+
+    .mt-24 {
+        margin-top: 24px;
+    }
+
+    .mt-16 {
+        margin-top: 16px
+    }
+
+    .mt-8 {
+        margin-top: 8px
+    }
+
+    * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        padding: 0
+    }
+
+    h1, h2, h3, h4, h5, h6, p, a {
+        margin: 0;
+        padding: 0
+    }
+
+    /*.sunmar .banner__title {*/
+    /*    color: #fff;*/
+    /*    margin-bottom: 24px;*/
+    /*    font-size: 56px !important;*/
+    /*    font-weight: 600 !important;*/
+    /*    line-height: 60px !important*/
+    /*}*/
+
+    /*@media screen and (max-width: 1280px) {*/
+    /*    .sunmar .banner__title {*/
+    /*        font-size: 40px !important;*/
+    /*        line-height: 48px !important*/
+    /*    }*/
+    /*}*/
+
+    /*@media screen and (max-width: 768px) {*/
+    /*    .sunmar .banner__title {*/
+    /*        font-size: 32px !important;*/
+    /*        line-height: 40px !important*/
+    /*    }*/
+    /*}*/
+
+    /*.sunmar .banner__subtitle {*/
+    /*    color: #fff;*/
+    /*    font-size: 16px;*/
+    /*    line-height: 20px*/
+    /*}*/
+
+    .sunmar .banner__button {
+        color: #fff;
+        background: linear-gradient(245deg, #d8242a 15.84%, #e7317d 84.16%);
+        border: 1px solid transparent;
+        border-radius: 48px;
+        align-items: center;
+        width: fit-content;
+        height: 48px;
+        margin-top: 24px;
+        padding-left: 32px;
+        padding-right: 32px;
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: none;
+        display: flex
+    }
+
+    .sunmar .banner__button:hover {
+        background: linear-gradient(90deg, #d8242a 15.84%, #e7317d 84.16%)
+    }
+
+    .sunmar .title-2 {
+        font-size: 40px !important;
+        font-weight: 600 !important;
+        line-height: 44px !important
+    }
+
+    @media screen and (max-width: 768px) {
+        .sunmar .title-2 {
+            font-size: 32px !important;
+            line-height: 36px !important
+        }
+    }
+
+    .sunmar .title-4 {
+        font-size: 28px;
+        line-height: 32px
+    }
+
+    .sunmar .title-5 {
+        font-size: 24px;
+        line-height: 28px
+    }
+
+    .sunmar .slider__pagination.swiper-pagination.swiper-pagination-horizontal {
+        bottom: 0
+    }
+
+    .sunmar .slider__pagination.swiper-pagination .swiper-pagination-bullet {
+        opacity: 1;
+        background-color: #afafaf;
+        width: 10px;
+        height: 10px
+    }
+
+    .sunmar .slider__pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: #0e2855
+    }
+
+    @media screen and (max-width: 428px) {
+        .sunmar .wrapper:has(.banner) {
+            padding-left: 0;
+            padding-right: 0
+        }
+    }
+
+    a.sunmar-button {
+        color: #fff;
+        background: linear-gradient(245deg, #d8242a 15.84%, #e7317d 84.16%);
+        border-radius: 48px;
+        align-items: center;
+        width: fit-content;
+        height: 48px;
+        padding-left: 32px;
+        padding-right: 32px;
+        font-size: 16px;
+        text-decoration: none;
+        display: flex
+    }
+
+    a.sunmar-button:hover {
+        background: linear-gradient(90deg, #d8242a 15.84%, #e7317d 84.16%)
+    }
+
+    a.sunmar-button--white {
+        color: inherit;
+        background: #fff;
+        border: 1px solid #d8242a
+    }
+
+    a.sunmar-button--white:hover {
+        color: #fff
+    }
+
+    .bg-white {
+        background-color: #fff
+    }
+
+    .bg-grey {
+        background-color: #f5f5f8
+    }
+
+    .slider.swiper:not(:has(.swiper-pagination-lock)) {
+        padding-bottom: 24px
+    }
+
+    .layout-container-limit:has(section.coral) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important
+    }
+
+    .layout-container-limit:has(section.sunamr) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important
+    }
+
+    section > article {
+        max-width: 1528px;
+        margin: auto
+    }
+
+    section > article .wrapper {
+        padding: 40px 0;
+        position: relative
+    }
+
+    @media screen and (max-width: 768px) {
+        section > article .wrapper {
+            padding: 30px 16px
+        }
+    }
+
+    section.full-width > article {
+        max-width: 100%
+    }
+
+    section.full-width > article .wrapper {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    @media screen and (max-width: 428px) {
+        section.full-width-428 > article .wrapper {
+            padding-left: 0;
+            padding-right: 0
+        }
+    }
+
+    section:has(.banner) .wrapper {
+        padding-bottom: 0
+    }
+
+    section:has(.banner.banner--text) .wrapper {
+        padding-bottom: 40px
+    }
+
+    .ant-col:has(section.coral) > div {
+        padding: 0
+    }
+
+    .ant-col:has(section.sunmar) > div {
+        padding: 0
+    }
+
+    .text {
+        font-size: 16px;
+        line-height: 24px
+    }
+
+    .text-center {
+        text-align: center
+    }
+
+    .flex-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    .font-bold {
+        font-weight: 600;
+    }
+
+    .text + .text {
+        margin-top: 8px
+    }
+</style>
+<style>
+    /*@font-face {*/
+    /*    font-family: 'SanghaKali';*/
+    /*    src: url('https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/SanghaKali-Regular.woff2') format('woff2');*/
+    /*    font-weight: normal;*/
+    /*    font-style: normal;*/
+    /*}*/
+
+    .banner-box .wrapper {
+        padding-bottom: 0;
+    }
+
+    .banner__title {
+        color: #fff;
+        margin-bottom: 12px;
+        font-size: 56px!important;
+        font-weight: 400!important;
+        line-height: 60px!important;
+        /*font-family: 'SanghaKali', sans-serif;*/
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner__title {
+            font-size: 40px;
+            line-height: 48px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .banner__title {
+            font-size: 32px;
+            line-height: 40px
+        }
+    }
+
+    .banner__subtitle {
+        color: #fff;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner__subtitle {
+            font-size: 16px;
+            line-height: 24px
+        }
+    }
+
+    .video-banner {
+        position: relative;
+        z-index: 2;
+    }
+
+    .video-banner__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        display: flex;
+        padding-inline: 60px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        z-index: 2;
+
+        @media screen and (max-width: 768px) {
+            padding-left: 16px;
+            justify-content: flex-start;
+            padding-top: 16px;
+        }
+    }
+
+    .video-banner__player {
+        aspect-ratio: 1920 / 736;
+        background-image: url('https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/banner_light.webp');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /*border-radius: 20px;*/
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        @media screen and (max-width: 515px) {
+            aspect-ratio: 320 / 414;
+            background-image: url('https://b2ccdn.coral.ru/content/landing-pages/thai/new/banner_m.webp');
+        }
+
+        iframe {
+            /*border-radius: 20px;*/
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: auto;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+
+            @media screen and (max-width: 515px) {
+                display: none;
+            }
+        }
+    }
+
+    .video-banner__player::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.36);
+        z-index: 1;
+    }
+
+    .banner__decor {
+        display: flex;
+        object-fit: cover;
+        width: 100%;
+    }
+</style>
+<section class="sunmar full-width banner-box">
+    <article>
+        <div class="wrapper">
+            <img class="banner__decor" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/decor_top.webp" alt="">
+            <div class="video-banner">
+                <div class="video-banner__player js-player" data-vimeo-vid="1121202345"></div>
+                <div class="video-banner__content">
+                    <h1 class="banner__title">
+                        Вьетнам – страна контрастов
+                    </h1>
+                    <p class="banner__subtitle">
+                        Невероятных красот и ярких впечатлений
+                    </p>
+                    <a href="#anchor-6" class="banner__button">
+                        Выбрать отель
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<script>
+    function getScript(scriptUrl, callback) {
+        const script = document.createElement("script");
+        script.async;
+        script.src = scriptUrl;
+        script.onload = callback;
+        document.body.appendChild(script);
+    }
+
+    function vimeoAutoPlay() {
+        const vimeoBoxes = document.querySelectorAll(
+            ".js-player",
+        );
+
+        console.log(vimeoBoxes);
+
+        let players = {};
+        if (vimeoBoxes.length) {
+            getScript("https://player.vimeo.com/api/player.js", doio);
+        }
+        const io_options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.33,
+        };
+
+        function doio() {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const target = entry.target;
+                    if (entry.isIntersecting) {
+                        if (players[target.dataset.vimeoVid]) {
+                            players[target.dataset.vimeoVid].play();
+                        } else {
+                            players[target.dataset.vimeoVid] = new Vimeo.Player(
+                                target, {
+                                    id: target.dataset.vimeoVid,
+                                    background: 1,
+                                    playsinline: 1,
+                                    autopause: 0,
+                                    title: 0,
+                                    byline: 0,
+                                    portrait: 0,
+                                    autoplay: 1,
+                                    muted: 1,
+                                },
+                            );
+                            players[target.dataset.vimeoVid].play();
+                            players[target.dataset.vimeoVid].on("play", function () {
+                                this.element.parentElement.classList.add(
+                                    "playback",
+                                );
+                            });
+                        }
+                    } else {
+                        players[target.dataset.vimeoVid]?.pause();
+                    }
+                });
+            }, io_options);
+            vimeoBoxes.forEach((box) => {
+                io.observe(box);
+            });
+        }
+    }
+
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        vimeoAutoPlay();
+    });
+</script>
+</body>
