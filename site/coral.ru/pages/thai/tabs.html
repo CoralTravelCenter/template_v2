@@ -53,27 +53,27 @@
             </p>
             <div class="tabs" data-tabs="">
                 <div class="tabs__nav">
-                    <button class="tabs__tab tabs__tab--active" data-tab="1">Все отели</button>
-                    <button class="tabs__tab" data-tab="2">Лучшие пляжи</button>
-                    <button class="tabs__tab" data-tab="3">Для гурманов</button>
+                    <button class="tabs__tab tabs__tab--active" data-tab="3">Для гурманов</button>
+<!--                    <button class="tabs__tab" data-tab="2">Лучшие пляжи</button>-->
                     <button class="tabs__tab" data-tab="4">СПА и массаж</button>
                     <button class="tabs__tab" data-tab="5">Красивые виды</button>
+                    <button class="tabs__tab" data-tab="1">Все отели</button>
                 </div>
                 <div class="tabs__content">
-                    <div class="tabs__pane tabs__pane--active" data-tab="1">
-                        sdfsdfsdf
+                    <div class="tabs__pane" data-tab="1">
+                        Все отели
                     </div>
-                    <div class="tabs__pane" data-tab="2">
-                        213123123
-                    </div>
-                    <div class="tabs__pane" data-tab="3">
-                        xzcxzcxzc
+<!--                    <div class="tabs__pane" data-tab="2">-->
+<!--                        213123123-->
+<!--                    </div>-->
+                    <div class="tabs__pane tabs__pane--active" data-tab="3">
+                        Для гурманов
                     </div>
                     <div class="tabs__pane" data-tab="4">
-                        xzcxzcxzc
+                        СПА и массаж
                     </div>
                     <div class="tabs__pane" data-tab="5">
-                        xzcxzcxzc
+                        Красивые виды
                     </div>
                 </div>
             </div>
@@ -108,6 +108,16 @@
                 tab.addEventListener('click', () => {
                     const tabId = tab.getAttribute('data-tab');
 
+                    if (tabId === "1") {
+                        ym(96674199,'reachGoal', 'filter_group', {'filter_group': 'Все отели'});
+                    } else if (tabId === "3") {
+                        ym(96674199,'reachGoal', 'filter_group', {'filter_group': 'Для гурманов'});
+                    } else if (tabId === "4") {
+                        ym(96674199,'reachGoal', 'filter_group', {'filter_group': 'СПА и массаж'});
+                    } else if (tabId === "5") {
+                        ym(96674199,'reachGoal', 'filter_group', {'filter_group': 'Красивые виды'});
+                    }
+
                     tabs.forEach(item => item.classList.remove('tabs__tab--active'));
                     panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
 
@@ -118,6 +128,24 @@
                     }
                 });
             });
+        });
+
+        const buttonBeach = document.getElementById('beach');
+
+        buttonBeach.addEventListener('click', () => {
+            ym(96674199,'reachGoal', 'selection_hotels_group', {'group': 'Пляжи'});
+        });
+
+        const buttonFood = document.getElementById('food');
+
+        buttonFood.addEventListener('click', () => {
+            ym(96674199,'reachGoal', 'selection_hotels_group', {'group': 'Еда'});
+        });
+
+        const buttonSpa = document.getElementById('spa');
+
+        buttonSpa.addEventListener('click', () => {
+            ym(96674199,'reachGoal', 'selection_hotels_group', {'group': 'СПА и массаж'});
         });
     });
 </script>
