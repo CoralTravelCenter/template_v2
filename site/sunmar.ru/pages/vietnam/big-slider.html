@@ -1,0 +1,420 @@
+<body>
+<style>
+    .tabs__pane {
+        display: none
+    }
+
+    .tabs__pane--active {
+        display: block
+    }
+
+    .tabs__tab {
+        height: 40px;
+        color: inherit;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        border-radius: 100px;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        padding-inline: 30px;
+    }
+
+    .tabs__content {
+        position: relative;
+    }
+
+    .tabs__tab--active {
+        color: #fff;
+        background-color: #061a3e
+    }
+
+    .tabs__nav {
+        justify-content: center;
+        border-radius: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        margin-bottom: 32px;
+        padding: 8px;
+        display: flex
+    }
+</style>
+<style>
+
+    .block__wrapper {
+        display: flex;
+        margin-bottom: 32px;
+    }
+
+    .block__wrapper img {
+        border-radius: 16px 0 0 16px;
+    }
+
+    .block__info {
+        display: flex;
+        flex-direction: column;
+        background-color: #F5F5F8;
+        padding: 32px;
+        justify-content: center;
+        border-radius: 0 16px 16px 0;
+    }
+</style>
+<style>
+    .big-slider .slider__slide.swiper-slide {
+        background-color: #fff;
+        border-radius: 20px;
+        flex-direction: column;
+        height: auto;
+        display: flex
+    }
+
+    .big-slider .slider__info {
+        background-color: #f5f5f8;
+        border-radius: 0 0 16px 16px;
+        flex: 1;
+        padding: 24px 32px;
+    }
+
+    .big-slider .slider__img {
+        object-fit: cover;
+        object-position: center;
+        border-radius: 16px 16px 0 0;
+        height: 200px;
+        display: flex
+    }
+
+    .big-slider .slider__title {
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px
+    }
+
+    .big-slider .slider__prev {
+        left: 20px
+    }
+
+    .big-slider .slider__next {
+        right: 20px
+    }
+
+    .big-slider .slider__prev, .big-slider .slider__next {
+        z-index: 1;
+        cursor: pointer;
+        background-color: #F5F5F8;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-radius: 6px;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        position: absolute;
+        top: 22%;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1)
+    }
+
+    .big-slider .slider__prev {
+        left: -80px;
+    }
+
+    .big-slider .slider__next {
+        right: -80px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .big-slider .slider__prev, .big-slider .slider__next {
+            display: none
+        }
+    }</style>
+<section class="sunmar big-slider">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-3 text-center mb-16">
+                Где и что посмотреть
+            </h2>
+            <div class="looks">
+                <div class="tabs" data-tabs="">
+                    <div class="tabs__nav">
+                        <button class="tabs__tab tabs__tab--active" data-tab="1">Нячанг</button>
+                        <button class="tabs__tab" data-tab="2">Фантхиет</button>
+                        <button class="tabs__tab" data-tab="3">Фукуок</button>
+                        <button class="tabs__tab" data-tab="4">Ханой</button>
+                        <button class="tabs__tab" data-tab="5">Хошимин</button>
+                        <button class="tabs__tab" data-tab="6">Дананг</button>
+                    </div>
+                    <div class="tabs__content">
+                        <div class="slider__next js-next-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" viewBox="0 0 20 14"
+                                 fill="none">
+                                <path d="M12.6667 11.7969L18 6.54687M18 6.54687L12.6667 1.29688M18 6.54687H2"
+                                      stroke="#656565" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="slider__prev js-prev-tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" viewBox="0 0 20 14"
+                                 fill="none">
+                                <path d="M7.33334 2.20313L2 7.45313M2 7.45313L7.33334 12.7031M2 7.45313L18 7.45313"
+                                      stroke="#656565" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="tabs__pane tabs__pane--active" data-tab="1">
+                            <div class="block">
+                                <div class="block__wrapper">
+                                    <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
+                                         alt="">
+                                    <div class="block__info">
+                                        <h3 class="title-4 mb-16">
+                                            Нячанг
+                                        </h3>
+                                        <p class="text">
+                                            Шумный, энергичный, полный веселья и жизни Нячанг считается пляжной столицей
+                                            Вьетнама. Пейзажи здесь завораживают: живописная зелень, белоснежные пляжи,
+                                            лазурная вода, идеально подходящая для дайвинга и снорклинга. И, конечно же,
+                                            яркая ночная жизнь. Здесь вы найдёте множество ночных клубов, уютных местных
+                                            кафе и ресторанов, что определённо понравится активным туристам, а тех,
+                                            кто хочет полностью расслабиться, привлекут разнообразные спа-процедуры.
+                                        </p>
+                                        <p class="text">
+                                            Любителям исторических достопримечательностей и просто красивых видов стоит
+                                            присмотреться к самым ярким местам города:
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper slider js-slider-looks">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Кафедральный собор Святого Иосифа
+                                                </h4>
+                                                <p class="text">
+                                                    В Ханое возвышается прекрасный собор в стиле неоготики, построенный
+                                                    в 19 веке. Этот величественный храм является не только главной
+                                                    католической церковью города, но и важным религиозным центром
+                                                    для католиков со всего Вьетнама. Во внутреннем дворе собора можно
+                                                    насладиться чашкой чая под звуки живой музыки, создавая
+                                                    умиротворяющую атмосферу.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Набережная и «башня лотоса»
+                                                </h4>
+                                                <p class="text">
+                                                    Это место привлекает и местных жителей, и туристов в любое время
+                                                    дня и ночи. Просторная парковая зона вдоль набережной оформлена
+                                                    с большим вкусом: зелень, скульптуры, ухоженные газоны и лужайки,
+                                                    фонтаны и удобные скамейки создают атмосферу комфорта и красоты.
+                                                    Общая протяжённость набережной составляет около 6 километров,
+                                                    из которых 4 километра представляют собой непрерывную линию.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Пагода Лонг Шон
+                                                </h4>
+                                                <p class="text">
+                                                    Пагода Лонг Шон, признанная красивейшей в регионе, с 1936 года
+                                                    является главным буддийским храмом провинции Кхань-Хоа. Это одно
+                                                    из самых любимых туристами мест в городе. При храме разбит
+                                                    восхитительный сад, а возле статуи Будды расположена смотровая
+                                                    площадка, откуда открывается захватывающий вид на окружающие
+                                                    пейзажи.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="tabs__pane" data-tab="2">
+                            <div class="swiper slider js-slider-looks">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="slider__title text-center">
+                                                Софийский собор (Айя-София)
+                                            </h4>
+                                            <p class="text">
+                                                Главная святыня христианства, переоборудованная в мечеть после
+                                                захвата Константинополя.
+                                                Здесь можно увидеть остатки минаретов, великолепную мозаику и панно
+                                                с арабской вязью.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="slider__title text-center">
+                                                Голубая мечеть
+                                            </h4>
+                                            <p class="text">
+                                                Главная действующая мечеть Стамбула. Внутри мечети находится 260
+                                                окон.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="slider__title text-center">
+                                                Дворец Топкапы
+                                            </h4>
+                                            <p class="text">
+                                                Комплекс из 4 дворов — главная резиденция правителей. Здесь можно
+                                                увидеть древнюю
+                                                византийскую церковь Святой Ирины, опочивальни и гарем султанов.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                            </div>
+                        </div>
+                        <div class="tabs__pane" data-tab="3">
+                            zzcxcxcxzc
+                        </div>
+                        <div class="tabs__pane" data-tab="4">
+                            1231232
+                        </div>
+                        <div class="tabs__pane" data-tab="5">
+                            sdfsfdsfsd
+                        </div>
+                        <div class="tabs__pane" data-tab="6">
+                            zzcxcxcxzc
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+            const tabs = Array.from(tabsBlock.querySelectorAll('.tabs__tab'));
+            const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+            function switchToTab(index) {
+                if (index < 0 || index >= tabs.length) return;
+
+                const tab = tabs[index];
+                const tabId = tab.getAttribute('data-tab');
+
+                tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                tab.classList.add('tabs__tab--active');
+                const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                if (activePane) {
+                    activePane.classList.add('tabs__pane--active');
+                }
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const index = tabs.indexOf(tab);
+                    switchToTab(index);
+                });
+            });
+
+            const nextBtn = tabsBlock.querySelector('.js-next-tab');
+            const prevBtn = tabsBlock.querySelector('.js-prev-tab');
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const activeIndex = tabs.findIndex(tab => tab.classList.contains('tabs__tab--active'));
+                    const nextIndex = (activeIndex + 1) % tabs.length; // зацикливание
+                    switchToTab(nextIndex);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const activeIndex = tabs.findIndex(tab => tab.classList.contains('tabs__tab--active'));
+                    const prevIndex = activeIndex === 0 ? tabs.length - 1 : activeIndex - 1; // зацикливание назад
+                    switchToTab(prevIndex);
+                });
+            }
+        });
+
+        const sliderLooks = new Swiper(".js-slider-looks", {
+            breakpoints: {
+                1280: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 32,
+                },
+            },
+            slidesPerView: 1,
+            spaceBetween: 32,
+            loop: true,
+            pagination: {
+                el: ".js-pagination-looks",
+                clickable: true,
+            },
+            // navigation: {
+            //     nextEl: ".js-next-looks",
+            //     prevEl: ".js-prev-looks",
+            // },
+        });
+    });
+</script>
+</body>

@@ -5,13 +5,76 @@
         padding-top: 0;
     }
 
-    .slider__slide {
+    .slider-box .slider__slide {
         position: relative;
     }
 
-    .slider__info {
+    .slider-box .slider__content {
         position: absolute;
+        left: 80px;
+        top: 74px;
+        z-index: 2;
+
+        @media screen and (max-width: 1440px) {
+            top: 40px;
+        }
+    }
+
+    .slider-box .slider__info {
+        border-radius: 16px;
+        background-color: rgba(255, 255, 255, 0.64);
+        backdrop-filter: blur(16px);
+        padding-inline: 32px;
+        padding-block: 24px;
+        max-width: 664px;
+
+        @media screen and (max-width: 1440px) {
+            max-width: 540px;
+        }
+    }
+
+    .slider-box .slider__locale {
+        position: absolute;
+        top: 74px;
+        right: 80px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        height: 42px;
+        padding-inline: 20px;
+        border-radius: 48px;
+        background-color: rgba(255, 255, 255, 0.64);
+        backdrop-filter: blur(15px);
+
+        @media screen and (max-width: 1440px) {
+            top: 40px;
+        }
+    }
+
+    .slider-box .slider__img {
         width: 100%;
+        height: 500px;
+        object-fit: cover;
+
+        @media screen and (max-width: 1440px) {
+            height: 540px;
+        }
+
+        @media screen and (max-width: 1280px) {
+            height: 588px;
+        }
+    }
+
+    .sunmar.slider-box .slider__pagination.swiper-pagination.swiper-pagination-horizontal {
+        bottom: 74px;
+        width: fit-content;
+        border-radius: 40px;
+        background-color: rgba(255, 255, 255, 0.64);
+        backdrop-filter: blur(15px);
+        right: 80px;
+        left: unset;
+        padding-inline: 20px;
+        padding-block: 12px;
     }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -19,68 +82,87 @@
     <article>
         <div class="wrapper">
             <div class="swiper slider js-slider-location">
+
+                <div class="slider__content js-slider-content">
+                    <div class="slider__info">
+                        <h4 class="title-3 mb-8">
+                            Доступные цены и прямые перелеты
+                        </h4>
+                        <p class="text">
+                            Вьетнам — удивительно аутентичная страна, бережно хранящая свою культуру
+                            и традиции. Время, проведённое здесь, ни с чем не сравнить, а удобные рейсы
+                            и приятные цены сделают ваш отпуск максимально комфортным. Во Вьетнам теперь
+                            можно добраться без пересадок: прямые перелёты из Москвы до Нячанга уже доступны
+                            для бронирования.
+                        </p>
+                        <p class="text">
+                            Живописные пейзажи, тёплый климат, древние памятники и масса исторических
+                            достопримечательностей создают совершенно особенную атмосферу, в которой приятно
+                            как расслабиться, так и заняться активными видами отдыха. А доброжелательность
+                            местных жителей и высокий уровень сервиса придутся по душе абсолютно важному!
+                        </p>
+                    </div>
+                </div>
+
                 <div class="swiper-wrapper">
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_1.webp" alt="">
-                        <div class="slider__content">
-                            <div class="slider__info">
-                                <h4 class="slider__title text-center">
-                                    Софийский собор (Айя-София)
-                                </h4>
-                                <p class="text">
-                                    Главная святыня христианства, переоборудованная в мечеть после захвата Константинополя.
-                                    Здесь можно увидеть остатки минаретов, великолепную мозаику и панно с арабской вязью.
-                                </p>
-                            </div>
+                        <img class="slider__img"
+                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_1.webp" alt="">
+                        <div class="slider__locale js-slider-pin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
+                                 fill="none">
+                                <path d="M7.97556 18C7.82809 18 7.68061 17.9469 7.56419 17.8331C7.29253 17.5675 0.951172 11.3145 0.951172 6.92833C0.951172 3.1113 4.10245 0 7.97556 0C11.8487 0 15 3.1113 15 6.92833C15 8.6737 14.0142 10.9047 12.066 13.5607L12.0505 13.5759L11.6546 14.0767C11.0337 14.8659 10.4438 15.6096 9.90824 16.2091C9.90048 16.2167 9.89272 16.2319 9.87719 16.2395L9.85391 16.2622C9.56672 16.5809 9.31058 16.8693 9.09325 17.097L9.07773 17.1121C9.07773 17.1121 9.06221 17.1273 9.04668 17.1425C9.03116 17.1577 9.03116 17.1653 9.01564 17.1804C8.62755 17.5826 8.3947 17.8179 8.38693 17.8255C8.27051 17.9393 8.12304 17.9924 7.97556 17.9924V18ZM7.91347 4.40135C6.53964 4.40135 5.33656 5.57757 5.33656 6.92074C5.33656 8.26391 6.53964 9.44014 7.91347 9.44014C9.3882 9.44014 10.4904 8.35497 10.4904 6.92074C10.4904 5.48651 9.38044 4.40135 7.91347 4.40135Z"
+                                      fill="black"/>
+                            </svg>
+                            <span class="text">Халонг</span>
                         </div>
                     </div>
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_2.webp" alt="">
-                        <div class="slider__info">
-                            <h4 class="slider__title text-center">
-                                Голубая мечеть
-                            </h4>
-                            <p class="text">
-                                Главная действующая мечеть Стамбула. Внутри мечети находится 260 окон.
-                            </p>
+                        <img class="slider__img"
+                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_2.webp" alt="">
+                        <div class="slider__locale js-slider-pin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
+                                 fill="none">
+                                <path d="M7.97556 18C7.82809 18 7.68061 17.9469 7.56419 17.8331C7.29253 17.5675 0.951172 11.3145 0.951172 6.92833C0.951172 3.1113 4.10245 0 7.97556 0C11.8487 0 15 3.1113 15 6.92833C15 8.6737 14.0142 10.9047 12.066 13.5607L12.0505 13.5759L11.6546 14.0767C11.0337 14.8659 10.4438 15.6096 9.90824 16.2091C9.90048 16.2167 9.89272 16.2319 9.87719 16.2395L9.85391 16.2622C9.56672 16.5809 9.31058 16.8693 9.09325 17.097L9.07773 17.1121C9.07773 17.1121 9.06221 17.1273 9.04668 17.1425C9.03116 17.1577 9.03116 17.1653 9.01564 17.1804C8.62755 17.5826 8.3947 17.8179 8.38693 17.8255C8.27051 17.9393 8.12304 17.9924 7.97556 17.9924V18ZM7.91347 4.40135C6.53964 4.40135 5.33656 5.57757 5.33656 6.92074C5.33656 8.26391 6.53964 9.44014 7.91347 9.44014C9.3882 9.44014 10.4904 8.35497 10.4904 6.92074C10.4904 5.48651 9.38044 4.40135 7.91347 4.40135Z"
+                                      fill="black"/>
+                            </svg>
+                            <span class="text">
+                                        Кам Тхань
+                                    </span>
                         </div>
                     </div>
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_3.webp" alt="">
-                        <div class="slider__info">
-                            <h4 class="slider__title text-center">
-                                Дворец Топкапы
-                            </h4>
-                            <p class="text">
-                                Комплекс из 4 дворов — главная резиденция правителей. Здесь можно увидеть древнюю
-                                византийскую церковь Святой Ирины, опочивальни и гарем султанов.
-                            </p>
+                        <img class="slider__img"
+                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_3.webp" alt="">
+                        <div class="slider__locale js-slider-pin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
+                                 fill="none">
+                                <path d="M7.97556 18C7.82809 18 7.68061 17.9469 7.56419 17.8331C7.29253 17.5675 0.951172 11.3145 0.951172 6.92833C0.951172 3.1113 4.10245 0 7.97556 0C11.8487 0 15 3.1113 15 6.92833C15 8.6737 14.0142 10.9047 12.066 13.5607L12.0505 13.5759L11.6546 14.0767C11.0337 14.8659 10.4438 15.6096 9.90824 16.2091C9.90048 16.2167 9.89272 16.2319 9.87719 16.2395L9.85391 16.2622C9.56672 16.5809 9.31058 16.8693 9.09325 17.097L9.07773 17.1121C9.07773 17.1121 9.06221 17.1273 9.04668 17.1425C9.03116 17.1577 9.03116 17.1653 9.01564 17.1804C8.62755 17.5826 8.3947 17.8179 8.38693 17.8255C8.27051 17.9393 8.12304 17.9924 7.97556 17.9924V18ZM7.91347 4.40135C6.53964 4.40135 5.33656 5.57757 5.33656 6.92074C5.33656 8.26391 6.53964 9.44014 7.91347 9.44014C9.3882 9.44014 10.4904 8.35497 10.4904 6.92074C10.4904 5.48651 9.38044 4.40135 7.91347 4.40135Z"
+                                      fill="black"/>
+                            </svg>
+                            <span class="text">
+                                        Чанган
+                                    </span>
                         </div>
                     </div>
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_4.webp" alt="">
-                        <div class="slider__info">
-                            <h4 class="slider__title text-center">
-                                Долмабахче
-                            </h4>
-                            <p class="text">
-                                Дворец в стиле барокко, напоминающий Эрмитаж.
-                            </p>
+                        <img class="slider__img"
+                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_4.webp" alt="">
+                        <div class="slider__locale js-slider-pin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
+                                 fill="none">
+                                <path d="M7.97556 18C7.82809 18 7.68061 17.9469 7.56419 17.8331C7.29253 17.5675 0.951172 11.3145 0.951172 6.92833C0.951172 3.1113 4.10245 0 7.97556 0C11.8487 0 15 3.1113 15 6.92833C15 8.6737 14.0142 10.9047 12.066 13.5607L12.0505 13.5759L11.6546 14.0767C11.0337 14.8659 10.4438 15.6096 9.90824 16.2091C9.90048 16.2167 9.89272 16.2319 9.87719 16.2395L9.85391 16.2622C9.56672 16.5809 9.31058 16.8693 9.09325 17.097L9.07773 17.1121C9.07773 17.1121 9.06221 17.1273 9.04668 17.1425C9.03116 17.1577 9.03116 17.1653 9.01564 17.1804C8.62755 17.5826 8.3947 17.8179 8.38693 17.8255C8.27051 17.9393 8.12304 17.9924 7.97556 17.9924V18ZM7.91347 4.40135C6.53964 4.40135 5.33656 5.57757 5.33656 6.92074C5.33656 8.26391 6.53964 9.44014 7.91347 9.44014C9.3882 9.44014 10.4904 8.35497 10.4904 6.92074C10.4904 5.48651 9.38044 4.40135 7.91347 4.40135Z"
+                                      fill="black"/>
+                            </svg>
+                            <span class="text">
+                                        Нячанг
+                                    </span>
                         </div>
                     </div>
                 </div>
                 <div class="slider__pagination swiper-pagination js-pagination-location"></div>
             </div>
-<!--            <div class="slider__next js-next-stambul">-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">-->
-<!--                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.64645 3.64645C5.45118 3.84171 5.45118 4.15829 5.64645 4.35355L9.29289 8L5.64645 11.6464C5.45118 11.8417 5.45118 12.1583 5.64645 12.3536C5.84171 12.5488 6.15829 12.5488 6.35355 12.3536L10.3536 8.35355C10.5488 8.15829 10.5488 7.84171 10.3536 7.64645L6.35355 3.64645C6.15829 3.45118 5.84171 3.45118 5.64645 3.64645Z" fill="#535353"/>-->
-<!--                </svg>-->
-<!--            </div>-->
-<!--            <div class="slider__prev js-prev-stambul">-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">-->
-<!--                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3536 3.64645C10.5488 3.84171 10.5488 4.15829 10.3536 4.35355L6.70711 8L10.3536 11.6464C10.5488 11.8417 10.5488 12.1583 10.3536 12.3536C10.1583 12.5488 9.84171 12.5488 9.64645 12.3536L5.64645 8.35355C5.45118 8.15829 5.45118 7.84171 5.64645 7.64645L9.64645 3.64645C9.84171 3.45118 10.1583 3.45118 10.3536 3.64645Z" fill="#535353"/>-->
-<!--                </svg>-->
-<!--            </div>-->
+
         </div>
     </article>
 </section>
@@ -131,6 +213,32 @@
                 prevEl: ".js-prev-location",
             },
         });
+    });
+
+    function setMargin() {
+        const sliderContent = document.querySelector(".js-slider-content");
+        const sliderPins = document.querySelectorAll('.js-slider-pin');
+        const sliderPagination = document.querySelector('.js-pagination-location');
+        const gridWidth = 1530;
+
+        let fullWidth = document.body.clientWidth;
+        let calcMargin = (fullWidth - gridWidth) / 2;
+
+        if (calcMargin > 0) {
+            sliderContent.style.marginLeft = calcMargin + "px";
+
+            sliderPins.forEach((pin) => {
+                pin.style.marginRight = calcMargin + "px";
+            });
+
+            sliderPagination.style.marginRight = calcMargin + "px";
+        }
+    }
+
+    setTimeout(() => setMargin(), 500);
+
+    window.addEventListener('resize', () => {
+        setMargin();
     });
 </script>
 </body>

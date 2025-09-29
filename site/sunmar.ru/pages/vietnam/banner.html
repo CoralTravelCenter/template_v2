@@ -40,34 +40,6 @@
         padding: 0
     }
 
-    /*.sunmar .banner__title {*/
-    /*    color: #fff;*/
-    /*    margin-bottom: 24px;*/
-    /*    font-size: 56px !important;*/
-    /*    font-weight: 600 !important;*/
-    /*    line-height: 60px !important*/
-    /*}*/
-
-    /*@media screen and (max-width: 1280px) {*/
-    /*    .sunmar .banner__title {*/
-    /*        font-size: 40px !important;*/
-    /*        line-height: 48px !important*/
-    /*    }*/
-    /*}*/
-
-    /*@media screen and (max-width: 768px) {*/
-    /*    .sunmar .banner__title {*/
-    /*        font-size: 32px !important;*/
-    /*        line-height: 40px !important*/
-    /*    }*/
-    /*}*/
-
-    /*.sunmar .banner__subtitle {*/
-    /*    color: #fff;*/
-    /*    font-size: 16px;*/
-    /*    line-height: 20px*/
-    /*}*/
-
     .sunmar .banner__button {
         color: #fff;
         background: linear-gradient(245deg, #d8242a 15.84%, #e7317d 84.16%);
@@ -102,6 +74,11 @@
         }
     }
 
+    .sunmar .title-3 {
+        font-size: 32px;
+        line-height: 36px;
+    }
+
     .sunmar .title-4 {
         font-size: 28px;
         line-height: 32px
@@ -110,10 +87,6 @@
     .sunmar .title-5 {
         font-size: 24px;
         line-height: 28px
-    }
-
-    .sunmar .slider__pagination.swiper-pagination.swiper-pagination-horizontal {
-        bottom: 0
     }
 
     .sunmar .slider__pagination.swiper-pagination .swiper-pagination-bullet {
@@ -170,10 +143,6 @@
         background-color: #f5f5f8
     }
 
-    .slider.swiper:not(:has(.swiper-pagination-lock)) {
-        padding-bottom: 24px
-    }
-
     .layout-container-limit:has(section.coral) {
         width: 100% !important;
         max-width: 100% !important;
@@ -192,7 +161,7 @@
     }
 
     section > article .wrapper {
-        padding: 40px 0;
+        padding: 40px 80px;
         position: relative
     }
 
@@ -257,24 +226,23 @@
     }
 </style>
 <style>
-    /*@font-face {*/
-    /*    font-family: 'SanghaKali';*/
-    /*    src: url('https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/SanghaKali-Regular.woff2') format('woff2');*/
-    /*    font-weight: normal;*/
-    /*    font-style: normal;*/
-    /*}*/
-
     .banner-box .wrapper {
         padding-bottom: 0;
     }
 
     .banner__title {
-        color: #fff;
+        color: transparent;
         margin-bottom: 12px;
         font-size: 56px!important;
         font-weight: 400!important;
         line-height: 60px!important;
-        /*font-family: 'SanghaKali', sans-serif;*/
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+    }
+
+    .banner__title-block {
+        position: relative;
     }
 
     @media screen and (max-width: 1280px) {
@@ -387,9 +355,12 @@
             <div class="video-banner">
                 <div class="video-banner__player js-player" data-vimeo-vid="1121202345"></div>
                 <div class="video-banner__content">
-                    <h1 class="banner__title">
-                        Вьетнам – страна контрастов
-                    </h1>
+                    <div class="banner__title-block mb-16">
+                        <h1 class="banner__title">
+                            Вьетнам – страна контрастов
+                        </h1>
+                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/title.webp" alt="">
+                    </div>
                     <p class="banner__subtitle">
                         Невероятных красот и ярких впечатлений
                     </p>
@@ -414,8 +385,6 @@
         const vimeoBoxes = document.querySelectorAll(
             ".js-player",
         );
-
-        console.log(vimeoBoxes);
 
         let players = {};
         if (vimeoBoxes.length) {
