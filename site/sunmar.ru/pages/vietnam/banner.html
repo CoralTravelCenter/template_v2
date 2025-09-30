@@ -303,18 +303,32 @@
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
-        /*border-radius: 20px;*/
         width: 100%;
         overflow: hidden;
         position: relative;
 
+        @media screen and (max-width: 1440px) {
+            aspect-ratio: 1280 / 600;
+        }
+
+        @media screen and (max-width: 1280px) {
+            aspect-ratio: 1024 / 600;
+        }
+
+        @media screen and (max-width: 1024px) {
+            aspect-ratio: 768 / 600;
+        }
+
+        @media screen and (max-width: 768px) {
+            aspect-ratio: 428 / 556;
+        }
+
         @media screen and (max-width: 515px) {
-            aspect-ratio: 320 / 414;
+            aspect-ratio: 428 / 556;
             background-image: url('https://b2ccdn.coral.ru/content/landing-pages/thai/new/banner_m.webp');
         }
 
         iframe {
-            /*border-radius: 20px;*/
             position: absolute;
             top: 50%;
             left: 50%;
@@ -347,13 +361,40 @@
         object-fit: cover;
         width: 100%;
     }
+
+    .banner__nav {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.64);
+        border-radius: 24px;
+        backdrop-filter: blur(15px);
+        align-items: center;
+        padding: 8px;
+        gap: 8px;
+        position: absolute;
+        bottom: 32px;
+    }
+
+    .banner__nav a {
+        padding-inline: 30px;
+        padding-block: 12px;
+        text-decoration: none!important;
+        font-weight: 600;
+        color: inherit!important;
+        border-radius: 16px;
+    }
+
+    .banner__nav a:hover {
+        color: white!important;
+        background-color: #061a3e;
+    }
+
 </style>
 <section class="sunmar full-width banner-box">
     <article>
         <div class="wrapper">
             <img class="banner__decor" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/decor_top.webp" alt="">
             <div class="video-banner">
-                <div class="video-banner__player js-player" data-vimeo-vid="1121202345"></div>
+                <div class="video-banner__player js-player"></div>
                 <div class="video-banner__content">
                     <div class="banner__title-block mb-16">
                         <h1 class="banner__title">
@@ -367,6 +408,13 @@
                     <a href="#anchor-6" class="banner__button">
                         Выбрать отель
                     </a>
+
+                    <div class="banner__nav">
+                        <a href="#anchor-1">Как въезжать и чем платить</a>
+                        <a href="#anchor-2">Факты о Вьетнаме</a>
+                        <a href="#anchor-3">Выбираем, когда и куда</a>
+                        <a href="#anchor-4">Где и что посмотреть</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -375,21 +423,29 @@
 <script>
     function getScript(scriptUrl, callback) {
         const script = document.createElement("script");
-        script.async;
-        script.src = scriptUrl;
+        script.async = true;
+        script.src = scriptUrl.trim();
         script.onload = callback;
         document.body.appendChild(script);
     }
 
     function vimeoAutoPlay() {
-        const vimeoBoxes = document.querySelectorAll(
-            ".js-player",
-        );
+        const vimeoBox = document.querySelector(".js-player");
+
+        if (!vimeoBox) return;
+
+        const getVideoIdByScreen = () => {
+            const width = window.innerWidth;
+            if (width <= 768) return 1121202393;
+            if (width <= 1024) return 1121202422;
+            if (width <= 1280) return 1121202246;
+            if (width <= 1440) return 1121202293;
+            return 1121202345;
+        };
+
+        vimeoBox.dataset.vimeoVid = getVideoIdByScreen();
 
         let players = {};
-        if (vimeoBoxes.length) {
-            getScript("https://player.vimeo.com/api/player.js", doio);
-        }
         const io_options = {
             root: null,
             rootMargin: "0px",
@@ -400,45 +456,42 @@
             const io = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     const target = entry.target;
+                    const vid = target.dataset.vimeoVid;
+
                     if (entry.isIntersecting) {
-                        if (players[target.dataset.vimeoVid]) {
-                            players[target.dataset.vimeoVid].play();
+                        if (players[vid]) {
+                            players[vid].play();
                         } else {
-                            players[target.dataset.vimeoVid] = new Vimeo.Player(
-                                target, {
-                                    id: target.dataset.vimeoVid,
-                                    background: 1,
-                                    playsinline: 1,
-                                    autopause: 0,
-                                    title: 0,
-                                    byline: 0,
-                                    portrait: 0,
-                                    autoplay: 1,
-                                    muted: 1,
-                                },
-                            );
-                            players[target.dataset.vimeoVid].play();
-                            players[target.dataset.vimeoVid].on("play", function () {
-                                this.element.parentElement.classList.add(
-                                    "playback",
-                                );
+                            players[vid] = new Vimeo.Player(target, {
+                                id: Number(vid),
+                                background: 1,
+                                playsinline: 1,
+                                autopause: 0,
+                                title: 0,
+                                byline: 0,
+                                portrait: 0,
+                                autoplay: 1,
+                                muted: 1,
+                            });
+
+                            players[vid].play();
+                            players[vid].on("play", function () {
+                                this.element.parentElement.classList.add("playback");
                             });
                         }
                     } else {
-                        players[target.dataset.vimeoVid]?.pause();
+                        players[vid]?.pause();
                     }
                 });
             }, io_options);
-            vimeoBoxes.forEach((box) => {
-                io.observe(box);
-            });
+
+            io.observe(vimeoBox);
         }
+
+        getScript("https://player.vimeo.com/api/player.js", doio);
     }
 
-    async function hostReactAppReady(
-        selector = "#__next > div",
-        timeout = 500,
-    ) {
+    async function hostReactAppReady(selector = "#__next > div", timeout = 500) {
         return new Promise((resolve) => {
             const waiter = () => {
                 const host_el = document.querySelector(selector);

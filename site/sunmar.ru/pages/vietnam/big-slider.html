@@ -130,10 +130,11 @@
 
     @media screen and (max-width: 768px) {
         .big-slider .slider__prev, .big-slider .slider__next {
-            display: none
+            display: none;
         }
-    }</style>
-<section class="sunmar big-slider">
+    }
+</style>
+<section class="sunmar big-slider" id="anchor-4">
     <article>
         <div class="wrapper">
             <h2 class="title-3 text-center mb-16">
@@ -374,7 +375,7 @@
             if (nextBtn) {
                 nextBtn.addEventListener('click', () => {
                     const activeIndex = tabs.findIndex(tab => tab.classList.contains('tabs__tab--active'));
-                    const nextIndex = (activeIndex + 1) % tabs.length; // зацикливание
+                    const nextIndex = (activeIndex + 1) % tabs.length;
                     switchToTab(nextIndex);
                 });
             }
@@ -382,7 +383,7 @@
             if (prevBtn) {
                 prevBtn.addEventListener('click', () => {
                     const activeIndex = tabs.findIndex(tab => tab.classList.contains('tabs__tab--active'));
-                    const prevIndex = activeIndex === 0 ? tabs.length - 1 : activeIndex - 1; // зацикливание назад
+                    const prevIndex = activeIndex === 0 ? tabs.length - 1 : activeIndex - 1;
                     switchToTab(prevIndex);
                 });
             }
