@@ -1,9 +1,8 @@
-
 (() => {
     const dl = window.dataLayer = window.dataLayer || [];
     if (!dl.__hooked_view_item) {
         const origPush = dl.push.bind(dl);
-        dl.push = function (...args) {
+        dl.push = function(...args) {
             args.forEach(handleViewItem);
             return origPush(...args);
         };
@@ -18,6 +17,13 @@
         const item = evt?.ecommerce?.items?.[0];
         if (!item) return;
 
+        let searchType;
+        if (item.item_variant === "tour") {
+            searchType = 1;
+        } else if (item.item_variant === "onlyhotel") {
+            searchType = 2;
+        } else return;
+
         const payload = {
             operation: "Website.ViewHotel",
             data: {
@@ -28,45 +34,26 @@
                             hotels: item.item_id
                         }
                     },
-                    productGroup: {
-                        ids: {
-                            hotels: item.item_list_id
-                        }
-                    },
                     customerAction: {
                         customFields: {
                             adultCount: item.item_adult_count,
                             childCount: item.item_child_count,
-                            distanceToTheAirportInMeters: undefined,
-                            distanceToTheBeachInMeters: undefined,
-                            flightDateFrom: item.item_dates?.[0],
-                            flightDateTo: item.item_dates?.[1],
-                            hotelDateFrom: undefined,
-                            hotelDateTo: undefined,
-                            hotelId: item.item_id,
-                            isRecommended: item.item_recommended_by_coral,
-                            roomName: item.room_name,
-                            roomSelected: undefined,
-                            searchType: undefined,
-                            beachTypes: undefined,
-                            childrenServices: undefined,
+                            flightDateFrom: searchType === 1 ? item.item_dates?.[0] : undefined,
+                            flightDateTo: searchType === 1 ? item.item_dates?.[1] : undefined,
+                            hotelDateFrom: searchType === 2 ? item.item_dates?.[0] : undefined,
+                            hotelDateTo: searchType === 2 ? item.item_dates?.[1] : undefined,
+                            roomSelected: false,
+                            searchType: searchType,
                             departures: item.item_departure,
-                            hotelCategoryNames: undefined,
-                            hotelConcepts: undefined,
-                            hotelFeatures: undefined,
-                            mealTypes: undefined,
-                            nights: item.item_nights,
-                            roomFeatures: undefined,
-                            roomTypes: undefined,
-                            waterParkAndPoolServices: undefined
+                            nights: [item.item_nights]
                         }
                     }
                 }
             },
-            onSuccess: function () {
+            onSuccess: function() {
                 console.log("✅ ViewHotel успех. Отправили payload:", payload);
             },
-            onError: function (error) {
+            onError: function(error) {
                 console.error("❌ ViewHotel ошибка:", error);
             }
         };

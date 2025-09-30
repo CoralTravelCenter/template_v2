@@ -47,8 +47,8 @@ const eventMapping = {
             }
         })
     },
-    view_room: {
-        operation: 'Website.SelectRoom',
+    view_item: {
+        operation: 'Website.ViewHotel',
         buildRequest: (itemID, itemPrice, roomName) => ({
             viewProduct: {
                 price: itemPrice,
@@ -59,66 +59,31 @@ const eventMapping = {
                 },
                 customerAction: {
                     customFields: {
-                        roomName: roomName
+                        roomSelected: false
                     }
                 }
             }
         })
     },
-    view_item: [
-        {
-            operation: 'Website.ViewHotel',
-            buildRequest: (itemID, itemPrice, roomName) => ({
-                viewProduct: {
-                    price: itemPrice,
-                    product: {
-                        ids: {
-                            hotels: itemID
-                        }
-                    },
-                    customerAction: {
-                        customFields: {
-                            roomName: roomName
-                        }
+    select_room: {
+        operation: 'Website.ViewHotel',
+        buildRequest: (itemID, itemPrice, roomName) => ({
+            viewProduct: {
+                price: itemPrice,
+                product: {
+                    ids: {
+                        hotels: itemID
                     }
-                }
-            })
-        },
-        {
-            operation: 'Website.ViewCategory',
-            buildRequest: (itemCategory, roomName) => ({
-                viewProductCategory: {
-                    productCategory: {
-                        ids: {
-                            hotels: itemCategory
-                        }
-                    },
-                    customerAction: {
-                        customFields: {
-                            roomName: roomName
-                        }
+                },
+                customerAction: {
+                    customFields: {
+                        roomName: roomName,
+                        roomSelected: true
                     }
-                }
-            })
-        }
-    ],
-    search_tour: {
-        operation: 'Website.SearchTour',
-        buildRequest: (departure, destination, destinationId, adultCount, childCount, nights, flightDates) => ({
-            customerAction: {
-                customFields: {
-                    departure: departure.join(', '),
-                    destination: destination.join(', '),
-                    destinationId: destinationId.join(', '),
-                    adultCount,
-                    childCount,
-                    nights,
-                    flightDateFrom: flightDates[0],
-                    flightDateTo: flightDates[1]
                 }
             }
         })
-    },
+    }
 };
 
 function handleEvent(eventData) {
