@@ -213,11 +213,17 @@
             },
             select_room: {
                 operation: 'Website.ViewHotel',
-                buildRequest: (itemID, itemPrice, roomName, itemNights) => ({
+                buildRequest: (itemID, itemPrice, roomName, nights) => ({
                     viewProduct: {
                         price: itemPrice,
                         product: {ids: {hotels: itemID}},
-                        customerAction: {customFields: {roomName, roomSelected: true, nights: itemNights}}
+                        customerAction: {
+                            customFields: {
+                                roomName,
+                                roomSelected: true,
+                                nights: [nights]
+                            }
+                        }
                     }
                 })
             }
@@ -234,7 +240,7 @@
                 (operation === 'Website.AddToFavourites' ||
                     operation === 'Website.RemoveFromFavourites' ||
                     operation === 'Website.AddToComparison' ||
-                    operation === 'Website.RemoveFromComparison') ? [item.item_id] : [item.item_id, item.price, item.room_name];
+                    operation === 'Website.RemoveFromComparison') ? [item.item_id] : [item.item_id, item.price, item.room_name, item.item_nights];
 
             sendWithRetry({
                 operation,
