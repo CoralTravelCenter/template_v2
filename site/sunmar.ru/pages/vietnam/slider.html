@@ -14,9 +14,16 @@
         left: 80px;
         top: 74px;
         z-index: 2;
+        bottom: 74px;
 
         @media screen and (max-width: 1440px) {
             top: 40px;
+            bottom: 40px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            right: 80px;
+            top: unset;
         }
     }
 
@@ -27,9 +34,22 @@
         padding-inline: 32px;
         padding-block: 24px;
         max-width: 664px;
+        height: 100%;
 
         @media screen and (max-width: 1440px) {
             max-width: 540px;
+        }
+
+        @media screen and (max-width: 1280px) {
+            max-width: 508px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            max-width: max-content;
+        }
+
+        @media screen and (max-width: 768px) {
+            display: none;
         }
     }
 
@@ -48,6 +68,10 @@
 
         @media screen and (max-width: 1440px) {
             top: 40px;
+        }
+
+        @media screen and (max-width: 768px) {
+            right: 32px;
         }
     }
 
@@ -75,14 +99,60 @@
         left: unset;
         padding-inline: 20px;
         padding-block: 12px;
+
+        @media screen and (max-width: 1440px) {
+            bottom: 40px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            left: 80px;
+            right: unset;
+            top: 40px;
+            bottom: unset;
+            height: fit-content;
+        }
+
+        @media screen and (max-width: 768px) {
+            right: 32px;
+            left: unset;
+            bottom: 40px;
+            top: unset;
+        }
+    }
+
+    .slider__text {
+        display: none;
+
+        @media screen and (max-width: 768px) {
+            display: block;
+            padding-block: 32px;
+            padding-inline: 16px;
+        }
     }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <section class="sunmar full-width slider-box">
     <article>
         <div class="wrapper">
+            <div class="slider__text">
+                <h4 class="title-3 mb-8 text-center">
+                    Доступные цены и прямые перелеты
+                </h4>
+                <p class="text text-center">
+                    Вьетнам — удивительно аутентичная страна, бережно хранящая свою культуру
+                    и традиции. Время, проведённое здесь, ни с чем не сравнить, а удобные рейсы
+                    и приятные цены сделают ваш отпуск максимально комфортным. Во Вьетнам теперь
+                    можно добраться без пересадок: прямые перелёты из Москвы до Нячанга уже доступны
+                    для бронирования.
+                </p>
+                <p class="text text-center">
+                    Живописные пейзажи, тёплый климат, древние памятники и масса исторических
+                    достопримечательностей создают совершенно особенную атмосферу, в которой приятно
+                    как расслабиться, так и заняться активными видами отдыха. А доброжелательность
+                    местных жителей и высокий уровень сервиса придутся по душе абсолютно важному!
+                </p>
+            </div>
             <div class="swiper slider js-slider-location">
-
                 <div class="slider__content js-slider-content">
                     <div class="slider__info">
                         <h4 class="title-3 mb-8">
@@ -106,7 +176,7 @@
 
                 <div class="swiper-wrapper">
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img"
+                        <img class="slider__img js-slider-img"
                              src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_1.webp" alt="">
                         <div class="slider__locale js-slider-pin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
@@ -118,7 +188,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img"
+                        <img class="slider__img js-slider-img"
                              src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_2.webp" alt="">
                         <div class="slider__locale js-slider-pin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
@@ -132,7 +202,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img"
+                        <img class="slider__img js-slider-img"
                              src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_3.webp" alt="">
                         <div class="slider__locale js-slider-pin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
@@ -146,7 +216,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide slider__slide">
-                        <img class="slider__img"
+                        <img class="slider__img js-slider-img"
                              src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_4.webp" alt="">
                         <div class="slider__locale js-slider-pin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18"
@@ -186,59 +256,7 @@
     }
 
     hostReactAppReady().then(() => {
-        const sliderLocation = new Swiper(".js-slider-location", {
-            breakpoints: {
-                1280: {
-                    slidesPerView: 1,
-                    spaceBetween: 32,
-                },
-                1024: {
-                    slidesPerView: 1,
-                    spaceBetween: 32,
-                },
-                768: {
-                    slidesPerView: 1,
-                    spaceBetween: 32,
-                },
-            },
-            slidesPerView: 1,
-            spaceBetween: 32,
-            loop: true,
-            pagination: {
-                el: ".js-pagination-location",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".js-next-location",
-                prevEl: ".js-prev-location",
-            },
-        });
-    });
 
-    function setMargin() {
-        const sliderContent = document.querySelector(".js-slider-content");
-        const sliderPins = document.querySelectorAll('.js-slider-pin');
-        const sliderPagination = document.querySelector('.js-pagination-location');
-        const gridWidth = 1530;
-
-        let fullWidth = document.body.clientWidth;
-        let calcMargin = (fullWidth - gridWidth) / 2;
-
-        if (calcMargin > 0) {
-            sliderContent.style.marginLeft = calcMargin + "px";
-
-            sliderPins.forEach((pin) => {
-                pin.style.marginRight = calcMargin + "px";
-            });
-
-            sliderPagination.style.marginRight = calcMargin + "px";
-        }
-    }
-
-    setTimeout(() => setMargin(), 500);
-
-    window.addEventListener('resize', () => {
-        setMargin();
     });
 </script>
 </body>

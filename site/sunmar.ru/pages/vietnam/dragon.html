@@ -4,6 +4,10 @@
         background-color: #F5F5F8;
         border-radius: 16px;
         display: flex;
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: column;
+        }
     }
 
     .dragon__col {
@@ -12,19 +16,34 @@
         align-items: flex-end;
     }
 
-    .dragon__col--text {
+    .dragon__col--img {
+
+        @media screen and (max-width: 1024px) {
+            order: 2;
+            justify-content: center;
+            transform: scaleX(-1);
+        }
+    }
+
+    .dragon__info {
         padding-inline: 40px;
         padding-block: 32px;
+
+        @media screen and (max-width: 1024px) {
+            .title-3, .text {
+                text-align: center;
+            }
+        }
     }
 </style>
 <section class="sunmar" id="anchor-1">
     <article>
         <div class="wrapper">
             <div class="dragon">
-                <div class="dragon__col">
+                <div class="dragon__col dragon__col--img">
                     <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/dragon.webp" alt="">
                 </div>
-                <div class="dragon__col dragon__col--text">
+                <div class="dragon__col">
                     <div class="dragon__info">
                         <h3 class="title-3 mb-8">
                             Как въезжать и чем платить

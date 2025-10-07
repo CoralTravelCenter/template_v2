@@ -48,10 +48,21 @@
     .block__wrapper {
         display: flex;
         margin-bottom: 32px;
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: column;
+        }
     }
 
     .block__wrapper img {
         border-radius: 16px 0 0 16px;
+        object-fit: cover;
+        max-width: unset;
+
+        @media screen and (max-width: 1024px) {
+            border-radius: 16px 16px 0 0;
+            width: 100%;
+        }
     }
 
     .block__info {
@@ -61,6 +72,19 @@
         padding: 32px;
         justify-content: center;
         border-radius: 0 16px 16px 0;
+    }
+
+    .block__img {
+        display: flex;
+
+        @media screen and (max-width: 1280px) {
+            width: 50%;
+        }
+
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            height: 200px;
+        }
     }
 </style>
 <style>
@@ -121,17 +145,25 @@
     }
 
     .big-slider .slider__prev {
-        left: -80px;
+        left: -65px;
     }
 
     .big-slider .slider__next {
-        right: -80px;
+        right: -65px;
     }
 
     @media screen and (max-width: 768px) {
         .big-slider .slider__prev, .big-slider .slider__next {
             display: none;
         }
+    }
+
+    .big-slider .swiper {
+        padding-bottom: 30px;
+    }
+
+    .big-slider .slider__pagination {
+        bottom: 0px;
     }
 </style>
 <section class="sunmar big-slider" id="anchor-4">
@@ -170,8 +202,10 @@
                         <div class="tabs__pane tabs__pane--active" data-tab="1">
                             <div class="block">
                                 <div class="block__wrapper">
-                                    <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
-                                         alt="">
+                                    <div class="block__img">
+                                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
+                                             alt="">
+                                    </div>
                                     <div class="block__info">
                                         <h3 class="title-4 mb-16">
                                             Нячанг
@@ -254,68 +288,444 @@
                             </div>
                         </div>
                         <div class="tabs__pane" data-tab="2">
-                            <div class="swiper slider js-slider-looks">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide slider__slide">
-                                        <img class="slider__img"
-                                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                            <div class="block">
+                                <div class="block__wrapper">
+                                    <div class="block__img">
+                                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
                                              alt="">
-                                        <div class="slider__info">
-                                            <h4 class="slider__title text-center">
-                                                Софийский собор (Айя-София)
-                                            </h4>
-                                            <p class="text">
-                                                Главная святыня христианства, переоборудованная в мечеть после
-                                                захвата Константинополя.
-                                                Здесь можно увидеть остатки минаретов, великолепную мозаику и панно
-                                                с арабской вязью.
-                                            </p>
-                                        </div>
                                     </div>
-                                    <div class="swiper-slide slider__slide">
-                                        <img class="slider__img"
-                                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
-                                             alt="">
-                                        <div class="slider__info">
-                                            <h4 class="slider__title text-center">
-                                                Голубая мечеть
-                                            </h4>
-                                            <p class="text">
-                                                Главная действующая мечеть Стамбула. Внутри мечети находится 260
-                                                окон.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide slider__slide">
-                                        <img class="slider__img"
-                                             src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
-                                             alt="">
-                                        <div class="slider__info">
-                                            <h4 class="slider__title text-center">
-                                                Дворец Топкапы
-                                            </h4>
-                                            <p class="text">
-                                                Комплекс из 4 дворов — главная резиденция правителей. Здесь можно
-                                                увидеть древнюю
-                                                византийскую церковь Святой Ирины, опочивальни и гарем султанов.
-                                            </p>
-                                        </div>
+                                    <div class="block__info">
+                                        <h3 class="title-4 mb-16">
+                                            Нячанг
+                                        </h3>
+                                        <p class="text">
+                                            Шумный, энергичный, полный веселья и жизни Нячанг считается пляжной столицей
+                                            Вьетнама. Пейзажи здесь завораживают: живописная зелень, белоснежные пляжи,
+                                            лазурная вода, идеально подходящая для дайвинга и снорклинга. И, конечно же,
+                                            яркая ночная жизнь. Здесь вы найдёте множество ночных клубов, уютных местных
+                                            кафе и ресторанов, что определённо понравится активным туристам, а тех,
+                                            кто хочет полностью расслабиться, привлекут разнообразные спа-процедуры.
+                                        </p>
+                                        <p class="text">
+                                            Любителям исторических достопримечательностей и просто красивых видов стоит
+                                            присмотреться к самым ярким местам города:
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+
+                                <div class="swiper slider js-slider-looks">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Кафедральный собор Святого Иосифа
+                                                </h4>
+                                                <p class="text">
+                                                    В Ханое возвышается прекрасный собор в стиле неоготики, построенный
+                                                    в 19 веке. Этот величественный храм является не только главной
+                                                    католической церковью города, но и важным религиозным центром
+                                                    для католиков со всего Вьетнама. Во внутреннем дворе собора можно
+                                                    насладиться чашкой чая под звуки живой музыки, создавая
+                                                    умиротворяющую атмосферу.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Набережная и «башня лотоса»
+                                                </h4>
+                                                <p class="text">
+                                                    Это место привлекает и местных жителей, и туристов в любое время
+                                                    дня и ночи. Просторная парковая зона вдоль набережной оформлена
+                                                    с большим вкусом: зелень, скульптуры, ухоженные газоны и лужайки,
+                                                    фонтаны и удобные скамейки создают атмосферу комфорта и красоты.
+                                                    Общая протяжённость набережной составляет около 6 километров,
+                                                    из которых 4 километра представляют собой непрерывную линию.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Пагода Лонг Шон
+                                                </h4>
+                                                <p class="text">
+                                                    Пагода Лонг Шон, признанная красивейшей в регионе, с 1936 года
+                                                    является главным буддийским храмом провинции Кхань-Хоа. Это одно
+                                                    из самых любимых туристами мест в городе. При храме разбит
+                                                    восхитительный сад, а возле статуи Будды расположена смотровая
+                                                    площадка, откуда открывается захватывающий вид на окружающие
+                                                    пейзажи.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="tabs__pane" data-tab="3">
-                            zzcxcxcxzc
+                            <div class="block">
+                                <div class="block__wrapper">
+                                    <div class="block__img">
+                                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
+                                             alt="">
+                                    </div>
+                                    <div class="block__info">
+                                        <h3 class="title-4 mb-16">
+                                            Нячанг
+                                        </h3>
+                                        <p class="text">
+                                            Шумный, энергичный, полный веселья и жизни Нячанг считается пляжной столицей
+                                            Вьетнама. Пейзажи здесь завораживают: живописная зелень, белоснежные пляжи,
+                                            лазурная вода, идеально подходящая для дайвинга и снорклинга. И, конечно же,
+                                            яркая ночная жизнь. Здесь вы найдёте множество ночных клубов, уютных местных
+                                            кафе и ресторанов, что определённо понравится активным туристам, а тех,
+                                            кто хочет полностью расслабиться, привлекут разнообразные спа-процедуры.
+                                        </p>
+                                        <p class="text">
+                                            Любителям исторических достопримечательностей и просто красивых видов стоит
+                                            присмотреться к самым ярким местам города:
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper slider js-slider-looks">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Кафедральный собор Святого Иосифа
+                                                </h4>
+                                                <p class="text">
+                                                    В Ханое возвышается прекрасный собор в стиле неоготики, построенный
+                                                    в 19 веке. Этот величественный храм является не только главной
+                                                    католической церковью города, но и важным религиозным центром
+                                                    для католиков со всего Вьетнама. Во внутреннем дворе собора можно
+                                                    насладиться чашкой чая под звуки живой музыки, создавая
+                                                    умиротворяющую атмосферу.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Набережная и «башня лотоса»
+                                                </h4>
+                                                <p class="text">
+                                                    Это место привлекает и местных жителей, и туристов в любое время
+                                                    дня и ночи. Просторная парковая зона вдоль набережной оформлена
+                                                    с большим вкусом: зелень, скульптуры, ухоженные газоны и лужайки,
+                                                    фонтаны и удобные скамейки создают атмосферу комфорта и красоты.
+                                                    Общая протяжённость набережной составляет около 6 километров,
+                                                    из которых 4 километра представляют собой непрерывную линию.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Пагода Лонг Шон
+                                                </h4>
+                                                <p class="text">
+                                                    Пагода Лонг Шон, признанная красивейшей в регионе, с 1936 года
+                                                    является главным буддийским храмом провинции Кхань-Хоа. Это одно
+                                                    из самых любимых туристами мест в городе. При храме разбит
+                                                    восхитительный сад, а возле статуи Будды расположена смотровая
+                                                    площадка, откуда открывается захватывающий вид на окружающие
+                                                    пейзажи.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="tabs__pane" data-tab="4">
-                            1231232
+                            <div class="block">
+                                <div class="block__wrapper">
+                                    <div class="block__img">
+                                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
+                                             alt="">
+                                    </div>
+                                    <div class="block__info">
+                                        <h3 class="title-4 mb-16">
+                                            Нячанг
+                                        </h3>
+                                        <p class="text">
+                                            Шумный, энергичный, полный веселья и жизни Нячанг считается пляжной столицей
+                                            Вьетнама. Пейзажи здесь завораживают: живописная зелень, белоснежные пляжи,
+                                            лазурная вода, идеально подходящая для дайвинга и снорклинга. И, конечно же,
+                                            яркая ночная жизнь. Здесь вы найдёте множество ночных клубов, уютных местных
+                                            кафе и ресторанов, что определённо понравится активным туристам, а тех,
+                                            кто хочет полностью расслабиться, привлекут разнообразные спа-процедуры.
+                                        </p>
+                                        <p class="text">
+                                            Любителям исторических достопримечательностей и просто красивых видов стоит
+                                            присмотреться к самым ярким местам города:
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper slider js-slider-looks">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Кафедральный собор Святого Иосифа
+                                                </h4>
+                                                <p class="text">
+                                                    В Ханое возвышается прекрасный собор в стиле неоготики, построенный
+                                                    в 19 веке. Этот величественный храм является не только главной
+                                                    католической церковью города, но и важным религиозным центром
+                                                    для католиков со всего Вьетнама. Во внутреннем дворе собора можно
+                                                    насладиться чашкой чая под звуки живой музыки, создавая
+                                                    умиротворяющую атмосферу.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Набережная и «башня лотоса»
+                                                </h4>
+                                                <p class="text">
+                                                    Это место привлекает и местных жителей, и туристов в любое время
+                                                    дня и ночи. Просторная парковая зона вдоль набережной оформлена
+                                                    с большим вкусом: зелень, скульптуры, ухоженные газоны и лужайки,
+                                                    фонтаны и удобные скамейки создают атмосферу комфорта и красоты.
+                                                    Общая протяжённость набережной составляет около 6 километров,
+                                                    из которых 4 километра представляют собой непрерывную линию.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Пагода Лонг Шон
+                                                </h4>
+                                                <p class="text">
+                                                    Пагода Лонг Шон, признанная красивейшей в регионе, с 1936 года
+                                                    является главным буддийским храмом провинции Кхань-Хоа. Это одно
+                                                    из самых любимых туристами мест в городе. При храме разбит
+                                                    восхитительный сад, а возле статуи Будды расположена смотровая
+                                                    площадка, откуда открывается захватывающий вид на окружающие
+                                                    пейзажи.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="tabs__pane" data-tab="5">
-                            sdfsfdsfsd
+                            <div class="block">
+                                <div class="block__wrapper">
+                                    <div class="block__img">
+                                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
+                                             alt="">
+                                    </div>
+                                    <div class="block__info">
+                                        <h3 class="title-4 mb-16">
+                                            Нячанг
+                                        </h3>
+                                        <p class="text">
+                                            Шумный, энергичный, полный веселья и жизни Нячанг считается пляжной столицей
+                                            Вьетнама. Пейзажи здесь завораживают: живописная зелень, белоснежные пляжи,
+                                            лазурная вода, идеально подходящая для дайвинга и снорклинга. И, конечно же,
+                                            яркая ночная жизнь. Здесь вы найдёте множество ночных клубов, уютных местных
+                                            кафе и ресторанов, что определённо понравится активным туристам, а тех,
+                                            кто хочет полностью расслабиться, привлекут разнообразные спа-процедуры.
+                                        </p>
+                                        <p class="text">
+                                            Любителям исторических достопримечательностей и просто красивых видов стоит
+                                            присмотреться к самым ярким местам города:
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper slider js-slider-looks">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Кафедральный собор Святого Иосифа
+                                                </h4>
+                                                <p class="text">
+                                                    В Ханое возвышается прекрасный собор в стиле неоготики, построенный
+                                                    в 19 веке. Этот величественный храм является не только главной
+                                                    католической церковью города, но и важным религиозным центром
+                                                    для католиков со всего Вьетнама. Во внутреннем дворе собора можно
+                                                    насладиться чашкой чая под звуки живой музыки, создавая
+                                                    умиротворяющую атмосферу.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Набережная и «башня лотоса»
+                                                </h4>
+                                                <p class="text">
+                                                    Это место привлекает и местных жителей, и туристов в любое время
+                                                    дня и ночи. Просторная парковая зона вдоль набережной оформлена
+                                                    с большим вкусом: зелень, скульптуры, ухоженные газоны и лужайки,
+                                                    фонтаны и удобные скамейки создают атмосферу комфорта и красоты.
+                                                    Общая протяжённость набережной составляет около 6 километров,
+                                                    из которых 4 километра представляют собой непрерывную линию.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Пагода Лонг Шон
+                                                </h4>
+                                                <p class="text">
+                                                    Пагода Лонг Шон, признанная красивейшей в регионе, с 1936 года
+                                                    является главным буддийским храмом провинции Кхань-Хоа. Это одно
+                                                    из самых любимых туристами мест в городе. При храме разбит
+                                                    восхитительный сад, а возле статуи Будды расположена смотровая
+                                                    площадка, откуда открывается захватывающий вид на окружающие
+                                                    пейзажи.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="tabs__pane" data-tab="6">
-                            zzcxcxcxzc
+                            <div class="block">
+                                <div class="block__wrapper">
+                                    <div class="block__img">
+                                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_1.webp"
+                                             alt="">
+                                    </div>
+                                    <div class="block__info">
+                                        <h3 class="title-4 mb-16">
+                                            Нячанг
+                                        </h3>
+                                        <p class="text">
+                                            Шумный, энергичный, полный веселья и жизни Нячанг считается пляжной столицей
+                                            Вьетнама. Пейзажи здесь завораживают: живописная зелень, белоснежные пляжи,
+                                            лазурная вода, идеально подходящая для дайвинга и снорклинга. И, конечно же,
+                                            яркая ночная жизнь. Здесь вы найдёте множество ночных клубов, уютных местных
+                                            кафе и ресторанов, что определённо понравится активным туристам, а тех,
+                                            кто хочет полностью расслабиться, привлекут разнообразные спа-процедуры.
+                                        </p>
+                                        <p class="text">
+                                            Любителям исторических достопримечательностей и просто красивых видов стоит
+                                            присмотреться к самым ярким местам города:
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="swiper slider js-slider-looks">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_2.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Кафедральный собор Святого Иосифа
+                                                </h4>
+                                                <p class="text">
+                                                    В Ханое возвышается прекрасный собор в стиле неоготики, построенный
+                                                    в 19 веке. Этот величественный храм является не только главной
+                                                    католической церковью города, но и важным религиозным центром
+                                                    для католиков со всего Вьетнама. Во внутреннем дворе собора можно
+                                                    насладиться чашкой чая под звуки живой музыки, создавая
+                                                    умиротворяющую атмосферу.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_3.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Набережная и «башня лотоса»
+                                                </h4>
+                                                <p class="text">
+                                                    Это место привлекает и местных жителей, и туристов в любое время
+                                                    дня и ночи. Просторная парковая зона вдоль набережной оформлена
+                                                    с большим вкусом: зелень, скульптуры, ухоженные газоны и лужайки,
+                                                    фонтаны и удобные скамейки создают атмосферу комфорта и красоты.
+                                                    Общая протяжённость набережной составляет около 6 километров,
+                                                    из которых 4 километра представляют собой непрерывную линию.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide slider__slide">
+                                            <img class="slider__img"
+                                                 src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/look_4.webp"
+                                                 alt="">
+                                            <div class="slider__info">
+                                                <h4 class="title-5 mb-16">
+                                                    Пагода Лонг Шон
+                                                </h4>
+                                                <p class="text">
+                                                    Пагода Лонг Шон, признанная красивейшей в регионе, с 1936 года
+                                                    является главным буддийским храмом провинции Кхань-Хоа. Это одно
+                                                    из самых любимых туристами мест в городе. При храме разбит
+                                                    восхитительный сад, а возле статуи Будды расположена смотровая
+                                                    площадка, откуда открывается захватывающий вид на окружающие
+                                                    пейзажи.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider__pagination swiper-pagination js-pagination-looks"></div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -411,10 +821,6 @@
                 el: ".js-pagination-looks",
                 clickable: true,
             },
-            // navigation: {
-            //     nextEl: ".js-next-looks",
-            //     prevEl: ".js-prev-looks",
-            // },
         });
     });
 </script>

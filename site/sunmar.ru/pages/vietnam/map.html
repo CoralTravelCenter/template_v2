@@ -4,12 +4,29 @@
     .map {
         display: flex;
         gap: 32px;
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: column;
+        }
     }
 
     .map__info {
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        @media screen and (max-width: 1024px) {
+            .title-3, .text {
+                text-align: center;
+            }
+        }
+    }
+
+    .map__img {
+        @media screen and (max-width: 1024px) {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .map__img img {
@@ -19,8 +36,8 @@
     .map__divider {
         padding-top: 40px;
         object-fit: cover;
-        width: 100%;
         display: flex;
+        max-width: unset;
     }
 </style>
 <section class="sunmar" id="anchor-3">

@@ -149,7 +149,7 @@
         padding: 0 !important
     }
 
-    .layout-container-limit:has(section.sunamr) {
+    .layout-container-limit:has(section.sunmar) {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important
@@ -291,9 +291,8 @@
         z-index: 2;
 
         @media screen and (max-width: 768px) {
-            padding-left: 16px;
             justify-content: flex-start;
-            padding-top: 16px;
+            padding-top: 48px;
         }
     }
 
@@ -325,7 +324,7 @@
 
         @media screen and (max-width: 515px) {
             aspect-ratio: 428 / 556;
-            background-image: url('https://b2ccdn.coral.ru/content/landing-pages/thai/new/banner_m.webp');
+            background-image: url('https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/banner_m.webp');
         }
 
         iframe {
@@ -336,10 +335,6 @@
             height: auto;
             min-height: 100%;
             transform: translate(-50%, -50%);
-
-            @media screen and (max-width: 515px) {
-                display: none;
-            }
         }
     }
 
@@ -359,10 +354,22 @@
     .banner__decor {
         display: flex;
         object-fit: cover;
-        width: 100%;
+        max-width: unset;
     }
 
     .banner__nav {
+        position: absolute;
+        bottom: 32px;
+        padding-inline: 80px;
+
+        @media screen and (max-width: 768px) {
+            padding-inline: 16px;
+            right: 0;
+            left: 0;
+        }
+    }
+
+    .banner__nav-wrapper {
         display: flex;
         background-color: rgba(255, 255, 255, 0.64);
         border-radius: 24px;
@@ -370,22 +377,49 @@
         align-items: center;
         padding: 8px;
         gap: 8px;
-        position: absolute;
-        bottom: 32px;
+        justify-content: space-around;
+
+        @media screen and (max-width: 768px) {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 
     .banner__nav a {
         padding-inline: 30px;
-        padding-block: 12px;
+        height: 40px;
+        display: flex;
+        align-items: center;
         text-decoration: none!important;
         font-weight: 600;
         color: inherit!important;
         border-radius: 16px;
+        text-align: center;
+
+        @media screen and (max-width: 1280px) {
+            font-size: 12px;
+            font-weight: 400;
+            padding-inline: 14px;
+        }
     }
 
     .banner__nav a:hover {
         color: white!important;
         background-color: #061a3e;
+    }
+
+    .banner-desktop {
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    .banner-mobile {
+        display: none;
+
+        @media screen and (max-width: 768px) {
+            display: block;
+        }
     }
 
 </style>
@@ -400,9 +434,10 @@
                         <h1 class="banner__title">
                             Вьетнам – страна контрастов
                         </h1>
-                        <img src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/title.webp" alt="">
+                        <img class="banner-desktop" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/title.webp" alt="">
+                        <img class="banner-mobile" src="https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/title_m.webp" alt="">
                     </div>
-                    <p class="banner__subtitle">
+                    <p class="banner__subtitle text-center">
                         Невероятных красот и ярких впечатлений
                     </p>
                     <a href="#anchor-6" class="banner__button">
@@ -410,10 +445,12 @@
                     </a>
 
                     <div class="banner__nav">
-                        <a href="#anchor-1">Как въезжать и чем платить</a>
-                        <a href="#anchor-2">Факты о Вьетнаме</a>
-                        <a href="#anchor-3">Выбираем, когда и куда</a>
-                        <a href="#anchor-4">Где и что посмотреть</a>
+                        <div class="banner__nav-wrapper">
+                            <a href="#anchor-1">Как въезжать и чем платить</a>
+                            <a href="#anchor-2">Факты о Вьетнаме</a>
+                            <a href="#anchor-3">Выбираем, когда и куда</a>
+                            <a href="#anchor-4">Где и что посмотреть</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -507,6 +544,164 @@
 
     hostReactAppReady().then(() => {
         vimeoAutoPlay();
+
+        document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+            const tabs = Array.from(tabsBlock.querySelectorAll('.tabs__tab'));
+            const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+            function switchToTab(index) {
+                if (index < 0 || index >= tabs.length) return;
+
+                const tab = tabs[index];
+                const tabId = tab.getAttribute('data-tab');
+
+                tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                tab.classList.add('tabs__tab--active');
+                const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                if (activePane) {
+                    activePane.classList.add('tabs__pane--active');
+                }
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const index = tabs.indexOf(tab);
+                    switchToTab(index);
+                });
+            });
+
+            const nextBtn = tabsBlock.querySelector('.js-next-tab');
+            const prevBtn = tabsBlock.querySelector('.js-prev-tab');
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const activeIndex = tabs.findIndex(tab => tab.classList.contains('tabs__tab--active'));
+                    const nextIndex = (activeIndex + 1) % tabs.length;
+                    switchToTab(nextIndex);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const activeIndex = tabs.findIndex(tab => tab.classList.contains('tabs__tab--active'));
+                    const prevIndex = activeIndex === 0 ? tabs.length - 1 : activeIndex - 1;
+                    switchToTab(prevIndex);
+                });
+            }
+        });
+
+        const sliderLooks = new Swiper(".js-slider-looks", {
+            breakpoints: {
+                1280: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 32,
+                },
+            },
+            slidesPerView: 1,
+            spaceBetween: 32,
+            loop: true,
+            pagination: {
+                el: ".js-pagination-looks",
+                clickable: true,
+            },
+        });
+
+        const sliderLocation = new Swiper(".js-slider-location", {
+            breakpoints: {
+                1280: {
+                    slidesPerView: 1,
+                    spaceBetween: 32,
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 32,
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 32,
+                },
+            },
+            slidesPerView: 1,
+            spaceBetween: 32,
+            loop: true,
+            pagination: {
+                el: ".js-pagination-location",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".js-next-location",
+                prevEl: ".js-prev-location",
+            },
+        });
+
+        function setMargin() {
+            const sliderContent = document.querySelector(".js-slider-content");
+            const sliderPins = document.querySelectorAll('.js-slider-pin');
+            const sliderPagination = document.querySelector('.js-pagination-location');
+            const gridWidth = 1530;
+
+            let fullWidth = document.body.clientWidth;
+            let calcMargin = (fullWidth - gridWidth) / 2;
+
+            if (calcMargin > 0) {
+                sliderContent.style.marginLeft = calcMargin + "px";
+
+                sliderPins.forEach((pin) => {
+                    pin.style.marginRight = calcMargin + "px";
+                });
+
+                sliderPagination.style.marginRight = calcMargin + "px";
+            }
+        }
+
+        function setImg() {
+            const images = document.querySelectorAll('.js-slider-img');
+            const width = window.innerWidth;
+
+            let suffix = '';
+
+            if (width < 768) {
+                suffix = '_m';
+            } else if (width < 1024) {
+                suffix = '_768';
+            } else if (width < 1280) {
+                suffix = '_1024';
+            } else if (width < 1440) {
+                suffix = '_1280';
+            }
+
+            images.forEach((img, index) => {
+                const slideNumber = index + 1;
+                const baseName = `https://b2ccdn.sunmar.ru/content/landing-pages/vietnam_gds_2025/slider_${slideNumber}`;
+                const newSrc = suffix
+                    ? `${baseName}${suffix}.webp`
+                    : `${baseName}.webp`;
+
+                if (img.src !== newSrc) {
+                    img.src = newSrc;
+                }
+            });
+        }
+
+        setTimeout(() => {
+            setMargin();
+            setImg()
+        }, 500);
+
+        window.addEventListener('resize', () => {
+            setMargin();
+            setImg();
+        });
     });
 </script>
 </body>

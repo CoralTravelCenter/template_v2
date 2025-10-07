@@ -10,6 +10,14 @@
         grid-template-columns: repeat(3, 1fr);
         margin-top: 24px;
         gap: 32px;
+
+        @media screen and (max-width: 1280px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 100%;
+        }
     }
 
     .decor__item {
@@ -20,6 +28,16 @@
         border-radius: 16px;
         padding-inline: 24px;
         padding-block: 10px;
+    }
+
+    .decor__item:last-child {
+        @media screen and (max-width: 1280px) {
+            grid-column: span 2;
+        }
+
+        @media screen and (max-width: 768px) {
+            grid-column: auto;
+        }
     }
 </style>
 <section class="sunmar decor" id="anchor-2">
