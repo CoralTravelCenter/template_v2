@@ -65,7 +65,7 @@ hostReactAppReady().then(() => {
             targetBlock.parentNode.replaceChild(blackBlock, targetBlock);
 
             blackBlock.addEventListener('click', () => {
-                const yaParams = {
+                const ymParams = {
                     name_stock: {
                         black_friday: {
                             name_point: "quick_search"
@@ -73,7 +73,7 @@ hostReactAppReady().then(() => {
                     }
                 }
 
-                ym(96674199, "reachGoal", "entry-point", yaParams);
+                ym(96674199, "reachGoal", "entry-point", ymParams);
             });
         }
     });

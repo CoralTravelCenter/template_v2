@@ -14,10 +14,6 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 
 hostReactAppReady().then(() => {
 
-    setTimeout(() => {
-
-    }, 2000);
-
     const obs = new MutationObserver(mutations => {
         const menuList = document.querySelector('.basic-menu');
 
@@ -54,7 +50,7 @@ hostReactAppReady().then(() => {
             menuList.insertBefore(newLink, lastMenuItem);
 
             newLink.addEventListener('click', () => {
-                const yaParams = {
+                const ymParams = {
                     name_stock: {
                         black_friday: {
                             name_point: "main_page_link",
@@ -62,7 +58,7 @@ hostReactAppReady().then(() => {
                     },
                 }
 
-                ym(96674199, "reachGoal", "entry-point", yaParams);
+                ym(96674199, "reachGoal", "entry-point", ymParams);
             });
         }
     });
