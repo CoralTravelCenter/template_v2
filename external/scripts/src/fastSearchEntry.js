@@ -64,7 +64,8 @@ hostReactAppReady().then(() => {
 
             targetBlock.parentNode.replaceChild(blackBlock, targetBlock);
 
-            blackBlock.addEventListener('click', () => {
+            blackBlock.addEventListener('click', (e) => {
+
                 const ymParams = {
                     name_stock: {
                         black_friday: {
