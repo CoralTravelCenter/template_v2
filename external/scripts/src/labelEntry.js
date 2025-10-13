@@ -251,6 +251,8 @@ hostReactAppReady().then(() => {
             bfLabel.classList.add('hidden');
 
             bfLabelPopup.classList.remove('on-hide');
+
+            ym(96674199,'reachGoal', 'popupShow');
         });
 
         bfLabelPopup.addEventListener('mouseleave', () => {
@@ -272,6 +274,8 @@ hostReactAppReady().then(() => {
             bfLabel.classList.add('hidden');
 
             bfLabelPopup.classList.remove('on-hide');
+
+            ym(96674199,'reachGoal', 'popupShow');
         });
 
         bfLabelClose.addEventListener('click', () => {
