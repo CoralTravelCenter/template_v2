@@ -231,7 +231,7 @@ hostReactAppReady().then(() => {
                     <p class="bf-label__text">
                         Летите туда, где настоящие скидки на настоящие бренды
                     </p>
-                    <a href="/" class="bf-label__button js-bf-button">
+                    <a href="https://www.coral.ru/hot-offers/black-friday/" class="bf-label__button js-bf-button">
                         Выбрать тур
                     </a>
                 </div>
@@ -287,7 +287,6 @@ hostReactAppReady().then(() => {
     const button = document.querySelector('.js-bf-button');
 
     button.addEventListener('click', (e) => {
-
         const ymParams = {
             name_stock: {
                 black_friday: {

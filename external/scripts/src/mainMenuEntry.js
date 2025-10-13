@@ -41,7 +41,7 @@ hostReactAppReady().then(() => {
 
             const newLink = document.createElement('a');
             newLink.className = 'black-friday__link';
-            newLink.href = '/';
+            newLink.href = 'https://www.coral.ru/hot-offers/black-friday/';
             newLink.innerHTML = `
                 <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon.svg" alt="">
                 <span>Черная пятница</span>
@@ -49,7 +49,8 @@ hostReactAppReady().then(() => {
 
             menuList.insertBefore(newLink, lastMenuItem);
 
-            newLink.addEventListener('click', () => {
+            newLink.addEventListener('click', (e) => {
+                e.preventDefault();
                 const ymParams = {
                     name_stock: {
                         black_friday: {
