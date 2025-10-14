@@ -33,17 +33,28 @@ hostReactAppReady().then(() => {
                 } else {
                     const style = document.createElement('style');
                     style.textContent = `
-                .black-friday__link {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    padding: 0 10px;
-                }
-                .black-friday__link span {
-                    font-size: 14px;
-                    color: black !important;
-                }
-            `;
+                        .black-friday__link {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            padding: 0 10px;
+                        }
+                        
+                        .black-friday__link-bg {
+                            background-image: url(https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_bg.svg);
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            width: 25px;
+                            height: 16px;
+                            display: flex;
+                            justify-content: center;
+                        }
+                       
+                        .black-friday__link span {
+                            font-size: 14px;
+                            color: black !important;
+                        }
+                    `;
                     document.head.appendChild(style);
 
                     const menuItems = menuList.children;
@@ -53,8 +64,12 @@ hostReactAppReady().then(() => {
                     newLink.className = 'black-friday__link';
                     newLink.href = 'https://www.coral.ru/hot-offers/black-friday/';
                     newLink.innerHTML = `
-                        <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_gif.svg" alt="">
+                        <div class="black-friday__link-bg">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_fire.gif" alt="">
+                        </div>
                         <span>Черная пятница</span>
+                        
+                        
                     `;
 
                     menuList.insertBefore(newLink, lastMenuItem);
@@ -79,9 +94,10 @@ hostReactAppReady().then(() => {
             const actionIcon = document.querySelector('coral-popup-trigger');
             if (actionIcon) {
                 const actionLink = document.createElement('a');
+                actionLink.style.display = 'flex';
                 actionLink.href = 'https://www.coral.ru/hot-offers/black-friday/';
                 actionLink.innerHTML = `
-                <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_g.svg" alt="">
+                <img style="background-color: black; border-radius: 50%;" src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_g2.gif" alt="">
             `;
 
                 actionIcon.parentNode.replaceChild(actionLink, actionIcon);
