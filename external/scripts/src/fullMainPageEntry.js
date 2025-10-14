@@ -28,49 +28,50 @@ hostReactAppReady().then(() => {
             const menuList = document.querySelector('.basic-menu');
 
             if (menuList) {
-                const style = document.createElement('style');
-                style.textContent = `
+                if (menuList.querySelector('.black-friday__link')) {
+                    mainMenuProcessed = true;
+                } else {
+                    const style = document.createElement('style');
+                    style.textContent = `
                 .black-friday__link {
                     display: flex;
                     align-items: center;
                     gap: 8px;
                     padding: 0 10px;
                 }
-                
                 .black-friday__link span {
                     font-size: 14px;
-                    color: black!important;
+                    color: black !important;
                 }
             `;
-                document.head.appendChild(style);
+                    document.head.appendChild(style);
 
-                const menuItems = menuList.children;
-                const lastMenuItem = menuItems[menuItems.length - 1];
+                    const menuItems = menuList.children;
+                    const lastMenuItem = menuItems[menuItems.length - 1];
 
-                const newLink = document.createElement('a');
-                newLink.className = 'black-friday__link';
-                newLink.href = 'https://www.coral.ru/hot-offers/black-friday/';
-                newLink.innerHTML = `
-                <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon.svg" alt="">
-                <span>Черная пятница</span>
-            `;
+                    const newLink = document.createElement('a');
+                    newLink.className = 'black-friday__link';
+                    newLink.href = 'https://www.coral.ru/hot-offers/black-friday/';
+                    newLink.innerHTML = `
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_gif.svg" alt="">
+                        <span>Черная пятница</span>
+                    `;
 
-                menuList.insertBefore(newLink, lastMenuItem);
+                    menuList.insertBefore(newLink, lastMenuItem);
 
-                newLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const ymParams = {
-                        name_stock: {
-                            black_friday: {
-                                name_point: "main_page_link",
+                    newLink.addEventListener('click', (e) => {
+                        const ymParams = {
+                            name_stock: {
+                                black_friday: {
+                                    name_point: "main_page_link",
+                                },
                             },
-                        },
-                    }
+                        };
+                        ym(96674199, "reachGoal", "entry-point", ymParams);
+                    });
 
-                    ym(96674199, "reachGoal", "entry-point", ymParams);
-                });
-
-                mainMenuProcessed = true;
+                    mainMenuProcessed = true;
+                }
             }
         }
 
@@ -80,7 +81,7 @@ hostReactAppReady().then(() => {
                 const actionLink = document.createElement('a');
                 actionLink.href = 'https://www.coral.ru/hot-offers/black-friday/';
                 actionLink.innerHTML = `
-                <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_m.svg" alt="">
+                <img src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/icon_g.svg" alt="">
             `;
 
                 actionIcon.parentNode.replaceChild(actionLink, actionIcon);
