@@ -13,17 +13,9 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 }
 
 hostReactAppReady().then(() => {
-    const obs = new MutationObserver(() => {
-        const hotelsBlock = document.querySelector('div[data-v-app]');
+    const style = document.createElement('style');
 
-        if (hotelsBlock) {
-            obs.disconnect();
-
-            const siblingMenu = document.querySelectorAll('.sibling-menu');
-
-            const style = document.createElement('style');
-
-            style.textContent = `
+    style.textContent = `
                 .seo-banner {
                     display: flex;
                     gap: 24px;
@@ -44,6 +36,10 @@ hostReactAppReady().then(() => {
                     background-image: url('https://b2ccdn.coral.ru/content/seo-banner/banner_768.webp');
                     min-height: 326px;
                     padding: 24px;
+                    
+                    @media screen and (max-width: 767px) {
+                        background-image: url('https://b2ccdn.coral.ru/content/seo-banner/banner_m.webp');
+                    }
                 }
                 
                 .seo-banner.seo-banner--with-menu .seo-banner__col-right {
@@ -196,17 +192,26 @@ hostReactAppReady().then(() => {
                 }
             `;
 
-            document.body.appendChild(style);
+    document.body.appendChild(style);
 
-            const bannerBlock = document.createElement('div');
+    const obs = new MutationObserver(() => {
+        const hotelsBlock = document.querySelector('div[data-v-app]');
+        const hotDealsBlock = document.querySelector('.hot-deals-block');
 
-            bannerBlock.classList.add('seo-banner');
 
-            if (siblingMenu.length > 0) {
-                bannerBlock.classList.add('seo-banner--with-menu');
-            }
+        obs.disconnect();
 
-            bannerBlock.innerHTML = `
+        const siblingMenu = document.querySelectorAll('.sibling-menu');
+
+        const bannerBlock = document.createElement('div');
+
+        bannerBlock.classList.add('seo-banner');
+
+        if (siblingMenu.length > 0) {
+            bannerBlock.classList.add('seo-banner--with-menu');
+        }
+
+        bannerBlock.innerHTML = `
                 <div class="seo-banner__col-left">
                     <div class="seo-banner__label">
                         Акция «Раннее бронирование ЛЕТО 2026»
@@ -217,7 +222,7 @@ hostReactAppReady().then(() => {
                     <p class="seo-banner__subtitle">
                         Все путешествия исполнятся!
                     </p>
-                    <a href="https://www.coral.ru/hot-offers/rannee-bronirovanie-osen/" class="seo-banner__button">
+                    <a href="https://www.coral.ru/hot-offers/rannee-bronirovanie-leto/" class="seo-banner__button">
                         Узнать больше
                     </a>
                 </div> 
@@ -256,8 +261,18 @@ hostReactAppReady().then(() => {
                 </div> 
             `;
 
+        let inserted = false;
+
+        if (hotelsBlock) {
             hotelsBlock.insertAdjacentElement('beforebegin', bannerBlock);
+            inserted = true;
+            obs.disconnect();
+        } else if (hotDealsBlock) {
+            hotDealsBlock.insertAdjacentElement('beforebegin', bannerBlock);
+            inserted = true;
+            obs.disconnect();
         }
+
     });
 
     obs.observe(document, {
