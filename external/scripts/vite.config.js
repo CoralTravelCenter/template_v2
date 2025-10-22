@@ -8,7 +8,7 @@ export default defineConfig({
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.sunmar.ru/idei-otdykha/uae-chto-delat-letom/'],
+        match: ['https://www.sunmar.ru/russia-krasnayapolyna-rozahutor/letnie-aktivnosti-na-kurorte-roza-hutor/'],
       },
     }),
   ],

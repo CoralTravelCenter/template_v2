@@ -197,6 +197,7 @@ hostReactAppReady().then(() => {
     const obs = new MutationObserver(() => {
         const hotelsBlock = document.querySelector('div[data-v-app]');
         const hotDealsBlock = document.querySelector('.hot-deals-block');
+        const customBlock = document.querySelector('#seo-block-place');
 
         const siblingMenu = document.querySelectorAll('.sibling-menu');
 
@@ -266,6 +267,14 @@ hostReactAppReady().then(() => {
             obs.disconnect();
         } else if (hotDealsBlock) {
             hotDealsBlock.insertAdjacentElement('beforebegin', bannerBlock);
+            inserted = true;
+            obs.disconnect();
+        } else if (!hotDealsBlock && !hotelsBlock) {
+            customBlock.insertAdjacentElement('afterbegin', bannerBlock);
+            inserted = true;
+            obs.disconnect();
+        } else if (hotDealsBlock && hotelsBlock) {
+            customBlock.insertAdjacentElement('afterbegin', bannerBlock);
             inserted = true;
             obs.disconnect();
         }

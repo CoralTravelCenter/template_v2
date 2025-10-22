@@ -60,7 +60,7 @@ hostReactAppReady().then(() => {
                     background-image: url('https://b2ccdn.sunmar.ru/content/banner/rb/banner_1440.webp');
                     background-repeat: no-repeat;
                     background-size: cover;
-                    background-position: center left;
+                    background-position: bottom left;
                     border-radius: 20px;
                     padding: 32px;
                     display: flex;
@@ -227,10 +227,9 @@ hostReactAppReady().then(() => {
     document.body.appendChild(style);
 
     const obs = new MutationObserver(() => {
-        const hotelsBlock = document.querySelector('div[data-v-app]');
+        const hotelsBlock = document.querySelector('[data-v-app]');
         const hotDealsBlock = document.querySelector('.hot-deals-block');
-
-        console.log(hotelsBlock);
+        const customBlock = document.querySelector('#seo-block-place');
 
         const siblingMenu = document.querySelectorAll('.sibling-menu');
 
@@ -356,6 +355,14 @@ hostReactAppReady().then(() => {
             obs.disconnect();
         } else if (hotDealsBlock) {
             hotDealsBlock.insertAdjacentElement('beforebegin', bannerBlock);
+            inserted = true;
+            obs.disconnect();
+        } else if (!hotDealsBlock && !hotelsBlock) {
+            customBlock.insertAdjacentElement('afterbegin', bannerBlock);
+            inserted = true;
+            obs.disconnect();
+        } else if (hotDealsBlock && hotelsBlock) {
+            customBlock.insertAdjacentElement('afterbegin', bannerBlock);
             inserted = true;
             obs.disconnect();
         }
