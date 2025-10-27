@@ -1,0 +1,47 @@
+
+.banner {
+  background-image: url("/site/coral.ru/assets/banner_1440.webp");
+  height: 520px;
+  width: 100%;
+  background-size: cover;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media screen and (max-width: 1439px) {
+    background-image: url("/site/coral.ru/assets/banner_1280.webp");
+    height: 420px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    background-image: url("/site/coral.ru/assets/banner_1024.webp");
+    height: 380px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    background-image: url("/site/coral.ru/assets/banner_768.webp");
+    height: 320px;
+  }
+
+  @media screen and (max-width: 767px) {
+    background-image: url("site/coral.ru/assets/banner_m.webp");
+    height: 396px;
+  }
+
+  &__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 64px;
+
+    @media screen and (max-width: 1023px) {
+      padding-inline: 32px;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 24px;
+      justify-content: flex-start;
+    }
+  }
+}

@@ -323,7 +323,7 @@ a.sunmar-button {
 }
 
 .layout-container-limit:has(section.coral),
-.layout-container-limit:has(section.sunamr) {
+.layout-container-limit:has(section.sunmar) {
   max-width: 100% !important;
   width: 100% !important;
   padding: 0 !important;
@@ -338,6 +338,10 @@ section > article .wrapper {
   padding-inline: 80px;
   padding-block: 40px;
   position: relative;
+
+  &--pt0 {
+    padding-top: 0;
+  }
 
   @media screen and (max-width: 768px) {
     padding-inline: 16px;
