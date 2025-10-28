@@ -29,7 +29,7 @@ async function waitForPopularTours(timeout = 5000, interval = 100) {
     });
 }
 
-const countiesMapping = [
+const countriesMapping = [
     {
         "friendlyUrl": "abhaziya",
         "id": "278-0",
@@ -234,7 +234,7 @@ function buildPayload(item, country, reservationType = 0) {
 }
 
 async function enrichPopularItem(item) {
-    const country = countiesMapping.find(c => c.name === item.name);
+    const country = countriesMapping.find(c => c.name === item.name);
     if (!country) return item;
 
     const [price, link] = await Promise.all([
@@ -335,59 +335,82 @@ function createPopularWrapper(popularData) {
     return wrapper;
 }
 
-hostReactAppReady().then(() => {
-    if (__NEXT_DATA__.props.pageProps.pageData.meta.departures[0].id === "2671-5" && __NEXT_DATA__.props.pageProps.pageData.meta.departures[0].isCurrent) {
-        waitForPopularTours().then(async (popularData) => {
-            const searchPanel = document.querySelector('[data-testid="quickSearchBarBlock"]');
-            const searchToursPanel = searchPanel?.querySelector('.ant-tabs-content-holder');
+function waitForElement(selector, { root = document, timeout = 15000 } = {}) {
+    return new Promise((resolve, reject) => {
+        const tryFind = () => (root || document).querySelector(selector);
+        const first = tryFind();
+        if (first && first.isConnected) return resolve(first);
 
-            if (!searchToursPanel) return;
-
-            const enriched = await Promise.all(popularData.map(enrichPopularItem));
-
-            const recentBlock = searchPanel?.querySelector('.swiper-wrapper');
-            if (!recentBlock) {
-                searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
+        const target = root && root !== document ? root : document.documentElement;
+        const obs = new MutationObserver(() => {
+            const el = tryFind();
+            if (el && el.isConnected) {
+                obs.disconnect();
+                resolve(el);
             }
-
-            const hotelButton = searchPanel.querySelector('[data-node-key="2"]');
-            const popularWrapperBlock = searchPanel?.querySelector('.popular-wrapper');
-
-            hotelButton?.addEventListener('click', () => {
-                if (popularWrapperBlock) {
-                    popularWrapperBlock.style.display = 'none';
-                }
-            });
-
-            const tourButton = searchPanel.querySelector('[data-node-key="1"]');
-
-            tourButton?.addEventListener('click', () => {
-                if (popularWrapperBlock) {
-                    popularWrapperBlock.style.display = 'block';
-                }
-            });
-
-            const closeRecentBlock = recentBlock?.querySelectorAll('.icon-container');
-
-            const tabsDiv = searchPanel?.querySelector('.ant-row');
-
-            if (closeRecentBlock !== undefined) {
-                let isExecuted = false;
-
-                closeRecentBlock.forEach((block) => {
-                    block.addEventListener('click', () => {
-                        setTimeout(() => {
-                            if ((tabsDiv && tabsDiv.nextElementSibling && tabsDiv.nextElementSibling.tagName === 'DIV') === null && !isExecuted) {
-                                searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
-                                isExecuted = true;
-                            }
-                        }, 1500);
-                    });
-                });
-            }
-
-        }).catch(err => {
-            console.warn('Не удалось получить данные для быстрого поиска', err);
         });
+        obs.observe(target, { childList: true, subtree: true });
+
+        if (timeout) {
+            setTimeout(() => {
+                obs.disconnect();
+                const el = tryFind();
+                el && el.isConnected
+                    ? resolve(el)
+                    : reject(new Error(`waitForElement timeout: ${selector}`));
+            }, timeout);
+        }
+    });
+}
+
+hostReactAppReady().then(async () => {
+    try {
+        const meta = __NEXT_DATA__?.props?.pageProps?.pageData?.meta;
+        if (!(meta?.departures?.[0]?.id === "2671-5" && meta?.departures?.[0]?.isCurrent)) return;
+
+        const popularData = await waitForPopularTours();
+        const enriched = await Promise.all(popularData.map(enrichPopularItem));
+
+        const searchPanel = await waitForElement('[data-testid="quickSearchBarBlock"]');
+        const searchToursPanel = await waitForElement('.ant-tabs-content-holder', { root: searchPanel });
+
+        const recentBlock = searchPanel.querySelector('.swiper-wrapper');
+        if (!recentBlock) {
+            searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
+        }
+
+        let popularWrapperBlock = searchPanel.querySelector('.popular-wrapper');
+
+        const hotelButton = searchPanel.querySelector('[data-node-key="2"]');
+        hotelButton?.addEventListener('click', () => {
+            popularWrapperBlock = searchPanel.querySelector('.popular-wrapper');
+            if (popularWrapperBlock) popularWrapperBlock.style.display = 'none';
+        });
+
+        const tourButton = searchPanel.querySelector('[data-node-key="1"]');
+        tourButton?.addEventListener('click', () => {
+            popularWrapperBlock = searchPanel.querySelector('.popular-wrapper');
+            if (popularWrapperBlock) popularWrapperBlock.style.display = 'block';
+        });
+
+        const closeRecentBlock = recentBlock?.querySelectorAll('.icon-container');
+        const tabsDiv = searchPanel.querySelector('.ant-row');
+
+        if (closeRecentBlock !== undefined) {
+            let isExecuted = false;
+            closeRecentBlock.forEach((block) => {
+                block.addEventListener('click', () => {
+                    setTimeout(() => {
+                        const needInsert = (tabsDiv && tabsDiv.nextElementSibling && tabsDiv.nextElementSibling.tagName === 'DIV') === null;
+                        if (needInsert && !isExecuted) {
+                            searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
+                            isExecuted = true;
+                        }
+                    }, 1500);
+                });
+            });
+        }
+    } catch (err) {
+        console.warn('Не удалось инициализировать популярные туры для быстрого поиска', err);
     }
 });
