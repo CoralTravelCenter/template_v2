@@ -83,6 +83,16 @@ hostReactAppReady().then(() => {
 
             const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
 
+            const linkText = this.textContent.trim();
+
+            ym(96674199, "reachGoal", "promo_landing_navigation", {
+                name_stock: {
+                    calendar: {
+                        name_block: linkText,
+                    },
+                },
+            });
+
             e.preventDefault();
 
             window.scrollTo({
@@ -102,6 +112,7 @@ hostReactAppReady().then(() => {
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const tabId = tab.getAttribute('data-tab');
+                const tabText = tab.textContent.trim();
 
                 tabs.forEach(item => item.classList.remove('tabs__tab--active'));
                 panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
@@ -111,6 +122,10 @@ hostReactAppReady().then(() => {
                 if (activePane) {
                     activePane.classList.add('tabs__pane--active');
                 }
+
+                ym(96674199, 'reachGoal', 'calendar_month', {
+                    'month': tabText
+                });
             });
         });
     });

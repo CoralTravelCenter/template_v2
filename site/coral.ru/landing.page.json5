@@ -2,14 +2,18 @@
 	env: {
 		brand: 'coral-next',
 		cmsWidgetContainer: '<div>{{{ widget_markup }}}</div>',
-		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/turkey/stambul',
+		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/calendar',
 	},
 	contents: [
 		'/site/coral.ru/pages/calendar/banner.html',
 		'/site/coral.ru/pages/calendar/nav.html',
 		'/site/coral.ru/pages/calendar/text.html',
+		'/site/coral.ru/pages/calendar/photos.html',
 		'/site/coral.ru/pages/calendar/tabs.html',
+		'/site/coral.ru/pages/calendar/hotels.html',
 		'/site/coral.ru/pages/calendar/tabs-2.html',
+		'/site/coral.ru/pages/calendar/hotels-2.html',
 		'/site/coral.ru/pages/calendar/prize.html',
+		'/site/coral.ru/pages/calendar/timer.html',
 	]
 }

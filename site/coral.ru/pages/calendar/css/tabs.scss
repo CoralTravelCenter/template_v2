@@ -44,12 +44,34 @@
   display: flex;
   gap: 24px;
 
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+  }
+
   &__col {
     display: flex;
     flex: 1;
     background-color: white;
     border-radius: 20px;
     min-height: 496px;
+
+    //@media screen and (max-width: 1023px) {
+    //  min-height: 400px;
+    //}
+
+    &:first-child {
+      @media screen and (max-width: 1023px) {
+        order: 2;
+        min-height: unset;
+      }
+    }
+
+    &:last-child {
+      @media screen and (max-width: 1023px) {
+        order: 1;
+        min-height: 400px;
+      }
+    }
 
     img {
       object-fit: cover;
@@ -92,11 +114,16 @@
       padding-block: 2px;
       border-radius: 16px;
       font-size: 12px;
-      background-image:
-              linear-gradient(267deg, rgba(255, 255, 255, 0.64) 47.78%, rgba(255, 255, 255, 0.00) 90.68%, rgba(255, 255, 255, 0.64) 90.68%),
-              linear-gradient(90deg, rgba(223, 241, 248, 0.00) -31.98%, #6EB9E8 201.76%);
+      background-image: linear-gradient(226deg, rgba(255, 255, 255, 0.00) -26.68%, rgba(255, 255, 255, 0.19) 23.1%, rgba(255, 255, 255, 0.43) 35.25%, rgba(255, 255, 255, 0.19) 48.82%, rgba(255, 255, 255, 0.00) 97.17%), var(--Base-color_Base_Item_Bg_4, #D2E9FB);
       background-color: #D2E9FB;
       background-position: -20px;
+    }
+  }
+
+  .coral-button {
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
     }
   }
 }
