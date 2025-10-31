@@ -1,0 +1,530 @@
+<body>
+<style>
+    .winter__banner {
+        height: 300px;
+        width: 100%;
+        border-radius: 12px;
+        background: linear-gradient(270deg, #0C1467 -1.95%, #0F1B78 49.03%, #14268D 74.51%, #173096 87.26%, #1A379D 100%);
+        padding-left: 40px;
+        display: flex;
+    }
+
+    .winter__info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        justify-content: center;
+    }
+</style>
+<style>
+    .tabs {
+        margin-top: 14px;
+    }
+
+    .tabs__pane {
+        display: none;
+    }
+
+    .tabs__pane--active {
+        display: block;
+    }
+
+    .tabs__tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;
+        background-color: #F5F5F8;
+        min-width: 150px;
+        font-weight: 600;
+    }
+
+    .tabs__tab--active {
+        background-color: #061A3E;
+        color: #FFFfff;
+    }
+
+    .tabs__nav {
+        padding: 8px;
+        border-radius: 40px;
+        background-color: #F5F5F8;
+        display: flex;
+        width: 100%;
+        gap: 8px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+    }
+
+    .winter .slider__info ul {
+        padding-left: 20px;
+    }
+
+    /*.slider--ex .slider__next {*/
+    /*    display: none;*/
+
+    /*    @media screen and (max-width: 1023px) {*/
+    /*        display: flex;*/
+    /*    }*/
+    /*}*/
+</style>
+<section class="sunmar">
+    <article>
+        <div class="wrapper">
+            <div class="winter">
+                <div class="winter__banner">
+                    <div class="winter__info">
+                        <p class="title-3 font-bold color-white">
+                            Снежная магия
+                        </p>
+                        <p class="text color-white">
+                            Поможем выбрать, куда поехать кататься на лыжах и сноуборде или куда взять экскурсионный
+                            тур в декабре и январе. Бронируйте путёвки, чтобы провести замечательный зимний отдых
+                            в горах или изучить новые места.
+                        </p>
+                    </div>
+                    <img src="/site/sunmar.ru/assets/winter.webp" alt="">
+                </div>
+
+                <div class="tabs" data-tabs>
+                    <div class="tabs__nav">
+                        <button class="tabs__tab tabs__tab--active" data-tab="1">
+                            Горнолыжные курорты
+                        </button>
+                        <button class="tabs__tab" data-tab="2">
+                            Экскурсионные туры
+                        </button>
+                    </div>
+                    <div class="tabs__content">
+                        <div class="tabs__pane tabs__pane--active" data-tab="1">
+                            <div class="swiper slider js-slider-ski">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_11.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Роза Хутор
+                                            </h4>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="13"
+                                                         viewBox="0 0 21 13" fill="none">
+                                                        <path d="M16.5 5.5L20.5 12.5H0.5L7.5 0.5L12.5 7.5L16.5 5.5Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M16.5 12.5L15.5 8.5L12.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M7.5 0.5L6.5 7.5L7.5 9.5L5.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Более 100 км трасс
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="19"
+                                                         viewBox="0 0 17 19" fill="none">
+                                                        <path d="M14.5 6.65789C14.5 9.40149 11.61 13.0775 9.84146 15.0701C9.11793 15.8854 7.88207 15.8854 7.15854 15.0701C5.38998 13.0775 2.5 9.40149 2.5 6.65789C2.5 2.7047 5.18629 0.5 8.5 0.5C11.8137 0.5 14.5 2.7047 14.5 6.65789Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <circle cx="8.5" cy="5.5" r="2" stroke="#0E2855"/>
+                                                        <path d="M11 13.6816H11.5C14.4318 14.0525 16.5 14.9507 16.5 15.9999C16.5 17.3806 12.9183 18.4999 8.5 18.4999C4.08172 18.4999 0.5 17.3806 0.5 15.9999C0.5 14.9507 2.56817 14.0525 5.5 13.6816H6"
+                                                              stroke="#0E2855"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Россия, Сочи, Красная Поляна
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+                                                         viewBox="0 0 21 21" fill="none">
+                                                        <path d="M14.3535 20.3535L1.35352 7.35352C0.801231 6.80123 0.80123 5.9058 1.35352 5.35352C1.9058 4.80123 2.80123 4.80123 3.35351 5.35351L16.3535 18.3535L14.3535 20.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M20.3535 6.35352L16.3535 10.3535M6.35352 20.3535L10.3535 16.3535M12.3535 14.3535L14.3535 12.3535"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M14.3535 0.353516L10.3535 4.35352M0.353516 14.3535L4.35352 10.3535M6.35352 8.35352L8.35352 6.35352"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M18.3535 16.3535L5.35352 3.35352C4.80123 2.80123 4.80123 1.9058 5.35352 1.35352C5.9058 0.801231 6.80123 0.80123 7.35351 1.35351L20.3535 14.3535L18.3535 16.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M9.35352 20.3535L6.35352 17.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M3.35352 14.3535L0.353516 11.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Катаемся на лыжах и сноуборде, посещаем рестораны и концерты
+                                                </p>
+                                            </div>
+                                            <div class="slider__footer">
+                                    <span class="slider__price">
+                                        Туры от 200 000 ₽
+                                    </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_12.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Шерегеш
+                                            </h4>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="13"
+                                                         viewBox="0 0 21 13" fill="none">
+                                                        <path d="M16.5 5.5L20.5 12.5H0.5L7.5 0.5L12.5 7.5L16.5 5.5Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M16.5 12.5L15.5 8.5L12.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M7.5 0.5L6.5 7.5L7.5 9.5L5.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    35 км трасс
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="19"
+                                                         viewBox="0 0 17 19" fill="none">
+                                                        <path d="M14.5 6.65789C14.5 9.40149 11.61 13.0775 9.84146 15.0701C9.11793 15.8854 7.88207 15.8854 7.15854 15.0701C5.38998 13.0775 2.5 9.40149 2.5 6.65789C2.5 2.7047 5.18629 0.5 8.5 0.5C11.8137 0.5 14.5 2.7047 14.5 6.65789Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <circle cx="8.5" cy="5.5" r="2" stroke="#0E2855"/>
+                                                        <path d="M11 13.6816H11.5C14.4318 14.0525 16.5 14.9507 16.5 15.9999C16.5 17.3806 12.9183 18.4999 8.5 18.4999C4.08172 18.4999 0.5 17.3806 0.5 15.9999C0.5 14.9507 2.56817 14.0525 5.5 13.6816H6"
+                                                              stroke="#0E2855"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Россия, Кемеровская область.
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+                                                         viewBox="0 0 21 21" fill="none">
+                                                        <path d="M14.3535 20.3535L1.35352 7.35352C0.801231 6.80123 0.80123 5.9058 1.35352 5.35352C1.9058 4.80123 2.80123 4.80123 3.35351 5.35351L16.3535 18.3535L14.3535 20.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M20.3535 6.35352L16.3535 10.3535M6.35352 20.3535L10.3535 16.3535M12.3535 14.3535L14.3535 12.3535"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M14.3535 0.353516L10.3535 4.35352M0.353516 14.3535L4.35352 10.3535M6.35352 8.35352L8.35352 6.35352"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M18.3535 16.3535L5.35352 3.35352C4.80123 2.80123 4.80123 1.9058 5.35352 1.35352C5.9058 0.801231 6.80123 0.80123 7.35351 1.35351L20.3535 14.3535L18.3535 16.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M9.35352 20.3535L6.35352 17.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M3.35352 14.3535L0.353516 11.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Наслаждаемся катанием по мягкому снегу — «пухляку»
+                                                </p>
+                                            </div>
+                                            <div class="slider__footer">
+                                    <span class="slider__price">
+                                        Туры от 200 000 ₽
+                                    </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_13.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Архыз
+                                            </h4>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="13"
+                                                         viewBox="0 0 21 13" fill="none">
+                                                        <path d="M16.5 5.5L20.5 12.5H0.5L7.5 0.5L12.5 7.5L16.5 5.5Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M16.5 12.5L15.5 8.5L12.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M7.5 0.5L6.5 7.5L7.5 9.5L5.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    27 км трасс
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="19"
+                                                         viewBox="0 0 17 19" fill="none">
+                                                        <path d="M14.5 6.65789C14.5 9.40149 11.61 13.0775 9.84146 15.0701C9.11793 15.8854 7.88207 15.8854 7.15854 15.0701C5.38998 13.0775 2.5 9.40149 2.5 6.65789C2.5 2.7047 5.18629 0.5 8.5 0.5C11.8137 0.5 14.5 2.7047 14.5 6.65789Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <circle cx="8.5" cy="5.5" r="2" stroke="#0E2855"/>
+                                                        <path d="M11 13.6816H11.5C14.4318 14.0525 16.5 14.9507 16.5 15.9999C16.5 17.3806 12.9183 18.4999 8.5 18.4999C4.08172 18.4999 0.5 17.3806 0.5 15.9999C0.5 14.9507 2.56817 14.0525 5.5 13.6816H6"
+                                                              stroke="#0E2855"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Россия, Карачаево-Черкессия
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+                                                         viewBox="0 0 21 21" fill="none">
+                                                        <path d="M14.3535 20.3535L1.35352 7.35352C0.801231 6.80123 0.80123 5.9058 1.35352 5.35352C1.9058 4.80123 2.80123 4.80123 3.35351 5.35351L16.3535 18.3535L14.3535 20.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M20.3535 6.35352L16.3535 10.3535M6.35352 20.3535L10.3535 16.3535M12.3535 14.3535L14.3535 12.3535"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M14.3535 0.353516L10.3535 4.35352M0.353516 14.3535L4.35352 10.3535M6.35352 8.35352L8.35352 6.35352"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M18.3535 16.3535L5.35352 3.35352C4.80123 2.80123 4.80123 1.9058 5.35352 1.35352C5.9058 0.801231 6.80123 0.80123 7.35351 1.35351L20.3535 14.3535L18.3535 16.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M9.35352 20.3535L6.35352 17.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M3.35352 14.3535L0.353516 11.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Отдыхаем в комфортных отелях, пользуемся современной инфраструктурой
+                                                </p>
+                                            </div>
+                                            <div class="slider__footer">
+                                    <span class="slider__price">
+                                        Туры от 200 000 ₽
+                                    </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_14.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Цахкадзор
+                                            </h4>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="13"
+                                                         viewBox="0 0 21 13" fill="none">
+                                                        <path d="M16.5 5.5L20.5 12.5H0.5L7.5 0.5L12.5 7.5L16.5 5.5Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M16.5 12.5L15.5 8.5L12.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M7.5 0.5L6.5 7.5L7.5 9.5L5.5 12.5" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    30 км трасс
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="19"
+                                                         viewBox="0 0 17 19" fill="none">
+                                                        <path d="M14.5 6.65789C14.5 9.40149 11.61 13.0775 9.84146 15.0701C9.11793 15.8854 7.88207 15.8854 7.15854 15.0701C5.38998 13.0775 2.5 9.40149 2.5 6.65789C2.5 2.7047 5.18629 0.5 8.5 0.5C11.8137 0.5 14.5 2.7047 14.5 6.65789Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <circle cx="8.5" cy="5.5" r="2" stroke="#0E2855"/>
+                                                        <path d="M11 13.6816H11.5C14.4318 14.0525 16.5 14.9507 16.5 15.9999C16.5 17.3806 12.9183 18.4999 8.5 18.4999C4.08172 18.4999 0.5 17.3806 0.5 15.9999C0.5 14.9507 2.56817 14.0525 5.5 13.6816H6"
+                                                              stroke="#0E2855"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Армения, Котайкская область
+                                                </p>
+                                            </div>
+                                            <div class="slider__box">
+                                                <div class="slider__icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+                                                         viewBox="0 0 21 21" fill="none">
+                                                        <path d="M14.3535 20.3535L1.35352 7.35352C0.801231 6.80123 0.80123 5.9058 1.35352 5.35352C1.9058 4.80123 2.80123 4.80123 3.35351 5.35351L16.3535 18.3535L14.3535 20.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M20.3535 6.35352L16.3535 10.3535M6.35352 20.3535L10.3535 16.3535M12.3535 14.3535L14.3535 12.3535"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M14.3535 0.353516L10.3535 4.35352M0.353516 14.3535L4.35352 10.3535M6.35352 8.35352L8.35352 6.35352"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M18.3535 16.3535L5.35352 3.35352C4.80123 2.80123 4.80123 1.9058 5.35352 1.35352C5.9058 0.801231 6.80123 0.80123 7.35351 1.35351L20.3535 14.3535L18.3535 16.3535Z"
+                                                              stroke="#0E2855" stroke-linejoin="round"/>
+                                                        <path d="M9.35352 20.3535L6.35352 17.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                        <path d="M3.35352 14.3535L0.353516 11.3535" stroke="#0E2855"
+                                                              stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                <p class="text">
+                                                    Любуемся видами на гору Арарат
+                                                </p>
+                                            </div>
+                                            <div class="slider__footer">
+                                    <span class="slider__price">
+                                        Туры от 200 000 ₽
+                                    </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider__pagination swiper-pagination js-pagination-ski"></div>
+                            </div>
+                            <div class="slider__next js-next-ski">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M5.64645 3.64645C5.45118 3.84171 5.45118 4.15829 5.64645 4.35355L9.29289 8L5.64645 11.6464C5.45118 11.8417 5.45118 12.1583 5.64645 12.3536C5.84171 12.5488 6.15829 12.5488 6.35355 12.3536L10.3536 8.35355C10.5488 8.15829 10.5488 7.84171 10.3536 7.64645L6.35355 3.64645C6.15829 3.45118 5.84171 3.45118 5.64645 3.64645Z"
+                                          fill="#535353"/>
+                                </svg>
+                            </div>
+                            <div class="slider__prev js-prev-ski">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M10.3536 3.64645C10.5488 3.84171 10.5488 4.15829 10.3536 4.35355L6.70711 8L10.3536 11.6464C10.5488 11.8417 10.5488 12.1583 10.3536 12.3536C10.1583 12.5488 9.84171 12.5488 9.64645 12.3536L5.64645 8.35355C5.45118 8.15829 5.45118 7.84171 5.64645 7.64645L9.64645 3.64645C9.84171 3.45118 10.1583 3.45118 10.3536 3.64645Z"
+                                          fill="#535353"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tabs__pane" data-tab="2">
+                            <div class="swiper slider slider--ex js-slider-ex">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_15.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Турция, Стамбул
+                                            </h4>
+                                            <ul>
+                                                <li class="text">
+                                                    Дворцы, древние мечети и базары
+                                                </li>
+                                                <li class="text">
+                                                    Неподражаемый местный колорит
+                                                </li>
+                                                <li class="text">
+                                                    Погружаемся в историю и считаем котиков
+                                                </li>
+                                            </ul>
+
+                                            <div class="slider__footer">
+                                            <span class="slider__price">
+                                                Туры от 200 000 ₽
+                                            </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_16.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Россия, Карелия
+                                            </h4>
+                                            <ul>
+                                                <li class="text">
+                                                    Петрозаводск, Сортавала
+                                                </li>
+                                                <li class="text">
+                                                    Заповедные зоны, богатая история и ретропоезд
+                                                </li>
+                                                <li class="text">
+                                                    Наслаждаемся природными красотами и катаемся на собачьих упряжках
+                                                </li>
+                                            </ul>
+
+                                            <div class="slider__footer">
+                                            <span class="slider__price">
+                                                Туры от 200 000 ₽
+                                            </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide slider__slide">
+                                        <img class="slider__img"
+                                             src="https://b2ccdn.sunmar.ru/content/promo/new-year/img_17.webp"
+                                             alt="">
+                                        <div class="slider__info">
+                                            <h4 class="title-5 mb-8">
+                                                Россия, Великий Устюг
+                                            </h4>
+                                            <ul>
+                                                <li class="text">
+                                                    Резиденция деда Мороза
+                                                </li>
+                                                <li class="text">
+                                                    Атмосфера зимней сказки
+                                                </li>
+                                                <li class="text">
+                                                    Смотрим на традиционную русскую архитектуру и северную природу
+                                                </li>
+                                            </ul>
+
+                                            <div class="slider__footer">
+                                            <span class="slider__price">
+                                                Туры от 200 000 ₽
+                                            </span>
+                                                <a href="" class="sunmar-button">
+                                                    Выбрать тур
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider__pagination swiper-pagination js-pagination-ex"></div>
+                            </div>
+                            <div class="slider__next js-next-ex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M5.64645 3.64645C5.45118 3.84171 5.45118 4.15829 5.64645 4.35355L9.29289 8L5.64645 11.6464C5.45118 11.8417 5.45118 12.1583 5.64645 12.3536C5.84171 12.5488 6.15829 12.5488 6.35355 12.3536L10.3536 8.35355C10.5488 8.15829 10.5488 7.84171 10.3536 7.64645L6.35355 3.64645C6.15829 3.45118 5.84171 3.45118 5.64645 3.64645Z"
+                                          fill="#535353"/>
+                                </svg>
+                            </div>
+                            <div class="slider__prev js-prev-ex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M10.3536 3.64645C10.5488 3.84171 10.5488 4.15829 10.3536 4.35355L6.70711 8L10.3536 11.6464C10.5488 11.8417 10.5488 12.1583 10.3536 12.3536C10.1583 12.5488 9.84171 12.5488 9.64645 12.3536L5.64645 8.35355C5.45118 8.15829 5.45118 7.84171 5.64645 7.64645L9.64645 3.64645C9.84171 3.45118 10.1583 3.45118 10.3536 3.64645Z"
+                                          fill="#535353"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>

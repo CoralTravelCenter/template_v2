@@ -16,79 +16,87 @@ async function hostReactAppReady(
 }
 
 hostReactAppReady().then(() => {
-    const sliderStambul = new Swiper(".js-slider-stambul", {
+    const sliderSummer = new Swiper(".js-slider-summer", {
         breakpoints: {
-            1280: {
+            1279: {
                 slidesPerView: 3,
-                spaceBetween: 24,
+                spaceBetween: 32,
             },
-            1024: {
+            1023: {
                 slidesPerView: 3,
-                spaceBetween: 24,
+                spaceBetween: 32,
             },
-            768: {
+            767: {
                 slidesPerView: 2,
-                spaceBetween: 24,
+                spaceBetween: 32,
             },
         },
         slidesPerView: 1,
-        spaceBetween: 24,
+        spaceBetween: 32,
         loop: true,
         pagination: {
-            el: ".js-pagination-stambul",
+            el: ".js-pagination-summer",
             clickable: true,
         },
         navigation: {
-            nextEl: ".js-next-stambul",
-            prevEl: ".js-prev-stambul",
+            nextEl: ".js-next-summer",
+            prevEl: ".js-prev-summer",
         },
     });
 
-    // const sliderFood = new Swiper(".js-slider-food", {
-    //     slidesPerView: 1,
-    //     spaceBetween: 24,
-    //     breakpoints: {
-    //         1024: {
-    //             slidesPerView: 3,
-    //             spaceBetween: 24,
-    //         },
-    //         768: {
-    //             slidesPerView: 2,
-    //             spaceBetween: 24,
-    //         },
-    //     },
-    //     loop: true,
-    //     pagination: {
-    //         el: ".js-pagination-food",
-    //         clickable: true,
-    //     },
-    //     navigation: {
-    //         nextEl: ".js-next-food",
-    //         prevEl: ".js-prev-food",
-    //     },
-    // });
-
-    const sliderActions = new Swiper(".js-slider-actions", {
-        slidesPerView: 1,
-        spaceBetween: 24,
+    const sliderSki = new Swiper(".js-slider-ski", {
         breakpoints: {
-            1024: {
+            1279: {
                 slidesPerView: 3,
-                spaceBetween: 24,
+                spaceBetween: 32,
             },
-            768: {
+            1023: {
+                slidesPerView: 3,
+                spaceBetween: 32,
+            },
+            767: {
                 slidesPerView: 2,
-                spaceBetween: 24,
+                spaceBetween: 32,
             },
         },
+        slidesPerView: 1,
+        spaceBetween: 32,
         loop: true,
         pagination: {
-            el: ".js-pagination-actions",
+            el: ".js-pagination-ski",
             clickable: true,
         },
         navigation: {
-            nextEl: ".js-next-actions",
-            prevEl: ".js-prev-actions",
+            nextEl: ".js-next-ski",
+            prevEl: ".js-prev-ski",
+        },
+    });
+
+    const sliderEx = new Swiper(".js-slider-ex", {
+        breakpoints: {
+            1279: {
+                slidesPerView: 3,
+                spaceBetween: 32,
+            },
+            1023: {
+                slidesPerView: 3,
+                spaceBetween: 32,
+            },
+            767: {
+                slidesPerView: 2,
+                spaceBetween: 32,
+            },
+        },
+        slidesPerView: 1,
+        spaceBetween: 32,
+        loop: true,
+        pagination: {
+            el: ".js-pagination-ex",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".js-next-ex",
+            prevEl: ".js-prev-ex",
         },
     });
 
@@ -122,6 +130,7 @@ hostReactAppReady().then(() => {
 
 
     const anchors = document.querySelector('.js-anchor');
+    const anchorsHeight = anchors.offsetHeight;
 
     if (anchors) {
         const anchorsOffsetTop = anchors.getBoundingClientRect().top + window.scrollY;
@@ -153,7 +162,7 @@ hostReactAppReady().then(() => {
                 if (!anchors.classList.contains('anchors--fixed')) {
                     anchors.classList.add('anchors--fixed');
                     placeholder.style.display = '';
-                    placeholder.style.height = `${anchors.offsetHeight}px`;
+                    placeholder.style.height = `${anchorsHeight}px`;
                 }
             } else {
                 if (anchors.classList.contains('anchors--fixed')) {
@@ -166,7 +175,7 @@ hostReactAppReady().then(() => {
         window.addEventListener('scroll', onScroll);
         window.addEventListener('resize', () => {
             if (anchors.classList.contains('anchors--fixed')) {
-                placeholder.style.height = `${anchors.offsetHeight}px`;
+                placeholder.style.height = `${anchorsHeight}px`;
             }
         });
     }

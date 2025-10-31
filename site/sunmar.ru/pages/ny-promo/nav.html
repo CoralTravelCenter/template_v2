@@ -1,0 +1,76 @@
+<body>
+<style>
+    section.anchors--fixed > article .wrapper {
+        padding-block: 10px;
+    }
+
+    .anchors {
+        padding: 8px;
+        border-radius: 40px;
+        background-color: #F5F5F8;
+        display: flex;
+        gap: 8px;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+        flex-wrap: wrap;
+    }
+
+    .anchors--fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    @media screen and (max-width: 992px) {
+        .anchors--fixed {
+            top: 41px;
+        }
+    }
+
+    .anchors-placeholder {
+        display: block;
+        width: 100%;
+        height: 0;
+    }
+
+    a.anchors__link {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        text-decoration: none !important;
+        color: inherit !important;
+        border-radius: 100px;
+        text-align: center;
+        min-width: 120px;
+    }
+
+    a.anchors__link:hover {
+        background-color: #061A3E !important;
+        color: #FFF !important;
+    }
+</style>
+<section class="sunmar js-anchor">
+    <article>
+        <div class="wrapper">
+            <div class="anchors">
+                <a class="anchors__link" href="#anchor-1">
+                    Даты для отпуска
+                </a>
+                <a class="anchors__link" href="#anchor-2">
+                    Акция
+                </a>
+                <a class="anchors__link" href="#anchor-3">
+                    Пляжная магия
+                </a>
+                <a class="anchors__link" href="#anchor-4">
+                    Снежная магия
+                </a>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
