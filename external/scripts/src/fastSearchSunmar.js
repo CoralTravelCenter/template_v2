@@ -291,7 +291,7 @@ function createPopularBlock(blockData, index) {
           
           .popular-block {
             position: relative;
-            background-color: rgb(230, 244, 255);
+            background-color: #DFDFE8;
             padding-inline: 10px;
             padding-block: 8px;
             border-radius: 7px;
@@ -360,7 +360,7 @@ function createPopularBlock(blockData, index) {
           }
           
           .popular-title span {
-            color: #E84E0F;
+            color: #ffffff;
             font-size: 16px;
             font-weight: 600;
           }
@@ -369,7 +369,7 @@ function createPopularBlock(blockData, index) {
                 position: absolute;
             bottom: 6px;
             right: 7px;
-            color: #0093d0;
+            color: #21366A;
                 
                 font-size: 14px;
                 margin: 0;
@@ -412,7 +412,7 @@ function createPopularWrapper(popularData) {
     const popularContainer = document.createElement('div');
     popularContainer.classList.add('popular-container');
 
-    ym(96674199, 'reachGoal', 'quick_search_show', {type: 'Быстрый поиск'});
+    ym(215233, 'reachGoal', 'quick_search_show', {type: 'Быстрый поиск'});
 
     popularData.forEach((block, index) => {
         const html = createPopularBlock(block, index);
@@ -421,7 +421,7 @@ function createPopularWrapper(popularData) {
         const blockEl = popularContainer.lastElementChild;
         blockEl.addEventListener('click', () => {
             const {index, country, date, label} = blockEl.dataset;
-            ym(96674199, 'reachGoal', 'quick_search', {
+            ym(215233, 'reachGoal', 'quick_search', {
                 name: 'Быстрый поиск',
                 index,
                 country,
@@ -436,11 +436,13 @@ function createPopularWrapper(popularData) {
 
     wrapper.insertAdjacentHTML('beforeend', `
     <div class="popular-title">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
-        <path d="M0.916504 5.83325H3.83317V13.3333H0.916504V5.83325Z" stroke="#E84E0F" stroke-linejoin="round"/>
-        <path d="M3.8335 5.83333H5.29183L7.16683 3.75L7.77725 1.91875C8.07109 1.03721 9.18992 0.77309 9.84698 1.43015L10.015 1.59813C10.3172 1.90033 10.444 2.33598 10.3513 2.75318L9.66683 5.83333H13.0058C14.0721 5.83333 14.8641 6.82069 14.6328 7.86155L13.6343 12.3545C13.5073 12.9264 13 13.3333 12.4141 13.3333H3.8335V5.83333Z" stroke="#E84E0F" stroke-linejoin="round"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7072 12.2929L19.7072 18.2929L18.293 19.7071L12.293 13.7071L13.7072 12.2929Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 8C11.5 6.067 9.933 4.5 8 4.5V2.5C11.0376 2.5 13.5 4.96243 13.5 8H11.5Z" fill="white"/>
       </svg>
-      <span>Быстрый поиск</span>
+<!--      <span>Быстрый подбор</span>-->
+      <span>Поиск в один клик</span>
     </div>
   `);
 

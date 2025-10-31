@@ -4,7 +4,7 @@ import monkey from 'vite-plugin-monkey';
 export default defineConfig({
   plugins: [
     monkey({
-      entry: 'src/fastSearchCoral.js',
+      entry: 'src/fastSearchSunmar.js',
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',

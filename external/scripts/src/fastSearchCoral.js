@@ -349,7 +349,7 @@ function waitForElement(selector, { root = document, timeout = 15000 } = {}) {
                 resolve(el);
             }
         });
-        obs.observe(target, { childList: true, subtree: true });
+        obs.observe(target, { childList: true, subtree: true, attributes: true });
 
         if (timeout) {
             setTimeout(() => {
@@ -363,6 +363,29 @@ function waitForElement(selector, { root = document, timeout = 15000 } = {}) {
     });
 }
 
+function ensurePopularWrapper(searchPanel, searchToursPanel, enriched) {
+    const recentBlock = searchPanel.querySelector('.swiper-wrapper');
+    let popular = searchPanel.querySelector('.popular-wrapper');
+
+    if (!popular && !recentBlock) {
+        popular = createPopularWrapper(enriched);
+        searchToursPanel.insertAdjacentElement('beforeend', popular);
+    }
+    return popular;
+}
+
+async function runStabilizingChecks(searchPanel, searchToursPanel, enriched, seconds = 5) {
+    ensurePopularWrapper(searchPanel, searchToursPanel, enriched);
+
+    let tries = 0;
+    const maxTries = Math.max(1, seconds);
+    const timer = setInterval(() => {
+        tries += 1;
+        ensurePopularWrapper(searchPanel, searchToursPanel, enriched);
+        if (tries >= maxTries) clearInterval(timer);
+    }, 1000);
+}
+
 hostReactAppReady().then(async () => {
     try {
         const meta = __NEXT_DATA__?.props?.pageProps?.pageData?.meta;
@@ -374,42 +397,21 @@ hostReactAppReady().then(async () => {
         const searchPanel = await waitForElement('[data-testid="quickSearchBarBlock"]');
         const searchToursPanel = await waitForElement('.ant-tabs-content-holder', { root: searchPanel });
 
-        const recentBlock = searchPanel.querySelector('.swiper-wrapper');
-        if (!recentBlock) {
-            searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
-        }
-
-        let popularWrapperBlock = searchPanel.querySelector('.popular-wrapper');
+        await runStabilizingChecks(searchPanel, searchToursPanel, enriched, 5);
 
         const hotelButton = searchPanel.querySelector('[data-node-key="2"]');
+        const tourButton  = searchPanel.querySelector('[data-node-key="1"]');
+
         hotelButton?.addEventListener('click', () => {
-            popularWrapperBlock = searchPanel.querySelector('.popular-wrapper');
-            if (popularWrapperBlock) popularWrapperBlock.style.display = 'none';
+            const popular = searchPanel.querySelector('.popular-wrapper');
+            if (popular) popular.style.display = 'none';
         });
 
-        const tourButton = searchPanel.querySelector('[data-node-key="1"]');
         tourButton?.addEventListener('click', () => {
-            popularWrapperBlock = searchPanel.querySelector('.popular-wrapper');
-            if (popularWrapperBlock) popularWrapperBlock.style.display = 'block';
+            const popular = ensurePopularWrapper(searchPanel, searchToursPanel, enriched);
+            if (popular) popular.style.display = 'block';
         });
 
-        const closeRecentBlock = recentBlock?.querySelectorAll('.icon-container');
-        const tabsDiv = searchPanel.querySelector('.ant-row');
-
-        if (closeRecentBlock !== undefined) {
-            let isExecuted = false;
-            closeRecentBlock.forEach((block) => {
-                block.addEventListener('click', () => {
-                    setTimeout(() => {
-                        const needInsert = (tabsDiv && tabsDiv.nextElementSibling && tabsDiv.nextElementSibling.tagName === 'DIV') === null;
-                        if (needInsert && !isExecuted) {
-                            searchToursPanel.insertAdjacentElement('beforeend', createPopularWrapper(enriched));
-                            isExecuted = true;
-                        }
-                    }, 1500);
-                });
-            });
-        }
     } catch (err) {
         console.warn('Не удалось инициализировать популярные туры для быстрого поиска', err);
     }
