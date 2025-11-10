@@ -486,7 +486,7 @@ hostReactAppReady().then(async () => {
         const popularData = await waitForPopularTours();
         const enriched = await Promise.all(popularData.map(enrichPopularItem));
 
-        const searchPanel = await waitForElement('[data-testid="quickSearchWidget"]');
+        const searchPanel = await waitForElement('[data-testid="quickSearchBarBlock"]');
         const searchToursPanel = await waitForElement('.ant-tabs-content-holder', { root: searchPanel });
 
         const recentBlock = searchPanel.querySelector('.swiper-wrapper');
