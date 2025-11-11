@@ -13,17 +13,22 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 }
 
 hostReactAppReady().then(() => {
-    const hasQueryParams = window.location.search.length > 0;
+    const UTM_KEY = 'bf-utm';
 
-    const FLAG_KEY = 'came_with_utm';
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasTargetUTM = urlParams.get('utm_term') === 'flesh_10000';
 
-    if (hasQueryParams) {
-        localStorage.setItem(FLAG_KEY, 'true');
+    if (hasTargetUTM) {
+        localStorage.setItem(UTM_KEY, 'true');
     }
 
-    const hasQuery = localStorage.getItem(FLAG_KEY) === 'true';
+    const hasQuery = localStorage.getItem(UTM_KEY) === 'true';
 
     if (hasQuery) {
+        if (document.querySelector('.bf-label')) {
+            return;
+        }
+
         const style = document.createElement('style');
         style.textContent = `
         .bf-label {
@@ -56,10 +61,11 @@ hostReactAppReady().then(() => {
             transform: translateX(-400px);
             
             @media screen and (max-width: 768px) {
-                width: 300px;
+                width: 340px;
                 transform: translateX(0);
                 
                 display: none;
+                align-items: center;
             }
         }
         
@@ -76,17 +82,11 @@ hostReactAppReady().then(() => {
             line-height: 20px;
             margin: 0;
             margin-bottom: 10px;
-            
-            @media screen and (max-width: 768px) {
-                text-align: center;
-                font-size: 26px;
-                line-height: 36px;
-            }
         }
         
         .bf-label__wrapper .bf-label__text {
             letter-spacing: 2.8px;
-            margin-bottom: 2px;
+            margin-bottom: 6px;
         }
         
         .bf-label__text {
@@ -96,9 +96,9 @@ hostReactAppReady().then(() => {
             margin: 0;
             
             @media screen and (max-width: 768px) {
-                font-size: 18px;
-                line-height: 28px;
-                text-align: center;
+                font-size: 12px;
+                line-height: 16px;
+                
             }
         }
         
@@ -131,6 +131,13 @@ hostReactAppReady().then(() => {
             top: 8px;
             right: 8px;
             text-align: right;
+            
+            @media screen and (max-width: 768px) {
+                top: 130px;
+                width: 100%;
+                right: 0;
+                text-align: center;
+            }
         }
         
         .bf-label__close {
@@ -139,14 +146,14 @@ hostReactAppReady().then(() => {
             @media screen and (max-width: 768px) {
                 display: flex;
                 position: absolute;
-                width: 58px;
-                height: 58px;
+                width: 42px;
+                height: 42px;
                 align-items: center;
                 justify-content: center;
                 border-radius: 10px;
                 background-color: white;
-                right: 13px;
-                top: 13px;
+                right: 10px;
+                top: 10px;
                 border: 1px solid rgba(0, 0, 0, 0.15);
             }
         }
@@ -241,10 +248,27 @@ hostReactAppReady().then(() => {
         .bf-mb {
             margin-bottom: 14px;
         }
+        
+        .bf-mobile {
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+        
+        .bf-label__code {
+            display: flex;
+        }
+        
+        .bf-label__code svg {
+            @media screen and (max-width: 768px) {
+                width: 79px;
+            }
+        }
     `;
         document.head.appendChild(style);
 
         const bfLabel = document.createElement('div');
+
         bfLabel.className = 'bf-label';
         bfLabel.innerHTML = `
         <div class="bf-label__icon js-bf-icon">
@@ -271,7 +295,7 @@ hostReactAppReady().then(() => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5672 0.544067C15.5677 0.544067 15.5681 0.544534 15.5691 0.545467L16.9155 1.89216C16.9165 1.89286 16.9167 1.89333 16.9169 1.89403C16.917 1.89449 16.917 1.89497 16.9169 1.89543C16.9169 1.89613 16.9165 1.8966 16.9155 1.89753L10.2007 8.61233L16.9155 15.3271C16.9165 15.3281 16.9167 15.3285 16.9169 15.3292C16.9171 15.3298 16.9171 15.3303 16.9169 15.3309C16.9169 15.3313 16.9165 15.3318 16.9155 15.3327L15.5688 16.6792C15.5681 16.6801 15.5677 16.6804 15.5672 16.6806C15.5667 16.6808 15.5661 16.6808 15.5656 16.6806C15.5649 16.6806 15.5644 16.6801 15.5635 16.6792L8.84866 9.9644L2.13386 16.6792C2.13293 16.6801 2.13246 16.6804 2.13176 16.6806C2.13123 16.6808 2.13066 16.6808 2.13012 16.6806C2.12966 16.6806 2.12919 16.6801 2.12826 16.6792L0.781796 15.3325C0.780862 15.3318 0.780629 15.3313 0.780395 15.3309C0.780233 15.3303 0.780233 15.3298 0.780395 15.3292C0.780395 15.3285 0.780862 15.3281 0.781796 15.3271L7.4966 8.61233L0.781796 1.89753C0.780862 1.8966 0.780629 1.89613 0.780395 1.89543C0.780233 1.8949 0.780233 1.89433 0.780395 1.8938C0.780395 1.89333 0.780862 1.89286 0.781796 1.89193L2.12849 0.545467C2.12919 0.544534 2.12966 0.5443 2.13012 0.544067C2.13066 0.543905 2.13123 0.543905 2.13176 0.544067C2.13246 0.544067 2.13293 0.544534 2.13386 0.545467L8.84866 7.26027L15.5635 0.545467C15.5644 0.544534 15.5649 0.5443 15.5656 0.544067C15.5661 0.543905 15.5667 0.543905 15.5672 0.544067Z" fill="#535353"/>
                     </svg>
                 </div>
-                <span class="bf-label__quote">Реклама. ООО "Центрбронь" <br> erid: 2W5zFHgQtSc</span>
+                <span class="bf-label__quote">Реклама. ООО "Центрбронь" <br class="bf-mobile"> erid: 2W5zFHgQtSc</span>
                 <img class="bf-label__m-hidden" src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/flash.webp" alt="">
                 <img class="bf-label__d-hidden" src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/flash_m.webp" alt="">
                 <div class="bf-label__info">
@@ -288,8 +312,8 @@ hostReactAppReady().then(() => {
                     </p>
                     <ul class="bf-label__text">
                         <li>
-                            Срок жизни промокода 7 дней: 10–16 ноября.  
-                            от 200 000 ₽. 
+                            Срок жизни промокода 7 дней: 11–17 ноября.  
+                            от 200&nbsp;000 ₽. 
                         </li>
                         <li>
                             Промокод действует при бронированиях
@@ -305,6 +329,8 @@ hostReactAppReady().then(() => {
 
         document.body.appendChild(bfLabel);
 
+        ym(96674199, 'reachGoal', 'pop_up_flesh_show');
+
         const bfLabelIcon = bfLabel.querySelector('.js-bf-icon');
         const bfLabelPopup = bfLabel.querySelector('.js-bf-popup');
 
@@ -316,7 +342,7 @@ hostReactAppReady().then(() => {
 
                 bfLabelPopup.classList.remove('on-hide');
 
-                ym(96674199,'reachGoal', 'popupShow');
+                ym(96674199, 'reachGoal', 'pop_up_flesh_open');
             });
 
             bfLabelPopup.addEventListener('mouseleave', () => {
@@ -339,7 +365,7 @@ hostReactAppReady().then(() => {
 
                 bfLabelPopup.classList.remove('on-hide');
 
-                ym(96674199,'reachGoal', 'popupShow');
+                ym(96674199, 'reachGoal', 'pop_up_flesh_open');
             });
 
             bfLabelClose.addEventListener('click', () => {
@@ -349,22 +375,6 @@ hostReactAppReady().then(() => {
                 bfLabel.classList.remove('hidden');
 
                 bfLabelPopup.classList.add('on-hide');
-            });
-        }
-
-        const button = document.querySelector('.js-bf-button');
-
-        if (button) {
-            button.addEventListener('click', (e) => {
-                const ymParams = {
-                    name_stock: {
-                        black_friday: {
-                            name_point: "pop_up",
-                        },
-                    },
-                }
-
-                ym(96674199, "reachGoal", "entry-point", ymParams);
             });
         }
     }

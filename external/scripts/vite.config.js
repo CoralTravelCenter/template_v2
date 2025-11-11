@@ -8,7 +8,7 @@ export default defineConfig({
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/'],
+        match: ['https://www.coral.ru/?utm_source=telegram&utm_medium=messenger&utm_campaign=black_friday&utm_term=flesh_10000'],
       },
     }),
   ],
