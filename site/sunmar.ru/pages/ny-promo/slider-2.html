@@ -7,6 +7,19 @@
         background: linear-gradient(270deg, #0C1467 -1.95%, #0F1B78 49.03%, #14268D 74.51%, #173096 87.26%, #1A379D 100%);
         padding-left: 40px;
         display: flex;
+
+        @media screen and (max-width: 1042px) {
+            flex-direction: column;
+            height: 100%;
+            padding: 24px 24px 0;
+        }
+    }
+
+    .winter__banner img {
+        @media screen and (max-width: 1042px) {
+            order: 2;
+            margin-top: 10px;
+        }
     }
 
     .winter__info {
@@ -14,6 +27,16 @@
         flex-direction: column;
         gap: 8px;
         justify-content: center;
+
+        @media screen and (max-width: 1042px) {
+            order: 1;
+        }
+    }
+
+    .winter__info .title-3, .winter__info .text {
+        @media screen and (max-width: 1042px) {
+            text-align: center;
+        }
     }
 </style>
 <style>
@@ -43,6 +66,7 @@
         background-color: #F5F5F8;
         min-width: 150px;
         font-weight: 600;
+        padding-inline: 8px;
     }
 
     .tabs__tab--active {
@@ -64,16 +88,8 @@
     .winter .slider__info ul {
         padding-left: 20px;
     }
-
-    /*.slider--ex .slider__next {*/
-    /*    display: none;*/
-
-    /*    @media screen and (max-width: 1023px) {*/
-    /*        display: flex;*/
-    /*    }*/
-    /*}*/
 </style>
-<section class="sunmar">
+<section class="sunmar" id="anchor-3">
     <article>
         <div class="wrapper">
             <div class="winter">
@@ -88,7 +104,7 @@
                             в горах или изучить новые места.
                         </p>
                     </div>
-                    <img src="/site/sunmar.ru/assets/winter.webp" alt="">
+                    <img src="/site/sunmar.ru/assets/winter_m.webp" alt="">
                 </div>
 
                 <div class="tabs" data-tabs>
@@ -167,9 +183,9 @@
                                             </div>
                                             <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>
@@ -238,9 +254,9 @@
                                             </div>
                                             <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>
@@ -309,9 +325,9 @@
                                             </div>
                                             <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>
@@ -380,9 +396,9 @@
                                             </div>
                                             <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>
@@ -433,9 +449,9 @@
 
                                             <div class="slider__footer">
                                             <span class="slider__price">
-                                                Туры от 200 000 ₽
+                                                Туры от 200&nbsp;000&nbsp;₽
                                             </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>
@@ -463,9 +479,9 @@
 
                                             <div class="slider__footer">
                                             <span class="slider__price">
-                                                Туры от 200 000 ₽
+                                                Туры от 200&nbsp;000&nbsp;₽
                                             </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>
@@ -493,9 +509,9 @@
 
                                             <div class="slider__footer">
                                             <span class="slider__price">
-                                                Туры от 200 000 ₽
+                                                Туры от 200&nbsp;000&nbsp;₽
                                             </span>
-                                                <a href="" class="sunmar-button">
+                                                <a href="" class="sunmar-button js-choose-button">
                                                     Выбрать тур
                                                 </a>
                                             </div>

@@ -7,6 +7,19 @@
         background: linear-gradient(199deg, #542DC6 -80.36%, #7155CC -40.29%, #894CAB 2.98%, #A13781 46.25%, #DE4059 86.31%);
         padding-right: 40px;
         display: flex;
+
+        @media screen and (max-width: 1042px) {
+            flex-direction: column;
+            height: 100%;
+            padding: 24px 24px 0;
+        }
+    }
+
+    .summer__banner img {
+        @media screen and (max-width: 1042px) {
+            order: 2;
+            margin-top: 10px;
+        }
     }
 
     .summer__info {
@@ -14,6 +27,16 @@
         flex-direction: column;
         gap: 8px;
         justify-content: center;
+
+        @media screen and (max-width: 1042px) {
+            order: 1;
+        }
+    }
+
+    .summer__info .title-3, .summer__info .text {
+        @media screen and (max-width: 1042px) {
+            text-align: center;
+        }
     }
 </style>
 <style>
@@ -37,6 +60,10 @@
         min-height: 270px;
         display: flex;
         flex-direction: column;
+
+        @media screen and (max-width: 767px) {
+            min-height: 300px;
+        }
     }
 
     .slider__img {
@@ -82,6 +109,10 @@
         z-index: 1;
         cursor: pointer;
         user-select: none;
+
+        @media screen and (max-width: 1042px) {
+            top: 72%;
+        }
     }
 
     .slider__box {
@@ -114,22 +145,37 @@
             flex-direction: column;
             align-items: flex-start;
         }
+
+        @media screen and (max-width: 767px) {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 400px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 
     .slider__price {
         font-size: 20px;
         line-height: 28px;
         font-weight: 600;
+
+        @media screen and (max-width: 767px) {
+            font-size: 16px;
+            line-height: 24px;
+        }
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
         .slider__prev,
         .slider__next {
             display: none;
         }
     }
 </style>
-<section class="sunmar">
+<section class="sunmar" id="anchor-2">
     <article>
         <div class="wrapper">
             <h2 class="title-2 text-center mb-24">
@@ -210,9 +256,9 @@
                                 </div>
                                 <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                    <a href="" class="sunmar-button">
+                                    <a href="" class="sunmar-button js-choose-button">
                                         Выбрать тур
                                     </a>
                                 </div>
@@ -278,9 +324,9 @@
                                 </div>
                                 <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                    <a href="" class="sunmar-button">
+                                    <a href="" class="sunmar-button js-choose-button">
                                         Выбрать тур
                                     </a>
                                 </div>
@@ -345,9 +391,9 @@
                                 </div>
                                 <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                    <a href="" class="sunmar-button">
+                                    <a href="" class="sunmar-button js-choose-button">
                                         Выбрать тур
                                     </a>
                                 </div>
@@ -412,9 +458,9 @@
                                 </div>
                                 <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                    <a href="" class="sunmar-button">
+                                    <a href="" class="sunmar-button js-choose-button">
                                         Выбрать тур
                                     </a>
                                 </div>
@@ -479,9 +525,9 @@
                                 </div>
                                 <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                    <a href="" class="sunmar-button">
+                                    <a href="" class="sunmar-button js-choose-button">
                                         Выбрать тур
                                     </a>
                                 </div>
@@ -546,9 +592,9 @@
                                 </div>
                                 <div class="slider__footer">
                                     <span class="slider__price">
-                                        Туры от 200 000 ₽
+                                        Туры от 200&nbsp;000&nbsp;₽
                                     </span>
-                                    <a href="" class="sunmar-button">
+                                    <a href="" class="sunmar-button js-choose-button">
                                         Выбрать тур
                                     </a>
                                 </div>

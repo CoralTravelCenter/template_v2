@@ -198,6 +198,16 @@ hostReactAppReady().then(() => {
 
             const targetPos = target.getBoundingClientRect().top + window.scrollY - offset;
 
+            const linkText = this.textContent.trim();
+
+            ym(215233, "reachGoal", "promo_landing_navigation", {
+                name_stock: {
+                    ng_dec_jan: {
+                        name_block: linkText,
+                    },
+                },
+            });
+
             e.preventDefault();
 
             window.scrollTo({
@@ -224,6 +234,25 @@ hostReactAppReady().then(() => {
                     activePane.classList.add('tabs__pane--active');
                 }
             });
+        });
+    });
+
+    document.querySelectorAll('.js-choose-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+
+            const slide = e.currentTarget.closest('.swiper-slide');
+
+            if (slide) {
+                const titleElement = slide.querySelector('h4');
+
+                if (titleElement) {
+                    const titleElementText = titleElement.textContent.trim();
+
+                    ym(215233,'reachGoal','ng_select_tour', {
+                        'country': titleElementText
+                    });
+                }
+            }
         });
     });
 });

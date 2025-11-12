@@ -4,6 +4,10 @@
         display: flex;
         gap: 32px;
         margin-bottom: 16px;
+
+        @media screen and (max-width: 1023px) {
+            flex-direction: column;
+        }
     }
 
     .promo__col-left {
@@ -15,6 +19,14 @@
         background-image: url("https://b2ccdn.sunmar.ru/content/promo/new-year/icon_7.webp");
         background-position: right 20px bottom;
         background-repeat: no-repeat;
+
+        @media screen and (max-width: 767px) {
+            background-position: right -80px bottom;
+        }
+
+        @media screen and (max-width: 450px) {
+            background-size: 150px;
+        }
     }
 
     .promo__col-right {
@@ -27,6 +39,14 @@
     .promo__info {
         padding-top: 40px;
         padding-inline: 48px;
+
+        @media screen and (max-width: 1023px) {
+            padding-bottom: 40px;
+        }
+
+        @media screen and (max-width: 767px) {
+            padding: 20px;
+        }
     }
 
     .promo__item {
@@ -57,18 +77,30 @@
         color: rgba(14, 40, 85, 1);
         text-transform: uppercase;
         font-weight: 600;
+
+        @media screen and (max-width: 767px) {
+            font-size: 28px;
+            line-height: 36px;
+        }
     }
 
     .promo ul {
         padding-left: 20px;
         margin-top: 12px;
     }
+
+    .promo__code .title-5 {
+        @media screen and (max-width: 767px) {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
 </style>
-<section class="sunmar">
+<section class="sunmar" id="anchor-1">
     <article>
         <div class="wrapper">
             <h2 class="title-2 text-center mb-16">
-                Сэкономьте до 15 000 ₽ на зимнем отдыхе
+                Сэкономьте до 15&nbsp;000&nbsp;₽ на зимнем отдыхе
             </h2>
             <div class="promo">
                 <div class="promo__col-left">
@@ -77,7 +109,7 @@
                             <p class="title-5">
                                 <strong>Промокод</strong>
                             </p>
-                            <span>ПРОМОКОД</span>
+                            <span>Магия</span>
                         </div>
                         <p class="title-5 font-bold">
                             Скидки при бронировании:
@@ -116,7 +148,7 @@
                         <div>
                             <p class="title-5 mb-8">
                                 <strong>
-                                    Даты начала отдыха
+                                    Даты начала отдыха:
                                 </strong>
                             </p>
                             <p class="text">
@@ -132,7 +164,7 @@
                         <div>
                             <p class="title-5 mb-8">
                                 <strong>
-                                    Направления
+                                    Направления:
                                 </strong>
                             </p>
                             <p class="text">
