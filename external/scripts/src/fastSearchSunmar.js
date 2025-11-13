@@ -291,13 +291,27 @@ function createPopularBlock(blockData, index) {
           
           .popular-block {
             position: relative;
-            background-color: #DFDFE8;
-            padding-inline: 10px;
-            padding-block: 8px;
+            background-color: #F5F5F8;
+            
             border-radius: 7px;
             flex: 1;
-            min-width: 213px;
+            min-width: 290px;
             color: inherit;
+            overflow: hidden;
+          }
+          
+          .popular-block::before {
+              content: '';
+              position: absolute;
+              background-image: url('https://b2ccdn.sunmar.ru/content/main-page/line.svg');
+              width: 2px;
+              height: 80px;
+              top: 2px;
+              right: 100px;
+              
+              @media screen and (max-width: 768px) {
+                display: none;
+              }
           }
           
           @media screen and (max-width: 768px) {
@@ -313,6 +327,7 @@ function createPopularBlock(blockData, index) {
           .popular-block__info {
             display: flex;
             flex-direction: column;
+            // padding: 8px;
           }
           
           .popular-block__text {
@@ -381,6 +396,28 @@ function createPopularBlock(blockData, index) {
                     max-width: 100px;
                 }
             }
+            
+            
+            .popular-block__header {
+                display: flex;
+                background-color: #DFDFE8;
+                padding: 8px;
+                border-top-left-radius: 7px;
+                border-top-right-radius: 7px;
+                align-items: center;
+            }
+            
+            .popular-block__header .popular-block__text {
+                margin-left: 7px;
+                margin-right: auto;      
+            }
+            
+            .popular-block__wrapper {
+                display: flex;
+                padding: 8px;
+                align-items: center;
+                gap: 7px;
+            }
     `;
 
     document.head.appendChild(style);
@@ -391,18 +428,25 @@ function createPopularBlock(blockData, index) {
 
     return `
     <a href="${blockData.link || '#'}" class="popular-block" data-index="${displayIndex}" data-country="${country}" data-date="${blockData.dates_to_html}" data-label="${blockData.label}">
-      <div class="popular-block__info">
-        <p class="popular-block__text">${point}</p>
-        <p class="popular-block__text"><strong>${blockData.dates_to_html}</strong></p>
-        <p class="popular-block__text popular-block__text--options"><strong>Ночей:</strong> ${blockData.nights}, <strong>Взрослых:</strong> ${blockData.adults}</p>
-      </div>
+        <div class="popular-block__header">
+            <img src="https://b2ccdn.sunmar.ru/content/main-page/air.svg" alt="">
+            <p class="popular-block__text"><strong>${point}</strong></p>
+            <img src="https://b2ccdn.sunmar.ru/content/main-page/airplane.svg" alt="">
+        </div>
+        <div class="popular-block__wrapper">
+            <img src="https://b2ccdn.sunmar.ru/content/main-page/barcode.svg" alt="">
+            <div class="popular-block__info">
+                <p class="popular-block__text"><strong>${blockData.dates_to_html}</strong></p>
+                <p class="popular-block__text popular-block__text--options"><strong>Ночей:</strong> ${blockData.nights}, <strong>Взрослых:</strong> ${blockData.adults}</p>
+            </div>
+        </div>
 
 <!--      <div class="popular-block__label popular-block__label&#45;&#45;${blockData.label === 'Тур' ? 'blue' : 'orange'}">-->
 <!--         <span>${blockData.label}</span>-->
 <!--      </div>-->
 
       <p class="popular-block__price">
-        ${blockData.price ? `от ${Math.floor(blockData.price).toLocaleString('ru-RU')} руб` : 'Цена уточняется'}
+        ${blockData.price ? `от ${Math.floor(blockData.price).toLocaleString('ru-RU')} ₽` : 'Цена уточняется'}
       </p>
     </a>
   `;
@@ -436,11 +480,11 @@ function createPopularWrapper(popularData) {
 
     wrapper.insertAdjacentHTML('beforeend', `
     <div class="popular-title">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7072 12.2929L19.7072 18.2929L18.293 19.7071L12.293 13.7071L13.7072 12.2929Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 8C11.5 6.067 9.933 4.5 8 4.5V2.5C11.0376 2.5 13.5 4.96243 13.5 8H11.5Z" fill="white"/>
-      </svg>
+<!--      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">-->
+<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7072 12.2929L19.7072 18.2929L18.293 19.7071L12.293 13.7071L13.7072 12.2929Z" fill="white"/>-->
+<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8Z" fill="white"/>-->
+<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 8C11.5 6.067 9.933 4.5 8 4.5V2.5C11.0376 2.5 13.5 4.96243 13.5 8H11.5Z" fill="white"/>-->
+<!--      </svg>-->
 <!--      <span>Быстрый подбор</span>-->
       <span>Поиск в один клик</span>
     </div>
@@ -450,7 +494,7 @@ function createPopularWrapper(popularData) {
     return wrapper;
 }
 
-function waitForElement(selector, { root = document, timeout = 15000 } = {}) {
+function waitForElement(selector, {root = document, timeout = 15000} = {}) {
     return new Promise((resolve, reject) => {
         const tryFind = () => (root || document).querySelector(selector);
         const first = tryFind();
@@ -464,7 +508,7 @@ function waitForElement(selector, { root = document, timeout = 15000 } = {}) {
                 resolve(el);
             }
         });
-        obs.observe(target, { childList: true, subtree: true });
+        obs.observe(target, {childList: true, subtree: true});
 
         if (timeout) {
             setTimeout(() => {
@@ -487,7 +531,7 @@ hostReactAppReady().then(async () => {
         const enriched = await Promise.all(popularData.map(enrichPopularItem));
 
         const searchPanel = await waitForElement('[data-testid="quickSearchBarBlock"]');
-        const searchToursPanel = await waitForElement('.ant-tabs-content-holder', { root: searchPanel });
+        const searchToursPanel = await waitForElement('.ant-tabs-content-holder', {root: searchPanel});
 
         const recentBlock = searchPanel.querySelector('.swiper-wrapper');
         if (!recentBlock) {
