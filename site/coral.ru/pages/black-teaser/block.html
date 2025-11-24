@@ -1,0 +1,81 @@
+<body>
+<style>
+
+    .how {
+        padding: 32px;
+        border-radius: 20px;
+        background-color: #24242C;
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/4999.webp");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right;
+
+        @media screen and (max-width: 1199px) {
+            padding-top: 240px;
+            background-image: url("https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/4999_m.webp");
+            background-position: top;
+            background-size: auto;
+        }
+
+        @media screen and (max-width: 767px) {
+            padding-bottom: 16px;
+            padding-inline: 16px;
+        }
+    }
+
+    .how ul {
+        padding-left: 16px;
+        max-width: 720px;
+    }
+
+    .how li::marker {
+        color: rgba(22, 104, 220, 1);
+    }
+
+    .how li + li {
+        margin-top: 5px;
+    }
+
+    .how__button {
+        margin-top: 16px;
+        background-color: #1668DC;
+        width: fit-content;
+        padding-inline: 20px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        border-radius: 48px;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+<section class="coral coral--dark">
+    <article>
+        <div class="wrapper">
+            <div class="how">
+                <h3 class="title-3 mb-8">
+                    Как получить бонусы?
+                </h3>
+                <ul class="text">
+                   <li>
+                       Бонусы в размере 4 999 начисляются на карту CoralBonus за прохождение опроса. 1 бонус&nbsp;=&nbsp;1 рубль
+                   </li>
+                    <li>
+                        Бонусами CoralBonus можно оплачивать до 100% стоимости поездки
+                    </li>
+                    <li>
+                        Даты проведения акции: 17.11.2025 - 31.01.2026 
+                    </li>
+                    <li>
+                        Нет карты CoralBonus? <a onclick="ym(96674199, 'reachGoal', 'coral_bonus_bf25');" href="">Оформить карту</a>
+                    </li>
+                </ul>
+                <div class="how__button js-button-survey">
+                    Пройти опрос
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+</body>

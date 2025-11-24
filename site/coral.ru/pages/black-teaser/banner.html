@@ -1,0 +1,484 @@
+<body>
+<style>
+    .mb-24 {
+        margin-bottom: 24px
+    }
+
+    .mb-16 {
+        margin-bottom: 16px
+    }
+
+    .mb-8 {
+        margin-bottom: 8px
+    }
+
+    .mb-4 {
+        margin-bottom: 4px
+    }
+
+    .mt-24 {
+        margin-top: 24px;
+    }
+
+    .mt-16 {
+        margin-top: 16px
+    }
+
+    .mt-8 {
+        margin-top: 8px
+    }
+
+    * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        padding: 0
+    }
+
+    h1, h2, h3, h4, h5, h6, p, a {
+        margin: 0;
+        padding: 0
+    }
+
+    .coral .banner + .text {
+        margin-top: 14px
+    }
+
+    .coral .title-1 {
+        font-size: 36px;
+        line-height: 44px
+    }
+
+    @media screen and (max-width: 768px) {
+        .coral .title-1 {
+            font-size: 28px;
+            line-height: 36px
+        }
+    }
+
+    .coral .title-2 {
+        font-size: 32px;
+        line-height: 40px
+    }
+
+    @media screen and (max-width: 1024px) {
+        .coral .title-2 {
+            font-size: 28px;
+            line-height: 36px
+        }
+    }
+
+    .coral .title-3 {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 36px
+    }
+
+    @media screen and (max-width: 768px) {
+        .coral .title-3 {
+            font-size: 20px;
+            line-height: 28px
+        }
+    }
+
+    .coral .title-4 {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px
+    }
+
+    @media screen and (max-width: 768px) {
+        .coral .title-4 {
+            font-size: 20px;
+            line-height: 28px
+        }
+    }
+
+    .coral .title-5 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px
+    }
+
+    .coral .label {
+        color: rgba(0, 0, 0, .65);
+        font-size: 12px;
+        line-height: 20px
+    }
+
+    .text {
+        font-size: 16px;
+        line-height: 24px
+    }
+
+    a.coral-button {
+        color: #fff;
+        background-color: #0092d0;
+        border-radius: 48px;
+        align-items: center;
+        width: fit-content;
+        height: 48px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px;
+        text-decoration: none;
+        display: flex
+    }
+
+    a.coral-button--white {
+        color: inherit;
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .15)
+    }
+
+    a.coral-button--white:hover {
+        color: #077dad;
+        background-color: transparent;
+        border: 1px solid #077dad
+    }
+
+    .bg-white {
+        background-color: #fff
+    }
+
+    .bg-grey {
+        background-color: #f5f5f8
+    }
+
+    .slider.swiper:not(:has(.swiper-pagination-lock)) {
+        padding-bottom: 24px
+    }
+
+    .slider__pagination.swiper-pagination.swiper-pagination-horizontal {
+        bottom: 0
+    }
+
+    .slider__pagination.swiper-pagination .swiper-pagination-bullet {
+        opacity: 1;
+        background-color: rgba(51, 194, 255, .3);
+        width: 10px;
+        height: 10px
+    }
+
+    .slider__pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: #077dad
+    }
+
+    .layout-container-limit:has(section.coral) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important
+    }
+
+    .layout-container-limit:has(section.sunamr) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important
+    }
+
+    section > article {
+        max-width: 1528px;
+        margin: auto
+    }
+
+    section > article .wrapper {
+        padding: 40px 80px;
+        position: relative
+    }
+
+    @media screen and (max-width: 768px) {
+        section > article .wrapper {
+            padding: 30px 16px
+        }
+    }
+
+    section.full-width > article {
+        max-width: 100%
+    }
+
+    section.full-width > article .wrapper {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    @media screen and (max-width: 428px) {
+        section.full-width-428 > article .wrapper {
+            padding-left: 0;
+            padding-right: 0
+        }
+    }
+
+    section:has(.banner) .wrapper {
+        padding-bottom: 0
+    }
+
+    section:has(.banner.banner--text) .wrapper {
+        padding-bottom: 40px
+    }
+
+    .ant-col:has(section.coral) > div {
+        padding: 0
+    }
+
+    .d-hidden {
+        display: none
+    }
+
+    @media screen and (max-width: 768px) {
+        .d-hidden {
+            display: block
+        }
+    }
+
+    .m-hidden {
+        display: block
+    }
+
+    @media screen and (max-width: 768px) {
+        .m-hidden {
+            display: none
+        }
+    }
+
+    .text-center {
+        text-align: center
+    }
+
+    .text + .text {
+        margin-top: 8px
+    }
+
+    .coral-button:hover {
+        background: #077dad;
+    }
+
+    @media screen and (max-width: 768px) {
+        #__next > div > div > div {
+            padding: 0 !important;
+        }
+    }
+</style>
+<style>
+
+
+    .banner__title {
+        color: #fff;
+        margin-bottom: 12px;
+        font-size: 56px;
+        font-weight: 300;
+        line-height: 64px
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner__title {
+            font-size: 40px;
+            line-height: 48px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .banner__title {
+            font-size: 32px;
+            line-height: 40px
+        }
+    }
+
+    .banner__subtitle {
+        color: #fff;
+        font-size: 24px;
+        line-height: 32px
+    }
+
+    @media screen and (max-width: 1280px) {
+        .banner__subtitle {
+            font-size: 16px;
+            line-height: 24px
+        }
+    }
+
+
+
+
+
+
+    .video-banner {
+        position: relative;
+        z-index: 2;
+    }
+
+    .video-banner__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        display: flex;
+        padding-inline: 60px;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 100%;
+        z-index: 2;
+
+        @media screen and (max-width: 515px) {
+            justify-content: flex-start;
+            padding: 16px;
+        }
+    }
+
+    .video-banner__player {
+        aspect-ratio: 1368 / 520;
+        background-image: url('https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/banner.webp');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 20px;
+
+
+        @media screen and (max-width: 515px) {
+            aspect-ratio: 343 / 520;
+            background-image: url('https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/banner_m.webp');
+        }
+
+        iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: auto;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+
+    .coral--dark {
+        background-color: #121212;
+    }
+
+    .coral--dark p,
+    .coral--dark li,
+    .coral--dark h2,
+    .coral--dark h3 {
+        color: #fff;
+    }
+</style>
+
+<section class="coral coral--dark">
+    <article>
+        <div class="wrapper">
+            <div class="banner">
+                <div class="video-banner">
+                    <div class="video-banner__player js-player"></div>
+                    <div class="video-banner__content">
+                        <h1 class="banner__title">
+                            Черная пятница: <br>
+                            все начнется 28 ноября
+                        </h1>
+                        <p class="banner__subtitle">
+                            Получайте бонусы уже сейчас
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p class="text">
+                28 ноября — Черная пятница в Coral Travel! Уже готовим для вас специальное предложение на путешествия.
+                Чтобы скрасить томительное ожидание и получить максимум выгоды к Черной пятнице, пройдите небольшой
+                опрос, который поможет нам узнать вас лучше — подарим 4999 бонусов от CoralBonus.
+            </p>
+        </div>
+    </article>
+</section>
+<script>
+    function getScript(scriptUrl, callback) {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = scriptUrl.trim();
+        script.onload = callback;
+        document.body.appendChild(script);
+    }
+
+    function vimeoAutoPlay() {
+        const vimeoBox = document.querySelector(".js-player");
+
+        if (!vimeoBox) return;
+
+        const getVideoIdByScreen = () => {
+            const width = window.innerWidth;
+            if (width <= 515) return 1138862831;
+            // if (width <= 1024) return 1121202422;
+            // if (width <= 1280) return 1121202246;
+            // if (width <= 1440) return 1121202293;
+            return 1138861565;
+        };
+
+        vimeoBox.dataset.vimeoVid = getVideoIdByScreen();
+
+        let players = {};
+        const io_options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.33,
+        };
+
+        function doio() {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const target = entry.target;
+                    const vid = target.dataset.vimeoVid;
+
+                    if (entry.isIntersecting) {
+                        if (players[vid]) {
+                            players[vid].play();
+                        } else {
+                            players[vid] = new Vimeo.Player(target, {
+                                id: Number(vid),
+                                background: 1,
+                                playsinline: 1,
+                                autopause: 0,
+                                title: 0,
+                                byline: 0,
+                                portrait: 0,
+                                autoplay: 1,
+                                muted: 1,
+                            });
+
+                            players[vid].play();
+                            players[vid].on("play", function () {
+                                this.element.parentElement.classList.add("playback");
+                            });
+                        }
+                    } else {
+                        players[vid]?.pause();
+                    }
+                });
+            }, io_options);
+
+            io.observe(vimeoBox);
+        }
+
+        getScript("https://player.vimeo.com/api/player.js", doio);
+    }
+
+    async function hostReactAppReady(selector = "#__next > div", timeout = 500) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        vimeoAutoPlay();
+    });
+</script>
+<script type="module" src="script.js"></script>
+</body>
