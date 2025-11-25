@@ -1,0 +1,190 @@
+<body>
+<style>
+
+    .ex {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+        gap: 32px;
+    }
+
+    .ex__banner {
+        grid-column: span 2;
+        background-image: url("/site/sunmar.ru/assets/ex.webp");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+        min-height: 400px;
+        border-radius: 16px;
+        position: relative;
+
+        @media screen and (max-width: 1279px) {
+            background-image: url("/site/sunmar.ru/assets/ex_1024.webp");
+        }
+
+        @media screen and (max-width: 1023px) {
+            background-image: url("/site/sunmar.ru/assets/ex_768.webp");
+        }
+
+        @media screen and (max-width: 767px) {
+            background-image: url("/site/sunmar.ru/assets/ex_m.webp");
+        }
+    }
+
+    .ex__window {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        bottom: 24px;
+        border-radius: 16px;
+        background-color: rgba(255, 255, 255, 0.64);
+        backdrop-filter: blur(16px);
+        max-width: 640px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media screen and (max-width: 1439px) {
+            max-width: 516px;
+        }
+    }
+
+    .ex__label {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        width: fit-content;
+        padding-inline: 12px;
+        height: 36px;
+        gap: 8px;
+        border-radius: 64px;
+
+        span {
+            color: #2E3465;
+            font-size: 16px;
+        }
+    }
+
+    .ex__block {
+        padding: 24px;
+        border-radius: 16px;
+        background: #F5F5F8;
+
+        .title-5 {
+            color: #0E2855;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 16px;
+        }
+
+        li + li {
+            margin-top: 12px;
+        }
+    }
+
+    .ex__block--big {
+        grid-row: span 2;
+    }
+</style>
+<section class="sunmar">
+    <article>
+        <div class="wrapper">
+            <div class="ex">
+                <div class="ex__banner">
+                    <div class="ex__window">
+                        <div class="ex__label mb-16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                                 fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M1.5 11C1.5 10.4477 1.94772 10 2.5 10H18.5C19.0523 10 19.5 10.4477 19.5 11V20C19.5 20.5523 19.0523 21 18.5 21H2.5C1.94772 21 1.5 20.5523 1.5 20V11ZM3.5 12V19H17.5V12H3.5Z"
+                                      fill="#2E3465"/>
+                                <path d="M1 5C0.447715 5 0 5.44772 0 6V11C0 11.5523 0.447715 12 1 12H20C20.5523 12 21 11.5523 21 11V6C21 5.44772 20.5523 5 20 5H1Z"
+                                      fill="#2E3465"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M4.81127 3.4625C3.89697 1.93867 4.99462 0 6.7717 0C7.57477 0 8.31896 0.421351 8.73214 1.10998L11.3575 5.4855C11.5428 5.79444 11.5477 6.17919 11.3702 6.4927C11.1927 6.80621 10.8602 7 10.5 7H7.49996C7.1487 7 6.82319 6.8157 6.64247 6.5145L4.81127 3.4625ZM6.7717 2C6.54921 2 6.41178 2.24272 6.52626 2.43351L8.06615 5H8.73377L7.01715 2.13897C6.96542 2.05275 6.87225 2 6.7717 2Z"
+                                      fill="#2E3465"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M16.1887 3.4625C17.103 1.93867 16.0054 0 14.2283 0C13.4252 0 12.681 0.421351 12.2679 1.10998L9.64255 5.4855C9.45719 5.79444 9.45233 6.17919 9.62984 6.4927C9.80735 6.80621 10.1398 7 10.5 7H13.5C13.8513 7 14.1768 6.8157 14.3575 6.5145L16.1887 3.4625ZM14.2283 2C14.4508 2 14.5882 2.24272 14.4737 2.43351L12.9338 5H12.2662L13.9828 2.13897C14.0346 2.05275 14.1278 2 14.2283 2Z"
+                                      fill="#2E3465"/>
+                            </svg>
+                            <span>
+                                Подарок
+                            </span>
+                        </div>
+                        <h3 class="title-3 mb-16">
+                            Обзорная экскурсия в Нячанге
+                        </h3>
+                        <p class="text mb-8">
+                            Приглашаем туристов принять участие в небольшом путешествии для знакомства с культурой,
+                            традициями и местными секретами здоровья.
+                        </p>
+                        <p class="text">
+                            Идеально подходит для тех, кто ищет оздоровительные и культурные впечатления от Вьетнама!
+                        </p>
+                    </div>
+                </div>
+                <div class="ex__block ex__block--big">
+                    <h4 class="title-5">
+                        Программа экскурсии:
+                    </h4>
+                    <ul>
+                        <li>
+                            <strong>07:30 – 08:30</strong> Встреча в отеле.
+                        </li>
+                        <li>
+                            <strong>08:40 – 10:00</strong> Змеиное шоу на ферме «Моринга». Предоставление информации о
+                            вьетнамской медицине и натуральных продуктах.
+                        </li>
+                        <li>
+                            <strong>10:00 – 11:15</strong> Дегустация вьетнамского кофе, чая и других растительных
+                            продуктов.
+                        </li>
+                        <li>
+                            <strong>11:15 – 12:15</strong> Предоставление информации о вьетнамских драгоценных камнях и
+                            жемчуге и возможность совершить покупки.
+                        </li>
+                        <li>
+                            <strong>12:30 – 13:30</strong> Посещение пагоды Лонг Шон - ключевого места для посещения в
+                            Нячанге.
+                        </li>
+                    </ul>
+                </div>
+                <div class="ex__block">
+                    <h4 class="title-5">
+                        Что входит в экскурсию:
+                    </h4>
+                    <ul>
+                        <li>
+                            Трансфер, согласно программе.
+                        </li>
+                        <li>
+                            Входные билеты.
+                        </li>
+                        <li>
+                            Услуги русскоговорящего гида.
+                        </li>
+                    </ul>
+                </div>
+                <div class="ex__block">
+                    <h4 class="title-5">
+                        Важная информация:
+                    </h4>
+                    <ul>
+                        <li>
+                            Рекомендуем взять с собой головной убор, солнцезащитные очки, соответствующую одежду для
+                            посещения храма и наличные деньги для личных покупок.
+                        </li>
+                        <li>
+                            Маршрут может быть изменен в зависимости от времени отправления, загруженности дорог и
+                            погодных условий.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
