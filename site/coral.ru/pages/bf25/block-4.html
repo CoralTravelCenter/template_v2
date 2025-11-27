@@ -1,0 +1,375 @@
+<body>
+<style>
+    .summer__banner {
+        height: 300px;
+        width: 100%;
+        border-radius: 12px;
+        background: linear-gradient(199deg, #542DC6 -80.36%, #7155CC -40.29%, #894CAB 2.98%, #A13781 46.25%, #DE4059 86.31%);
+        padding-right: 40px;
+        display: flex;
+
+        @media screen and (max-width: 1042px) {
+            flex-direction: column;
+            height: 100%;
+            padding: 24px 24px 0;
+        }
+    }
+
+    .summer__banner img {
+        @media screen and (max-width: 1042px) {
+            order: 2;
+            margin-top: 10px;
+        }
+    }
+
+    .summer__info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        justify-content: center;
+
+        @media screen and (max-width: 1042px) {
+            order: 1;
+        }
+    }
+
+    .summer__info .title-3, .summer__info .text {
+        @media screen and (max-width: 1042px) {
+            text-align: center;
+        }
+    }
+
+
+    .black-block {
+        padding: 32px;
+        background-color: rgba(36, 36, 44, 1);
+        border-radius: 20px;
+
+        .title-2 {
+            color: white;
+        }
+
+        .slider__info {
+            background-color: #3A3A41;
+
+            @media screen and (max-width: 767px) {
+                min-height: auto;
+            }
+        }
+
+        .slider__footer {
+            @media screen and (max-width: 767px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .title-4 {
+            color: white;
+        }
+
+        .title-5 {
+            color: white;
+        }
+
+        .text {
+            color: white;
+        }
+
+        .coral-button {
+            background-color: rgba(22, 104, 220, 1);
+        }
+
+        .slider__slide {
+            flex: 1;
+        }
+    }
+
+    .black-block__wrapper {
+        display: flex;
+        gap: 24px;
+
+        @media screen and (max-width: 1023px) {
+            flex-direction: column;
+        }
+    }
+
+    .black-block__cash {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .black-block__tooltip {
+        display: flex;
+    }
+</style>
+<style>
+    .slider {
+        margin-top: 32px;
+    }
+
+    .slider__slide.swiper-slide {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        border-radius: 20px;
+        background-color: white;
+    }
+
+    .slider__info {
+        padding-block: 16px;
+        padding-inline: 24px;
+        border-radius: 0 0 20px 20px;
+        flex: 1;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: 767px) {
+            min-height: 300px;
+        }
+    }
+
+    .slider__img {
+        border-radius: 20px 20px 0 0;
+        height: 164px;
+        object-fit: cover;
+        object-position: center;
+        display: flex;
+    }
+
+    .slider__title {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .slider__prev {
+        left: 10px;
+    }
+
+    .slider__next {
+        right: 10px;
+    }
+
+    .swiper-button-lock.slider__prev,
+    .swiper-button-lock.slider__next {
+        display: none;
+    }
+
+    .slider__prev,
+    .slider__next {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: #FFFFFF;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.10);
+        top: 51%;
+        z-index: 1;
+        cursor: pointer;
+        user-select: none;
+
+        @media screen and (max-width: 1042px) {
+            top: 54%;
+        }
+    }
+
+    .slider__box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .slider__box + .slider__box {
+        margin-top: 8px;
+    }
+
+    .slider__icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slider__footer {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+        gap: 16px;
+
+        @media screen and (max-width: 1279px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media screen and (max-width: 767px) {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 400px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    .slider__price {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 600;
+
+        @media screen and (max-width: 767px) {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .slider__prev,
+        .slider__next {
+            display: none;
+        }
+    }
+</style>
+<section class="coral" id="anchor-2">
+    <article>
+        <div class="wrapper">
+            <div class="black-block">
+
+                <h2 class="title-2 mb-16">
+                    Лучшие предложения Черной пятницы
+                </h2>
+                <div class="black-block__wrapper">
+                    <div class="swiper-slide slider__slide">
+                        <img class="slider__img"
+                             src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/image.webp" alt="">
+                        <div class="slider__info">
+                            <h4 class="title-4 mb-8">
+                                XANADU RESORT
+                            </h4>
+                            <div class="slider__box">
+                                <div class="slider__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20"
+                                         fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M4.0638 1.8761C5.36132 0.626933 7.12205 0 9 0C10.878 0 12.6387 0.626933 13.9362 1.8761C15.2414 3.1327 16 4.94418 16 7.15789C16 8.82628 15.1441 10.6348 14.1821 12.1753C13.1969 13.7531 11.9917 15.2173 11.0894 16.2339C9.96799 17.4974 8.03201 17.4974 6.91062 16.2339C6.00832 15.2173 4.80314 13.7531 3.81785 12.1753C2.85587 10.6348 2 8.82628 2 7.15789C2 4.94418 2.75856 3.1327 4.0638 1.8761ZM8 6C8 5.44772 8.44772 5 9 5C9.55228 5 10 5.44772 10 6C10 6.55228 9.55228 7 9 7C8.44772 7 8 6.55228 8 6ZM9 3C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9C10.6569 9 12 7.65685 12 6C12 4.34315 10.6569 3 9 3Z"
+                                              fill="#1668DC"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M2.0325 16.5002C2.04324 16.4879 2.05652 16.4736 2.07287 16.4574C2.19796 16.3334 2.4328 16.1703 2.81476 15.9965C3.57394 15.651 4.71595 15.3519 6.1255 15.1736L5.8745 13.1895C4.35222 13.382 2.99423 13.7175 1.98637 14.1761C1.48481 14.4044 1.01936 14.6857 0.665056 15.0368C0.307773 15.3909 0 15.8842 0 16.4998C0 17.3112 0.524341 17.9003 1.03444 18.2772C1.56412 18.6686 2.26665 18.9789 3.04487 19.2221C4.61323 19.7122 6.71849 19.9998 9 19.9998C11.2815 19.9998 13.3868 19.7122 14.9551 19.2221C15.7334 18.9789 16.4359 18.6686 16.9656 18.2772C17.4757 17.9003 18 17.3112 18 16.4998C18 15.8842 17.6922 15.3909 17.3349 15.0368C16.9806 14.6857 16.5152 14.4044 16.0136 14.1761C15.0058 13.7175 13.6478 13.382 12.1255 13.1895L11.8745 15.1736C13.2841 15.3519 14.4261 15.651 15.1852 15.9965C15.5672 16.1703 15.802 16.3334 15.9271 16.4574C15.9435 16.4736 15.9568 16.4879 15.9675 16.5002C15.9344 16.5387 15.8764 16.5953 15.7771 16.6686C15.4971 16.8755 15.0281 17.1039 14.3586 17.3131C13.0315 17.7278 11.1368 17.9998 9 17.9998C6.86323 17.9998 4.9685 17.7278 3.64142 17.3131C2.97193 17.1039 2.50289 16.8755 2.22292 16.6686C2.12358 16.5953 2.06561 16.5387 2.0325 16.5002ZM1.9902 16.5595C1.99007 16.5595 1.99063 16.5579 1.99228 16.5548C1.99116 16.5579 1.99033 16.5595 1.9902 16.5595ZM16.0098 16.5595C16.0097 16.5595 16.0088 16.5579 16.0077 16.5548C16.0094 16.5579 16.0099 16.5595 16.0098 16.5595ZM16.0069 16.445C16.0079 16.4421 16.0086 16.4406 16.0088 16.4406C16.0089 16.4406 16.0084 16.4421 16.0069 16.445ZM1.99305 16.445C1.99161 16.4421 1.99112 16.4406 1.99124 16.4406C1.99135 16.4406 1.99207 16.4421 1.99305 16.445Z"
+                                              fill="#1668DC"/>
+                                    </svg>
+                                </div>
+                                <p class="text">
+                                    Турция, Белек
+                                </p>
+                            </div>
+                            <div class="slider__box">
+                                <div class="slider__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="22" viewBox="0 0 15 22"
+                                         fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M6.93079 0.177808C7.27323 -0.0592693 7.72677 -0.0592693 8.06921 0.177808L14.5692 4.67781C14.839 4.86459 15 5.17185 15 5.5V21C15 21.5523 14.5523 22 14 22H1C0.447715 22 0 21.5523 0 21V5.5C0 5.17185 0.160992 4.86459 0.43079 4.67781L6.93079 0.177808ZM5 10C5 9.72386 5.22386 9.5 5.5 9.5C5.77614 9.5 6 9.72386 6 10C6 10.2761 5.77614 10.5 5.5 10.5C5.22386 10.5 5 10.2761 5 10ZM5.5 7.5C4.11929 7.5 3 8.61929 3 10C3 11.3807 4.11929 12.5 5.5 12.5C6.88071 12.5 8 11.3807 8 10C8 8.61929 6.88071 7.5 5.5 7.5ZM10 15C9.72386 15 9.5 15.2239 9.5 15.5C9.5 15.7761 9.72386 16 10 16C10.2761 16 10.5 15.7761 10.5 15.5C10.5 15.2239 10.2761 15 10 15ZM7.5 15.5C7.5 14.1193 8.61929 13 10 13C11.3807 13 12.5 14.1193 12.5 15.5C12.5 16.8807 11.3807 18 10 18C8.61929 18 7.5 16.8807 7.5 15.5ZM10.2929 8.79289L3.29289 15.7929L4.70711 17.2071L11.7071 10.2071L10.2929 8.79289Z"
+                                              fill="#1668DC"/>
+                                    </svg>
+                                </div>
+                                <p class="text">
+                                    Выгода 20%
+                                </p>
+                            </div>
+                            <span class="title-5 mt-16">
+                                        Туры от хх ххх ₽
+                            </span>
+                            <div class="slider__footer">
+                                <a href="" target="_blank" class="coral-button js-choose-button">
+                                    Выбрать тур
+                                </a>
+                                <div class="black-block__cash">
+                                    <strong class="text">
+                                        Кешбэк 16 000 ₽
+                                    </strong>
+                                    <div class="black-block__tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                                            <circle cx="7.16667" cy="7.16667" r="6.66667" stroke="white"/>
+                                            <path d="M7.16675 11.6113V4.94466" stroke="white" stroke-linejoin="round"/>
+                                            <path d="M7.16675 4.20361V2.72213" stroke="white" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="swiper-slide slider__slide">
+                        <img class="slider__img"
+                             src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/image-1.webp" alt="">
+                        <div class="slider__info">
+                            <h4 class="title-4 mb-8">
+                                REGINA RESORT & AQUA PARK
+                            </h4>
+                            <div class="slider__box">
+                                <div class="slider__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20"
+                                         fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M4.0638 1.8761C5.36132 0.626933 7.12205 0 9 0C10.878 0 12.6387 0.626933 13.9362 1.8761C15.2414 3.1327 16 4.94418 16 7.15789C16 8.82628 15.1441 10.6348 14.1821 12.1753C13.1969 13.7531 11.9917 15.2173 11.0894 16.2339C9.96799 17.4974 8.03201 17.4974 6.91062 16.2339C6.00832 15.2173 4.80314 13.7531 3.81785 12.1753C2.85587 10.6348 2 8.82628 2 7.15789C2 4.94418 2.75856 3.1327 4.0638 1.8761ZM8 6C8 5.44772 8.44772 5 9 5C9.55228 5 10 5.44772 10 6C10 6.55228 9.55228 7 9 7C8.44772 7 8 6.55228 8 6ZM9 3C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9C10.6569 9 12 7.65685 12 6C12 4.34315 10.6569 3 9 3Z"
+                                              fill="#1668DC"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M2.0325 16.5002C2.04324 16.4879 2.05652 16.4736 2.07287 16.4574C2.19796 16.3334 2.4328 16.1703 2.81476 15.9965C3.57394 15.651 4.71595 15.3519 6.1255 15.1736L5.8745 13.1895C4.35222 13.382 2.99423 13.7175 1.98637 14.1761C1.48481 14.4044 1.01936 14.6857 0.665056 15.0368C0.307773 15.3909 0 15.8842 0 16.4998C0 17.3112 0.524341 17.9003 1.03444 18.2772C1.56412 18.6686 2.26665 18.9789 3.04487 19.2221C4.61323 19.7122 6.71849 19.9998 9 19.9998C11.2815 19.9998 13.3868 19.7122 14.9551 19.2221C15.7334 18.9789 16.4359 18.6686 16.9656 18.2772C17.4757 17.9003 18 17.3112 18 16.4998C18 15.8842 17.6922 15.3909 17.3349 15.0368C16.9806 14.6857 16.5152 14.4044 16.0136 14.1761C15.0058 13.7175 13.6478 13.382 12.1255 13.1895L11.8745 15.1736C13.2841 15.3519 14.4261 15.651 15.1852 15.9965C15.5672 16.1703 15.802 16.3334 15.9271 16.4574C15.9435 16.4736 15.9568 16.4879 15.9675 16.5002C15.9344 16.5387 15.8764 16.5953 15.7771 16.6686C15.4971 16.8755 15.0281 17.1039 14.3586 17.3131C13.0315 17.7278 11.1368 17.9998 9 17.9998C6.86323 17.9998 4.9685 17.7278 3.64142 17.3131C2.97193 17.1039 2.50289 16.8755 2.22292 16.6686C2.12358 16.5953 2.06561 16.5387 2.0325 16.5002ZM1.9902 16.5595C1.99007 16.5595 1.99063 16.5579 1.99228 16.5548C1.99116 16.5579 1.99033 16.5595 1.9902 16.5595ZM16.0098 16.5595C16.0097 16.5595 16.0088 16.5579 16.0077 16.5548C16.0094 16.5579 16.0099 16.5595 16.0098 16.5595ZM16.0069 16.445C16.0079 16.4421 16.0086 16.4406 16.0088 16.4406C16.0089 16.4406 16.0084 16.4421 16.0069 16.445ZM1.99305 16.445C1.99161 16.4421 1.99112 16.4406 1.99124 16.4406C1.99135 16.4406 1.99207 16.4421 1.99305 16.445Z"
+                                              fill="#1668DC"/>
+                                    </svg>
+                                </div>
+                                <p class="text">
+                                    Египет, Хургада
+                                </p>
+                            </div>
+                            <div class="slider__box">
+                                <div class="slider__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="22" viewBox="0 0 15 22"
+                                         fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M6.93079 0.177808C7.27323 -0.0592693 7.72677 -0.0592693 8.06921 0.177808L14.5692 4.67781C14.839 4.86459 15 5.17185 15 5.5V21C15 21.5523 14.5523 22 14 22H1C0.447715 22 0 21.5523 0 21V5.5C0 5.17185 0.160992 4.86459 0.43079 4.67781L6.93079 0.177808ZM5 10C5 9.72386 5.22386 9.5 5.5 9.5C5.77614 9.5 6 9.72386 6 10C6 10.2761 5.77614 10.5 5.5 10.5C5.22386 10.5 5 10.2761 5 10ZM5.5 7.5C4.11929 7.5 3 8.61929 3 10C3 11.3807 4.11929 12.5 5.5 12.5C6.88071 12.5 8 11.3807 8 10C8 8.61929 6.88071 7.5 5.5 7.5ZM10 15C9.72386 15 9.5 15.2239 9.5 15.5C9.5 15.7761 9.72386 16 10 16C10.2761 16 10.5 15.7761 10.5 15.5C10.5 15.2239 10.2761 15 10 15ZM7.5 15.5C7.5 14.1193 8.61929 13 10 13C11.3807 13 12.5 14.1193 12.5 15.5C12.5 16.8807 11.3807 18 10 18C8.61929 18 7.5 16.8807 7.5 15.5ZM10.2929 8.79289L3.29289 15.7929L4.70711 17.2071L11.7071 10.2071L10.2929 8.79289Z"
+                                              fill="#1668DC"/>
+                                    </svg>
+                                </div>
+                                <p class="text">
+                                    Выгода 35%
+                                </p>
+                            </div>
+                            <span class="title-5 mt-16">
+                                        Туры от хх ххх ₽
+                            </span>
+                            <div class="slider__footer">
+                                <a href="" target="_blank" class="coral-button js-choose-button">
+                                    Выбрать тур
+                                </a>
+                                <div class="black-block__cash">
+                                    <strong class="text">
+                                        Кешбэк 16 000 ₽
+                                    </strong>
+                                    <div class="black-block__tooltip">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                                            <circle cx="7.16667" cy="7.16667" r="6.66667" stroke="white"/>
+                                            <path d="M7.16675 11.6113V4.94466" stroke="white" stroke-linejoin="round"/>
+                                            <path d="M7.16675 4.20361V2.72213" stroke="white" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+</section>
+</body>

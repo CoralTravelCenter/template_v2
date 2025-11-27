@@ -1,0 +1,211 @@
+<body>
+<style>
+    .terms {
+        grid-gap: 24px;
+        grid-template-columns:repeat(3, 1fr);
+        display: grid;
+
+        @media screen and (max-width: 1023px) {
+            grid-template-columns: 100%;
+        }
+    }
+
+    .terms__block {
+        background-color: #fff;
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 24px;
+        display: flex;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, .08), 0 3px 6px -4px rgba(0, 0, 0, .12), 0 9px 28px 8px rgba(0, 0, 0, .05)
+    }
+
+    .terms__block--promo {
+        background-color: #d2e9fb;
+        grid-column: span 3;
+        min-height: 154px;
+        position: relative;
+        overflow: hidden
+    }
+
+    .terms__block--promo:before {
+        content: "";
+        background-image: url(https://b2ccdn.coral.ru/content/promo/young-day/palm.svg);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 170px;
+        height: 170px;
+        position: absolute;
+        left: 20px
+    }
+
+    @media screen and (max-width: 1280px) {
+        .terms__block--promo:before {
+            left: -60px
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .terms__block--promo:before {
+            width: 190px;
+            height: 190px;
+            bottom: -30px;
+            left: -50px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .terms__block--promo:before {
+            width: 109px;
+            height: 109px;
+            bottom: -20px;
+            left: -30px
+        }
+    }
+
+    .terms__block--promo:after {
+        content: "";
+        background-image: url(https://b2ccdn.coral.ru/content/promo/young-day/sun.svg);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 229px;
+        height: 229px;
+        position: absolute;
+        top: -110px;
+        right: 0
+    }
+
+    @media screen and (max-width: 1280px) {
+        .terms__block--promo:after {
+            right: -60px
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .terms__block--promo:after {
+            width: 260px;
+            height: 260px;
+            top: -90px;
+            right: -70px
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .terms__block--promo:after {
+            width: 118px;
+            height: 118px;
+            top: -50px;
+            right: -40px
+        }
+
+        .terms__block--conditions {
+            grid-column: span 3
+        }
+    }
+
+    .terms__block--note {
+        grid-column: span 3
+    }
+
+    .terms__img {
+        margin-bottom: 16px
+    }
+
+    .terms__list {
+        z-index: 1;
+        align-items: center;
+        gap: 36px;
+        margin-top: 16px;
+        padding: 0;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex
+    }
+
+    @media screen and (max-width: 1024px) {
+        .terms__list {
+            flex-direction: column;
+            gap: 8px
+        }
+    }
+
+    .terms__block--last {
+        grid-row: span 2;
+
+        @media screen and (max-width: 1023px) {
+            grid-row: auto;
+            order: 5;
+        }
+
+        a {
+            margin-top: auto;
+
+            @media screen and (max-width: 1023px) {
+                margin-top: 16px;
+            }
+        }
+    }
+</style>
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-1 mb-16">
+                Условия акции
+            </h2>
+            <div class="terms">
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/IMG.webp" alt="">
+                    <p class="text">
+                        <strong>Даты бронирования:</strong>
+                        28.11.2025 - 01.12.2025
+                    </p>
+                </div>
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/img_1.webp" alt="">
+
+                    <p class="text">
+                        <strong>Даты путешествия:</strong>
+                        02.01.2026 - 30.11.2026
+                    </p>
+                </div>
+                <div class="terms__block terms__block--last">
+                    <img class="terms__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/IMG-4.webp" alt="">
+                    <p class="text">
+                        Бонусы зачисляются на карту программы лояльности Coral Bonus.
+                        <br>
+                        <br>
+                        Нет карты CoralBonus?
+                        <strong>
+                            Оформите карту и получите 3000 приветственных бонусов!
+                        </strong>
+
+                    </p>
+                    <a href="https://coralbonus.ru/registration?promo=1RRYMMS4TE4FB978H7ZTFIOJNOW4BPUWPUNVI29N2TROKNALXQXA0Q­XBOL35V4R" onclick="ym(96674199,'reachGoal','2_hotels_bf25',{'hotel':'REGINA RESORT & AQUA PARK'});" class="coral-button" target="_blank">
+                        Оформить карту
+                    </a>
+                </div>
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/IMG-2.webp" alt="">
+                    <p class="text">
+                        Акция распространяется на бронирования пакетных туров или отелей.
+                    </p>
+                </div>
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/black-friday/2025/IMG-3.webp" alt="">
+
+                    <p class="text">
+                        Скидка уже включена в стоимость тура и отеля, суммируется с другими акциями и программой лояльности CoralBonus.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
