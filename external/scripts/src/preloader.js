@@ -18,7 +18,6 @@ hostReactAppReady().then(() => {
     style.textContent = `
         .preloader-new {
             padding-inline: 16px;
-            background-color: rgba(0, 0, 0, 0.06);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -28,10 +27,13 @@ hostReactAppReady().then(() => {
         }
         
         .preloader-new.preloader-new--desktop {
-            flex-direction: row;
-            background-color: transparent;
-            gap: 20px;
-            padding-top: 10px;
+            position: absolute;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            inset: 0;
+            border-radius: 16px;
         }
         
         .preloader-dots {
@@ -58,22 +60,61 @@ hostReactAppReady().then(() => {
             0%, 100% { opacity: 0.5; }
             50%      { opacity: 1; }
         }
+        
+        .preloader-new--hidden {
+            display: none;
+        }
     `;
 
     document.body.appendChild(style);
 
-    const obs = new MutationObserver(mutations => {
+    let listenersAttached = false;
+
+    function startPreloader() {
+        if (document.querySelector('.js-preloader-new')) {
+            return;
+        }
 
         if (window.innerWidth <= 768) {
+            const targetBlock = document.querySelector('[class*="PackageTourFlightHotelOverviewMobile_skeletonWrapper"]');
+            if (!targetBlock) return;
 
-            const sectionRow = document.getElementById('section-row-4');
+            targetBlock.insertAdjacentHTML('beforebegin', `
+                <div class="preloader-new js-preloader-new">
+                    <div class="preloader-dots">
+                        <div class="preloader-dot"></div>
+                        <div class="preloader-dot"></div>
+                        <div class="preloader-dot"></div>
+                        <div class="preloader-dot"></div>
+                    </div>
+                    <span>Ищем лучшие цены для вас</span>
+                </div>
+            `);
 
-            if (sectionRow) {
+            const preloader = document.querySelector('.js-preloader-new');
 
-                obs.disconnect();
+            const disappearObserver = new MutationObserver(() => {
+                const targetBlockDisappear = document.querySelector('[class*="PackageTourFlightHotelOverviewMobile_skeletonWrapper"]');
+                if (!targetBlockDisappear) {
+                    preloader.classList.add('preloader-new--hidden');
+                    disappearObserver.disconnect();
+                }
+            });
 
-                sectionRow.insertAdjacentHTML('afterbegin', `
-                    <div class="preloader-new js-preloader-new">
+            disappearObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+        } else {
+            const targetBlock = document.querySelector('[class*="PackageTourFlightHotelOverview_skeletonWrapper"]');
+            if (!targetBlock) return;
+
+            targetBlock.style.position = 'relative';
+
+            if (!targetBlock.querySelector('.preloader-new--desktop')) {
+                targetBlock.insertAdjacentHTML('afterbegin', `
+                    <div class="preloader-new preloader-new--desktop">
                         <div class="preloader-dots">
                             <div class="preloader-dot"></div>
                             <div class="preloader-dot"></div>
@@ -84,30 +125,49 @@ hostReactAppReady().then(() => {
                     </div>
                 `);
             }
+        }
+    }
+
+    const skeletonObserver = new MutationObserver(() => {
+        if (window.innerWidth <= 768) {
+            const mobileSkeleton = document.querySelector('[class*="PackageTourFlightHotelOverviewMobile_skeletonWrapper"]');
+            if (mobileSkeleton) {
+                startPreloader();
+                skeletonObserver.disconnect();
+            }
         } else {
-            const headings = document.querySelectorAll('.B2CHeading');
+            const desktopSkeleton = document.querySelector('[class*="PackageTourFlightHotelOverview_skeletonWrapper"]');
+            if (desktopSkeleton) {
+                startPreloader();
+                skeletonObserver.disconnect();
+            }
+        }
+    });
 
-            headings.forEach(heading => {
-                if (heading.textContent.trim() === 'Выберите рейс') {
-                    obs.disconnect();
+    skeletonObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 
-                    heading.insertAdjacentHTML('afterend', `
-                        <div class="preloader-new preloader-new--desktop">
-                            <span>Ищем лучшие цены для вас</span>
-                            <div class="preloader-dots">
-                                <div class="preloader-dot"></div>
-                                <div class="preloader-dot"></div>
-                                <div class="preloader-dot"></div>
-                                <div class="preloader-dot"></div>
-                            </div>
-                        </div>
-                    `);
-                }
+    const buttonsObserver = new MutationObserver(() => {
+        if (listenersAttached) return;
+
+        const buttonsToStart = document.querySelectorAll('[name="select-room-btn"]');
+        if (buttonsToStart.length > 0) {
+            listenersAttached = true;
+            buttonsObserver.disconnect();
+
+            buttonsToStart.forEach(button => {
+                button.addEventListener('click', () => {
+                    setTimeout(() => {
+                        startPreloader();
+                    }, 300);
+                });
             });
         }
     });
 
-    obs.observe(document, {
+    buttonsObserver.observe(document, {
         childList: true,
         subtree: true
     });
