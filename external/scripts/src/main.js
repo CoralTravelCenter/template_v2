@@ -15,3 +15,12 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 hostReactAppReady().then(() => {
 
 });
+
+const obs = new MutationObserver(() => {
+
+});
+
+obs.observe(document, {
+    childList: true,
+    subtree: true
+});
