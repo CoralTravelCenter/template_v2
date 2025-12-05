@@ -13,46 +13,102 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 }
 
 hostReactAppReady().then(() => {
-    if (window.dataLayer && !window.dataLayer.__isProxied) {
-        const originalPush = window.dataLayer.push;
 
-        window.dataLayer.push = function (...args) {
-            const result = originalPush.apply(this, args);
+    const mainObserver = new MutationObserver(() => {
+        const filters = document.getElementById('selected-filters');
 
-            args.forEach(arg => {
-                if (
-                    arg &&
-                    typeof arg === 'object' &&
-                    arg.event === 'view_item_list' &&
-                    Array.isArray(arg.ecommerce?.items)
-                ) {
-                    const hasThailand = arg.ecommerce.items.some(item => item.item_brand === "Таиланд");
-
-                    console.log(hasThailand);
-
-                    if (hasThailand) {
-                        startBannerObserver();
-
-                        setTimeout(() => {
-                            startPopup();
-                        }, 3 * 60 * 1000);
+        if (filters) {
+            function findElementByText(root, text) {
+                const elements = root.querySelectorAll('*');
+                for (const element of elements) {
+                    if (element.textContent.includes(text)) {
+                        return element;
                     }
                 }
-            });
+                return null;
+            }
 
-            return result;
-        };
+            const thailandElement = findElementByText(filters, 'Таиланд');
 
-        window.dataLayer.__isProxied = true;
+            if (thailandElement) {
+                const applyFiltersButton = document.querySelector('[name="Применить фильтры"]');
+                const searchButton = document.getElementById('QuickSearchPackageToursSearch_Button');
+
+                if (applyFiltersButton && searchButton) {
+                    mainObserver.disconnect();
+
+                    applyFiltersButton.addEventListener('click', () => {
+                        setNotFoundBanner();
+                    });
+
+                    searchButton.addEventListener('click', () => {
+                        setNotFoundBanner();
+                    });
+                }
+
+                mainObserver.disconnect();
+
+                setSearchBanner();
+
+                setTimeout(() => {
+                    setPopup();
+                }, 3 * 60 * 1000);
+
+            }
+        }
+    });
+
+    mainObserver.observe(document, {
+        childList: true,
+        subtree: true
+    });
+
+    function setNotFoundBanner() {
+        const notFoundObs = new MutationObserver(() => {
+
+            const targetBlock = document.querySelector('.quicksearch-change-wrapper');
+
+            if (targetBlock) {
+                notFoundObs.disconnect();
+
+                targetBlock.insertAdjacentHTML('beforebegin', `
+                        <a href="https://www.coral.ru/main/thailand/" style="display: flex; margin: 0 auto;" id="tai-not-found">
+                            <picture>
+                                <source media="(max-width: 768px)" srcset="https://b2ccdn.coral.ru/content/thailand/tai_banner_m.webp">
+                                <img src="https://b2ccdn.coral.ru/content/thailand/tai_banner.webp" alt="">
+                            </picture>
+                        </a>
+                    `);
+
+                const banner = document.getElementById('tai-not-found');
+
+                if (banner && typeof ym === 'function') {
+                    banner.addEventListener('click', () => {
+                        ym(96674199, "reachGoal", "segmentation_entry_point", {
+                            page_path: {
+                                "/main/thailand/": {
+                                    name_point: "search_not_found",
+                                },
+                            },
+                        });
+                    });
+                }
+
+            }
+        });
+
+        notFoundObs.observe(document, {
+            childList: true,
+            subtree: true
+        });
     }
 
-    function startBannerObserver() {
-        const obs = new MutationObserver(() => {
+    function setSearchBanner () {
+        const searchObs = new MutationObserver(() => {
             const searchBlock = document.querySelector('[class*="ConditionalRenderer_conditionalRenderer"]');
 
             if (searchBlock) {
-                clearTimeout(timeoutId);
-                obs.disconnect();
+                searchObs.disconnect();
 
                 searchBlock.insertAdjacentHTML('beforeend', `
                     <a href="https://www.coral.ru/main/thailand/" style="display: flex; margin: 0 auto 10px; width: fit-content;" id="tai-search">
@@ -79,17 +135,13 @@ hostReactAppReady().then(() => {
             }
         });
 
-        const timeoutId = setTimeout(() => {
-            obs.disconnect();
-        }, 5000);
-
-        obs.observe(document, {
+        searchObs.observe(document, {
             childList: true,
             subtree: true
         });
     }
 
-    function startPopup () {
+    function setPopup () {
         document.body.insertAdjacentHTML('beforeend', `
             <div id="tai_popup" style="position: fixed; inset: 0; background-color: #00000070; width: 100%; height: 100%; z-index: 9999; display: flex; justify-content: center; align-items: center;">
                 <div style="display: flex; max-width: 350px;
@@ -137,65 +189,4 @@ hostReactAppReady().then(() => {
             });
         }
     }
-
-    const notFoundObs = new MutationObserver(() => {
-        const filters = document.getElementById('selected-filters');
-
-        if (filters) {
-            notFoundObs.disconnect();
-
-            function findElementByText(root, text) {
-                const elements = root.querySelectorAll('*');
-                for (const element of elements) {
-                    if (element.textContent.includes(text)) {
-                        return element;
-                    }
-                }
-                return null;
-            }
-
-            const thailandElement = findElementByText(filters, 'Таиланд');
-            if (thailandElement) {
-                clearTimeout(timeoutId);
-
-                const targetBlock = document.querySelector('.quicksearch-change-wrapper');
-
-                if (targetBlock) {
-                    notFoundObs.disconnect();
-
-                    targetBlock.insertAdjacentHTML('beforebegin', `
-                        <a href="https://www.coral.ru/main/thailand/" style="display: flex; margin: 0 auto;" id="tai-not-found">
-                            <picture>
-                                <source media="(max-width: 768px)" srcset="https://b2ccdn.coral.ru/content/thailand/tai_banner_m.webp">
-                                <img src="https://b2ccdn.coral.ru/content/thailand/tai_banner.webp" alt="">
-                            </picture>
-                        </a>
-                    `);
-
-                    const banner = document.getElementById('tai-not-found');
-
-                    if (banner && typeof ym === 'function') {
-                        banner.addEventListener('click', () => {
-                            ym(96674199, "reachGoal", "segmentation_entry_point", {
-                                page_path: {
-                                    "/main/thailand/": {
-                                        name_point: "search_not_found",
-                                    },
-                                },
-                            });
-                        });
-                    }
-                }
-            }
-        }
-    });
-
-    const timeoutId = setTimeout(() => {
-        notFoundObs.disconnect();
-    }, 5000);
-
-    notFoundObs.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
 });
