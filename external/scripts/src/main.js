@@ -13,15 +13,17 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 }
 
 hostReactAppReady().then(() => {
-    function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        // localStorage.setItem('theme', theme);
-    }
+    // function setTheme(theme) {
+    //     document.documentElement.setAttribute('data-theme', theme);
+    //     localStorage.setItem('theme', theme);
+    // }
 
-    const savedTheme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    // const savedTheme = localStorage.getItem('theme') ||
+    //     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    //
+    // setTheme(savedTheme);
 
-    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', 'dark');
 
     const style = document.createElement('style');
     style.innerText = `
@@ -36,6 +38,10 @@ hostReactAppReady().then(() => {
             --ant-color-border: #EFEFEF !important;
             --ant-color-split: rgba(255, 255, 255, 0.85) !important;
             --ant-color-bg-elevated: rgba(54, 54, 66, 1) !important;
+            --ant-color-bg-base: #3A3A41 !important;
+            --ant-color-border: transparent !important;
+            
+            --ant-orange-1: #121212 !important;
             
             --elevation-level-1: #121212 !important;
             --elevation-level-2: #24242C !important;
@@ -77,6 +83,21 @@ hostReactAppReady().then(() => {
                 .menu-dropdown-item svg path {
                     stroke: white !important;
                 }
+                
+                .prefix-icon-prefix svg path, .prefix-icon-prefix svg circle {
+                    stroke: var(--item-bg) !important;
+                }
+            }
+            
+            #footer-row { 
+                .ant-btn-color-link.ant-btn-variant-link {
+                    background: transparent !important;
+                    border-color: var(--ant-color-primary) !important;
+                }
+                
+                .ant-btn-color-link.ant-btn-variant-link:hover {
+                    background: var(--ant-color-primary) !important;
+                }
             }
             
             #breadcrumb-widget span {
@@ -87,6 +108,11 @@ hostReactAppReady().then(() => {
                 background: var(--elevation-level-3) !important;
             }
             
+            .lazy-flightWidget__QuickSearchFlightFromIcon svg path,
+            .lazy-flightWidget__QuickSearchFlightFromIcon svg rect,
+            .lazy-flightWidget__QuickSearchFlightToIcon svg path {
+                fill: white !important;
+            }
            
             .ant-picker-date-panel .ant-picker-content .ant-picker-cell.ant-picker-cell-disabled.ant-picker-cell-in-view > div,
             .ant-picker-month-panel .ant-picker-content .ant-picker-cell.ant-picker-cell-disabled.ant-picker-cell-in-view > div,
@@ -114,17 +140,62 @@ hostReactAppReady().then(() => {
                 color: black;
             }
             
+            .ant-tree-select-dropdown .ant-select-tree-checkbox .ant-select-tree-checkbox-inner,
+            .ant-checkbox .ant-checkbox-inner {
+                background: transparent !important;
+                border-color: white !important;
+            }
+            
+            .ant-picker-outlined {
+                background: var(--item-bg)!important;
+            }
+            
             .durationWrapper span {
                 color: var(--ant-color-text-secondary)!important;
             }
             
             .ant-input-outlined:hover,
             .ant-input-outlined:focus-within,
+            .ant-picker-outlined:hover,
             .ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector,
             .ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector,
             .ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover, 
             .ant-btn-variant-dashed:not(:disabled):not(.ant-btn-disabled):hover {
                 border-color: var(--ant-control-item-bg-active)!important;
+            }
+            
+            .ant-picker .ant-picker-suffix svg rect,
+            .ant-picker .ant-picker-suffix svg path {
+                stroke: white !important;
+            }
+            
+            .ant-picker-outlined::placeholder,
+            .ant-picker .ant-picker-input > input::placeholder {
+                color: var(--text)!important;
+            }
+            
+            .ant-picker .ant-picker-input > input {
+                color: transparent!important;
+            }
+            
+            .ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-end,
+            .ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-start {
+                background: var(--ant-color-primary) !important;
+            }
+            
+            .qs-calendar .custom-display-value {
+                background: transparent !important;
+            }
+            
+            .ant-tree .ant-tree-treenode:not(.ant-tree-treenode-disabled) .ant-tree-node-content-wrapper:hover,
+            .ant-tree-select-dropdown .ant-select-tree .ant-select-tree-treenode:not(.ant-select-tree-treenode-disabled) .ant-select-tree-node-content-wrapper:hover{
+                color: var(--ant-color-text-secondary)!important;
+                background: var(--elevation-level-2)!important;
+            }
+            
+            .ant-picker-outlined:focus, 
+            .ant-picker-outlined:focus-within {
+                border-color: var(--ant-color-primary)!important;
             }
             
             .ant-picker-date-panel .ant-picker-content .ant-picker-cell.ant-picker-cell-in-view > div.ant-picker-cell-inner.shadowSelection, 
@@ -204,6 +275,10 @@ hostReactAppReady().then(() => {
             
             .ant-select-selector .ant-select-selection-item {
                 color: var(--ant-color-text-secondary) !important;
+            }
+            
+            .ant-select {
+                color: white!important;
             }
             
             .ant-input-affix-wrapper .anticon.ant-input-password-icon {
