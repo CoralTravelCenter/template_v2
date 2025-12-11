@@ -25,6 +25,38 @@ hostReactAppReady().then(() => {
 
     document.documentElement.setAttribute('data-theme', 'dark');
 
+    const obs = new MutationObserver(mutations => {
+        if (window.innerWidth > 992) {
+            const topBar = document.querySelector('[class*="LimitedContainer_container"]');
+
+            if (topBar) {
+                obs.disconnect();
+                const img = topBar.querySelectorAll('img');
+
+                if (img.length > 0) {
+                    img[0].setAttribute('src', 'https://b2ccdn.coral.ru/content/dark-theme/logo_coral.webp');
+                }
+            }
+        } else {
+            const mobileTopBar = document.querySelector('[class*="header-mobile"]');
+
+            if (mobileTopBar) {
+                obs.disconnect();
+                const img = mobileTopBar.querySelectorAll('img');
+
+                if (img.length > 0) {
+                    img[0].setAttribute('src', 'https://b2ccdn.coral.ru/content/dark-theme/logo_coral.webp');
+                    img[0].style.height = '24px';
+                }
+            }
+        }
+    });
+
+    obs.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+
     const style = document.createElement('style');
     style.innerText = `
         html[data-theme="dark"] {
@@ -39,7 +71,11 @@ hostReactAppReady().then(() => {
             --ant-color-split: rgba(255, 255, 255, 0.85) !important;
             --ant-color-bg-elevated: rgba(54, 54, 66, 1) !important;
             --ant-color-bg-base: #3A3A41 !important;
-            --ant-color-border: transparent !important;
+            // --ant-color-border: transparent !important;
+            
+            --ant-color-bg-layout: #24242C !important;
+            // --ant-color-split: #3A3A41 !important;
+            --ant-color-bg-container: rgba(54, 54, 66, 1) !important;
             
             --ant-orange-1: #121212 !important;
             
@@ -74,7 +110,7 @@ hostReactAppReady().then(() => {
                 
                 button:has(.ant-avatar) {
                     background: #24242C !important;
-                    border-color: transparent !important;
+                    border-color: white !important;
                 }
                 
                 .anticon svg path,
@@ -87,6 +123,27 @@ hostReactAppReady().then(() => {
                 .prefix-icon-prefix svg path, .prefix-icon-prefix svg circle {
                     stroke: var(--item-bg) !important;
                 }
+            }
+            
+            .ant-picker-outlined, 
+            .ant-input-outlined {
+                border-color: var(--text)!important;
+            }
+            
+            coral-bubble span {
+                color: white !important;
+            }
+            
+            coral-bubble {
+                border-color: white !important;
+            }
+            
+            .coral-popup-trigger:hover {
+                border-color: var(--ant-color-primary) !important;
+            }
+            
+            .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+                border-color: var(--text) !important;
             }
             
             #footer-row { 
@@ -102,10 +159,6 @@ hostReactAppReady().then(() => {
             
             #breadcrumb-widget span {
                 color: white !important;
-            }
-            
-            .ant-picker-date-panel .ant-picker-content .ant-picker-cell .ant-picker-cell-inner, .ant-picker-month-panel .ant-picker-content .ant-picker-cell .ant-picker-cell-inner {
-                background: var(--elevation-level-3) !important;
             }
             
             .lazy-flightWidget__QuickSearchFlightFromIcon svg path,
@@ -213,7 +266,17 @@ hostReactAppReady().then(() => {
             
             .ant-btn-variant-outlined {
                 background: transparent!important;
-                border-color: white!important;
+            }
+            
+            [class*='QuickSearchFlightsSelectTravelers_flightFormTravelers'] .ant-btn-variant-outlined {
+                background: var(--item-bg)!important;
+                border-color: var(--text)!important;
+            }
+            
+            [class*='PassengerSelectFlight_passengerSelectInputContainer'] .adultDecreaseButton,
+            [class*='PassengerSelectFlight_passengerSelectInputContainer'] .adultIncreaseButton,
+            [class*='PassengerSelectFlight_passengerSelectInputContainer'] [name="adultInput"] {
+                border-color: var(--text)!important;
             }
             
             .ant-btn-color-default {
@@ -263,6 +326,28 @@ hostReactAppReady().then(() => {
             
             .ant-tag span {
                 color: var(--ant-color-text-secondary) !important;
+            }
+            
+            .content span:hover {
+                background: var(--elevation-level-2) !important;
+            }
+            
+            [class*='SingleFromAndToSelectWrapper_exchangeIcon'] {
+                background: var(--item-bg) !important;
+            }
+            
+            [class*='SingleFromAndToSelectWrapper_exchangeIcon'] svg path {
+                fill: white !important;
+            }
+            
+            [class*='FlyingTo_flyingTo'], 
+            [class*='FlyingFrom_flyingFrom'] {
+                border-color: var(--text) !important;
+            }
+            
+            [class*='FlyingTo_flyingTo']:hover, 
+            [class*='FlyingFrom_flyingFrom']:hover {
+                border-color: var(--ant-color-primary) !important;
             }
             
             .ant-select-selection-item .anticon {
@@ -350,6 +435,10 @@ hostReactAppReady().then(() => {
                 border-color: #ffffff !important;
             }
             
+            .ant-modal .ant-modal-close:hover svg path {
+                fill: var(--elevation-level-2)!important;
+            }
+            
             .ant-modal .ant-modal-title {
                 color: var(--ant-color-text-secondary);
             }
@@ -422,6 +511,10 @@ hostReactAppReady().then(() => {
                 color: var(--ant-color-text-secondary)!important;
             }
             
+            .ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item:hover {
+                background: var(--elevation-level-2) !important;
+            }
+            
             .ant-tabs,
             .ant-form-item .ant-form-item-label > label {
                 color: var(--ant-color-text-secondary)!important;
@@ -440,6 +533,122 @@ hostReactAppReady().then(() => {
                 
                 .column {
                     background-color: #24242C !important;
+                }
+                
+                [class*='FooterWidget_footerWidget'] {
+                    background-color: transparent !important;
+                }
+            }
+            
+            /*---mobile---*/
+            
+            @media screen and (max-width: 992px) {
+                [class*='HeaderHamburgerMenu_menuContainer'] {
+                    background: var(--elevation-level-3);
+                }
+                
+                .select-option-item.selected {
+                    background: var(--elevation-level-2) !important;
+                }
+                
+                .visible-on-mobile [class*='DepartureListItem_listItem'] svg path {
+                    fill: white !important;
+                }
+                
+                [class*='HeaderHamburgerExtraMenus_headerHamburgerExtraMenus'] {
+                    border: 1px solid var(--text)!important;
+                    background: transparent !important;
+                }
+                
+                [class*='HeaderHamburgerExtraMenus_headerHamburgerExtraMenus'] a {
+                    color: white !important;
+                }
+                
+                [class*='HeaderHamburgerExtraMenus_headerHamburgerExtraMenus'] a:first-child {
+                    border-color: var(--text)!important;
+                }
+                
+                [class*='LoginAccountMenu_loginAccountMenuLink'] {
+                    color: white !important;
+                    border-color: var(--text)!important;
+                }
+                
+                [class*='LoginAccountMenu_loginAccountMenuLink'] img {
+                    filter: invert(1)!important;
+                }
+                
+                .ant-btn-variant-outlined {
+                    border-color: var(--text)!important;
+                }
+                
+                .ant-checkbox-group .ant-checkbox-wrapper.ant-checkbox-wrapper-checked {
+                    background: var(--elevation-level-2);
+                }
+                
+                .ant-checkbox-group .ant-checkbox-wrapper .ant-checkbox-label {
+                    color: white !important;
+                }
+                
+                .ant-checkbox-group .ant-checkbox-wrapper {
+                    border-color: var(--text)!important;
+                }
+                
+                .ant-modal-close svg path {
+                    fill: white !important;
+                }
+                
+                [class*='QSArrivalSelect_qsArrivalSelectDropdownRender'] [class*='QSArrivalSelect_content'] .ant-tree {
+                    background: var(--elevation-level-3)!important;
+                }
+                
+                [class*='QSArrivalSelect_qsArrivalSelectDropdownRender'] [class*='QSArrivalSelect_content'] [class*='QSArrivalSelect_title'] {
+                    background: var(--elevation-level-3)!important;
+                }
+                
+                .ant-tree .ant-tree-treenode:before {
+                    background: var(--elevation-level-3)!important;
+                }
+                
+                // .text,
+                // .content span {
+                //     color: white !important;
+                // }
+                
+                [data-testid="quickSearchBarBlock"] .ant-tabs {
+                    background: var(--elevation-level-3)!important;
+                }
+                
+                .custom-date-picker .datepicker-mobile-header .title {
+                    color: white !important;
+                }
+                
+                .ant-picker-date-panel .ant-picker-content .ant-picker-cell .ant-picker-cell-inner, .ant-picker-month-panel .ant-picker-content .ant-picker-cell .ant-picker-cell-inner {
+                    background: transparent !important;
+                }
+                
+                .ant-input-clear-icon svg path, .ant-icon-close-circle svg path {
+                    fill: white !important;
+                }
+                
+                [class*='QSTreeSelect_qsTreeSelectMobileContainer'] .ant-tag {
+                    border-color: var(--text)!important;
+                }
+                
+                [class*='FooterWidget_footerWidget'] {
+                    background: var(--elevation-level-2)!important;
+                }
+                
+                .lazy-footer__PlusIcon svg path,
+                .lazy-footer__MinusIcon svg path {
+                    stroke: white !important;
+                }
+                
+                .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector input {
+                    color: white !important;
+                }
+                
+                .lazy-CloseOutlinedIcon svg path {
+                    stroke: white !important;
                 }
             }
         }
