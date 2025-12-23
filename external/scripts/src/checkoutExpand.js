@@ -24,9 +24,7 @@ hostReactAppReady().then(() => {
             const button = document.querySelector('.ant-collapse-expand-icon');
 
             if (button) {
-                setTimeout(() => {
-                    button.click();
-                }, 700);
+                button.click();
 
                 button.addEventListener('click', () => {
                     ym(215233, 'reachGoal', 'dop_uslugi_open');
