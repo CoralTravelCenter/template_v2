@@ -4,11 +4,11 @@ import monkey from 'vite-plugin-monkey';
 export default defineConfig({
   plugins: [
     monkey({
-      entry: 'src/quizMetric.js',
+      entry: 'src/eliteFull.js',
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/?pm-test-form=501fd08af2c7152c81710f6b15b7b5458bcf1924fd342c701e3294c8704a787c&qz_wizard=945adf96-1e26-42be-af95-0ee1d6df755e&qz_wizard_version=71481740-8cb8-48ad-b5e4-35ba34a69245&qz_ab=showWidget%3Aon%2Cready%3Aon'],
+        match: ['https://www.coral.ru/hotels/turkey/lara-barut-collection-antalya/?qp=gEIDPqjHDS6F9wLPRxSMErJOYVRdEOsc9AEFwXuH9oy15fAV48nrc0qvKqzn72q17kCEOXX13vEalIGJtVKQLwR53w3RGtsi2AEruW8n8swz%2f3na99buuFBRcwc6QFJEswc5JAB1Jn0AUWMZS8SM5Iq9J20S5%2fydWYlgOOa1iSDtoL6AY7P06Z8njEryFnWqwvqoyKJvkPkJkU%2bqAdq%2bdqFOT753I4w5HKDaqo4WSCLJBFZF6ag9xFDfilhTN%2fy8GwgWGxjB%2bal9xGkJtCNvheqNq46bWcHoLK3%2fWhPRCuhBr5WhUGORjgXkEdLO23m%2f3w1N17g08OlnLkH%2bQyGfIpEdj5YFAKzDV12ZBwMVYg8%3d&p=1&item_variant_switch=tour'],
       },
     }),
   ],
