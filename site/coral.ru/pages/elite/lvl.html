@@ -1,0 +1,172 @@
+<body>
+<style>
+    .tabs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tabs__content {
+        width: 100%;
+    }
+
+    .tabs__pane {
+        display: none
+    }
+
+    .tabs__pane--active {
+        display: block
+    }
+
+    .tabs__tab {
+        height: 40px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        border-radius: 100px;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        min-width: 104px;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        color: white;
+    }
+
+    .tabs__tab--active {
+        background-color: white;
+        color: black;
+    }
+
+    .tabs__nav {
+        border-radius: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 32px;
+        padding: 8px;
+        display: flex
+    }
+</style>
+<style>
+
+    .level__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        grid-auto-rows: 220px;
+        gap: 24px;
+    }
+
+    .level__cards.level__cards--2 {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .level__item {
+        display: flex;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .level__item--1 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_1.webp");
+    }
+
+    .level__item--2 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_2.webp");
+    }
+
+    .level__item--3 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_3.webp");
+    }
+
+    .level__item--4 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_11.webp");
+    }
+
+    .level__item--5 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_22.webp");
+    }
+
+    .level__item--6 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_33.webp");
+    }
+
+    .level__item--7 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_4.webp");
+    }
+
+    .level__item--8 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_5.webp");
+    }
+
+    .level__item--9 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_6.webp");
+    }
+
+    .level__title {
+        font-size: 28px;
+        line-height: 32px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .level__subtitle {
+        color: white;
+        font-size: 20px;
+        line-height: 32px;
+        text-transform: uppercase;
+    }
+
+    .level__one {
+        margin-bottom: 50px;
+    }
+</style>
+<section class="coral coral-grey">
+    <article>
+        <div class="wrapper">
+
+        </div>
+    </article>
+</section>
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+            const tabs = tabsBlock.querySelectorAll('.tabs__tab');
+            const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                    panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                    tab.classList.add('tabs__tab--active');
+                    const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                    if (activePane) {
+                        activePane.classList.add('tabs__pane--active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>

@@ -1,0 +1,254 @@
+<body>
+<style>
+    .cars {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/car.webp");
+        background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+        min-height: 400px;
+        display: flex;
+        padding: 32px;
+        border-radius: 20px;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    .cars__title {
+        font-size: 32px;
+        line-height: 40px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .cars__info {
+        width: 50%;
+    }
+
+    .cars__subtitle {
+        font-size: 24px;
+        line-height: 32px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-top: 28px;
+    }
+
+    .bus {
+        display: flex;
+        gap: 24px;
+        width: 1368px;
+    }
+
+    .bus__item {
+        display: flex;
+        flex-direction: column;
+        background-color: #363642;
+        border-radius: 20px;
+        padding: 24px;
+    }
+
+    .bus__inner {
+        display: flex;
+        gap: 16px;
+    }
+
+    .bus__inner img {
+        width: 100%;
+        max-width: unset;
+        display: flex;
+    }
+
+    .bus__title {
+        font-size: 28px;
+        line-height: 34px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-top: 24px;
+        margin-bottom: 4px;
+    }
+
+    .bus__bottom {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .bus__bottom span {
+        color: white;
+    }
+
+    .tabs__pane--overflow {
+        overflow: auto;
+    }
+
+    @media screen and (max-width: 1279px) {
+        .cars {
+            background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/car_1024.webp");
+        }
+
+        .cars__info {
+            width: 100%;
+            padding-top: 220px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .cars {
+            /*background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/car_768.webp");*/
+        }
+
+        .cars__title {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .cars {
+            background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/car_m.webp");
+            background-position: center;
+            background-color: #363642;
+        }
+
+        .cars__info {
+            padding-top: 280px;
+        }
+
+        .cars__info .text,
+        .cars__info .cars__title,
+        .cars__info .cars__subtitle {
+            text-align: center;
+        }
+    }
+</style>
+
+<section class="coral coral-black">
+    <article>
+        <div class="wrapper">
+            <div class="cars">
+                <div class="cars__info">
+                    <h3 class="cars__title mb-16">
+                        Индивидуальный трансфер
+                    </h3>
+                    <p class="text">
+                        При бронировании номера в отелях, входящих в концепцию Coral Elite Diamond, бесплатный
+                        индивидуальный трансфер аэропорт — отель — аэропорт автоматически включается в ваше
+                        бронирование.
+                    </p>
+                    <p class="cars__subtitle">
+                        Автопарк
+                    </p>
+                    <p class="text">
+                        Выполнение трансферов Coral Elite Diamond регламентировано типами и моделями автомобилей,
+                        опубликованными на нашем сайте. Парк автомобилей в Турции и ОАЭ существенно пополнился: он
+                        представлен моделями представительского и бизнес класса автомобильных марок Tesla,
+                        Mercedes-Benz, JAC. Фото этих автомобилей, включая компоновку салонов, размещены на сайте.
+                    </p>
+                </div>
+            </div>
+            <div class="tabs" data-tabs="">
+                <div class="tabs__nav">
+                    <button class="tabs__tab tabs__tab--active" data-tab="1">
+                        Турция
+                    </button>
+                    <button class="tabs__tab" data-tab="2">
+                        ОАЭ
+                    </button>
+                </div>
+                <div class="tabs__content">
+                    <div class="tabs__pane tabs__pane--overflow tabs__pane--active" data-tab="1">
+                        <div class="bus">
+                            <div class="bus__item">
+                                <div class="bus__inner">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/t_car_1.webp" alt="">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/t_car_2.webp" alt="">
+                                </div>
+                                <p class="bus__title">
+                                    Mercedes sprinter
+                                </p>
+                                <div class="bus__bottom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M8.83869 11.9743C6.79199 11.9743 5.13281 10.3151 5.13281 8.26838C5.13281 6.22168 6.79199 4.5625 8.83869 4.5625" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M2.25 18.5628C2.25 14.9243 5.19965 11.9746 8.83824 11.9746" stroke="white" stroke-linejoin="bevel"/>
+                                        <circle cx="14.75" cy="8.5" r="3.9375" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M7.75 19.4375C7.75 15.5715 10.884 12.4375 14.75 12.4375C18.616 12.4375 21.75 15.5715 21.75 19.4375" stroke="white" stroke-linejoin="bevel"/>
+                                    </svg>
+                                    <span>
+                                        Оптимальная вместимость - 12  человек
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="bus__item">
+                                <div class="bus__inner">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/t_car_3.webp" alt="">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/t_car_4.webp" alt="">
+                                </div>
+                                <p class="bus__title">
+                                    Mercedes Vito
+                                </p>
+                                <div class="bus__bottom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M8.83869 11.9743C6.79199 11.9743 5.13281 10.3151 5.13281 8.26838C5.13281 6.22168 6.79199 4.5625 8.83869 4.5625" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M2.25 18.5628C2.25 14.9243 5.19965 11.9746 8.83824 11.9746" stroke="white" stroke-linejoin="bevel"/>
+                                        <circle cx="14.75" cy="8.5" r="3.9375" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M7.75 19.4375C7.75 15.5715 10.884 12.4375 14.75 12.4375C18.616 12.4375 21.75 15.5715 21.75 19.4375" stroke="white" stroke-linejoin="bevel"/>
+                                    </svg>
+                                    <span>
+                                        Оптимальная вместимость - 7  человек
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabs__pane tabs__pane--overflow" data-tab="2">
+                        <div class="bus">
+                            <div class="bus__item">
+                                <div class="bus__inner">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/u_car_1.webp" alt="">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/u_car_2.webp" alt="">
+                                </div>
+                                <p class="bus__title">
+                                    Tesla 2022
+                                </p>
+                                <div class="bus__bottom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M8.83869 11.9743C6.79199 11.9743 5.13281 10.3151 5.13281 8.26838C5.13281 6.22168 6.79199 4.5625 8.83869 4.5625" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M2.25 18.5628C2.25 14.9243 5.19965 11.9746 8.83824 11.9746" stroke="white" stroke-linejoin="bevel"/>
+                                        <circle cx="14.75" cy="8.5" r="3.9375" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M7.75 19.4375C7.75 15.5715 10.884 12.4375 14.75 12.4375C18.616 12.4375 21.75 15.5715 21.75 19.4375" stroke="white" stroke-linejoin="bevel"/>
+                                    </svg>
+                                    <span>
+                                        Оптимальная вместимость - 3 человека
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="bus__item">
+                                <div class="bus__inner">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/u_car_3.webp" alt="">
+                                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/u_car_4.webp" alt="">
+                                </div>
+                                <p class="bus__title">
+                                    GAC 2024
+                                </p>
+                                <div class="bus__bottom">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M8.83869 11.9743C6.79199 11.9743 5.13281 10.3151 5.13281 8.26838C5.13281 6.22168 6.79199 4.5625 8.83869 4.5625" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M2.25 18.5628C2.25 14.9243 5.19965 11.9746 8.83824 11.9746" stroke="white" stroke-linejoin="bevel"/>
+                                        <circle cx="14.75" cy="8.5" r="3.9375" stroke="white" stroke-linejoin="bevel"/>
+                                        <path d="M7.75 19.4375C7.75 15.5715 10.884 12.4375 14.75 12.4375C18.616 12.4375 21.75 15.5715 21.75 19.4375" stroke="white" stroke-linejoin="bevel"/>
+                                    </svg>
+                                    <span>
+                                        Оптимальная вместимость - 3 человека
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>

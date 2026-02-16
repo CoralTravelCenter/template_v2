@@ -1,0 +1,706 @@
+<body>
+<style>
+    .mb-24 {
+        margin-bottom: 24px
+    }
+
+    .mb-16 {
+        margin-bottom: 16px
+    }
+
+    .mb-8 {
+        margin-bottom: 8px
+    }
+
+    .mb-4 {
+        margin-bottom: 4px
+    }
+
+    .mt-24 {
+        margin-top: 24px;
+    }
+
+    .mt-16 {
+        margin-top: 16px
+    }
+
+    .mt-8 {
+        margin-top: 8px
+    }
+
+    * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        padding: 0
+    }
+
+    h1, h2, h3, h4, h5, h6, p, a {
+        margin: 0;
+        padding: 0
+    }
+
+    .coral .banner + .text {
+        margin-top: 14px
+    }
+
+    .coral .title-1 {
+        font-size: 36px;
+        line-height: 44px
+    }
+
+    @media screen and (max-width: 768px) {
+        .coral .title-1 {
+            font-size: 28px;
+            line-height: 36px
+        }
+    }
+
+    .coral .title-2 {
+        font-size: 32px;
+        line-height: 40px;
+        color: white;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .coral .title-2 {
+            font-size: 28px;
+            line-height: 36px
+        }
+    }
+
+    .coral .title-3 {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 36px
+    }
+
+    @media screen and (max-width: 768px) {
+        .coral .title-3 {
+            font-size: 20px;
+            line-height: 28px
+        }
+    }
+
+    .coral .title-4 {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px
+    }
+
+    @media screen and (max-width: 768px) {
+        .coral .title-4 {
+            font-size: 20px;
+            line-height: 28px
+        }
+    }
+
+    .coral .title-5 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px
+    }
+
+    .coral .label {
+        color: rgba(0, 0, 0, .65);
+        font-size: 12px;
+        line-height: 20px
+    }
+
+    .text {
+        font-size: 16px;
+        line-height: 24px;
+        color: white;
+    }
+
+    a.coral-button {
+        color: #fff;
+        background-color: #0092d0;
+        border-radius: 48px;
+        align-items: center;
+        width: fit-content;
+        height: 48px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px;
+        text-decoration: none;
+        display: flex
+    }
+
+    a.coral-button--white {
+        color: inherit;
+        background-color: transparent;
+        border: 1px solid rgba(0, 0, 0, .15)
+    }
+
+    a.coral-button--white:hover {
+        color: #077dad;
+        background-color: transparent;
+        border: 1px solid #077dad
+    }
+
+    .bg-white {
+        background-color: #fff
+    }
+
+    .bg-grey {
+        background-color: #f5f5f8
+    }
+
+    .slider.swiper:not(:has(.swiper-pagination-lock)) {
+        padding-bottom: 24px
+    }
+
+    .slider__pagination.swiper-pagination.swiper-pagination-horizontal {
+        bottom: 0
+    }
+
+    .slider__pagination.swiper-pagination .swiper-pagination-bullet {
+        opacity: 1;
+        background-color: rgba(51, 194, 255, .3);
+        width: 10px;
+        height: 10px
+    }
+
+    .slider__pagination.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: #077dad
+    }
+
+    .layout-container-limit:has(section.coral) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important
+    }
+
+    .layout-container-limit:has(section.sunamr) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important
+    }
+
+    section > article {
+        max-width: 1528px;
+        margin: auto
+    }
+
+    section > article .wrapper {
+        padding: 40px 80px;
+        position: relative
+    }
+
+    @media screen and (max-width: 768px) {
+        section > article .wrapper {
+            padding: 30px 16px
+        }
+    }
+
+    section.full-width > article {
+        max-width: 100%
+    }
+
+    section.full-width > article .wrapper {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    @media screen and (max-width: 428px) {
+        section.full-width-428 > article .wrapper {
+            padding-left: 0;
+            padding-right: 0
+        }
+    }
+
+    section:has(.banner) .wrapper {
+        padding-bottom: 0
+    }
+
+    section:has(.banner.banner--text) .wrapper {
+        padding-bottom: 40px
+    }
+
+    .ant-col:has(section.coral) > div {
+        padding: 0
+    }
+
+    .d-hidden {
+        display: none
+    }
+
+    @media screen and (max-width: 768px) {
+        .d-hidden {
+            display: block
+        }
+    }
+
+    .m-hidden {
+        display: block
+    }
+
+    @media screen and (max-width: 768px) {
+        .m-hidden {
+            display: none
+        }
+    }
+
+    .text-center {
+        text-align: center
+    }
+
+    .text + .text {
+        margin-top: 8px
+    }
+
+    .coral-button:hover {
+        background: #077dad;
+    }
+
+    @media screen and (max-width: 768px) {
+        #__next > div > div > div {
+            padding: 0 !important;
+        }
+    }
+</style>
+
+<style>
+    .about {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/about.webp");
+        background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+        min-height: 400px;
+        display: flex;
+        padding: 32px;
+        border-radius: 20px;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    .about__title {
+        font-size: 32px;
+        line-height: 40px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .about__info {
+        width: 50%;
+    }
+
+    .coral-grey {
+        background-color: #363642;
+    }
+
+    @media screen and (max-width: 1279px) {
+        .about {
+            background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/about_1024.webp");
+        }
+
+        .about__info {
+            padding-top: 170px;
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .about {
+            background-position: 50%;
+        }
+
+        .about__info {
+            padding-top: 200px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .about {
+            background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/about_m.webp");
+        }
+
+        .about__info {
+            padding-top: 270px;
+        }
+
+        .about__info .text,
+        .about__info .about__title {
+            text-align: center;
+        }
+    }
+</style>
+
+<style>
+    .tabs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tabs__content {
+        width: 100%;
+    }
+
+    .tabs__pane {
+        display: none
+    }
+
+    .tabs__pane--active {
+        display: block
+    }
+
+    .tabs__tab {
+        height: 40px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        border-radius: 100px;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        min-width: 104px;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        color: white;
+    }
+
+    .tabs__tab:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .tabs__tab--active {
+        background-color: white;
+        color: black;
+    }
+
+    .tabs__nav {
+        border-radius: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 32px;
+        padding: 8px;
+        display: flex
+    }
+</style>
+<style>
+
+    .level__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        grid-auto-rows: 220px;
+        gap: 24px;
+    }
+
+    .level__cards.level__cards--2 {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .level__item {
+        display: flex;
+        padding: 20px;
+        border-radius: 20px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .level__item--1 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_1.webp");
+    }
+
+    .level__item--2 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_2.webp");
+    }
+
+    .level__item--3 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_3.webp");
+    }
+
+    .level__item--4 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_11.webp");
+    }
+
+    .level__item--5 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_22.webp");
+    }
+
+    .level__item--6 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_33.webp");
+    }
+
+    .level__item--7 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_4.webp");
+    }
+
+    .level__item--8 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_5.webp");
+    }
+
+    .level__item--9 {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/d_6.webp");
+    }
+
+    .level__title {
+        font-size: 28px;
+        line-height: 32px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .level__subtitle {
+        color: white;
+        font-size: 20px;
+        line-height: 32px;
+        text-transform: uppercase;
+    }
+
+    .level__one {
+        margin-bottom: 50px;
+    }
+
+    @media screen and (max-width: 1279px) {
+        .level__cards,
+        .level__cards.level__cards--2 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .level__item {
+            background-position: right;
+        }
+
+        .level__subtitle {
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .level__cards,
+        .level__cards.level__cards--2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .level__item--3,
+        .level__item--4,
+        .level__item--7,
+        .level__item--8 {
+            grid-column: span 2;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .level__cards,
+        .level__cards.level__cards--2 {
+            grid-template-columns: 100%;
+        }
+
+        .level__item--3,
+        .level__item--4,
+        .level__item--7,
+        .level__item--8 {
+            grid-column: auto;
+        }
+    }
+</style>
+
+<section class="coral coral-grey">
+    <article>
+        <div class="wrapper">
+            <div class="about">
+                <div class="about__info">
+                    <h3 class="about__title mb-16">
+                        О Coral Elite Diamond
+                    </h3>
+                    <p class="text">
+                        Концепция Coral Elite Diamond — это воплощение исключительности для тех, кто привык
+                        к безупречности. В Турции и ОАЭ мы курируем каждую деталь вашего пребывания, предлагая не просто
+                        отдых, а приватный образ жизни. Ваше путешествие начинается с эксклюзивного протокола
+                        обслуживания: встреча с персональной табличкой, трансфер в автомобиле премиум-класса
+                        и размещение в отобранных нами номерах в бутик-отелях или приватных виллах с доступом к личному
+                        консьержу и круглосуточной поддержке.
+                    </p>
+                    <p class="text">
+                        Сoral Elite Diamond подразумевает двухуровневое сопровождение:
+                    </p>
+                </div>
+            </div>
+
+            <div class="tabs" data-tabs="">
+                <div class="tabs__nav">
+                    <button class="tabs__tab tabs__tab--active" data-tab="1">
+                        Турция
+                    </button>
+                    <button class="tabs__tab" data-tab="2">
+                        ОАЭ
+                    </button>
+                </div>
+                <div class="tabs__content">
+                    <div class="tabs__pane tabs__pane--active" data-tab="1">
+                        <div class="level">
+                            <div class="level__one">
+                                <h3 class="level__title mb-16">
+                                    Уровень 1: DIAmond arrival experience
+                                </h3>
+                                <p class="text mb-16">
+                                    Гарантированный старт. Ваше путешествие начинается не в отеле, а в момент, когда вы
+                                    видите свое имя.
+                                </p>
+
+                                <div class="level__cards">
+                                    <div class="level__item level__item--1">
+                                        <p class="level__subtitle">
+                                            Персональная
+                                            встреча
+                                            в аэропорту
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--2">
+                                        <p class="level__subtitle">
+                                            Индивидуальный трансфер аэропорт-отель-аэропорт
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--3">
+                                        <p class="level__subtitle">
+                                            Кураторский брифинг и освежающие напитки в пути по вашему запросу
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="level__two">
+                                <h3 class="level__title mb-16">
+                                    Уровень 2: Diamond continuum service
+                                </h3>
+                                <p class="text mb-16">
+                                    Непрерывная связь. Ответственность на весь период вашего пребывания.
+                                </p>
+
+                                <div class="level__cards level__cards--2">
+                                    <div class="level__item level__item--4">
+                                        <p class="level__subtitle">
+                                            Круглосуточная поддержка <br>
+                                            в мессенджере (Telegram, WhatsApp)
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--5">
+                                        <p class="level__subtitle">
+                                            Русскоговорящий личный консьерж-помощник
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--6">
+                                        <p class="level__subtitle">
+                                            Cервис, который предвосхищает ваши желания
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tabs__pane" data-tab="2">
+                        <div class="level">
+                            <div class="level__one">
+                                <h3 class="level__title mb-16">
+                                    Уровень 1: DIAmond arrival experience
+                                </h3>
+                                <p class="text mb-16">
+                                    Гарантированный старт. Ваше путешествие начинается не в отеле, а в момент, когда вы
+                                    видите свое имя.
+                                </p>
+
+                                <div class="level__cards">
+                                    <div class="level__item level__item--1">
+                                        <p class="level__subtitle">
+                                            Персональная <br>
+                                            встреча <br>
+                                            в аэропорту
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--2">
+                                        <p class="level__subtitle">
+                                            Индивидуальный <br> трансфер аэропорт- <br>отель-аэропорт
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--7">
+                                        <p class="level__subtitle">
+                                            Услуги трансферного гида по запросу
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="level__two">
+                                <h3 class="level__title mb-16">
+                                    Уровень 2: Diamond continuum service
+                                </h3>
+                                <p class="text mb-16">
+                                    Непрерывная связь. Ответственность на весь период вашего пребывания.
+                                </p>
+
+                                <div class="level__cards level__cards--2">
+                                    <div class="level__item level__item--8">
+                                        <p class="level__subtitle">
+                                            Выделенная линия русскоговорящей поддержки 24/7
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--9">
+                                        <p class="level__subtitle">
+                                            Подарочный набор <br> Elite Diamond
+                                        </p>
+                                    </div>
+                                    <div class="level__item level__item--6">
+                                        <p class="level__subtitle">
+                                            Cервис, который <br> предвосхищает <br> ваши желания
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+            const tabs = tabsBlock.querySelectorAll('.tabs__tab');
+            const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                    panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                    tab.classList.add('tabs__tab--active');
+                    const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                    if (activePane) {
+                        activePane.classList.add('tabs__pane--active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>

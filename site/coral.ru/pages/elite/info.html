@@ -1,0 +1,146 @@
+<body>
+<style>
+
+    .info {
+        display: flex;
+        gap: 24px;
+    }
+
+    .info__wrapper {
+        padding: 32px;
+        border-radius: 20px;
+        background-color: #363642;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .info__title {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .info__title span {
+        font-size: 32px;
+        line-height: 40px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .info__buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .info__link {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        padding-inline: 20px;
+        border-radius: 48px;
+        background-color: #0092d0;
+        color: white;
+    }
+
+    .info__link.info__link--white {
+        background-color: #ffffff;
+        color: black;
+    }
+
+    .info picture {
+        width: 100%;
+        display: flex;
+    }
+
+    .info picture img {
+        width: 100%;
+    }
+
+    .info__icon {
+        flex-shrink: 0;
+    }
+
+    @media screen and (max-width: 1439px) {
+        .info__title span {
+            font-size: 24px;
+            line-height: 32px;
+        }
+
+        .info__icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .info__title {
+            align-items: flex-start;
+        }
+    }
+
+    @media screen and (max-width: 1279px) {
+        .info {
+            flex-direction: column;
+        }
+
+        .info__wrapper {
+            order: 1;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .info picture img {
+            object-fit: cover;
+            height: 396px;
+            border-radius: 20px;
+            object-position: center;
+        }
+    }
+</style>
+<section class="coral coral-black">
+    <article>
+        <div class="wrapper">
+            <div class="info">
+                <div class="info__wrapper">
+                    <div class="info__title mb-16">
+                        <svg class="info__icon" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <g opacity="0.42">
+                                <circle cx="27.9994" cy="28.0003" r="23.3333" stroke="white" stroke-width="2.33333"/>
+                                <path d="M28 43.5557V20.2223" stroke="white" stroke-width="2.33333"
+                                      stroke-linejoin="round"/>
+                                <path d="M28 17.6299V12.4447" stroke="white" stroke-width="2.33333"
+                                      stroke-linejoin="round"/>
+                            </g>
+                        </svg>
+                        <span>
+                        Как найти отель с концепцией
+                        Coral Elite Diamond на сайте
+                    </span>
+                    </div>
+                    <p class="text">
+                        Номера отелей и приватные виллы, соответствующие стандартам концепции Coral Elite Diamond, отмечены
+                        специальным знаком «Elite Diamond» в карточке отеля. Гости также могут получать дополнительные
+                        эксклюзивные привилегии — их перечень является уникальным для каждого варианта размещения.
+                    </p>
+                    <p class="text">
+                        Для того, чтобы забронировать номер или виллу со знаком «Elite Diamond», заполните удобную форму
+                        онлайн или обратитесь к вашему персональному менеджеру.
+                    </p>
+                    <p class="text">
+                        Ознакомьтесь с подборкой избранных отелей Coral Elite Diamond:
+                    </p>
+                    <div class="info__buttons">
+                        <a href="" class="info__link">Выбрать тур</a>
+                        <a href="" class="info__link info__link--white">Подобрать тур с менеджером</a>
+                    </div>
+                </div>
+                <picture>
+                    <source media="(max-width: 1279px)" srcset="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_1024.webp">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img.webp" alt="">
+                </picture>
+            </div>
+        </div>
+    </article>
+</section>
+</body>

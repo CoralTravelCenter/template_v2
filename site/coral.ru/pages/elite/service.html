@@ -1,0 +1,487 @@
+<body>
+<style>
+    .service {
+        display: flex;
+        gap: 24px;
+    }
+
+    .service__item {
+        position: relative;
+        height: 280px;
+        border-radius: 20px;
+        padding: 24px;
+        background-color: rgba(54, 54, 66, 1);
+        width: 16.6%;
+    }
+
+    .service__item .text {
+        display: none;
+    }
+
+    .service__item.opened .text {
+        display: block;
+        margin-top: auto;
+    }
+
+    .service__item.opened {
+        flex: 1;
+    }
+
+    .service__item--1.opened {
+        background-color: #5b666f;
+    }
+
+    .service__item--2.opened {
+        background-color: #565c59;
+    }
+
+    .service__item--3.opened {
+        background-color: #565068;
+    }
+
+    .service__item--4.opened {
+        background-color: #394457;
+    }
+
+    .service__img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        max-width: 200px;
+    }
+
+    .service__item.opened .service__img {
+        max-width: 315px;
+    }
+
+    .service__item.opened .service__info {
+        max-width: 50%;
+    }
+
+    .service__info {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .service__title {
+        font-size: 28px;
+        line-height: 36px;
+        color: white;
+        font-weight: 400;
+    }
+
+    .service__subtitle {
+        font-size: 28px;
+        line-height: 36px;
+        color: white;
+        font-weight: 400;
+        opacity: 0.5;
+        text-transform: uppercase;
+    }
+
+    .cards {
+        display: none;
+        gap: 24px;
+        margin-top: 24px;
+    }
+
+    .cards.opened {
+        display: flex;
+    }
+
+    .cards--1 .cards__item {
+        background-color: #5b666f;
+    }
+
+    .cards--2 .cards__item {
+        background-color: #565c59;
+    }
+
+    .cards--3 .cards__item {
+        background-color: #565068;
+    }
+
+    .cards--4 .cards__item {
+        background-color: #394457;
+    }
+
+    .cards__item {
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 12px;
+        flex: 1;
+    }
+
+    .cards__title {
+        font-size: 20px;
+        line-height: 32px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .cards__link {
+        background-color: #fff;
+        padding-inline: 20px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        border-radius: 48px;
+        margin-top: 16px;
+        width: fit-content;
+        color: black;
+    }
+
+    .cards__info {
+        padding-inline: 12px;
+        padding-top: 24px;
+        padding-bottom: 12px;
+    }
+</style>
+<section class="coral coral-black">
+    <article>
+        <div class="wrapper">
+            <div class="service">
+                <div class="service__item service__item--1 opened js-item">
+                    <div class="service__info">
+                        <p class="service__title">
+                            BRILLIANCE
+                        </p>
+                        <p class="service__subtitle">
+                            блеск
+                        </p>
+                        <p class="text">
+                            Безупречный сервис, высочайший уровень персонализации, внимание к деталям, управляемые
+                            мировыми
+                            брендами.
+                        </p>
+                    </div>
+                    <img class="service__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_shell.webp" alt="">
+                </div>
+
+                <div class="service__item service__item--2 js-item">
+                    <div class="service__info">
+                        <p class="service__title">
+                            CLARITY
+                        </p>
+                        <p class="service__subtitle">
+                            чистота
+                        </p>
+                        <p class="text">
+                            Прозрачность и честность концепции, соответствие высоким стандартам «всё включено»
+                            или заявленному формату, идеальная организация процессов.
+                        </p>
+                    </div>
+                    <img class="service__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_water.webp" alt="">
+                </div>
+
+                <div class="service__item service__item--3 js-item">
+                    <div class="service__info">
+                        <p class="service__title">
+                            COLOR
+                        </p>
+                        <p class="service__subtitle">
+                            Цвет
+                        </p>
+                        <p class="text">
+                            Уникальная архитектура, сильная авторская концепция, модная атмосфера, бутиковость,
+                            трендовость.
+                        </p>
+                    </div>
+                    <img class="service__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_color.webp" alt="">
+                </div>
+
+                <div class="service__item service__item--4 js-item">
+                    <div class="service__info">
+                        <p class="service__title">
+                            CARAT
+                        </p>
+                        <p class="service__subtitle">
+                            вес
+                        </p>
+                        <p class="text">
+                            Грандиозная территория, огромный выбор ресторанов и баров, масштабная инфраструктура для развлечений, спорта и детей, инвестиции в объект.
+                        </p>
+                    </div>
+                    <img class="service__img"
+                         src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_carat.webp" alt="">
+                </div>
+            </div>
+            <div class="cards cards--1 opened js-cards">
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_1.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Mandarin Oriental
+                            Bodrum
+                        </p>
+                        <p class="text">
+                            Легендарный сервис и фирменным шарм Mandarin Oriental
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_2.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Six Senses Kaplankaya
+                        </p>
+                        <p class="text">
+                            Wellness-философия и предвосхищающий сервис
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_3.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Regnum The Crown
+                        </p>
+                        <p class="text">
+                            Новое прочтение роскоши и непревзойдённый сервис
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_4.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            D Maris Bay
+                        </p>
+                        <p class="text">
+                            Приватность и эксклюзивный сервис на полуострове
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards cards--2 js-cards">
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_5.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Maxx Royal (Belek Golf, Bodrum, Kemer)
+                        </p>
+                        <p class="text">
+                            Эталон детского и семейного luxury all-inclusive.
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_6.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Voyage (Belek Golf & SPA, Kundu)
+                        </p>
+                        <p class="text">
+                            Эталон гастрономического и взрослого all-inclusive
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_7.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Rixos Premium (Belek, Bodrum, Göcek)
+                        </p>
+                        <p class="text">
+                            Классика ультра all-inclusive с безупречной организацией
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_8.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Cornelia Azure Villas
+                        </p>
+                        <p class="text">
+                            Вилловый концепт «всё включено» высшего класса
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards cards--3 js-cards">
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_9.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Hyde Bodrum
+                        </p>
+                        <p class="text">
+                            Эпицентр тусовочной жизни и дизайна
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_10.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Mett Hotel & Beach Resort Bodrum
+                        </p>
+                        <p class="text">
+                            Современный дизайн и молодая энергетика
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_11.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            MGallery The Bodrum Hotel Yalikavak
+                        </p>
+                        <p class="text">
+                            Дизайн-отель с историей и характером (бренд Accor)
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_12.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Ruins Luxury Hotel
+                        </p>
+                        <p class="text">
+                            Уникальная архитектура «среди руин»
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards cards--4 js-cards">
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_13.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Regnum Carya
+                        </p>
+                        <p class="text">
+                            Одно из лучших гольф-полей Европы + огромная территория
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_14.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Kaya Palazzo Golf Resort
+                        </p>
+                        <p class="text">
+                            Крупный гольф-курорт
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_15.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            NG Phaselis Bay
+                        </p>
+                        <p class="text">
+                            Огромная территория в сосновом лесу с собственной бухтой
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+                <div class="cards__item">
+                    <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_16.webp" alt="">
+                    <div class="cards__info">
+                        <p class="cards__title">
+                            Cullinan Golf & Resort
+                        </p>
+                        <p class="text">
+                            Масштабный гольф-проект
+                        </p>
+                        <a href="" class="cards__link">
+                            Выбрать тур
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<script>
+    async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
+        return new Promise(resolve => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        const items = document.querySelectorAll('.js-item');
+        const cards = document.querySelectorAll('.js-cards');
+
+        items.forEach((item, index) => {
+            item.addEventListener('mouseover', () => {
+                items.forEach(i => i.classList.remove('opened'));
+                item.classList.add('opened');
+
+                cards.forEach(c => c.classList.remove('opened'));
+
+                if (cards[index]) {
+                    cards[index].classList.add('opened');
+                }
+            });
+        });
+    });
+</script>
+</body>
