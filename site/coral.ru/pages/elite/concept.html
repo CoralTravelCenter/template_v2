@@ -1,5 +1,24 @@
 <body>
 <style>
+    .cards__overflow {
+        overflow: auto;
+    }
+
+    .cards--1 {
+        width: 2760px;
+    }
+
+    .cards--2 {
+        width: 2064px;
+    }
+
+    .cards--3 {
+        width: 3456px;
+    }
+
+    .cards--4 {
+        width: 3108px;
+    }
 
     .concept {
         display: flex;
@@ -21,6 +40,7 @@
         color: white;
         text-transform: uppercase;
         font-weight: 400;
+        font-family: Trajan3ProRegular;
     }
 
     .concept__info {
@@ -102,6 +122,7 @@
         line-height: 36px;
         color: white;
         font-weight: 400;
+        font-family: Trajan3ProRegular;
     }
 
     .service__subtitle {
@@ -111,12 +132,14 @@
         font-weight: 400;
         opacity: 0.5;
         text-transform: uppercase;
+        font-family: Trajan3ProRegular;
     }
 
     .cards {
         display: none;
         gap: 24px;
         margin-top: 24px;
+        overflow: auto;
     }
 
     .cards.opened {
@@ -144,7 +167,7 @@
         flex-direction: column;
         border-radius: 20px;
         padding: 12px;
-        flex: 1;
+        width: 324px;
     }
 
     .cards__title {
@@ -153,6 +176,7 @@
         color: white;
         text-transform: uppercase;
         font-weight: 400;
+        font-family: Trajan3ProRegular;
     }
 
     .cards__link {
@@ -164,7 +188,8 @@
         border-radius: 48px;
         margin-top: auto;
         width: fit-content;
-        color: black;
+        color: black !important;
+        text-decoration: none !important;
     }
 
     .cards__info {
@@ -313,13 +338,15 @@
 
     .accordion__link {
         background-color: white;
-        color: black;
         padding-inline: 20px;
         height: 40px;
         display: flex;
         align-items: center;
         border-radius: 48px;
         margin-left: auto;
+        flex-shrink: 0;
+        color: black !important;
+        text-decoration: none !important;
     }
 
     @media screen and (max-width: 1279px) {
@@ -382,7 +409,7 @@
         <div class="wrapper">
             <div class="concept">
                 <div class="concept__info">
-                    <h3 class="concept__title mb-16">
+                    <h3 class="concept__title mb-32">
                         Стандарты концепции <br>
                         Coral Elite Diamond
                     </h3>
@@ -404,7 +431,7 @@
                             блеск
                         </p>
                         <p class="text">
-                            Безупречный сервис, высочайший уровень персонализации, внимание к деталям, управляемые
+                            Безупречный сервис, высочайший уровень персонализации, внимание к&nbsp;деталям, управляемые
                             мировыми
                             брендами.
                         </p>
@@ -422,8 +449,8 @@
                             чистота
                         </p>
                         <p class="text">
-                            Прозрачность и честность концепции, соответствие высоким стандартам «всё включено»
-                            или заявленному формату, идеальная организация процессов.
+                            Прозрачность и&nbsp;честность концепции, соответствие высоким стандартам «всё&nbsp;включено»
+                            или&nbsp;заявленному формату, идеальная организация процессов.
                         </p>
                     </div>
                     <img class="service__img"
@@ -456,15 +483,14 @@
                             вес
                         </p>
                         <p class="text">
-                            Грандиозная территория, огромный выбор ресторанов и баров, масштабная инфраструктура
-                            для развлечений, спорта и детей, инвестиции в объект.
+                            Грандиозная территория, огромный выбор ресторанов и&nbsp;баров, масштабная инфраструктура
+                            для&nbsp;развлечений, спорта и&nbsp;детей, инвестиции в&nbsp;объект.
                         </p>
                     </div>
                     <img class="service__img"
                          src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_carat.webp" alt="">
                 </div>
             </div>
-
 
             <div class="cards__overflow">
                 <div class="cards cards--1 opened js-cards">
@@ -476,9 +502,10 @@
                                 Bodrum
                             </p>
                             <p class="text">
-                                Легендарный сервис и фирменным шарм Mandarin Oriental
+                                Легендарный сервис и&nbsp;фирменным шарм Mandarin Oriental
                             </p>
-                            <a href="" class="cards__link">
+
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="MANDARIN ORIENTAL BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
@@ -490,9 +517,10 @@
                                 Six Senses Kaplankaya
                             </p>
                             <p class="text">
-                                Wellness-философия и предвосхищающий сервис
+                                Wellness-философия и&nbsp;предвосхищающий сервис
                             </p>
-                            <a href="" class="cards__link">
+
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="SIX SENSES KAPLANKAYA">
                                 Выбрать тур
                             </a>
                         </div>
@@ -504,9 +532,9 @@
                                 Regnum The Crown
                             </p>
                             <p class="text">
-                                Новое прочтение роскоши и непревзойдённый сервис
+                                Новое прочтение роскоши и&nbsp;непревзойдённый сервис
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="REGNUM THE CROWN">
                                 Выбрать тур
                             </a>
                         </div>
@@ -518,9 +546,9 @@
                                 D Maris Bay
                             </p>
                             <p class="text">
-                                Приватность и эксклюзивный сервис на полуострове
+                                Приватность и&nbsp;эксклюзивный сервис на&nbsp;полуострове
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="D MARIS BAY">
                                 Выбрать тур
                             </a>
                         </div>
@@ -530,12 +558,12 @@
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_1.webp" alt="">
                         <div class="cards__info">
                             <p class="cards__title">
-                                Caresse, a Luxury Collection Resort & Spa
+                                Caresse, a Luxury Collection Resort &amp; Spa
                             </p>
                             <p class="text">
                                 Бренд Marriott Luxury Collection
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CARESSE A LUXURY COLLECTION RESORT SPA">
                                 Выбрать тур
                             </a>
                         </div>
@@ -544,12 +572,12 @@
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_2.webp" alt="">
                         <div class="cards__info">
                             <p class="cards__title">
-                                Susona Bodrum, LXR Hotels & Resorts
+                                Susona Bodrum, LXR Hotels &amp; Resorts
                             </p>
                             <p class="text">
-                                Высокие стандарты качества Hilton и локальные впечатления
+                                Высокие стандарты качества Hilton и&nbsp;локальные впечатления
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="SUSONA BODRUM LXR HOTELS RESORTS">
                                 Выбрать тур
                             </a>
                         </div>
@@ -563,7 +591,7 @@
                             <p class="text">
                                 Премиальная линейка Radisson
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="RADISSON COLLECTION BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
@@ -575,16 +603,15 @@
                                 Le Meridien Bodrum Beach Resort
                             </p>
                             <p class="text">
-                                Бренд Marriott с акцентом на стиль
+                                Бренд Marriott с&nbsp;акцентом на&nbsp;стиль
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="LE MERIDIEN BODRUM BEACH RESORT">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <div class="cards__overflow">
                 <div class="cards cards--2 js-cards">
@@ -595,9 +622,9 @@
                                 Maxx Royal (Belek Golf, Bodrum, Kemer)
                             </p>
                             <p class="text">
-                                Эталон детского и семейного luxury all-inclusive.
+                                Эталон детского и&nbsp;семейного luxury all-inclusive.
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="https://www.coral.ru/onlyhotel/3-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJ4bPMqcJPNUN3vj1NQxQKfT3hjnMhsff4ag3YI9CO2aiMK3Kyn7l%2fW6T1SNyY0gtSUdlPfbmq%2f2VMyEzmhNLyck%2fGLdr%2fwPFLSF%2b7OjhVNWoF%2bcW8vYmITPrN4Zo6cTaippz%2f5W4wLxELCUjiKwko6Lt%2fQyREO7xShnNmiFjor1Rrrjo5UbvObBsmpQoHEKV1EUnkWbZF8q6FN6mzYZuJ42K1eE5nQoT1grUwbCFwj1rp0Ho5EMRMmP2e%2flVRFTPd&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" target="_blank" class="cards__link">
                                 Выбрать тур
                             </a>
                         </div>
@@ -606,12 +633,12 @@
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_6.webp" alt="">
                         <div class="cards__info">
                             <p class="cards__title">
-                                Voyage (Belek Golf & SPA, Kundu)
+                                Voyage (Belek Golf &amp; SPA, Kundu)
                             </p>
                             <p class="text">
-                                Эталон гастрономического и взрослого all-inclusive
+                                Эталон гастрономического и&nbsp;взрослого all-inclusive
                             </p>
-                            <a href="" class="cards__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/2-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJcjLNLlTxUmycvK2zpd4HTex4vjn1nOaMZ2vYUB4Y3zgVfNPoB%2fSFQHtBg8LE44MJfYjamDvZ9lWXahVHQQxNM2AWNSlDzZMNwn3vO29es3ti%2fdXQXrSz%2fgLYFAetALmHmkp1bt5wdFdjcgSkPcHNBk8SHVS%2bkrBQPETp%2bleGmMWkTSADUJv1ozqc03Q686ccGUxyyHwjt6fxoKq%2fwMSMOQpi2jeMdc0r7Ra4sFgaFY0%3d&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="cards__link">
                                 Выбрать тур
                             </a>
                         </div>
@@ -623,9 +650,9 @@
                                 Rixos Premium (Belek, Bodrum, Göcek)
                             </p>
                             <p class="text">
-                                Классика ультра all-inclusive с безупречной организацией
+                                Классика ультра all-inclusive с&nbsp;безупречной организацией
                             </p>
-                            <a href="" class="cards__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/3-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJsAKLi60Fn9BmzVYQCd47zK0%2fe81HdRKmlYGD7UIBm66wCTYMUzBqwCh8%2bRrSrLlr3%2fqyacn%2beDxO12SzSEQJwWfc6w2S9mEYgx2J0HDytTTyYTukzjQB%2fsYKXEshTIXOtU4BWKqhCFGGCn1XLb4lAfh%2fpsd1JiZZS5RuMR2GXgOTZFjAw9qVQJacQdjweVaJd8Yl%2f1ycp6oBM0b0ltBwo3AwSUi16h52pmU8IP%2ftpNnoWqK6rYH9iL%2bHzSjX8S5m&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="cards__link">
                                 Выбрать тур
                             </a>
                         </div>
@@ -637,14 +664,13 @@
                                 Cornelia Azure Villas
                             </p>
                             <p class="text">
-                                Вилловый концепт «всё включено» высшего класса
+                                Вилловый концепт «всё&nbsp;включено» высшего класса
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CORNELIA AZURE VILLAS">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
-
                     <div class="cards__item">
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_5.webp" alt="">
                         <div class="cards__info">
@@ -652,30 +678,30 @@
                                 Calista Luxury Resort
                             </p>
                             <p class="text">
-                                Уникальный архитектурный стиль и безукоризненная репутация
+                                Уникальный архитектурный стиль и&nbsp;безукоризненная репутация
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CALISTA LUXURY RESORT">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
-
                     <div class="cards__item">
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_6.webp" alt="">
                         <div class="cards__info">
                             <p class="cards__title">
-                                Gloria Golf Resort & Gloria Serenity Resort
+                                Gloria Golf Resort &amp; Gloria Serenity Resort
                             </p>
                             <p class="text">
-                                Чёткие гольф & спорт и тишина & релакс концепции
+                                Чёткие гольф &amp; спорт и&nbsp;тишина &amp; релакс концепции
                             </p>
-                            <a href="" class="cards__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/2-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJtRVCawtZsMKK2dGJZszdPF4%2b7mhAANZK0P2Ak25ezBDleukUo0qycjtplG11daD33arNnHOd7HB%2fduLeGV9peczt6fTvOv7361SABbdUuTM3dV%2b9HBfDcRMugDDmzOy9jZVIIgF11FH4E4aNPpTfzfgCraaJ35beMzY0cl23O4hbzIKAeQbA35xd33OoUyYlrRHfTqSRYSTzdQSHEOG6guo7TN7KrPy5haYlhX9vbKM%3d&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="cards__link">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="cards__overflow">
                 <div class="cards cards--3 js-cards">
                     <div class="cards__item">
@@ -685,9 +711,9 @@
                                 Hyde Bodrum
                             </p>
                             <p class="text">
-                                Эпицентр тусовочной жизни и дизайна
+                                Эпицентр тусовочной жизни и&nbsp;дизайна
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="HYDE BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
@@ -696,12 +722,12 @@
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_10.webp" alt="">
                         <div class="cards__info">
                             <p class="cards__title">
-                                Mett Hotel & Beach Resort Bodrum
+                                Mett Hotel &amp; Beach Resort Bodrum
                             </p>
                             <p class="text">
-                                Современный дизайн и молодая энергетика
+                                Современный дизайн и&nbsp;молодая энергетика
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="METT HOTEL &amp; BEACH RESORT BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
@@ -713,9 +739,9 @@
                                 MGallery The Bodrum Hotel Yalikavak
                             </p>
                             <p class="text">
-                                Дизайн-отель с историей и характером (бренд Accor)
+                                Дизайн-отель с&nbsp;историей и&nbsp;характером (бренд Accor)
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="MGALLERY THE BODRUM HOTEL YALIKAVAK">
                                 Выбрать тур
                             </a>
                         </div>
@@ -729,7 +755,7 @@
                             <p class="text">
                                 Уникальная архитектура «среди руин»
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="RUINS LUXURY RESORT">
                                 Выбрать тур
                             </a>
                         </div>
@@ -742,9 +768,9 @@
                                 Biblos Resort Alacati
                             </p>
                             <p class="text">
-                                Богемный шик и эстетика Эгейского побережья
+                                Богемный шик&nbsp;и&nbsp;эстетика Эгейского побережья
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="BIBLOS RESORT ALACATI">
                                 Выбрать тур
                             </a>
                         </div>
@@ -757,9 +783,9 @@
                                 Yazz Collective
                             </p>
                             <p class="text">
-                                Арт-кластер и музыкальный отель для ценителей
+                                Арт-кластер и&nbsp;музыкальный отель для&nbsp;ценителей
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="YAZZ COLLECTIVE">
                                 Выбрать тур
                             </a>
                         </div>
@@ -772,9 +798,9 @@
                                 Avantgarde Refined Yalikavak
                             </p>
                             <p class="text">
-                                Авангардный дизайн и гастрономия
+                                Авангардный дизайн и&nbsp;гастрономия
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="AVANTGARDE REFINED YALIKAVAK">
                                 Выбрать тур
                             </a>
                         </div>
@@ -789,7 +815,7 @@
                             <p class="text">
                                 Камерный, стильный бутик-отель
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CASA NONNA">
                                 Выбрать тур
                             </a>
                         </div>
@@ -802,9 +828,9 @@
                                 NG Sign Bodrum
                             </p>
                             <p class="text">
-                                Модный и атмосферный отель в Бодруме
+                                Модный и&nbsp;атмосферный отель в&nbsp;Бодруме
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="NG SIGN BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
@@ -819,13 +845,14 @@
                             <p class="text">
                                 Дизайнерский, интимный отель
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="BIJAL">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="cards__overflow">
                 <div class="cards cards--4 js-cards">
                     <div class="cards__item">
@@ -835,9 +862,9 @@
                                 Regnum Carya
                             </p>
                             <p class="text">
-                                Одно из лучших гольф-полей Европы + огромная территория
+                                Одно из&nbsp;лучших гольф-полей Европы + огромная территория
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="REGNUM CARYA">
                                 Выбрать тур
                             </a>
                         </div>
@@ -851,7 +878,7 @@
                             <p class="text">
                                 Крупный гольф-курорт
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="KAYA PALAZZO GOLF RESORT">
                                 Выбрать тур
                             </a>
                         </div>
@@ -863,9 +890,9 @@
                                 NG Phaselis Bay
                             </p>
                             <p class="text">
-                                Огромная территория в сосновом лесу с собственной бухтой
+                                Огромная территория в&nbsp;сосновом лесу с&nbsp;собственной бухтой
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="NG PHASELIS BAY">
                                 Выбрать тур
                             </a>
                         </div>
@@ -874,17 +901,16 @@
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_16.webp" alt="">
                         <div class="cards__info">
                             <p class="cards__title">
-                                Cullinan Golf & Resort
+                                Cullinan Golf &amp; Resort
                             </p>
                             <p class="text">
                                 Масштабный гольф-проект
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CULLINAN BELEK">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
-
                     <div class="cards__item">
                         <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_13.webp" alt="">
                         <div class="cards__info">
@@ -892,9 +918,9 @@
                                 Ela Excellence Resort Belek
                             </p>
                             <p class="text">
-                                Большой комплекс с аквапарком и детской концепцией
+                                Большой комплекс с&nbsp;аквапарком и&nbsp;детской концепцией
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="ELA EXCELLENCE RESORT BELEK">
                                 Выбрать тур
                             </a>
                         </div>
@@ -906,9 +932,9 @@
                                 Anda Barut Collection
                             </p>
                             <p class="text">
-                                Современный и стильный курортный комплекс на Эгейском побережье
+                                Современный и стильный курортный комплекс на&nbsp;Эгейском побережье
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="ANDA BARUT COLLECTION">
                                 Выбрать тур
                             </a>
                         </div>
@@ -920,9 +946,9 @@
                                 Bayou Villas Lara Antalya
                             </p>
                             <p class="text">
-                                Комплекс вилл с акцентом на приватность и стильную атмосферу
+                                Комплекс вилл с&nbsp;акцентом на&nbsp;приватность и&nbsp;стильную атмосферу
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="BAYOU VILLAS LARA ANTALYA">
                                 Выбрать тур
                             </a>
                         </div>
@@ -934,9 +960,9 @@
                                 Club Marvy
                             </p>
                             <p class="text">
-                                Большой клубный отель с насыщенной программой
+                                Большой клубный отель с&nbsp;насыщенной программой
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CLUB MARVY">
                                 Выбрать тур
                             </a>
                         </div>
@@ -948,9 +974,10 @@
                                 Ethno Belek
                             </p>
                             <p class="text">
-                                Тематический курортный комплекс с уникальной концепцией роскоши как стиля жизни
+                                Тематический курортный комплекс с&nbsp;уникальной концепцией роскоши как&nbsp;стиля
+                                жизни
                             </p>
-                            <a href="" class="cards__link">
+                            <a href="#" class="cards__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="ETHNO BELEK">
                                 Выбрать тур
                             </a>
                         </div>
@@ -960,6 +987,7 @@
 
 
             <div class="accordion-block">
+                <!-- BRILLIANCE -->
                 <div class="accordion__item accordion__item--1 js-toggle">
                     <div class="accordion__header js-toggle-header">
                         <div class="accordion__info">
@@ -969,107 +997,96 @@
                             <p class="accordion__subtitle">
                                 блеск
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6"
-                                 fill="none">
-                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white"
-                                      stroke-linejoin="round"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white" stroke-linejoin="round"></path>
                             </svg>
                         </div>
-                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_shell.webp"
-                             alt="">
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_shell.webp" alt="">
                     </div>
                     <div class="accordion__body js-toggle-body">
                         <p class="text">
-                            Безупречный сервис, высочайший уровень персонализации, внимание к деталям, управляемые
+                            Безупречный сервис, высочайший уровень персонализации, внимание к&nbsp;деталям, управляемые
                             мировыми брендами.
                         </p>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_1.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_1.webp" alt="">
                             <p class="accordion__card-title">
                                 Mandarin Oriental
                                 Bodrum
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="MANDARIN ORIENTAL BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_2.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_2.webp" alt="">
                             <p class="accordion__card-title">
                                 Six Senses Kaplankaya
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="SIX SENSES KAPLANKAYA">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_3.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_3.webp" alt="">
                             <p class="accordion__card-title">
                                 Regnum The Crown
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="REGNUM THE CROWN">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_4.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_4.webp" alt="">
                             <p class="accordion__card-title">
                                 D Maris Bay
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="D MARIS BAY">
                                 Выбрать тур
                             </a>
                         </div>
 
-
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_1.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_1.webp" alt="">
                             <p class="accordion__card-title">
-                                Caresse, a Luxury Collection Resort & Spa
+                                Caresse, a Luxury Collection Resort &amp; Spa
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CARESSE A LUXURY COLLECTION RESORT SPA">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_2.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_2.webp" alt="">
                             <p class="accordion__card-title">
-                                Susona Bodrum, LXR Hotels & Resorts
+                                Susona Bodrum, LXR Hotels &amp; Resorts
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="SUSONA BODRUM LXR HOTELS RESORTS">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_3.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_3.webp" alt="">
                             <p class="accordion__card-title">
                                 Radisson Collection
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="RADISSON COLLECTION BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_4.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_4.webp" alt="">
                             <p class="accordion__card-title">
                                 Le Meridien Bodrum Beach Resort
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="LE MERIDIEN BODRUM BEACH RESORT">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- CLARITY -->
                 <div class="accordion__item accordion__item--2 js-toggle">
                     <div class="accordion__header js-toggle-header">
                         <div class="accordion__info">
@@ -1079,102 +1096,91 @@
                             <p class="accordion__subtitle">
                                 чистота
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6"
-                                 fill="none">
-                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white"
-                                      stroke-linejoin="round"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white" stroke-linejoin="round"></path>
                             </svg>
                         </div>
-                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_water.webp"
-                             alt="">
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_water.webp" alt="">
                     </div>
                     <div class="accordion__body js-toggle-body">
                         <p class="text">
-                            Прозрачность и честность концепции, соответствие высоким стандартам «всё включено»
-                            или заявленному формату, идеальная организация процессов.
+                            Прозрачность и&nbsp;честность концепции, соответствие высоким стандартам «всё&nbsp;включено»
+                            или&nbsp;заявленному формату, идеальная организация процессов.
                         </p>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_5.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_5.webp" alt="">
                             <p class="accordion__card-title">
                                 Maxx Royal (все отели: Belek Golf, Bodrum, Kemer)
                             </p>
-                            <a href="" class="accordion__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/3-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJ4bPMqcJPNUN3vj1NQxQKfT3hjnMhsff4ag3YI9CO2aiMK3Kyn7l%2fW6T1SNyY0gtSUdlPfbmq%2f2VMyEzmhNLyck%2fGLdr%2fwPFLSF%2b7OjhVNWoF%2bcW8vYmITPrN4Zo6cTaippz%2f5W4wLxELCUjiKwko6Lt%2fQyREO7xShnNmiFjor1Rrrjo5UbvObBsmpQoHEKV1EUnkWbZF8q6FN6mzYZuJ42K1eE5nQoT1grUwbCFwj1rp0Ho5EMRMmP2e%2flVRFTPd&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="accordion__link">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_6.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_6.webp" alt="">
                             <p class="accordion__card-title">
-                                Voyage (Belek Golf & SPA, Kundu)
+                                Voyage (Belek Golf &amp; SPA, Kundu)
                             </p>
-                            <a href="" class="accordion__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/2-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJcjLNLlTxUmycvK2zpd4HTex4vjn1nOaMZ2vYUB4Y3zgVfNPoB%2fSFQHtBg8LE44MJfYjamDvZ9lWXahVHQQxNM2AWNSlDzZMNwn3vO29es3ti%2fdXQXrSz%2fgLYFAetALmHmkp1bt5wdFdjcgSkPcHNBk8SHVS%2bkrBQPETp%2bleGmMWkTSADUJv1ozqc03Q686ccGUxyyHwjt6fxoKq%2fwMSMOQpi2jeMdc0r7Ra4sFgaFY0%3d&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="accordion__link">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_7.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_7.webp" alt="">
                             <p class="accordion__card-title">
                                 Rixos Premium (Belek, Bodrum, Göcek)
                             </p>
-                            <a href="" class="accordion__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/3-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJsAKLi60Fn9BmzVYQCd47zK0%2fe81HdRKmlYGD7UIBm66wCTYMUzBqwCh8%2bRrSrLlr3%2fqyacn%2beDxO12SzSEQJwWfc6w2S9mEYgx2J0HDytTTyYTukzjQB%2fsYKXEshTIXOtU4BWKqhCFGGCn1XLb4lAfh%2fpsd1JiZZS5RuMR2GXgOTZFjAw9qVQJacQdjweVaJd8Yl%2f1ycp6oBM0b0ltBwo3AwSUi16h52pmU8IP%2ftpNnoWqK6rYH9iL%2bHzSjX8S5m&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="accordion__link">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_8.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_8.webp" alt="">
                             <p class="accordion__card-title">
                                 Cornelia Azure Villas
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CORNELIA AZURE VILLAS">
                                 Выбрать тур
                             </a>
                         </div>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_5.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_5.webp" alt="">
                             <p class="accordion__card-title">
                                 Calista Luxury Resort
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CALISTA LUXURY RESORT">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_6.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_6.webp" alt="">
                             <p class="accordion__card-title">
-                                Gloria Golf Resort & Gloria Serenity Resort
+                                Gloria Golf Resort &amp; Gloria Serenity Resort
                             </p>
-                            <a href="" class="accordion__link">
+                            <a target="_blank" href="https://www.coral.ru/onlyhotel/2-hotels/?qp=gEIDPqjHDS6F9wLPRxSMEuMDkU5rPhj6lhOnVhh0Jk1RnWomRATRpKS1m3mf95Fwyi3tN%2bGsHdqIjqrz4HyTBLuWeecYvIHZsZscXPBqpGykDYv6%2f0q2xpOHGrocqZXJtRVCawtZsMKK2dGJZszdPF4%2b7mhAANZK0P2Ak25ezBDleukUo0qycjtplG11daD33arNnHOd7HB%2fduLeGV9peczt6fTvOv7361SABbdUuTM3dV%2b9HBfDcRMugDDmzOy9jZVIIgF11FH4E4aNPpTfzfgCraaJ35beMzY0cl23O4hbzIKAeQbA35xd33OoUyYlrRHfTqSRYSTzdQSHEOG6guo7TN7KrPy5haYlhX9vbKM%3d&amp;p=2&amp;w=0&amp;s=0&amp;ws=10" class="accordion__link">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- COLOR -->
                 <div class="accordion__item accordion__item--3 js-toggle">
                     <div class="accordion__header js-toggle-header">
                         <div class="accordion__info">
                             <p class="accordion__title">
-                                CLARITY
+                                COLOR
                             </p>
                             <p class="accordion__subtitle">
-                                чистота
+                                цвет
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6"
-                                 fill="none">
-                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white"
-                                      stroke-linejoin="round"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white" stroke-linejoin="round"></path>
                             </svg>
                         </div>
-                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_color.webp"
-                             alt="">
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_color.webp" alt="">
                     </div>
                     <div class="accordion__body js-toggle-body">
                         <p class="text">
@@ -1183,109 +1189,100 @@
                         </p>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_9.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_9.webp" alt="">
                             <p class="accordion__card-title">
                                 Hyde Bodrum
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="HYDE BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_10.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_10.webp" alt="">
                             <p class="accordion__card-title">
-                                Mett Hotel & Beach Resort Bodrum
+                                Mett Hotel &amp; Beach Resort Bodrum
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="METT HOTEL &amp; BEACH RESORT BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_11.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_11.webp" alt="">
                             <p class="accordion__card-title">
                                 MGallery The Bodrum Hotel Yalikavak
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="MGALLERY THE BODRUM HOTEL YALIKAVAK">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_12.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_12.webp" alt="">
                             <p class="accordion__card-title">
                                 Ruins Luxury Hotel
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="RUINS LUXURY RESORT">
                                 Выбрать тур
                             </a>
                         </div>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_7.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_7.webp" alt="">
                             <p class="accordion__card-title">
                                 Biblos Resort Alacati
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="BIBLOS RESORT ALACATI">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_8.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_8.webp" alt="">
                             <p class="accordion__card-title">
                                 Yazz Collective
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="YAZZ COLLECTIVE">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_9.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_9.webp" alt="">
                             <p class="accordion__card-title">
                                 Avantgarde Refined Yalikavak
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="AVANTGARDE REFINED YALIKAVAK">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_10.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_10.webp" alt="">
                             <p class="accordion__card-title">
                                 Casa Nonna
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CASA NONNA">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_11.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_11.webp" alt="">
                             <p class="accordion__card-title">
                                 NG Sign Bodrum
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="NG SIGN BODRUM">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_12.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_12.webp" alt="">
                             <p class="accordion__card-title">
                                 Bijal
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="BIJAL">
                                 Выбрать тур
                             </a>
                         </div>
                     </div>
                 </div>
 
+                <!-- CARAT -->
                 <div class="accordion__item accordion__item--4 js-toggle">
                     <div class="accordion__header js-toggle-header">
                         <div class="accordion__info">
@@ -1295,109 +1292,97 @@
                             <p class="accordion__subtitle">
                                 вес
                             </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6"
-                                 fill="none">
-                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white"
-                                      stroke-linejoin="round"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+                                <path d="M0.353516 0.353516L5.35352 5.35352L10.3535 0.353516" stroke="white" stroke-linejoin="round"></path>
                             </svg>
                         </div>
-                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_carat.webp"
-                             alt="">
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/img_carat.webp" alt="">
                     </div>
                     <div class="accordion__body js-toggle-body">
                         <p class="text">
-                            Грандиозная территория, огромный выбор ресторанов и баров, масштабная инфраструктура
-                            для развлечений, спорта и детей, инвестиции в объект.
+                            Грандиозная территория, огромный выбор ресторанов и&nbsp;баров, масштабная инфраструктура
+                            для&nbsp;развлечений, спорта и&nbsp;детей, инвестиции в&nbsp;объект.
                         </p>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_13.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_13.webp" alt="">
                             <p class="accordion__card-title">
                                 Regnum Carya
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="REGNUM CARYA">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_14.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_14.webp" alt="">
                             <p class="accordion__card-title">
                                 Kaya Palazzo Golf Resort
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="KAYA PALAZZO GOLF RESORT">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_15.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_15.webp" alt="">
                             <p class="accordion__card-title">
                                 NG Phaselis Bay
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="NG PHASELIS BAY">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_16.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/card_16.webp" alt="">
                             <p class="accordion__card-title">
-                                Cullinan Golf & Resort
+                                Cullinan Golf &amp; Resort
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CULLINAN BELEK">
                                 Выбрать тур
                             </a>
                         </div>
 
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_13.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_13.webp" alt="">
                             <p class="accordion__card-title">
                                 Ela Excellence Resort Belek
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="ELA EXCELLENCE RESORT BELEK">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_14.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_14.webp" alt="">
                             <p class="accordion__card-title">
                                 Anda Barut Collection
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="ANDA BARUT COLLECTION">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_15.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_15.webp" alt="">
                             <p class="accordion__card-title">
                                 Bayou Villas Lara Antalya
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="BAYOU VILLAS LARA ANTALYA">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_16.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_16.webp" alt="">
                             <p class="accordion__card-title">
                                 Club Marvy
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="CLUB MARVY">
                                 Выбрать тур
                             </a>
                         </div>
                         <div class="accordion__card">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_17.webp"
-                                 alt="">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/diamond-elite/2026/n_17.webp" alt="">
                             <p class="accordion__card-title">
                                 Ethno Belek
                             </p>
-                            <a href="" class="accordion__link">
+                            <a href="#" class="accordion__link" target="_blank" data-lookup-destination="Турция" data-lookup-regions="ETHNO BELEK">
                                 Выбрать тур
                             </a>
                         </div>
@@ -1423,47 +1408,51 @@
     }
 
     hostReactAppReady().then(() => {
-        const items = document.querySelectorAll('.js-item');
-        const cards = document.querySelectorAll('.js-cards');
+        if (!window._metricsInitialized) {
+            window._metricsInitialized = true;
 
-        items.forEach((item, index) => {
-            item.addEventListener('mouseover', () => {
-                items.forEach(i => i.classList.remove('opened'));
-                item.classList.add('opened');
+            const items = document.querySelectorAll('.js-item');
+            const cards = document.querySelectorAll('.js-cards');
 
-                cards.forEach(c => c.classList.remove('opened'));
+            const metricSent = {
+                'BRILLIANCE': false,
+                'CLARITY': false,
+                'COLOR': false,
+                'CARAT': false
+            };
 
-                if (cards[index]) {
-                    cards[index].classList.add('opened');
-                }
+            const metricValues = {
+                'BRILLIANCE': 'brilliance',
+                'CLARITY': 'clarity',
+                'COLOR': 'color',
+                'CARAT': 'bec'
+            };
+
+            items.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    const titleElement = item.querySelector('.service__title');
+                    if (titleElement) {
+                        const title = titleElement.textContent.trim();
+                        const metricValue = metricValues[title];
+
+                        if (metricValue && !metricSent[title]) {
+                            ym(96674199, 'reachGoal', 'personalization_elite_concept_standards', {
+                                'standards': metricValue
+                            });
+
+                            metricSent[title] = true;
+                        }
+                    }
+
+                    items.forEach(i => i.classList.remove('opened'));
+                    item.classList.add('opened');
+
+                    cards.forEach(c => c.classList.remove('opened'));
+                    if (cards[index]) {
+                        cards[index].classList.add('opened');
+                    }
+                });
             });
-        });
-
-        const toggles = document.querySelectorAll(".js-toggle");
-
-        toggles.forEach(toggle => {
-            const header = toggle.querySelector(".js-toggle-header");
-            const body = toggle.querySelector(".js-toggle-body");
-
-            header.addEventListener("click", () => {
-                const isOpen = toggle.classList.contains("active");
-
-                if (isOpen) {
-                    closeAccordion(toggle, body);
-                } else {
-                    openAccordion(toggle, body);
-                }
-            });
-        });
-
-        function openAccordion(container, body) {
-            container.classList.add("active");
-            body.style.maxHeight = body.scrollHeight + "px";
-        }
-
-        function closeAccordion(container, body) {
-            container.classList.remove("active");
-            body.style.maxHeight = 0;
         }
     });
 </script>
