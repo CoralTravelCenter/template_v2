@@ -8,7 +8,7 @@ export default defineConfig({
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.coral.ru/hotels/turkey/lara-barut-collection-antalya/?qp=gEIDPqjHDS6F9wLPRxSMErJOYVRdEOsc9AEFwXuH9oy15fAV48nrc0qvKqzn72q17kCEOXX13vEalIGJtVKQLwR53w3RGtsi2AEruW8n8swz%2f3na99buuFBRcwc6QFJEswc5JAB1Jn0AUWMZS8SM5Iq9J20S5%2fydWYlgOOa1iSDtoL6AY7P06Z8njEryFnWqwvqoyKJvkPkJkU%2bqAdq%2bdqFOT753I4w5HKDaqo4WSCLJBFZF6ag9xFDfilhTN%2fy8GwgWGxjB%2bal9xGkJtCNvheqNq46bWcHoLK3%2fWhPRCuhBr5WhUGORjgXkEdLO23m%2f3w1N17g08OlnLkH%2bQyGfIpEdj5YFAKzDV12ZBwMVYg8%3d&p=1&item_variant_switch=tour'],
+        match: ['https://www.coral.ru/hotels/turkey/rixos-premium-gocek-fethiye/?qp=gEIDPqjHDS6F9wLPRxSMEg19UfveL4%2barKzvYx0z1sfXaHKbf6U0qABh2YgiofsLTQkCNKY87txGjKQiButPPs9oxDCi%2b%2b21cBTuPHRV8rAoyKO66nh1cx5sXvILyH33Ui2uV2oe7LCiQJiHwZ7KnQYPT%2f8p6U0ck5qm2TwVaVysOYd4WrPd5VBuYJOBGWMiDoR%2bI4PKn4b0xqDeLWWIBmBKB3YbcuYrsCgvHUu7Mlp2ugF%2fE%2f27iiXERvwvPWGjBmBeZPwiXPB4pkQnZ5sl8lK70xYwdkUv65t%2bZqx10Pv470uSu6vGYT6YAEQPvp%2bU9JgDT8MLKQOhc6PXYWmAbs4GrFoz7QO1ANbDjKA5dCrELAjMKm4VdtxBpJWBIbn%2fN95qz0WgoEpV2vH%2b17ZghFiCTeVXfo1V3GBupefFYOc%3d&p=1&w=0&s=5&hlu=packagetours/moskva-to-turtsiya-tours/&hlqp=gEIDPqjHDS6F9wLPRxSMEg19UfveL4+arKzvYx0z1sfXaHKbf6U0qABh2YgiofsLTQkCNKY87txGjKQiButPPs9oxDCi++21cBTuPHRV8rAoyKO66nh1cx5sXvILyH33mk/IQ0VOf2bsPR8kdvJE7nYyDyIVxYORrgtE3xpJORcUZqEOThR0k+t398m4d51q1acBmuyz/TpIKElgWRNzDMg6e+Yi5w76eb8Aud7n2rwuvbkPLv+8eBa9PPUzJ10LT0N6o6RgwPjgAtvuuZgLYoZWAMd4e/VeQwhuJufEcofZdkO1m2EjqVeOTRdffEWawjAjy8E9m+dyn4/U2pq6iHRHI64LvAzHHl63PXleeGkMvTKSBA0IvuushK2XeMdY4DTRExIUQn4Yx1FHDV2oQw==&ws=10'],
       },
     }),
   ],

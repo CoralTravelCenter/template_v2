@@ -6,9 +6,93 @@
     const TOOLTIP_MARK = 'data-elite-diamond';
     const ENHANCED_MARK = 'data-elite-enhanced';
 
+    const ALLOWED_HOTELS = new Set([
+        'KEMPINSKI HOTEL BARBAROS BAY BODRUM',
+        'MANDARIN ORIENTAL BODRUM',
+        'BARBAROS RESERVE RESIDENCE MANAGED BY KEMPINSKI BODRUM',
+        'CLUB PRIVE BY RIXOS BELEK',
+        'ANANTARA MINA RAS AL KHAIMAH RESORT',
+        'EMIRATES PALACE MANDARIN ORIENTAL ABU DHABI',
+        'FOUR SEASONS RESORT DUBAI AT JUMEIRAH BEACH',
+        'JUMEIRAH AL NASEEM DUBAI',
+        'JUMEIRAH BEACH HOTEL DUBAI',
+        'JUMEIRAH BURJ AL ARAB DUBAI',
+        'JUMEIRAH MALAKIYA VILLAS',
+        'ONE&ONLY ROYAL MIRAGE ARABIAN COURT',
+        'ONE&ONLY ROYAL MIRAGE PALACE',
+        'ONE&ONLY ROYAL MIRAGE THE RESIDENCE',
+        'ONE&ONLY THE PALM',
+        'PALAZZO VERSACE DUBAI',
+        'AL ZORAH BEACH RESORT (EX. THE OBEROI AL ZORAH BEACH RESORT)',
+        'THE PALACE DOWNTOWN DUBAI',
+        'CLUB PRIVE BY RIXOS SAADIYAT ISLAND',
+        'ATLANTIS THE ROYAL',
+        'AHAMA',
+        'ALLIUM BODRUM RESORT & SPA',
+        'ANDA BARUT COLLECTION',
+        'ANGELS MARMARIS HOTEL',
+        'AVANTGARDE REFINED YALIKAVAK',
+        'BAYOU VILLAS LARA ANTALYA',
+        'BIBLOS RESORT ALACATI',
+        'BIJAL',
+        'CAJA BY MAXX ROYAL',
+        'CALISTA LUXURY RESORT',
+        'CAPE BODRUM LUXURY HOTEL & BEACH',
+        'CARESSE A LUXURY COLLECTION RESORT & SPA',
+        'CASA NONNA BODRUM',
+        'CLUB MARVY',
+        'CLUB PRIVE BY RIXOS GOCEK',
+        'CORNELIA AZURE VILLAS',
+        'CULLINAN BELEK',
+        'D MARIS BAY',
+        'D RESORT GOCEK',
+        'ELA EXCELLENCE RESORT BELEK',
+        'ETHNO BELEK',
+        'GLORIA GOLF RESORT',
+        'GLORIA SERENITY RESORT',
+        'HILTON DALAMAN SARIGERME RESORT & SPA',
+        'HYDE BODRUM',
+        'KAYA PALAZZO GOLF RESORT',
+        'KAYA PALAZZO RESORT & RESIDENCE',
+        'LARA BARUT COLLECTION',
+        'LE MERIDIEN BODRUM BEACH RESORT',
+        'LUJO ART & JOY BODRUM',
+        'MAXX ROYAL BODRUM',
+        'MAXX ROYAL BELEK GOLF RESORT',
+        'MAXX ROYAL KEMER RESORT',
+        'METT HOTEL & BEACH RESORT BODRUM',
+        'MGALLERY THE BODRUM HOTEL YALIKAVAK',
+        'MIVARA LUXURY RESORT & SPA BODRUM',
+        'NG PHASELIS BAY',
+        'NG SIGN BODRUM',
+        'RADISSON COLLECTION BODRUM',
+        'RIXOS PREMIUM BELEK - THE LAND OF LEGENDS FREE ACCESS',
+        'REGNUM CARYA',
+        'REGNUM THE CROWN',
+        'RIXOS PREMIUM BODRUM',
+        'RIXOS PREMIUM GOCEK',
+        'SIRENE LUXURY HOTEL BODRUM',
+        'SIX SENSES KAPLANKAYA',
+        'SUSONA BODRUM, LXR HOTELS & RESORTS',
+        'VOYAGE BELEK GOLF & SPA',
+        'VOYAGE KUNDU',
+        'YAZZ COLLECTIVE',
+    ]);
+
+    const normalize = (s) =>
+        String(s || '')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .toUpperCase();
+
     const isTouchDevice = () =>
         window.matchMedia?.('(hover: none), (pointer: coarse)')?.matches ||
         'ontouchstart' in window;
+
+    const isAllowedHotelName = (nameRaw) => {
+        const n = normalize(nameRaw);
+        return n && ALLOWED_HOTELS.has(n);
+    };
 
     const fireEliteDiamondMetric = (() => {
         let sent = false;
@@ -20,6 +104,12 @@
             sent = true;
         };
     })();
+
+    const getHotelPageName = () => normalize(document.querySelector('#HotelName h1')?.textContent);
+    const shouldRunHotelPageFeatures = () => {
+        const name = getHotelPageName();
+        return !!name && ALLOWED_HOTELS.has(name);
+    };
 
     const ensureStyles = () => {
         if (document.getElementById(STYLE_ID)) return;
@@ -65,16 +155,17 @@
       .ant-collapse-header-text > div > .tag-container { display:flex; align-items:center; gap:10px; }
       .information-tags.visible-on-desktop:has(.elite-diamond) { display:flex; align-items:center; gap:12px; }
       
+      .tooltip-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
       @media screen and (max-width: 992px) {
-        .information-tags.visible-on-desktop:has(.elite-diamond) {
-            display: none;
-        }
-        
+        .information-tags.visible-on-desktop:has(.elite-diamond) { display:none; }
         .information-tags.visible-on-mobile:has(.elite-diamond) {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 6px;
+          display:flex; flex-direction:column; align-items:flex-end; gap:6px;
         }
       }
     `;
@@ -125,15 +216,19 @@
           <p>Консьерж-сервис 24/7</p>
         </div>
 
-        <a href="https://www.coral.ru/chain/diamond-hotels/" target="_blank" class="elite-diamond__button" onclick="ym(96674199,'reachGoal', 'personalization_elite_click_details_diamond');">Подробнее о привилегиях</a>
+        <a href="https://www.coral.ru/chain/diamond-hotels/" target="_blank"
+           class="elite-diamond__button"
+           onclick="ym(96674199,'reachGoal','personalization_elite_click_details_diamond');">
+          Подробнее о привилегиях
+        </a>
       </div>
     </div>
   `;
 
     // =========================
-    // Поведение тултипа (делегирование, один раз на документ)
+    // Тултип
     // =========================
-    const state = {openDiamond: null};
+    const state = { openDiamond: null };
 
     const setVisible = (diamond, v) => {
         const tooltip = diamond.querySelector('.elite-diamond__tooltip');
@@ -225,10 +320,14 @@
                     state.openDiamond = !open ? null : diamond;
                 });
 
-                document.addEventListener('click', (e) => {
-                    const tooltip = e.target.closest?.('.elite-diamond__tooltip');
-                    if (tooltip) e.stopPropagation();
-                }, true);
+                document.addEventListener(
+                    'click',
+                    (e) => {
+                        const tooltip = e.target.closest?.('.elite-diamond__tooltip');
+                        if (tooltip) e.stopPropagation();
+                    },
+                    true
+                );
             } else {
                 let closeTimer = null;
                 const scheduleClose = () => {
@@ -243,22 +342,30 @@
                     closeTimer = null;
                 };
 
-                document.addEventListener('mouseenter', (e) => {
-                    const diamond = e.target.closest?.(`.elite-diamond[${TOOLTIP_MARK}]`);
-                    if (!diamond) return;
+                document.addEventListener(
+                    'mouseenter',
+                    (e) => {
+                        const diamond = e.target.closest?.(`.elite-diamond[${TOOLTIP_MARK}]`);
+                        if (!diamond) return;
 
-                    cancelClose();
-                    if (state.openDiamond && state.openDiamond !== diamond) setVisible(state.openDiamond, false);
-                    setVisible(diamond, true);
-                    fireEliteDiamondMetric();
-                    state.openDiamond = diamond;
-                }, true);
+                        cancelClose();
+                        if (state.openDiamond && state.openDiamond !== diamond) setVisible(state.openDiamond, false);
+                        setVisible(diamond, true);
+                        fireEliteDiamondMetric();
+                        state.openDiamond = diamond;
+                    },
+                    true
+                );
 
-                document.addEventListener('mouseleave', (e) => {
-                    const diamond = e.target.closest?.(`.elite-diamond[${TOOLTIP_MARK}]`);
-                    if (!diamond) return;
-                    scheduleClose();
-                }, true);
+                document.addEventListener(
+                    'mouseleave',
+                    (e) => {
+                        const diamond = e.target.closest?.(`.elite-diamond[${TOOLTIP_MARK}]`);
+                        if (!diamond) return;
+                        scheduleClose();
+                    },
+                    true
+                );
 
                 document.addEventListener('focusin', (e) => {
                     const diamond = e.target.closest?.(`.elite-diamond[${TOOLTIP_MARK}]`);
@@ -280,43 +387,43 @@
         };
     })();
 
+    const insertAfterNode = (node, mark) => {
+        if (!node) return false;
+
+        const next = node.nextElementSibling;
+        if (next?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) return true;
+
+        node.insertAdjacentHTML('afterend', tooltipHTML);
+
+        const diamond = node.nextElementSibling;
+        if (diamond?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) {
+            diamond.tabIndex = 0;
+            if (mark) diamond.setAttribute(mark, '');
+            return true;
+        }
+        return false;
+    };
+
     // =========================
-    // Вставка 1: Top
+    // Карточка отеля - верхняя плашка
     // =========================
     const ensureTopTooltip = () => {
         const anchors = document.querySelectorAll('.elite-service-icon-and-tooltip');
         if (!anchors.length) return;
 
         anchors.forEach((anchor) => {
-            // Ставим после родителя якоря (как раньше), чтобы было “рядом с иконкой”
-            const parent = anchor.parentElement;
-            if (!parent) return;
-
-            // Антидубль: если сразу после parent уже стоит наш diamond — ничего не делаем
-            const next = parent.nextElementSibling;
-            if (next?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) return;
-
-            parent.insertAdjacentHTML('afterend', tooltipHTML);
-
-            const diamond = parent.nextElementSibling;
-            if (diamond?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) {
-                diamond.tabIndex = 0;
-                // можно добавить метку, если хочешь потом отличать “top-вставки”
-                diamond.setAttribute('data-elite-diamond-top', '');
-            }
+            insertAfterNode(anchor, 'data-elite-diamond-top');
         });
     };
 
-
     // =========================
-    // Вставка 2: Rooms
+    // Карточка отеля - номера
     // =========================
     const ensureRoomTooltips = (selectContainer) => {
         const tags = selectContainer.querySelectorAll(TAG_SELECTOR);
 
         tags.forEach((tag) => {
             if (!tag.textContent?.includes(TARGET_TEXT)) return;
-
             if (tag.getAttribute(ENHANCED_MARK) === '1') return;
 
             const next = tag.nextElementSibling;
@@ -341,7 +448,7 @@
         };
 
         const obs = new MutationObserver(requestEnsure);
-        obs.observe(selectContainer, {childList: true, subtree: true});
+        obs.observe(selectContainer, { childList: true, subtree: true });
 
         ensureRoomTooltips(selectContainer);
 
@@ -352,27 +459,26 @@
     };
 
     // =========================
-    // Вставка 3: HotelInformationTabs
+    // Карточка отлея - табы
     // =========================
     const HOTEL_TABS_SELECTOR = '[class*="HotelInformationTabs_hotelInformationTabs"]';
     const ROOMS_TAB_SELECTOR = '[data-node-key="Номера"]';
 
     const ensurePrivilegesTooltipsIn = (root) => {
-        const tags = root.querySelectorAll('span.ant-tag');
+        const tags = root.querySelectorAll(TAG_SELECTOR);
 
         tags.forEach((tag) => {
-            if (!tag.textContent?.includes('Особые привилегии')) return;
-
-            if (tag.getAttribute('data-elite-enhanced') === '1') return;
+            if (!tag.textContent?.includes(TARGET_TEXT)) return;
+            if (tag.getAttribute(ENHANCED_MARK) === '1') return;
 
             const next = tag.nextElementSibling;
             if (next?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) {
-                tag.setAttribute('data-elite-enhanced', '1');
+                tag.setAttribute(ENHANCED_MARK, '1');
                 return;
             }
 
             tag.insertAdjacentHTML('afterend', tooltipHTML);
-            tag.setAttribute('data-elite-enhanced', '1');
+            tag.setAttribute(ENHANCED_MARK, '1');
 
             const diamond = tag.nextElementSibling;
             if (diamond?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) diamond.tabIndex = 0;
@@ -392,7 +498,7 @@
         requestEnsure();
 
         const obs = new MutationObserver(requestEnsure);
-        obs.observe(host, {childList: true, subtree: true});
+        obs.observe(host, { childList: true, subtree: true });
 
         host.addEventListener(
             'click',
@@ -410,10 +516,7 @@
         return obs;
     };
 
-    // =========================
-    // Ленивая инициализация, если инфотабы появляются позже
-    // =========================
-    (() => {
+    const initHotelTabsLazy = () => {
         let hotelObs = null;
 
         const tryInit = () => {
@@ -429,25 +532,118 @@
         tryInit();
 
         const docObs = new MutationObserver(() => tryInit());
-        docObs.observe(document.documentElement, {childList: true, subtree: true});
-    })();
+        docObs.observe(document.documentElement, { childList: true, subtree: true });
+    };
+
+    const wrapAnchorAndDiamond = (anchor, diamond, wrapperClass = 'tooltip-wrapper') => {
+        if (!anchor || !diamond) return;
+
+        if (anchor.parentElement?.classList?.contains(wrapperClass)) return;
+
+        const parent = anchor.parentElement;
+        if (!parent) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = wrapperClass;
+
+        parent.insertBefore(wrapper, anchor);
+        wrapper.appendChild(anchor);
+        wrapper.appendChild(diamond);
+    };
+
 
     // =========================
-    // Старт
+    // Поисковая выдача
+    // =========================
+    const LISTING_MARK = 'data-elite-listing-enhanced';
+
+    const ensureListingTooltips = (root = document) => {
+        const nodes = root.querySelectorAll('.hotel-name');
+        if (!nodes.length) return;
+
+        nodes.forEach((hotelNameNode) => {
+            if (hotelNameNode.getAttribute(LISTING_MARK) === '1') return;
+
+            const titleEl = hotelNameNode.querySelector('h2');
+            if (!isAllowedHotelName(titleEl?.textContent)) return;
+
+            const cardRoot = hotelNameNode.closest('.hotel-card');
+            cardRoot.style.overflow = 'visible';
+            if (!cardRoot) return;
+
+            const anchor = cardRoot.querySelector('.elite-service-icon-and-tooltip');
+
+            if (!anchor) return;
+
+            const anchorWrap = anchor;
+            const ok = insertAfterNode(anchorWrap, 'data-elite-diamond-listing');
+
+            if (ok) {
+                const diamondEl = anchorWrap.nextElementSibling;
+                if (diamondEl?.matches?.(`.elite-diamond[${TOOLTIP_MARK}]`)) {
+                    wrapAnchorAndDiamond(anchorWrap, diamondEl, 'tooltip-wrapper');
+                }
+                hotelNameNode.setAttribute(LISTING_MARK, '1');
+            }
+
+        });
+    };
+
+    const setupListingObserver = () => {
+        let raf = 0;
+        const requestEnsure = () => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => ensureListingTooltips(document));
+        };
+
+        requestEnsure();
+
+        const obs = new MutationObserver((mutations) => {
+            const hasAddedNodes = mutations.some((m) => m.addedNodes && m.addedNodes.length);
+            if (hasAddedNodes) requestEnsure();
+        });
+
+        obs.observe(document.documentElement, { childList: true, subtree: true });
+
+        document.addEventListener('click', requestEnsure, true);
+    };
+
+    // =========================
+    // Start
     // =========================
     ensureStyles();
     attachDelegatedEventsOnce();
 
-    const selectContainer = document.getElementById('select-room-container');
-    if (selectContainer) setupRoomObserver(selectContainer);
+    setupListingObserver();
 
-    let rafTop = 0;
-    const requestTop = () => {
-        cancelAnimationFrame(rafTop);
-        rafTop = requestAnimationFrame(ensureTopTooltip);
+    const startHotelPage = () => {
+        if (!shouldRunHotelPageFeatures()) return;
+
+        const selectContainer = document.getElementById('select-room-container');
+        if (selectContainer) setupRoomObserver(selectContainer);
+
+        let rafTop = 0;
+        const requestTop = () => {
+            cancelAnimationFrame(rafTop);
+            rafTop = requestAnimationFrame(ensureTopTooltip);
+        };
+        requestTop();
+
+        const topObserver = new MutationObserver(requestTop);
+        topObserver.observe(document.documentElement, { childList: true, subtree: true });
+
+        initHotelTabsLazy();
     };
-    requestTop();
 
-    const topObserver = new MutationObserver(requestTop);
-    topObserver.observe(document.documentElement, {childList: true, subtree: true});
+    if (document.querySelector('#HotelName h1')) {
+        startHotelPage();
+    } else {
+        const obs = new MutationObserver(() => {
+            if (document.querySelector('#HotelName h1')) {
+                obs.disconnect();
+                startHotelPage();
+            }
+        });
+        obs.observe(document.documentElement, { childList: true, subtree: true });
+    }
 })();
