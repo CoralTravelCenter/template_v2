@@ -127,7 +127,30 @@ hostReactAppReady().then(() => {
         if (!sidebar) return;
 
         if (alreadyInserted(sidebar)) return;
+
         sidebar.insertAdjacentHTML('afterend', michelinHTML);
+
+        const michelinEl = sidebar.nextElementSibling;
+        if (!michelinEl || !michelinEl.matches('.michelin[data-michelin-inserted="1"]')) return;
+
+        const applyStickyTop = () => {
+            const sidebarHeight = sidebar.getBoundingClientRect().height;
+            const topPx = Math.round(sidebarHeight + 93);
+
+            michelinEl.style.position = 'sticky';
+            michelinEl.style.top = `${topPx}px`;
+            michelinEl.style.zIndex = '2';
+        };
+
+        applyStickyTop();
+
+        let michelinResizeTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(michelinResizeTimer);
+            michelinResizeTimer = setTimeout(() => {
+                if (window.innerWidth > 992) applyStickyTop();
+            }, 100);
+        });
 
     } else {
         const insertIfReady = () => {
