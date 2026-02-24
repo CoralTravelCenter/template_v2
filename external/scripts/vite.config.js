@@ -4,11 +4,11 @@ import monkey from 'vite-plugin-monkey';
 export default defineConfig({
   plugins: [
     monkey({
-      entry: 'src/metricRB.js',
+      entry: 'src/8_marchMetric.js',
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.sunmar.ru/packagetours/moskva-to-turtsiya-tours/?qp=lWOJw1XDa14WeujkN6zDTjWHDywo1nMLmTaMUiTQ049TvtDpgpGCD8FWiaUP5JcQy4oRJS0gtqycUYMKqx6UfLfjF7Z%2f86jqngarwIngi9r%2bK8qQd6iwtLGlWRHpLUm3IkOB5ufoR7HXwZWFKh89XpwOLVa%2fRJv%2bt8Gu3s%2bdprfXWTAfwAZNb6rddSTT01rz3J93gXlIy%2fygF%2frtfdRVtCXol3tWitQVO5SqKLKrhgzSLMVVQBk0k6baQ0OtimUweraZfVwZd1k7aJSyDMRUJY6fhT1bx27L0LXNmj1UJmiMwm3jWUNGto5e2Px7Re1ULR0r%2bQTvZ%2bGa59B1ZYu5TMVfTM38CyzfvrBma5%2fhhxV4wjgp4ER8wB667Cp8G%2b5SZLjlO8PtdtN8dZX4MQym8Q%3d%3d&p=1&w=0&s=0&ws=10'],
+        match: ['https://www.sunmar.ru/packagetours/moskva-to-turtsiya-tours/?qp=gEIDPqjHDS6F9wLPRxSMEsk9SPjT08oD295gmfVK7B5bDpD8I7QGaccwRailcz5NDKvzdE5L7j6wqEOrQkD8fGtjJB3ejsOVIUskv%2bl2%2b%2f40sZ2sF9TCcUNb23fyrhzgH64UhVkhs2hZZ%2fmmBACuPfIRGirSvrCDoAuW7wG%2fbyVI5NxTdiXC4dLXV2o7j2fdtV3Z7zw4TD7x72%2b5jPhH%2bQEPxGfvNkX7D1ZtRkymwW89DGqULxlZJqVmqDSV6LkUBgbijnZ1aLxoDHgmthV%2fwCfY7vGnlBkgnEwYER%2b%2f12lfOs1oOGa0e3QUA8ITw8vB0ij6%2f%2f3lMlIGZn0OoJC%2b4MFqbWXvhnqhfd2Q2BwXG3A%3d&p=1&w=0&s=0&ws=10'],
       },
     }),
   ],
