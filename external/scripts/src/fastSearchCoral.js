@@ -12,20 +12,41 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
     });
 }
 
-async function waitForPopularTours(timeout = 5000, interval = 100) {
+async function waitForPopularTours(timeout = 20000, interval = 150) {
     const start = Date.now();
-
     return new Promise((resolve, reject) => {
         const check = () => {
-            if (window.POPULAR_TOURS?.length) {
-                return resolve(window.POPULAR_TOURS);
-            }
-            if (Date.now() - start > timeout) {
-                return reject(new Error('данные не найдены за отведенное время'));
-            }
+            if (window.POPULAR_TOURS?.length) return resolve(window.POPULAR_TOURS);
+            if (Date.now() - start > timeout) return reject(new Error('POPULAR_TOURS timeout'));
             setTimeout(check, interval);
         };
         check();
+    });
+}
+
+function waitForElement(selector, { root = document, timeout = 30000 } = {}) {
+    return new Promise((resolve, reject) => {
+        const tryFind = () => (root || document).querySelector(selector);
+        const first = tryFind();
+        if (first && first.isConnected) return resolve(first);
+
+        const target = root && root !== document ? root : document.documentElement;
+        const obs = new MutationObserver(() => {
+            const el = tryFind();
+            if (el && el.isConnected) {
+                obs.disconnect();
+                resolve(el);
+            }
+        });
+        obs.observe(target, { childList: true, subtree: true, attributes: true });
+
+        if (timeout) {
+            setTimeout(() => {
+                obs.disconnect();
+                const el = tryFind();
+                el && el.isConnected ? resolve(el) : reject(new Error(`waitForElement timeout: ${selector}`));
+            }, timeout);
+        }
     });
 }
 
@@ -197,12 +218,26 @@ const departureLocation = {
 
 function buildPayload(item, country, reservationType = 0) {
     return {
-        additionalFilters: [
-            {type: 21, values: [{id: "2", value: "2"}]},
-            {type: 4, values: [{id: country.id, value: country.id}]},
+        additionalFilters: [{
+            type: 21,
+            values: [{
+                id: "2",
+                value: "2"
+            }]
+        },
+            {
+                type: 4,
+                values: [{
+                    id: country.id,
+                    value: country.id
+                }]
+            },
             {
                 type: 2,
-                values: (item.stars || []).map(star => ({id: star, value: star}))
+                values: (item.stars || []).map(star => ({
+                    id: star,
+                    value: star
+                }))
             }
         ],
         arrivalLocations: [{
@@ -215,7 +250,9 @@ function buildPayload(item, country, reservationType = 0) {
         datePickerMode: 0,
         departureLocations: [departureLocation],
         flightType: 2,
-        nights: [{value: item.nights}],
+        nights: [{
+            value: item.nights
+        }],
         paging: {
             hasNextPage: false,
             hasPreviousPage: false,
@@ -225,7 +262,9 @@ function buildPayload(item, country, reservationType = 0) {
         },
         reservationType: reservationType,
         roomCriterias: [{
-            passengers: Array.from({length: item.adults || 2}, () => ({
+            passengers: Array.from({
+                length: item.adults || 2
+            }, () => ({
                 age: 20,
                 passengerType: 0
             }))
@@ -240,7 +279,9 @@ async function enrichPopularItem(item) {
     const [price, link] = await Promise.all([
         fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchList', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 searchSource: 1,
                 searchCriterias: buildPayload(item, country, 0)
@@ -252,7 +293,9 @@ async function enrichPopularItem(item) {
 
         fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchEncrypt', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(buildPayload(item, country, 1))
         })
             .then(res => res.json())
@@ -277,7 +320,7 @@ function createPopularBlock(blockData, index) {
     const displayIndex = index + 1;
 
     return `
-    <a href="${blockData.link || '#'}" class="popular-block" data-index="${displayIndex}" data-country="${country}" data-date="${blockData.dates_to_html}" data-label="${blockData.label}">
+    <a href="${blockData.link || '#'}" target="_blank" class="popular-block" data-index="${displayIndex}" data-country="${country}" data-date="${blockData.dates_to_html}" data-label="${blockData.label}">
       <div class="popular-block__info">
         <p class="popular-block__text">${point}</p>
         <p class="popular-block__text"><strong>${blockData.dates_to_html}</strong></p>
@@ -299,7 +342,9 @@ function createPopularWrapper(popularData) {
     const popularContainer = document.createElement('div');
     popularContainer.classList.add('popular-container');
 
-    ym(96674199, 'reachGoal', 'quick_search_show', {type: 'Быстрый поиск'});
+    ym(96674199, 'reachGoal', 'quick_search_show', {
+        type: 'Быстрый поиск'
+    });
 
     popularData.forEach((block, index) => {
         const html = createPopularBlock(block, index);
@@ -307,7 +352,12 @@ function createPopularWrapper(popularData) {
 
         const blockEl = popularContainer.lastElementChild;
         blockEl.addEventListener('click', () => {
-            const {index, country, date, label} = blockEl.dataset;
+            const {
+                index,
+                country,
+                date,
+                label
+            } = blockEl.dataset;
             ym(96674199, 'reachGoal', 'quick_search', {
                 name: 'Быстрый поиск',
                 index,
@@ -335,84 +385,100 @@ function createPopularWrapper(popularData) {
     return wrapper;
 }
 
-function waitForElement(selector, { root = document, timeout = 15000 } = {}) {
-    return new Promise((resolve, reject) => {
-        const tryFind = () => (root || document).querySelector(selector);
-        const first = tryFind();
-        if (first && first.isConnected) return resolve(first);
+function getActiveTabKey(searchPanel) {
+    // Делаем максимально устойчиво: смотрим aria-selected или active-класс у табов
+    // Верни 'tours' / 'hotels'
+    const tourBtn = searchPanel.querySelector('[data-node-key="1"]');
+    const hotelBtn = searchPanel.querySelector('[data-node-key="2"]');
 
-        const target = root && root !== document ? root : document.documentElement;
-        const obs = new MutationObserver(() => {
-            const el = tryFind();
-            if (el && el.isConnected) {
-                obs.disconnect();
-                resolve(el);
-            }
-        });
-        obs.observe(target, { childList: true, subtree: true, attributes: true });
+    const isSelected = (btn) =>
+        btn?.getAttribute('aria-selected') === 'true' ||
+        btn?.classList?.contains('ant-tabs-tab-active') ||
+        btn?.parentElement?.classList?.contains('ant-tabs-tab-active');
 
-        if (timeout) {
-            setTimeout(() => {
-                obs.disconnect();
-                const el = tryFind();
-                el && el.isConnected
-                    ? resolve(el)
-                    : reject(new Error(`waitForElement timeout: ${selector}`));
-            }, timeout);
-        }
-    });
+    if (isSelected(hotelBtn)) return 'hotels';
+    if (isSelected(tourBtn)) return 'tours';
+
+    // fallback: если не нашли — считаем, что туры (у тебя логика на них завязана)
+    return 'tours';
 }
 
-function ensurePopularWrapper(searchPanel, searchToursPanel, enriched) {
-    const recentBlock = searchPanel.querySelector('.swiper-wrapper');
-    let popular = searchPanel.querySelector('.popular-wrapper');
+function ensurePopularAttached(searchToursPanel, enriched) {
+    // ищем по классу
+    let popular = searchToursPanel.querySelector(':scope > .popular-wrapper')
+        || searchToursPanel.querySelector('.popular-wrapper');
 
-    if (!popular && !recentBlock) {
+    if (!popular || !popular.isConnected) {
         popular = createPopularWrapper(enriched);
         searchToursPanel.insertAdjacentElement('beforeend', popular);
     }
     return popular;
 }
 
-async function runStabilizingChecks(searchPanel, searchToursPanel, enriched, seconds = 5) {
-    ensurePopularWrapper(searchPanel, searchToursPanel, enriched);
+function updateVisibility({ searchPanel, searchToursPanel, enriched }) {
+    const hasHistory = !!searchPanel.querySelector('.swiper-wrapper'); // история поиска
+    const tab = getActiveTabKey(searchPanel); // 'tours' | 'hotels'
+    const shouldShowPopular = (tab === 'tours') && !hasHistory;
 
-    let tries = 0;
-    const maxTries = Math.max(1, seconds);
-    const timer = setInterval(() => {
-        tries += 1;
-        ensurePopularWrapper(searchPanel, searchToursPanel, enriched);
-        if (tries >= maxTries) clearInterval(timer);
-    }, 1000);
+    // Важно: если показывать не надо — можно НЕ создавать блок вообще (но тогда он может "не успеть" создаться)
+    // Я делаю так: создаём/прикрепляем только если надо показать ИЛИ уже создан.
+    let popular = searchPanel.querySelector('.popular-wrapper');
+
+    if (shouldShowPopular) {
+        popular = ensurePopularAttached(searchToursPanel, enriched);
+        popular.style.display = '';
+    } else {
+        if (popular) popular.style.display = 'none';
+    }
+}
+
+function installController({ searchPanel, searchToursPanel, enriched }) {
+    // 1) первичное применение
+    updateVisibility({ searchPanel, searchToursPanel, enriched });
+
+    // 2) слушаем клики по табам (быстро)
+    const onClick = () => updateVisibility({ searchPanel, searchToursPanel, enriched });
+    searchPanel.addEventListener('click', onClick, true);
+
+    // 3) главный механизм: наблюдаем за DOM (история может появляться позже; React может снести наш блок)
+    const obs = new MutationObserver(() => {
+        updateVisibility({ searchPanel, searchToursPanel, enriched });
+    });
+
+    obs.observe(searchPanel, { childList: true, subtree: true, attributes: true });
+
+    // 4) защита от редких сценариев: обновить ещё раз через пару секунд (ленивая подгрузка)
+    const t1 = setTimeout(() => updateVisibility({ searchPanel, searchToursPanel, enriched }), 1500);
+    const t2 = setTimeout(() => updateVisibility({ searchPanel, searchToursPanel, enriched }), 5000);
+
+    // 5) возвращаем disposer (если надо будет отключать)
+    return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        searchPanel.removeEventListener('click', onClick, true);
+        obs.disconnect();
+    };
 }
 
 hostReactAppReady().then(async () => {
     try {
+        // ВАЖНО: твой гейт по Москве может быть причиной "у одних есть у других нет".
+        // Если он нужен — оставь, но сделай устойчивее (не только [0]).
         const meta = __NEXT_DATA__?.props?.pageProps?.pageData?.meta;
-        if (!(meta?.departures?.[0]?.id === "2671-5" && meta?.departures?.[0]?.isCurrent)) return;
+        const departures = meta?.departures || [];
+        const currentDeparture = departures.find(d => d?.isCurrent);
 
-        const popularData = await waitForPopularTours();
+        if (!(currentDeparture?.id === "2671-5" && currentDeparture?.isCurrent)) return;
+
+        const popularData = await waitForPopularTours(20000, 150);
         const enriched = await Promise.all(popularData.map(enrichPopularItem));
 
-        const searchPanel = await waitForElement('[data-testid="quickSearchBarBlock"]');
-        const searchToursPanel = await waitForElement('.ant-tabs-content-holder', { root: searchPanel });
+        const searchPanel = await waitForElement('[data-testid="quickSearchBarBlock"]', { timeout: 45000 });
+        const searchToursPanel = await waitForElement('.ant-tabs-content-holder', { root: searchPanel, timeout: 45000 });
 
-        await runStabilizingChecks(searchPanel, searchToursPanel, enriched, 5);
-
-        const hotelButton = searchPanel.querySelector('[data-node-key="2"]');
-        const tourButton  = searchPanel.querySelector('[data-node-key="1"]');
-
-        hotelButton?.addEventListener('click', () => {
-            const popular = searchPanel.querySelector('.popular-wrapper');
-            if (popular) popular.style.display = 'none';
-        });
-
-        tourButton?.addEventListener('click', () => {
-            const popular = ensurePopularWrapper(searchPanel, searchToursPanel, enriched);
-            if (popular) popular.style.display = 'block';
-        });
+        installController({ searchPanel, searchToursPanel, enriched });
 
     } catch (err) {
-        console.warn('Не удалось инициализировать популярные туры для быстрого поиска', err);
+        console.warn('Не удалось инициализировать быстрый поиск', err);
     }
 });
