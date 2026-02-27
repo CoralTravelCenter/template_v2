@@ -540,9 +540,9 @@ hostReactAppReady().then(async () => {
         <div class="elite-shield elite-shield--desktop" data-elite-shield="desktop" role="button" tabindex="0" aria-label="Открыть Elite подборку">
           <div class="elite-shield__icon">${SHIELD_SVG}</div>
           <div class="elite-shield__name">
-            <span>Добро пожаловать,</span>
-            <span id="elite_user_name"></span>
-          </div>
+              <span id="elite_greeting_text">Добро пожаловать</span>
+              <span id="elite_user_name"></span>
+            </div>
         </div>
       `);
         }
@@ -573,7 +573,15 @@ hostReactAppReady().then(async () => {
     mindbox("sync", {
         operation: "getUserName",
         onSuccess: function(response) {
-            window.PopMechanic.$('#elite_user_name').text(response.customer.firstName ? response.customer.firstName : "");
+            const name = response.customer.firstName?.trim();
+
+            if (name) {
+                window.PopMechanic.$('#elite_greeting_text').text('Добро пожаловать,');
+                window.PopMechanic.$('#elite_user_name').text(name);
+            } else {
+                window.PopMechanic.$('#elite_greeting_text').text('Добро пожаловать');
+                window.PopMechanic.$('#elite_user_name').text('');
+            }
         },
         onValidationError: function(messages) { },
         onError: function(error) { }
