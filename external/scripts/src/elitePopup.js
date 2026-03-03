@@ -23,6 +23,17 @@ async function waitForElement(selector, { timeout = 20000, interval = 200 } = {}
 }
 
 hostReactAppReady().then(async () => {
+
+    const YM_ID = 96674199;
+    const reachGoal = (goal, params) => {
+        try {
+            if (typeof window.ym === 'function') {
+                if (params !== undefined) window.ym(YM_ID, 'reachGoal', goal, params);
+                else window.ym(YM_ID, 'reachGoal', goal);
+            }
+        } catch (e) {}
+    };
+
     const COUNTRY_LINKS = {
         "ОАЭ": "https://www.coral.ru/packagetours/moskva-to-oae-tours/?qp=gEIDPqjHDS6F9wLPRxSMEpc%2FLGE74v114Z0MhDqCu45eHQbGjOLk9e3kNkskWiJrCL9k0Hz5hotC6h2tbV4K9joPxRStXj%2FzIJJIF5UmBmq%2FY1xdwYC9rrTvVI00rHS3rwv9z0VNcO%2BE5UFzxlqfDhCbTunaDIcGZ6336fzd6flEhAxidQmad9E%2FO%2BPMJakcQzhU2yEKHM%2BJx5FvN%2BJrM63X6Uk6cBJbYfIzcl8BHg0u5g%2BOdyEh7Ek%2BTvyyaNdsllw2525gY28T8jlIu31Bt%2FdliHPQrp0F5fy5Xhd25yGGgmkA%2Fc4%2F0NwCQJi6P3YUJKe6H9d6tvWRbobvD9hU48jbYJ5B4sJ%2FhngTMsqbzw%2Bi5R%2BU%2FA1RECmwQHTGgRwPr04v8kZ%2FmKMpRt4SezAgiJhYZMcKDWCfBA2H3sFQIDc6wjKSU0AyqLPipFsX7jZS4advxNVczPc0fVmnlBUJmJfsMI9N78SIO7czCB0U9EU%3D&p=1&w=0&s=2&ws=10",
         "Турция": "https://www.coral.ru/packagetours/moskva-to-turtsiya-tours/?qp=gEIDPqjHDS6F9wLPRxSMEpc%2FLGE74v114Z0MhDqCu45eHQbGjOLk9e3kNkskWiJrCL9k0Hz5hotC6h2tbV4K9joPxRStXj%2FzIJJIF5UmBmq%2FY1xdwYC9rrTvVI00rHS3PK49DtapIB5tUZwlh%2Fh9BLWaaHs7TXp9CVUCjva%2Bvasu4%2BHlu1Klm%2FHuiYKj61CWohMr11Gi9%2BjAHphwicgdAvtPTVF8BELu4PKS2nvxMEq93cxUdrRXpEV%2BfY7%2Ffx3K%2BN0jhHNLg9xLNeuwdzzwpx1fHDnNJdmakV8gvRArUKarhu5yPMjGi8XVeMun3V69Vklrf4981ZYoqUhFDX1Nwu0KLvO2vDdbQ03iIohUOBKcWn3NPhHWSvVCxDP5ar%2B3b7TkbGSuzhRgYDW43LLmqoJ2YLFISwZM8013bBrs%2Bi4MzfxGyiujWXkLGwe87u%2F9&p=1&w=0&s=2&ws=10",
@@ -51,6 +62,13 @@ hostReactAppReady().then(async () => {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
+      }
+      .elite-shield__icon img{ 
+          display:block;
+          height:35px;
+          width:auto; 
+          border-radius: 50%;
       }
 
       .elite-shield__name {
@@ -61,7 +79,6 @@ hostReactAppReady().then(async () => {
         color: white;
       }
 
-      /* show/hide by breakpoint */
       @media (max-width: 991.98px) {
         .elite-shield--desktop { display: none !important; }
       }
@@ -167,6 +184,11 @@ hostReactAppReady().then(async () => {
 
       /* ===== custom dropdown ===== */
       .elite-dd { position: relative; }
+      
+      .elite-dd.elite-dd--up .elite-dd__panel{
+        top: auto;
+        bottom: calc(100% + 8px);
+      }
 
       .elite-dd__btn{
         width: 100%;
@@ -252,6 +274,7 @@ hostReactAppReady().then(async () => {
             height: 36px;
             width: 36px;
             margin-right: 6px;
+            padding: 0;
         }
       }
 
@@ -349,6 +372,9 @@ hostReactAppReady().then(async () => {
 
         if (!root || !dd || !btn || !panel || !list || !valueEl || !link || items.length === 0) return;
 
+        let selectedValue = "";
+        let activeIndex = -1;
+
         const closePopup = () => {
             document.removeEventListener('mousedown', onDocMouseDown, true);
             document.removeEventListener('keydown', onDocKeyDown, true);
@@ -368,11 +394,8 @@ hostReactAppReady().then(async () => {
             }
         };
 
-        let selectedValue = "";
-        let activeIndex = -1;
-
         const setSelected = (country) => {
-            selectedValue = country;
+            selectedValue = country || "";
             valueEl.textContent = country || "Выберите страну";
 
             items.forEach((el) => {
@@ -391,7 +414,22 @@ hostReactAppReady().then(async () => {
             el.scrollIntoView({ block: 'nearest' });
         };
 
+        const updateDdDirection = () => {
+            // высота панели: либо текущая (если уже была), либо оценка по кол-ву пунктов
+            const estimatedPanelHeight = Math.min(220, items.length * 44 + 12); // ~44px item + padding
+            const rect = dd.getBoundingClientRect();
+
+            const spaceBelow = window.innerHeight - rect.bottom;
+            const spaceAbove = rect.top;
+
+            const shouldOpenUp = spaceBelow < estimatedPanelHeight && spaceAbove > spaceBelow;
+
+            dd.classList.toggle('elite-dd--up', shouldOpenUp);
+        };
+
         const openDd = () => {
+            updateDdDirection();
+
             dd.classList.add('is-open');
             btn.setAttribute('aria-expanded', 'true');
             panel.hidden = false;
@@ -434,7 +472,28 @@ hostReactAppReady().then(async () => {
         });
 
         link.addEventListener('click', (e) => {
-            if (!link.classList.contains('is-enabled')) e.preventDefault();
+            const countryForMetric = selectedValue ? selectedValue : 'not selected';
+
+            if (!link.classList.contains('is-enabled')) {
+                e.preventDefault();
+                return;
+            }
+
+            reachGoal('personalization_elite_pop_up_click', {
+                button: 'view_hotels',
+                country: countryForMetric,
+            });
+        });
+
+        backBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            reachGoal('personalization_elite_pop_up_click', {
+                button: 'no',
+                country: selectedValue ? selectedValue : 'not selected',
+            });
+
+            closePopup();
         });
 
         closeBtn?.addEventListener('click', (e) => {
@@ -447,11 +506,6 @@ hostReactAppReady().then(async () => {
                 e.preventDefault();
                 closePopup();
             }
-        });
-
-        backBtn?.addEventListener('click', (e) => {
-            e.preventDefault();
-            closePopup();
         });
 
         root.addEventListener('click', (e) => {
@@ -504,16 +558,12 @@ hostReactAppReady().then(async () => {
         document.addEventListener('keydown', onDocKeyDown, true);
     }
 
-    const SHIELD_SVG = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="16" viewBox="0 0 25 16" fill="none">
-      <path d="M0 13V3C0 1.34315 1.34315 0 3 0H19.1944C20.3373 0 21.381 0.649453 21.8858 1.67486L24.3476 6.67486C24.7589 7.5104 24.7589 8.4896 24.3476 9.32514L21.8858 14.3251C21.381 15.3505 20.3373 16 19.1944 16H3C1.34315 16 0 14.6569 0 13Z" fill="#E84E0F"/>
-      <path d="M7 6.9375H9.44665V11.9999H7V6.9375Z" stroke="#F1F7FB" stroke-linejoin="round"/>
-      <path d="M9.44727 6.93736H10.4316L11.5576 5.6861C11.6496 5.58389 11.7195 5.46381 11.763 5.33337L12.1031 4.31295C12.3186 3.66634 13.1037 3.42008 13.6499 3.82774L13.9065 4.01928C14.222 4.25472 14.37 4.65334 14.2846 5.03761L13.8625 6.93736H15.1967C15.8729 6.93736 16.3541 7.59456 16.15 8.23923L15.4014 10.6035C15.1381 11.4348 14.3667 11.9998 13.4947 11.9998H9.44727V6.93736Z" stroke="#F1F7FB" stroke-linejoin="round"/>
-    </svg>
-  `;
+    const SHIELD_SVG = `<img src="https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/diamond.gif" alt="">`;
 
     const DESKTOP_CONTAINER_SELECTOR = '[class*=HeaderTopBar_iconContainer]';
     const MOBILE_CONTAINER_SELECTOR = '[class*=HeaderMobile_rightGroup]';
+
+    let eliteSegmentGoalSent = false;
 
     function bindShield(shieldEl) {
         if (!shieldEl) return;
@@ -522,12 +572,18 @@ hostReactAppReady().then(async () => {
 
         shieldEl.addEventListener('click', (e) => {
             e.preventDefault();
+
+            reachGoal('personalization_elite_pop_up_show');
+
             openElitePopup();
         });
 
         shieldEl.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
+
+                reachGoal('personalization_elite_pop_up_show');
+
                 openElitePopup();
             }
         });
@@ -540,9 +596,9 @@ hostReactAppReady().then(async () => {
         <div class="elite-shield elite-shield--desktop" data-elite-shield="desktop" role="button" tabindex="0" aria-label="Открыть Elite подборку">
           <div class="elite-shield__icon">${SHIELD_SVG}</div>
           <div class="elite-shield__name">
-              <span id="elite_greeting_text">Добро пожаловать</span>
-              <span id="elite_user_name"></span>
-            </div>
+            <span>Добро пожаловать,</span>
+            <span id="elite_user_name"></span>
+          </div>
         </div>
       `);
         }
@@ -556,8 +612,16 @@ hostReactAppReady().then(async () => {
       `);
         }
 
-        bindShield(document.querySelector('.elite-shield[data-elite-shield="desktop"]'));
-        bindShield(document.querySelector('.elite-shield[data-elite-shield="mobile"]'));
+        const desktopShield = document.querySelector('.elite-shield[data-elite-shield="desktop"]');
+        const mobileShield = document.querySelector('.elite-shield[data-elite-shield="mobile"]');
+
+        bindShield(desktopShield);
+        bindShield(mobileShield);
+
+        if (!eliteSegmentGoalSent && (desktopShield || mobileShield)) {
+            eliteSegmentGoalSent = true;
+            reachGoal('personalization_elite_segment');
+        }
     }
 
     await Promise.all([
@@ -572,18 +636,10 @@ hostReactAppReady().then(async () => {
 
     mindbox("sync", {
         operation: "getUserName",
-        onSuccess: function(response) {
-            const name = response.customer.firstName?.trim();
-
-            if (name) {
-                window.PopMechanic.$('#elite_greeting_text').text('Добро пожаловать,');
-                window.PopMechanic.$('#elite_user_name').text(name);
-            } else {
-                window.PopMechanic.$('#elite_greeting_text').text('Добро пожаловать');
-                window.PopMechanic.$('#elite_user_name').text('');
-            }
+        onSuccess: function (response) {
+            window.PopMechanic.$('#elite_user_name').text(response.customer.firstName ? response.customer.firstName : "");
         },
-        onValidationError: function(messages) { },
-        onError: function(error) { }
+        onValidationError: function (messages) {},
+        onError: function (error) {}
     });
 });
