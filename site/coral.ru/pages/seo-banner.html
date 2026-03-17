@@ -1,0 +1,127 @@
+<body>
+<style>
+    .alphabet {
+        margin-bottom: 40px;
+
+        @media screen and (max-width: 992px) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .alphabet__wrapper {
+        background-image: url("https://b2ccdn.coral.ru/content/seo-banner/bg_1.webp");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+        padding: 42px;
+        border-radius: 20px;
+        position: relative;
+        box-sizing: border-box;
+
+        @media screen and (max-width: 992px) {
+            background-image: url("https://b2ccdn.coral.ru/content/seo-banner/bg_1_m.webp");
+            height: 900px;
+            max-width: 430px;
+            padding: 24px;
+        }
+    }
+
+    .alphabet__info {
+        display: flex;
+        flex-direction: column;
+        max-width: 724px;
+
+        @media screen and (max-width: 992px) {
+            justify-content: flex-end;
+            height: 100%;
+        }
+    }
+
+    .alphabet__title {
+        font-size: 32px;
+        line-height: 40px;
+        margin: 0 0 16px;
+
+        @media screen and (max-width: 992px) {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+
+    .alphabet__text {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0;
+    }
+
+    .alphabet__link {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        background-color: #0092d0;
+        padding-inline: 20px;
+        width: fit-content;
+        color: white!important;
+        text-decoration: none!important;
+        border-radius: 48px;
+        margin-top: 16px;
+        font-weight: 600;
+    }
+
+    .alphabet__list {
+        padding-left: 16px;
+        margin-block: 10px;
+    }
+
+    .alphabet__label {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+</style>
+<div class="alphabet">
+    <div class="alphabet__wrapper">
+        <div class="alphabet__label">
+            Реклама. ООО «Центрбронь» erid: 2W5zFK7Dza5
+        </div>
+        <div class="alphabet__info">
+            <h4 class="alphabet__title">
+                Раннее бронирование от А до Я
+            </h4>
+            <p class="alphabet__text">
+                Тюлень Калькулюс на связи!
+            </p>
+            <p class="alphabet__text">
+                Я подготовил для вас лучшие условия по акции «Раннее бронирование»:
+            </p>
+            <ul class="alphabet__list">
+                <li>
+                    Предоплата всего 20%
+                </li>
+                <li>
+                    Скидки до 50% на туры и отели
+                </li>
+                <li>
+                    Списание до 8 000 бонусов CoralBonus в счет тура. Подробнее тут
+                </li>
+                <li>
+                    Мягкие условия – покупка отдыха в рассрочку или кредит
+                </li>
+            </ul>
+            <p class="alphabet__text">
+                А ещё моя личная рекомендация — подборка бюджетных отелей, где отдых — просто сказка. Со мной выгодно планировать отдых!
+            </p>
+            <a href="https://www.coral.ru/hot-offers/rannee-bronirovanie-leto/" target="_blank" class="alphabet__link" onclick="ym(96674199, 'reachGoal', 'entry-point', {
+                name_stock: {
+                    EB_landing: {
+                        name_point: 'banners'
+                    }
+                }
+            }); return true;">
+                Выбрать тур
+            </a>
+        </div>
+    </div>
+</div>
+</body>
