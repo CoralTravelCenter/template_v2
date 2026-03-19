@@ -1,0 +1,175 @@
+<body>
+<style>
+    .point {
+        grid-gap: 24px;
+        grid-template-columns:repeat(6, 1fr);
+        margin-top: 32px;
+        display: grid
+    }
+
+    .point--4 .point__block {
+        grid-column: span 3
+    }
+
+    @media screen and (max-width: 768px) {
+        .point--4 .point__block {
+            grid-column: auto
+        }
+    }
+
+    .point--5 .point__block:nth-child(-n+3) {
+        grid-column: span 2
+    }
+
+    @media screen and (max-width: 768px) {
+        .point--5 .point__block:nth-child(-n+3) {
+            grid-column: auto
+        }
+    }
+
+    .point--5 .point__block:nth-last-child(-n+2) {
+        grid-column: span 3
+    }
+
+    @media screen and (max-width: 768px) {
+        .point--5 .point__block:nth-last-child(-n+2) {
+            grid-column: auto
+        }
+    }
+
+    .point--6 .point__block {
+        grid-column: span 2
+    }
+
+    @media screen and (max-width: 768px) {
+        .point--6 .point__block {
+            grid-column: auto
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .point {
+            grid-template-columns:100%
+        }
+    }
+
+    .point__block {
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 24px 32px
+    }
+
+    .point__header {
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+        display: flex
+    }
+
+    .point__icon {
+        flex-shrink: 0;
+        justify-content: center;
+        align-items: center;
+        display: flex
+    }
+
+    .point__title {
+        color: #0092d0;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px
+    }
+</style>
+<section class="coral" id="anchor-3">
+    <article>
+        <div class="wrapper">
+            <h2 class="title-2 mb-8">
+                Преимущества отдыха в апреле
+            </h2>
+            <p class="text">
+                Специалисты Coral Travel подготовили аргументы в пользу путешествия в апреле: узнайте, почему именно этот месяц идеально подходит для вашего отпуска.
+            </p>
+            <div class="point point--6">
+                <div class="point__block">
+                    <div class="point__header">
+                        <div class="point__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/icon_1.webp" alt="">
+                        </div>
+                        <h4 class="point__title">
+                            Отличные цены
+                        </h4>
+                    </div>
+                    <p class="text">
+                        Период «низкого сезона» перед майскими.  Цены на отели и перелеты ниже, чем летом
+                    </p>
+                </div>
+                <div class="point__block">
+                    <div class="point__header">
+                        <div class="point__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/icon_2.webp" alt="">
+                        </div>
+                        <h4 class="point__title">
+                            Бонусы CoralBonus
+                        </h4>
+                    </div>
+                    <p class="text">
+                        8 000 бонусов на счет карты лояльности.  Их можно потратить на отдых в апреле
+                    </p>
+                </div>
+                <div class="point__block">
+                    <div class="point__header">
+                        <div class="point__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/icon_3.webp" alt="">
+                        </div>
+                        <h4 class="point__title">
+                            Широкий выбор
+                        </h4>
+                    </div>
+                    <p class="text">
+                        Туры, отели, рейсы и экскурсии – все,  что вы любите, в наличии на сайте
+                    </p>
+                </div>
+                <div class="point__block">
+                    <div class="point__header">
+                        <div class="point__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/icon_4.webp" alt="">
+                        </div>
+                        <h4 class="point__title">
+                            Мало туристов
+                        </h4>
+                    </div>
+                    <p class="text">
+                        В отелях еще мало отдыхающих, а значит будет нише, а на пляжах свободнее
+                    </p>
+                </div>
+                <div class="point__block">
+                    <div class="point__header">
+                        <div class="point__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/icon_5.webp" alt="">
+                        </div>
+                        <h4 class="point__title">
+                            Пляжный отдых
+                        </h4>
+                    </div>
+                    <p class="text">
+                        Море теплое, но при этом приятно освежающее. В Турции вода до 20℃, в Египте – до 23℃
+                    </p>
+                </div>
+                <div class="point__block">
+                    <div class="point__header">
+                        <div class="point__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/icon_6.webp" alt="">
+                        </div>
+                        <h4 class="point__title">
+                            Побег от поллиноза
+                        </h4>
+                    </div>
+                    <p class="text">
+                        Можно забыть об аллергии на цветение березы, клена и других растений на неделю или дольше
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+</body>

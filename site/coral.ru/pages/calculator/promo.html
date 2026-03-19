@@ -1,0 +1,198 @@
+<body>
+<style>
+    .terms {
+        grid-gap: 24px;
+        grid-template-columns:repeat(3, 1fr);
+        display: grid
+    }
+
+    .terms__block {
+        background-color: #fff;
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 24px;
+        display: flex;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, .08), 0 3px 6px -4px rgba(0, 0, 0, .12), 0 9px 28px 8px rgba(0, 0, 0, .05)
+    }
+
+    .terms__block--promo {
+        grid-column: span 3;
+        min-height: 154px;
+        position: relative;
+        justify-content: flex-end;
+        flex-direction: row;
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .terms__block--conditions {
+            grid-column: span 3
+        }
+    }
+
+    .terms__block--note {
+        grid-column: span 3
+    }
+
+    .terms__img {
+        margin-bottom: 16px;
+        height: 80px;
+    }
+
+    .terms__list {
+        z-index: 1;
+        gap: 4px;
+        margin-top: 16px;
+        padding-left: 16px;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .terms__list {
+            flex-direction: column;
+            gap: 8px
+        }
+    }
+
+    .terms .text {
+        text-align: center
+    }
+
+    .terms__box {
+        display: flex;
+        gap: 16px;
+    }
+
+    .terms__wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-right: 100px;
+    }
+
+    .title-6 {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .terms__seal {
+        position: absolute;
+        left: 90px;
+        bottom: 10px;
+    }
+
+    .coral-seal .wrapper {
+        padding-top: 100px;
+    }
+
+    @media screen and (max-width: 1337px) {
+        .terms__seal {
+            left: 10px;
+        }
+
+        .terms__wrapper {
+            padding-right: 0;
+        }
+    }
+
+    @media screen and (max-width: 1166px) {
+        .terms__seal {
+            left: unset;
+            z-index: -1;
+            bottom: unset;
+            top: -90px;
+            transform: rotate(25deg);
+            width: 197px;
+            right: -20px;
+        }
+
+        .terms__block--promo {
+            justify-content: flex-start;
+        }
+    }
+
+    @media screen and (max-width: 930px) {
+        .terms__box {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .terms__box .terms__list:nth-child(2) {
+            margin-top: 0;
+        }
+    }
+</style>
+<section class="coral coral-seal" id="anchor-2">
+    <article>
+        <div class="wrapper">
+            <div class="terms">
+                <div class="terms__block terms__block--promo">
+                    <div class="terms__seal">
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/seal.webp" alt="">
+                    </div>
+                    <div class="terms__wrapper">
+                        <h3 class="title-1 mb-8">
+                            Промокод <span style="color: #0092D0;">ВПЛЮСЕ</span>
+                        </h3>
+                        <h4 class="title-5">
+                            Скидка до 12 500 рублей на бронирование пакетных туров и отелей
+                        </h4>
+                        <div class="terms__box">
+                            <ul class="terms__list">
+                                <li>скидка 2&nbsp;000&nbsp;₽ на туры и отели от 100&nbsp;000&nbsp;₽</li>
+                                <li>скидка 4&nbsp;500&nbsp;₽ на туры и отели от 200&nbsp;000&nbsp;₽</li>
+                            </ul>
+                            <ul class="terms__list">
+                                <li>скидка 8&nbsp;000&nbsp;₽ на туры и отели от 350&nbsp;000&nbsp;₽</li>
+                                <li>скидка 12&nbsp;500&nbsp;₽ на туры и отели от 550&nbsp;000&nbsp;₽</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img" src="https://b2ccdn.coral.ru/content/landing-pages/calculator/promo_1.png" alt="">
+                    <h4 class="title-5">
+                        Даты акции
+                    </h4>
+                    <p class="text">
+                        с 20.02.2026 по 07.03.2026 г.
+                    </p>
+                </div>
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img" src="https://b2ccdn.coral.ru/content/landing-pages/calculator/promo_2.png" alt="">
+                    <h4 class="title-5">
+                        Даты начала отдыха
+                    </h4>
+                    <p class="text">
+                        апрель 2026 г.
+                    </p>
+                </div>
+                <div class="terms__block terms__block--conditions">
+                    <img class="terms__img" src="https://b2ccdn.coral.ru/content/landing-pages/calculator/promo_3.png" alt="">
+                    <h4 class="title-5">
+                        Направления
+                    </h4>
+                    <p class="text">
+                        Турция, Египет
+                    </p>
+                </div>
+                <div class="terms__block terms__block--note">
+                    <p class="title-6">
+                        Чтобы воспользоваться промокодом, введите его в поле «Примечание к заказу» или сообщите
+                        менеджеру
+                    </p>
+                </div>
+            </div>
+            <p class="text mt-24">
+                * Скидка не суммируется с действующими акциями и программой лояльности CoralBonus. Скидка
+                распространяется только на новые неоплаченные бронирования пакетных туров и отелей. Скидка по промокоду
+                действует только при самостоятельном бронировании тура или отеля на coral.ru
+            </p>
+        </div>
+    </article>
+</section>
+</body>

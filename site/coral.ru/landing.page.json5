@@ -5,7 +5,12 @@
 		cdnAssetsURL: '//b2ccdn.coral.ru/content/landing-pages/turkey/stambul',
 	},
 	contents: [
+		'/site/coral.ru/pages/calculator/banner.html',
+		'/site/coral.ru/pages/calculator/nav.html',
+//		'/site/coral.ru/pages/calculator/text.html',
 		'/site/coral.ru/pages/calculator/main.html',
+		'/site/coral.ru/pages/calculator/promo.html',
+		'/site/coral.ru/pages/calculator/april.html',
 //		'/site/coral.ru/template/hotels-block.html',
 //		'/site/coral.ru/template/anchors.html',
 //		'/site/coral.ru/template/text.html',
