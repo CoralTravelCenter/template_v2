@@ -695,7 +695,6 @@
         transform: translateY(0);
     }
 </style>
-
 <style>
     .tabs__pane {
         display: none
@@ -744,15 +743,19 @@
                 Калькулятор апрельской выгоды
             </h3>
             <p class="text mb-16">
-                Мы сравнили стоимость отдых в отелях в двух популярных пляжных странах. И показали разницу в цене. Выгода ощутима!
-                Куда потратить «лишнее»? Можно оставь себе, а можно прокачать свой отдых до максимума с помощью нашего интерактивного калькулятора апрельской выгоды.
+                Мы сравнили стоимость отдых в отелях в двух популярных пляжных странах. И показали разницу в цене.
+                Выгода ощутима!
+                Куда потратить «лишнее»? Можно оставь себе, а можно прокачать свой отдых до максимума с помощью нашего
+                интерактивного калькулятора апрельской выгоды.
             </p>
             <h2 class="title-2 mb-8">
                 Как работает
             </h2>
             <p class="text mb-16">
-                Отметьте галочками дополнительные услуги, которые хотите добавить к своему отдыху. Стоимость тура будет автоматически пересчитана с учетом выбранных услуг. <br>
-                <strong>Важно: итоговая цена отображается для ознакомления. Выбранные услуги не добавляются в корзину автоматически.</strong>
+                Отметьте галочками дополнительные услуги, которые хотите добавить к своему отдыху. Стоимость тура будет
+                автоматически пересчитана с учетом выбранных услуг. <br>
+                <strong>Важно: итоговая цена отображается для ознакомления. Выбранные услуги не добавляются в корзину
+                    автоматически.</strong>
             </p>
             <div class="tabs" data-tabs="">
                 <div class="tabs__nav">
@@ -1451,37 +1454,25 @@
     }
 
     hostReactAppReady().then(() => {
-        function turkeyService() {
-            const oldPriceEl = document.getElementById('old-price-turkey');
-            const newPriceEl = document.getElementById('new-price-turkey');
-            const diffPriceEl = document.getElementById('diff-price-turkey');
-            const checkboxes = document.querySelectorAll('.calc__service input[type="checkbox"]');
+        function initCountryCalculator({
+                                           oldPriceId,
+                                           newPriceId,
+                                           diffPriceId,
+                                           checkboxSelector,
+                                           saveButtonId,
+                                           resetButtonId,
+                                           storageKey
+                                       }) {
+            const oldPriceEl = document.getElementById(oldPriceId);
+            const newPriceEl = document.getElementById(newPriceId);
+            const diffPriceEl = document.getElementById(diffPriceId);
+            const checkboxes = document.querySelectorAll(checkboxSelector);
+            const saveButton = document.getElementById(saveButtonId);
+            const resetButton = document.getElementById(resetButtonId);
 
-            const saveButton = document.getElementById('save-button-turkey');
-            const resetButton = document.getElementById('reset-button-turkey');
-
-            const STORAGE_KEY = 'savedService';
+            if (!oldPriceEl || !newPriceEl || !diffPriceEl || !checkboxes.length) return;
 
             let saveButtonTimer = null;
-
-            function showSaveButtonSuccess() {
-                if (!saveButton) return;
-
-                const defaultText = 'Запомнить мой выбор';
-
-                if (saveButtonTimer) {
-                    clearTimeout(saveButtonTimer);
-                }
-
-                saveButton.textContent = 'Мы запомнили!';
-                saveButton.classList.add('calc__button--saved');
-
-                saveButtonTimer = setTimeout(() => {
-                    saveButton.textContent = defaultText;
-                    saveButton.classList.remove('calc__button--saved');
-                    saveButtonTimer = null;
-                }, 2000);
-            }
 
             function parsePrice(value) {
                 return Number(String(value).replace(/[^\d]/g, '')) || 0;
@@ -1522,19 +1513,23 @@
 
             function saveSelectedServices() {
                 const selected = getSelectedServices();
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
+                localStorage.setItem(storageKey, JSON.stringify(selected));
             }
 
             function restoreSelectedServices() {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (!saved) return;
+                const saved = localStorage.getItem(storageKey);
+                if (!saved) {
+                    updateCalculator();
+                    return;
+                }
 
                 let selectedIds = [];
 
                 try {
                     selectedIds = JSON.parse(saved);
                 } catch (e) {
-                    localStorage.removeItem(STORAGE_KEY);
+                    localStorage.removeItem(storageKey);
+                    updateCalculator();
                     return;
                 }
 
@@ -1550,44 +1545,9 @@
                     checkbox.checked = false;
                 });
 
-                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(storageKey);
                 updateCalculator();
             }
-
-            diffPriceEl.textContent = formatPrice(baseDiff);
-
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateCalculator);
-            });
-
-            restoreSelectedServices();
-
-            if (saveButton) {
-                saveButton.addEventListener('click', () => {
-                    saveSelectedServices();
-                    showSaveButtonSuccess();
-                });
-            }
-
-            if (resetButton) {
-                resetButton.addEventListener('click', () => {
-                    resetSelectedServices();
-                });
-            }
-        }
-
-        function egyptService() {
-            const oldPriceEl = document.getElementById('old-price-egypt');
-            const newPriceEl = document.getElementById('new-price-egypt');
-            const diffPriceEl = document.getElementById('diff-price-egypt');
-            const checkboxes = document.querySelectorAll('.calc__service input[type="checkbox"]');
-
-            const saveButton = document.getElementById('save-button-egypt');
-            const resetButton = document.getElementById('reset-button-egypt');
-
-            const STORAGE_KEY = 'savedService';
-
-            let saveButtonTimer = null;
 
             function showSaveButtonSuccess() {
                 if (!saveButton) return;
@@ -1608,77 +1568,6 @@
                 }, 2000);
             }
 
-            function parsePrice(value) {
-                return Number(String(value).replace(/[^\d]/g, '')) || 0;
-            }
-
-            function formatPrice(value) {
-                return `${value.toLocaleString('ru-RU')} ₽`;
-            }
-
-            const oldPrice = parsePrice(oldPriceEl.textContent);
-            const newPrice = parsePrice(newPriceEl.textContent);
-            const baseDiff = oldPrice - newPrice;
-
-            function updateCalculator() {
-                let servicesTotal = 0;
-
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        servicesTotal += Number(checkbox.dataset.price) || 0;
-                    }
-                });
-
-                const finalDiff = baseDiff - servicesTotal;
-                diffPriceEl.textContent = formatPrice(finalDiff);
-            }
-
-            function getSelectedServices() {
-                const selected = [];
-
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        selected.push(checkbox.id);
-                    }
-                });
-
-                return selected;
-            }
-
-            function saveSelectedServices() {
-                const selected = getSelectedServices();
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
-            }
-
-            function restoreSelectedServices() {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (!saved) return;
-
-                let selectedIds = [];
-
-                try {
-                    selectedIds = JSON.parse(saved);
-                } catch (e) {
-                    localStorage.removeItem(STORAGE_KEY);
-                    return;
-                }
-
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = selectedIds.includes(checkbox.id);
-                });
-
-                updateCalculator();
-            }
-
-            function resetSelectedServices() {
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-
-                localStorage.removeItem(STORAGE_KEY);
-                updateCalculator();
-            }
-
             diffPriceEl.textContent = formatPrice(baseDiff);
 
             checkboxes.forEach(checkbox => {
@@ -1701,8 +1590,25 @@
             }
         }
 
-        turkeyService();
-        egyptService();
+        initCountryCalculator({
+            oldPriceId: 'old-price-turkey',
+            newPriceId: 'new-price-turkey',
+            diffPriceId: 'diff-price-turkey',
+            checkboxSelector: 'input[id^="service-turkey-"]',
+            saveButtonId: 'save-button-turkey',
+            resetButtonId: 'reset-button-turkey',
+            storageKey: 'savedServiceTurkey'
+        });
+
+        initCountryCalculator({
+            oldPriceId: 'old-price-egypt',
+            newPriceId: 'new-price-egypt',
+            diffPriceId: 'diff-price-egypt',
+            checkboxSelector: 'input[id^="service-egypt-"]',
+            saveButtonId: 'save-button-egypt',
+            resetButtonId: 'reset-button-egypt',
+            storageKey: 'savedServiceEgypt'
+        });
 
         //---- тултип ----//
         const tooltips = document.querySelectorAll('.tooltip');
