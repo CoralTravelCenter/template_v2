@@ -9,7 +9,7 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
     });
 }
 
-async function waitForElement(selector, { timeout = 20000, interval = 200 } = {}) {
+async function waitForElement(selector, {timeout = 20000, interval = 200} = {}) {
     const start = Date.now();
     return new Promise(resolve => {
         const tick = () => {
@@ -31,7 +31,8 @@ hostReactAppReady().then(async () => {
                 if (params !== undefined) window.ym(YM_ID, 'reachGoal', goal, params);
                 else window.ym(YM_ID, 'reachGoal', goal);
             }
-        } catch (e) {}
+        } catch (e) {
+        }
     };
 
     const COUNTRY_LINKS = {
@@ -65,9 +66,9 @@ hostReactAppReady().then(async () => {
         flex-shrink: 0;
       }
       .elite-shield__icon img{ 
-          display:block;
-          height:35px;
-          width:auto; 
+      display:block;
+      height:35px;
+      width:auto; 
           border-radius: 50%;
       }
 
@@ -78,6 +79,8 @@ hostReactAppReady().then(async () => {
         font-weight: 600;
         color: white;
       }
+      
+      
 
       @media (max-width: 991.98px) {
         .elite-shield--desktop { display: none !important; }
@@ -108,7 +111,7 @@ hostReactAppReady().then(async () => {
 
       .elite-popup__wrapper {
         position: relative;
-        background-image: url(https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/elite_popup.png);
+        background-image: url(https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/pop-new-elite.png);
         display: flex;
         width: 948px;
         height: 444px;
@@ -185,10 +188,10 @@ hostReactAppReady().then(async () => {
       /* ===== custom dropdown ===== */
       .elite-dd { position: relative; }
       
-      .elite-dd.elite-dd--up .elite-dd__panel{
-        top: auto;
-        bottom: calc(100% + 8px);
-      }
+      .elite-dd.elite-dd--up .elite-dd__panel {
+          top: auto;
+          bottom: calc(100% + 8px);
+        }
 
       .elite-dd__btn{
         width: 100%;
@@ -280,7 +283,6 @@ hostReactAppReady().then(async () => {
 
       @media screen and (max-width: 768px) {
       .elite-shield {
-            
             margin-right: 0;
         }
         
@@ -346,7 +348,7 @@ hostReactAppReady().then(async () => {
               </div>
             </div>
 
-            <a href="#" class="elite-popup__link" data-elite-popup-link aria-disabled="true">
+            <a href="#" target="_blank" class="elite-popup__link" data-elite-popup-link aria-disabled="true">
               Посмотреть подборку
             </a>
 
@@ -381,6 +383,19 @@ hostReactAppReady().then(async () => {
             root.remove();
         };
 
+        const closePopupAndShowShield = () => {
+            shouldShowShield = true;
+            closePopup();
+            ensureShields();
+        };
+
+        const dismissElitePermanently = () => {
+            eliteDismissedPermanently = true;
+            shouldShowShield = false;
+            closePopup();
+            removeShields();
+        };
+
         const setLinkByCountry = (country) => {
             const href = COUNTRY_LINKS[country];
             if (href) {
@@ -411,12 +426,11 @@ hostReactAppReady().then(async () => {
             const el = items[idx];
             if (!el) return;
             el.classList.add('is-active');
-            el.scrollIntoView({ block: 'nearest' });
+            el.scrollIntoView({block: 'nearest'});
         };
 
         const updateDdDirection = () => {
-            // высота панели: либо текущая (если уже была), либо оценка по кол-ву пунктов
-            const estimatedPanelHeight = Math.min(220, items.length * 44 + 12); // ~44px item + padding
+            const estimatedPanelHeight = Math.min(220, items.length * 44 + 12);
             const rect = dd.getBoundingClientRect();
 
             const spaceBelow = window.innerHeight - rect.bottom;
@@ -429,7 +443,6 @@ hostReactAppReady().then(async () => {
 
         const openDd = () => {
             updateDdDirection();
-
             dd.classList.add('is-open');
             btn.setAttribute('aria-expanded', 'true');
             panel.hidden = false;
@@ -483,6 +496,17 @@ hostReactAppReady().then(async () => {
                 button: 'view_hotels',
                 country: countryForMetric,
             });
+
+            mindbox("async", {
+                operation: "popupEliteCountry",
+                data: {
+                    customerAction: {
+                        customFields: {
+                            eliteDirection: selectedValue
+                        }
+                    }
+                }
+            });
         });
 
         backBtn?.addEventListener('click', (e) => {
@@ -493,23 +517,39 @@ hostReactAppReady().then(async () => {
                 country: selectedValue ? selectedValue : 'not selected',
             });
 
-            closePopup();
+            backBtn.setAttribute('aria-disabled', 'true');
+            backBtn.style.pointerEvents = 'none';
+            backBtn.style.opacity = '0.6';
+
+            mindbox("async", {
+                operation: "eliteOutNotRegistered",
+                onSuccess: function () {
+                    dismissElitePermanently();
+                },
+                onError: function (error) {
+                    try {
+                        console.error("eliteOutNotRegistered error", error);
+                    } catch (e) {
+                    }
+                    dismissElitePermanently();
+                }
+            });
         });
 
         closeBtn?.addEventListener('click', (e) => {
             e.preventDefault();
-            closePopup();
+            closePopupAndShowShield();
         });
 
         closeBtn?.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                closePopup();
+                closePopupAndShowShield();
             }
         });
 
         root.addEventListener('click', (e) => {
-            if (e.target === root) closePopup();
+            if (e.target === root) closePopupAndShowShield();
         });
 
         const onDocMouseDown = (e) => {
@@ -519,7 +559,7 @@ hostReactAppReady().then(async () => {
         const onDocKeyDown = (e) => {
             if (e.key === 'Escape') {
                 e.preventDefault();
-                closePopup();
+                closePopupAndShowShield();
                 return;
             }
 
@@ -564,6 +604,37 @@ hostReactAppReady().then(async () => {
     const MOBILE_CONTAINER_SELECTOR = '[class*=HeaderMobile_rightGroup]';
 
     let eliteSegmentGoalSent = false;
+    let shouldShowShield = false;
+    let eliteDismissedPermanently = false;
+    let eliteUserName = "";
+    let isSyncingShields = false;
+
+    function removeShields() {
+        document.querySelectorAll('.elite-shield[data-elite-shield]').forEach((shield) => shield.remove());
+    }
+
+    function applyUserNameToShield() {
+        const greetingEl = document.querySelector('#elite_greeting_text');
+        const userNameEl = document.querySelector('#elite_user_name');
+
+        if (!greetingEl || !userNameEl) return;
+
+        if (eliteUserName) {
+            if (greetingEl.textContent !== 'Добро пожаловать,') {
+                greetingEl.textContent = 'Добро пожаловать,';
+            }
+            if (userNameEl.textContent !== eliteUserName) {
+                userNameEl.textContent = eliteUserName;
+            }
+        } else {
+            if (greetingEl.textContent !== 'Добро пожаловать') {
+                greetingEl.textContent = 'Добро пожаловать';
+            }
+            if (userNameEl.textContent !== '') {
+                userNameEl.textContent = '';
+            }
+        }
+    }
 
     function bindShield(shieldEl) {
         if (!shieldEl) return;
@@ -590,15 +661,26 @@ hostReactAppReady().then(async () => {
     }
 
     function ensureShields() {
+        if (isSyncingShields) return;
+        isSyncingShields = true;
+
+        try {
+        if (eliteDismissedPermanently) {
+            removeShields();
+            return;
+        }
+
+        if (!shouldShowShield) return;
+
         const desktopContainer = document.querySelector(DESKTOP_CONTAINER_SELECTOR);
         if (desktopContainer && !desktopContainer.querySelector('.elite-shield[data-elite-shield="desktop"]')) {
             desktopContainer.insertAdjacentHTML('beforeend', `
         <div class="elite-shield elite-shield--desktop" data-elite-shield="desktop" role="button" tabindex="0" aria-label="Открыть Elite подборку">
           <div class="elite-shield__icon">${SHIELD_SVG}</div>
           <div class="elite-shield__name">
-            <span>Добро пожаловать,</span>
-            <span id="elite_user_name"></span>
-          </div>
+              <span id="elite_greeting_text">Добро пожаловать</span>
+              <span id="elite_user_name"></span>
+            </div>
         </div>
       `);
         }
@@ -617,29 +699,51 @@ hostReactAppReady().then(async () => {
 
         bindShield(desktopShield);
         bindShield(mobileShield);
+        applyUserNameToShield();
 
         if (!eliteSegmentGoalSent && (desktopShield || mobileShield)) {
             eliteSegmentGoalSent = true;
             reachGoal('personalization_elite_segment');
         }
+        } finally {
+            isSyncingShields = false;
+        }
     }
 
     await Promise.all([
-        waitForElement(DESKTOP_CONTAINER_SELECTOR, { timeout: 20000, interval: 200 }),
-        waitForElement(MOBILE_CONTAINER_SELECTOR, { timeout: 20000, interval: 200 }),
+        waitForElement(DESKTOP_CONTAINER_SELECTOR, {timeout: 20000, interval: 200}),
+        waitForElement(MOBILE_CONTAINER_SELECTOR, {timeout: 20000, interval: 200}),
     ]);
 
     ensureShields();
+    openElitePopup();
 
-    const obs = new MutationObserver(() => ensureShields());
-    obs.observe(document.body, { childList: true, subtree: true });
+    const obs = new MutationObserver((mutations) => {
+        if (isSyncingShields) return;
+
+        const hasExternalChanges = mutations.some((mutation) => {
+            const nodes = [...mutation.addedNodes, ...mutation.removedNodes];
+
+            return nodes.some((node) => {
+                if (!(node instanceof Element)) return false;
+                return !node.closest('.elite-shield') && !node.closest('[data-elite-popup]');
+            });
+        });
+
+        if (!hasExternalChanges) return;
+        ensureShields();
+    });
+    obs.observe(document.body, {childList: true, subtree: true});
 
     mindbox("sync", {
         operation: "getUserName",
         onSuccess: function (response) {
-            window.PopMechanic.$('#elite_user_name').text(response.customer.firstName ? response.customer.firstName : "");
+            eliteUserName = response.customer.firstName?.trim() || "";
+            applyUserNameToShield();
         },
-        onValidationError: function (messages) {},
-        onError: function (error) {}
+        onValidationError: function (messages) {
+        },
+        onError: function (error) {
+        }
     });
 });
