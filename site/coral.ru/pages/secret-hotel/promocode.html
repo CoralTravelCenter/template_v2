@@ -1,0 +1,273 @@
+
+<body>
+<style>
+  .terms {
+    grid-gap: 24px;
+    grid-template-columns:repeat(3, 1fr);
+    display: grid;
+    position: relative;
+  }
+
+  .terms__block {
+    background-color: #fff;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 24px;
+    display: flex;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .08), 0 3px 6px -4px rgba(0, 0, 0, .12), 0 9px 28px 8px rgba(0, 0, 0, .05)
+  }
+
+  .terms__block--promo {
+    grid-column: span 3;
+    min-height: 154px;
+    position: relative;
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .terms__block--conditions {
+      grid-column: span 3
+    }
+  }
+
+  .terms__block--note {
+    grid-column: span 3
+  }
+
+  .terms__img {
+    margin-bottom: 16px;
+    height: 80px;
+  }
+
+  .terms__list {
+    z-index: 1;
+    gap: 4px;
+    margin-top: 16px;
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .terms__list {
+      flex-direction: column;
+      gap: 8px
+    }
+  }
+
+  .terms .text {
+    text-align: center
+  }
+
+  .terms__box {
+    display: flex;
+    gap: 16px;
+  }
+
+  .terms__promo-title {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .terms__copy-button {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    transition: opacity .2s ease, transform .2s ease;
+    width: 40px;
+    z-index: 4;
+  }
+
+  .terms__copy-button:hover {
+    opacity: .75;
+  }
+
+  .terms__copy-button:active {
+    transform: scale(.94);
+  }
+
+  .terms__copy-button:focus-visible {
+    outline: 2px solid #0092D0;
+    outline-offset: 3px;
+  }
+
+  .terms__copy-message {
+    background: #0092D0;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    opacity: 0;
+    padding: 8px 12px;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .2s ease, transform .2s ease;
+    z-index: 3;
+  }
+
+  .terms__copy-message.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .terms__wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-right: 100px;
+  }
+
+  .title-6 {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .terms__seal {
+    position: absolute;
+
+    left: 140px;
+    top: -90px;
+    z-index: 2;
+  }
+
+  .terms__seal img {
+    width: 191px;
+  }
+
+  .coral-seal .wrapper {
+    padding-top: 100px;
+  }
+
+  @media screen and (max-width: 1337px) {
+    .terms__seal {
+      left: 10px;
+    }
+
+    .terms__wrapper {
+      padding-right: 0;
+    }
+  }
+
+  @media screen and (max-width: 1166px) {
+    .terms__seal {
+      left: unset;
+      z-index: 0;
+      bottom: unset;
+      top: -90px;
+      transform: rotate(25deg);
+      width: 197px;
+      right: -20px;
+    }
+
+    .terms__block--promo {
+      justify-content: flex-start;
+      z-index: 1;
+    }
+  }
+
+  @media screen and (max-width: 930px) {
+    .terms__box {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .terms__box .terms__list:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+</style>
+<section class="coral coral-seal" id="anchor-2">
+  <article>
+    <div class="wrapper">
+      <div class="terms">
+        <div class="terms__seal">
+          <img src="https://b2ccdn.coral.ru/content/landing-pages/fall_hollidays/secret-hotel.png" alt="">
+        </div>
+        <div class="terms__block terms__block--promo">
+
+          <div class="terms__wrapper">
+            <h3 class="title-1 mb-8">
+              <span class="terms__promo-title">
+                Промокод <span style="color: #0092D0;">СЕКРЕТ</span>
+                <button class="terms__copy-button" type="button" data-promocode="СЕКРЕТ" aria-label="Скопировать промокод СЕКРЕТ" onclick="(function(button){var promocode=button.getAttribute('data-promocode');var message=button.closest('.terms__block--promo').querySelector('.terms__copy-message');function sendMetric(){if(typeof ym==='function'){ym(96674199,'reachGoal','secret_hotel_promocode');}}function showMessage(){clearTimeout(button.copyMessageTimer);message.classList.add('is-visible');button.copyMessageTimer=setTimeout(function(){message.classList.remove('is-visible');},2000);}function copyByTextarea(){var textarea=document.createElement('textarea');textarea.value=promocode;textarea.setAttribute('readonly','');textarea.style.position='fixed';textarea.style.opacity='0';document.body.appendChild(textarea);textarea.select();document.execCommand('copy');document.body.removeChild(textarea);}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(promocode).then(function(){sendMetric();showMessage();}).catch(function(){copyByTextarea();sendMetric();showMessage();});return;}copyByTextarea();sendMetric();showMessage();})(this)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" focusable="false">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0002 4.99996C14.0797 4.99996 13.3335 5.74615 13.3335 6.66663V28.3333C13.3335 29.2538 14.0797 30 15.0002 30H30.8334C31.7538 30 32.5 29.2538 32.5 28.3333V13.3664C32.5 12.8799 32.2874 12.4176 31.918 12.101L24.1016 5.4012C23.7995 5.14228 23.4148 4.99996 23.0169 4.99996H15.0002ZM10.0002 6.66663C10.0002 3.9052 12.2388 1.66663 15.0002 1.66663H23.0169C24.2105 1.66663 25.3647 2.09359 26.2709 2.87034L34.0873 9.57013C35.1955 10.52 35.8334 11.9068 35.8334 13.3664V28.3333C35.8334 31.0947 33.5948 33.3333 30.8334 33.3333H15.0002C12.2388 33.3333 10.0002 31.0947 10.0002 28.3333V6.66663Z" fill="#0092D0"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.33352 8.33337V33.3334C8.33352 34.2538 9.07971 35 10.0002 35H29.1667V38.3334H10.0002C7.23876 38.3334 5.00018 36.0948 5.00018 33.3334V8.33337H8.33352Z" fill="#0092D0"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.5832 8.49996V4.04163H25.9165V8.49996C25.9165 9.42044 26.6627 10.1666 27.5832 10.1666H33.4582V13.5H27.5832C24.8218 13.5 22.5832 11.2614 22.5832 8.49996Z" fill="#0092D0"/>
+                  </svg>
+                </button>
+                <span class="terms__copy-message" role="status" aria-live="polite">Промокод скопирован</span>
+              </span>
+            </h3>
+            <h4 class="title-5">
+              Скидка до 20 000 рублей на бронирование пакетных туров и отелей:
+            </h4>
+            <div class="terms__box">
+              <ul class="terms__list">
+                <li>скидка 3&nbsp;500&nbsp;₽ на туры и отели от&nbsp;100&nbsp;000&nbsp;₽</li>
+                <li>скидка 8&nbsp;000&nbsp;₽ на туры и отели от&nbsp;200&nbsp;000&nbsp;₽</li>
+              </ul>
+              <ul class="terms__list">
+                <li>скидка 15&nbsp;000&nbsp;₽ на туры и отели от&nbsp;350&nbsp;000&nbsp;₽</li>
+                <li>скидка 20&nbsp;000&nbsp;₽ на туры и отели от&nbsp;550&nbsp;000&nbsp;₽</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="terms__block terms__block--conditions">
+          <img class="terms__img" src="https://b2ccdn.coral.ru/content/landing-pages/calculator/promo_1.png" alt="">
+          <h4 class="title-5">
+            Даты акции
+          </h4>
+          <p class="text">
+            с 20.03.2026 по 30.04.2026 г.
+          </p>
+        </div>
+        <div class="terms__block terms__block--conditions">
+          <img class="terms__img" src="https://b2ccdn.coral.ru/content/landing-pages/calculator/promo_2.png" alt="">
+          <h4 class="title-5">
+            Даты начала отдыха
+          </h4>
+          <p class="text">
+            апрель - май 2026 г.
+          </p>
+        </div>
+        <div class="terms__block terms__block--conditions">
+          <img class="terms__img" src="https://b2ccdn.coral.ru/content/landing-pages/calculator/promo_3.png" alt="">
+          <h4 class="title-5">
+            Направления
+          </h4>
+          <p class="text">
+            Турция, Египет
+          </p>
+        </div>
+        <div class="terms__block terms__block--note">
+          <p class="title-6">
+            Чтобы воспользоваться промокодом, введите его в поле «Примечание к заказу» или сообщите
+            менеджеру
+          </p>
+        </div>
+      </div>
+      <p class="text mt-24">
+        * Скидка не суммируется с действующими акциями и программой лояльности CoralBonus. Скидка
+        распространяется только на новые неоплаченные бронирования пакетных туров и отелей. Скидка по промокоду
+        действует только при самостоятельном бронировании тура или отеля на coral.ru
+      </p>
+    </div>
+  </article>
+</section>
+</body>

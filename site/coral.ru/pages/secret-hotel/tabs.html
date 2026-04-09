@@ -1,0 +1,107 @@
+<style>
+    .tabs__pane {
+        display: none
+    }
+
+    .tabs__pane--active {
+        display: block
+    }
+
+    .tabs__tab {
+        height: 40px;
+        color: inherit;
+        cursor: pointer;
+        background-color: #f5f5f8;
+        border: none;
+        border-radius: 100px;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        min-width: 150px;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex
+    }
+
+    .tabs__tab--active {
+        color: #fff;
+        background-color: #061a3e
+    }
+
+    .tabs__nav {
+        background-color: #f5f5f8;
+        border-radius: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        margin-bottom: 32px;
+        padding: 8px;
+        display: flex
+    }
+</style>
+
+<section class="coral">
+    <article>
+        <div class="wrapper">
+            <div class="tabs" data-tabs="">
+                <div class="tabs__nav">
+                    <button class="tabs__tab tabs__tab--active" data-tab="1">Турция</button>
+                    <button class="tabs__tab" data-tab="2">Египет</button>
+                    <button class="tabs__tab" data-tab="3">Мальдивы</button>
+                </div>
+                <div class="tabs__content">
+                    <div class="tabs__pane tabs__pane--active" data-tab="1">
+
+                    </div>
+                    <div class="tabs__pane" data-tab="2">
+
+                    </div>
+                    <div class="tabs__pane" data-tab="3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+<script>
+    async function hostReactAppReady(
+        selector = "#__next > div",
+        timeout = 500,
+    ) {
+        return new Promise((resolve) => {
+            const waiter = () => {
+                const host_el = document.querySelector(selector);
+                if (host_el?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
+            waiter();
+        });
+    }
+
+    hostReactAppReady().then(() => {
+        document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+            const tabs = tabsBlock.querySelectorAll('.tabs__tab');
+            const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                    panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                    tab.classList.add('tabs__tab--active');
+                    const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+                    if (activePane) {
+                        activePane.classList.add('tabs__pane--active');
+                    }
+                });
+            });
+        });
+    });
+</script>

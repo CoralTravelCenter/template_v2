@@ -280,6 +280,7 @@
         z-index: 3;
         text-decoration: none;
         color: inherit;
+        min-height: 450px;
     }
 
     .card--loading::before {
@@ -472,9 +473,49 @@
 </style>
 
 <style>
+    .tabs__pane {
+        display: none
+    }
+
+    .tabs__pane--active {
+        display: block
+    }
+
+    .tabs__tab {
+        height: 40px;
+        color: inherit;
+        cursor: pointer;
+        background-color: #f5f5f8;
+        border: none;
+        border-radius: 100px;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        min-width: 150px;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex
+    }
+
+    .tabs__tab--active {
+        color: #000;
+        background-color: #D2E9FB
+    }
+
+    .tabs__nav {
+        background-color: #f5f5f8;
+        border-radius: 40px;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        margin-bottom: 32px;
+        padding: 8px;
+        display: flex
+    }
+
     .secret-hotels {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 16px;
     }
 
@@ -486,8 +527,7 @@
     }
 
     .secret-inner {
-        display: flex;
-        gap: 16px;
+        display: block;
     }
 
     .secret-card__img {
@@ -513,12 +553,16 @@
                 путешествие стало еще приятнее, дарим специальный <strong>промокод до 20 000 ₽</strong>. Он уже применен к секретным
                 отелям. Удвойте выгоду от отдыха!
             </p>
-            <div class="secret-inner">
-                <div class="secret-hotels">
-                    <a href="" class="card card--loading" target="_blank">
-                        <div class="card__label">
-                            Эксклюзив
-                        </div>
+            <div class="tabs" data-tabs="">
+                <div class="tabs__nav">
+                    <button class="tabs__tab tabs__tab--active" data-tab="turkey">Турция</button>
+                    <button class="tabs__tab" data-tab="egypt">Египет</button>
+                </div>
+                <div class="tabs__content">
+                    <div class="tabs__pane tabs__pane--active" data-tab="turkey">
+                        <div class="secret-inner">
+                            <div class="secret-hotels" data-country="turkey" data-country-name="Турция">
+                                <a href="" class="card card--loading" data-hotel-card-template target="_blank">
                         <div class="card__img">
                             <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/hotel.webp"
                                  alt="Xanadu Resort">
@@ -597,26 +641,54 @@
                             </span>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <div class="card secret-card">
-                    <div class="secret-card__img">
-                        <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/card.webp" alt="">
-                        <div class="secret-card__icon">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/icon.webp" alt="">
+                                </a>
+                                <div class="card secret-card">
+                                    <div class="secret-card__img">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/card.webp" alt="">
+                                        <div class="secret-card__icon">
+                                            <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/icon.webp" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="card__timer">
+                                        <p>
+                                            Обновится через
+                                        </p>
+                                        <span>
+                                            XX ч
+                                        </span>
+                                    </div>
+                                    <h4 class="card__title mb-8">
+                                        Секретный отель
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card__timer">
-                        <p>
-                            Обновится через
-                        </p>
-                        <span>
-                            XX ч
-                        </span>
+                    <div class="tabs__pane" data-tab="egypt">
+                        <div class="secret-inner">
+                            <div class="secret-hotels" data-country="egypt" data-country-name="Египет">
+                                <div class="card secret-card">
+                                    <div class="secret-card__img">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/card.webp" alt="">
+                                        <div class="secret-card__icon">
+                                            <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/icon.webp" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="card__timer">
+                                        <p>
+                                            Обновится через
+                                        </p>
+                                        <span>
+                                            XX ч
+                                        </span>
+                                    </div>
+                                    <h4 class="card__title mb-8">
+                                        Секретный отель
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="card__title mb-8">
-                        Секретный отель
-                    </h4>
                 </div>
             </div>
         </div>
@@ -641,21 +713,125 @@
     }
 
     hostReactAppReady().then(async () => {
-        const hotelsConfig = [
-            {
-                hotelId: '325-7',
-                beginDate: '2026-05-10'
-            },
-            {
-                hotelId: '64951-7',
-                beginDate: '2026-04-13'
-            },
-            {
-                hotelId: '50819-7',
-                beginDate: '2026-06-14'
-            }
+        const hotelBeginDates = [
+            '2026-05-10',
+            '2026-06-13',
+            '2026-06-14'
         ];
-        const COUNTDOWN_BASE_END_TIME = new Date('2026-04-05T00:00:00+03:00').getTime();
+        const hotelsSchedule = {
+            turkey: [
+                {
+                    hotelId: '875-7',
+                    scheduleDate: '2026-04-09'
+                },
+                {
+                    hotelId: '626-7',
+                    scheduleDate: '2026-04-09'
+                },
+                {
+                    hotelId: '623-7',
+                    scheduleDate: '2026-04-09'
+                },
+                {
+                    hotelId: '975-7',
+                    scheduleDate: '2026-04-10'
+                },
+                {
+                    hotelId: '30511-7',
+                    scheduleDate: '2026-04-11'
+                },
+                {
+                    hotelId: '325-7',
+                    scheduleDate: '2026-04-12'
+                },
+                {
+                    hotelId: '24420-7',
+                    scheduleDate: '2026-04-13'
+                },
+                {
+                    hotelId: '13570-7',
+                    scheduleDate: '2026-04-14'
+                },
+                {
+                    hotelId: '983-7',
+                    scheduleDate: '2026-04-15'
+                },
+                {
+                    hotelId: '33799-7',
+                    scheduleDate: '2026-04-16'
+                },
+                {
+                    hotelId: '476-7',
+                    scheduleDate: '2026-04-17'
+                },
+                {
+                    hotelId: '8194-7',
+                    scheduleDate: '2026-04-18'
+                },
+                {
+                    hotelId: '11754-7',
+                    scheduleDate: '2026-04-19'
+                }
+            ],
+            egypt: [
+                {
+                    hotelId: '19936-7',
+                    scheduleDate: '2026-04-09'
+                },
+                {
+                    hotelId: '29816-7',
+                    scheduleDate: '2026-04-09'
+                },
+                {
+                    hotelId: '58-7',
+                    scheduleDate: '2026-04-09'
+                },
+                {
+                    hotelId: '50000-7',
+                    scheduleDate: '2026-04-10'
+                },
+                {
+                    hotelId: '13279-7',
+                    scheduleDate: '2026-04-11'
+                },
+                {
+                    hotelId: '157-7',
+                    scheduleDate: '2026-04-12'
+                },
+                {
+                    hotelId: '84-7',
+                    scheduleDate: '2026-04-13'
+                },
+                {
+                    hotelId: '78607-7',
+                    scheduleDate: '2026-04-14'
+                },
+                {
+                    hotelId: '50799-7',
+                    scheduleDate: '2026-04-15'
+                },
+                {
+                    hotelId: '15577-7',
+                    scheduleDate: '2026-04-16'
+                },
+                {
+                    hotelId: '7568-7',
+                    scheduleDate: '2026-04-17'
+                },
+                {
+                    hotelId: '31420-7',
+                    scheduleDate: '2026-04-18'
+                },
+                {
+                    hotelId: '129-7',
+                    scheduleDate: '2026-04-19'
+                },
+                {
+                    hotelId: '82642-7',
+                    scheduleDate: '2026-04-20'
+                }
+            ]
+        };
         const COUNTDOWN_DAY_STEP_MS = 24 * 60 * 60 * 1000;
 
         const departureLocation = {
@@ -664,6 +840,7 @@
             friendlyUrl: 'moskva',
             type: 5
         };
+        const hotelCardTemplateEl = document.querySelector('[data-hotel-card-template]')?.cloneNode(true);
 
         function formatPrice(value) {
             const integerValue = Math.round(Number(value) || 0);
@@ -705,6 +882,49 @@
                 .join(':');
         }
 
+        function formatLocalDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+
+            return `${year}-${month}-${day}`;
+        }
+
+        function getNextMidnightTime(dayOffset = 0) {
+            const nextMidnight = new Date();
+
+            nextMidnight.setHours(24 + dayOffset * 24, 0, 0, 0);
+
+            return nextMidnight.getTime();
+        }
+
+        function getScheduleStartIndex(countrySchedule) {
+            const today = new Date();
+            const scheduleStartDate = countrySchedule[0]?.scheduleDate;
+            const maxStartIndex = Math.max(countrySchedule.length - 3, 0);
+
+            if (!scheduleStartDate) {
+                return 0;
+            }
+
+            const scheduleStartTime = new Date(`${scheduleStartDate}T00:00:00`).getTime();
+            const todayTime = new Date(formatLocalDate(today) + 'T00:00:00').getTime();
+            const passedDays = Math.floor((todayTime - scheduleStartTime) / COUNTDOWN_DAY_STEP_MS);
+
+            return Math.min(Math.max(passedDays, 0), maxStartIndex);
+        }
+
+        function getScheduledHotels(country) {
+            const countrySchedule = hotelsSchedule[country] || [];
+            const startIndex = getScheduleStartIndex(countrySchedule);
+
+            return countrySchedule.slice(startIndex, startIndex + 3).map((hotelConfig, index) => ({
+                ...hotelConfig,
+                beginDate: hotelBeginDates[index] || hotelBeginDates[0],
+                countdownEndTime: getNextMidnightTime(index)
+            }));
+        }
+
         function startCardCountdown(cardEl, endTime) {
             const timerValueEl = cardEl.querySelector('.card__timer span');
 
@@ -725,6 +945,12 @@
 
             updateTimer();
             timerId = setInterval(updateTimer, 1000);
+        }
+
+        function startSecretCardCountdowns() {
+            document.querySelectorAll('.secret-card').forEach(cardEl => {
+                startCardCountdown(cardEl, getNextMidnightTime());
+            });
         }
 
         function buildSearchCriterias(hotelId, beginDate, reservationType = 0) {
@@ -777,8 +1003,6 @@
         async function fetchHotelPriceData(hotelId, beginDate) {
             const payload = buildPricePayload(hotelId, beginDate);
 
-            console.log('PriceSearchList request payload:', payload);
-
             const response = await fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchList', {
                 method: 'POST',
                 headers: {
@@ -788,8 +1012,6 @@
             });
 
             const data = await response.json();
-
-            console.log('PriceSearchList response:', data);
 
             return data;
         }
@@ -841,6 +1063,7 @@
             const titleEl = cardEl.querySelector('.card__title');
             const imageEl = cardEl.querySelector('.card__img img');
             const oldPriceEl = cardEl.querySelector('.card__price-old-value');
+            const saleRowEl = cardEl.querySelector('.card__sale');
             const saleEl = cardEl.querySelector('.card__sale-value');
             const promoEl = cardEl.querySelector('.card__promo-value');
             const finalPriceEl = cardEl.querySelector('.card__price-finale-value');
@@ -862,7 +1085,11 @@
                 oldPriceEl.textContent = formatPrice(hotelCardData.oldPrice);
             }
 
-            if (saleEl && hotelCardData.salePrice !== null) {
+            if (saleRowEl) {
+                saleRowEl.hidden = !hotelCardData.salePrice;
+            }
+
+            if (saleEl && hotelCardData.salePrice) {
                 saleEl.textContent = `- ${formatPrice(hotelCardData.salePrice)}`;
             }
 
@@ -875,25 +1102,74 @@
             }
         }
 
-        async function loadHotelCards() {
-            const hotelsListEl = document.querySelector('.secret-hotels');
-            const cardTemplateEl = hotelsListEl?.querySelector('.card');
-
-            if (!hotelsListEl || !cardTemplateEl) {
+        function sendCountryTabMetric(countryName) {
+            if (typeof ym !== 'function') {
                 return;
             }
 
-            hotelsListEl.innerHTML = '';
+            ym(96674199, 'reachGoal', 'secret_hotel_country', {
+                name_block: countryName
+            });
+        }
 
-            await Promise.all(hotelsConfig.map(async (hotelConfig, index) => {
+        function sendHotelCardMetric(countryName, hotelName) {
+            if (typeof ym !== 'function') {
+                return;
+            }
+
+            ym(96674199, 'reachGoal', 'secret_hotel_select_card', {
+                country: {
+                    [countryName]: {
+                        name_hotel: hotelName
+                    }
+                }
+            });
+        }
+
+        function initTabs() {
+            document.querySelectorAll('[data-tabs]').forEach(tabsBlock => {
+                const tabs = tabsBlock.querySelectorAll('.tabs__tab');
+                const panes = tabsBlock.querySelectorAll('.tabs__pane');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.getAttribute('data-tab');
+                        const countryName = tab.textContent.trim();
+
+                        tabs.forEach(item => item.classList.remove('tabs__tab--active'));
+                        panes.forEach(pane => pane.classList.remove('tabs__pane--active'));
+
+                        tab.classList.add('tabs__tab--active');
+
+                        const activePane = tabsBlock.querySelector(`.tabs__pane[data-tab="${tabId}"]`);
+
+                        if (activePane) {
+                            activePane.classList.add('tabs__pane--active');
+                        }
+
+                        sendCountryTabMetric(countryName);
+                    });
+                });
+            });
+        }
+
+        async function loadHotelCard(hotelsListEl, cardTemplateEl, hotelConfig, index) {
                 const cardEl = cardTemplateEl.cloneNode(true);
+                const countryName = hotelsListEl.dataset.countryName || '';
                 const {hotelId, beginDate} = hotelConfig;
 
                 cardEl.dataset.hotelId = hotelId;
                 cardEl.dataset.beginDate = beginDate;
+                cardEl.dataset.hotelCard = '';
+                cardEl.removeAttribute('data-hotel-card-template');
+                cardEl.addEventListener('click', () => {
+                    const hotelName = cardEl.querySelector('.card__title')?.textContent.trim() || '';
+
+                    sendHotelCardMetric(countryName, hotelName);
+                });
                 cardEl.classList.add('card--loading');
-                hotelsListEl.append(cardEl);
-                startCardCountdown(cardEl, COUNTDOWN_BASE_END_TIME + index * COUNTDOWN_DAY_STEP_MS);
+                hotelsListEl.insertBefore(cardEl, hotelsListEl.querySelector('.secret-card'));
+                startCardCountdown(cardEl, hotelConfig.countdownEndTime || getNextMidnightTime(index));
 
                 if (!hotelId || !beginDate) {
                     cardEl.classList.remove('card--loading');
@@ -914,8 +1190,42 @@
                 } finally {
                     cardEl.classList.remove('card--loading');
                 }
+        }
+
+        async function loadHotelCards() {
+            const hotelsListEls = document.querySelectorAll('.secret-hotels[data-country]');
+
+            if (!hotelCardTemplateEl || !hotelsListEls.length) {
+                return;
+            }
+
+            await Promise.all(Array.from(hotelsListEls).map(async hotelsListEl => {
+                const country = hotelsListEl.dataset.country;
+                const countryHotelsConfig = getScheduledHotels(country);
+
+                hotelsListEl
+                    .querySelectorAll('[data-hotel-card], [data-hotel-card-template]')
+                    .forEach(cardEl => cardEl.remove());
+
+                await Promise.all(countryHotelsConfig.map((hotelConfig, index) => (
+                    loadHotelCard(hotelsListEl, hotelCardTemplateEl, hotelConfig, index)
+                )));
             }));
         }
+
+        function startDailyHotelCardsRefresh() {
+            const refreshDelay = Math.max(getNextMidnightTime() - Date.now(), 0) + 1000;
+
+            setTimeout(async () => {
+                await loadHotelCards();
+                startSecretCardCountdowns();
+                startDailyHotelCardsRefresh();
+            }, refreshDelay);
+        }
+
+        initTabs();
+        startSecretCardCountdowns();
+        startDailyHotelCardsRefresh();
 
         try {
             await loadHotelCards();
