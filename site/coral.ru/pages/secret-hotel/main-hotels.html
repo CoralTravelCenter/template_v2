@@ -111,6 +111,10 @@
         line-height: 24px
     }
 
+    .text-white {
+        color: white;
+    }
+
     a.coral-button {
         color: #fff;
         background-color: #0092d0;
@@ -254,826 +258,365 @@
 
     @media screen and (max-width: 768px) {
         #__next > div > div > div {
-            padding: 0!important;
+            padding: 0 !important;
         }
     }
 </style>
 <style>
-    .secret-hotels {
-        color: #2F2F2F;
-    }
-
-    .secret-hotels__header {
-        margin-bottom: 24px;
-    }
-
-    .secret-hotels__title {
-        margin: 0 0 16px;
-        font-size: 54px;
-        line-height: 1.04;
-        font-weight: 500;
-        color: #101010;
-    }
-
-    .secret-hotels__lead {
-        max-width: 1360px;
-        margin: 0;
-        font-size: 20px;
-        line-height: 1.45;
-        color: #2F2F2F;
-    }
-
-    .secret-hotels__tabs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        padding: 12px;
-        margin-bottom: 28px;
-        border-radius: 999px;
-        background: #FFFFFF;
-    }
-
-    .secret-hotels__tab {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 64px;
-        padding: 16px 24px;
-        border: 0;
-        border-radius: 999px;
-        background: transparent;
-        font: inherit;
-        font-size: 18px;
-        line-height: 1.2;
-        color: #2F2F2F;
-        cursor: pointer;
-        transition: background-color .2s ease, color .2s ease;
-    }
-
-    .secret-hotels__tab[aria-selected="true"] {
-        background: #CBE2F7;
-    }
-
-    .secret-hotels__panel[hidden] {
-        display: none;
-    }
-
-    .secret-hotels__grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+    .service-block {
+        display: flex;
         gap: 24px;
     }
 
-    .secret-hotels__card {
+    .card {
         display: flex;
         flex-direction: column;
-        min-height: 100%;
-        overflow: hidden;
-        border-radius: 24px;
-        background: #FFFFFF;
-        box-shadow: 0 0 0 1px rgba(7, 125, 173, 0.08);
-    }
-
-    .secret-hotels__media {
+        border-radius: 20px;
+        border: 1px solid #EBEBEB;
+        background: #FFF;
+        padding: 8px;
         position: relative;
-        min-height: 234px;
-        padding: 12px;
-        border-radius: 24px 24px 0 0;
         overflow: hidden;
-        background: linear-gradient(145deg, #70B5D7 0%, #B5DBEF 52%, #EAF5FC 100%);
+        z-index: 3;
+        text-decoration: none;
+        color: inherit;
     }
 
-    .secret-hotels__media::before,
-    .secret-hotels__media::after {
-        content: "";
+    .card--loading::before {
+        content: '';
         position: absolute;
-        inset: auto;
-        border-radius: 999px;
-        opacity: 0.75;
+        inset: 0;
+        z-index: 5;
+        background: #F5F5F8;
     }
 
-    .secret-hotels__media::before {
-        width: 180px;
-        height: 180px;
-        right: -18px;
-        top: -42px;
-        background: rgba(255, 255, 255, 0.28);
-    }
-
-    .secret-hotels__media::after {
-        width: 220px;
-        height: 220px;
-        left: -36px;
-        bottom: -110px;
-        background: rgba(255, 255, 255, 0.22);
-    }
-
-    .secret-hotels__media-inner {
+    .card--loading::after {
+        content: '';
         position: absolute;
-        inset: 12px;
-        border-radius: 16px;
-        background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(23, 76, 112, 0.2) 100%),
-                linear-gradient(135deg, #7BB8DC 0%, #D4EDF9 100%);
+        inset: 0;
+        z-index: 6;
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+        transform: translateX(-100%);
+        animation: card-skeleton-loading 1.4s infinite;
     }
 
-    .secret-hotels__media-inner--sea {
-        background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(34, 72, 91, 0.3) 100%),
-                linear-gradient(135deg, #6FA8C3 0%, #7FCEA2 46%, #D6E8ED 100%);
+    @keyframes card-skeleton-loading {
+        100% {
+            transform: translateX(100%);
+        }
     }
 
-    .secret-hotels__media-inner--pool {
-        background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(14, 81, 110, 0.26) 100%),
-                linear-gradient(135deg, #89CFF0 0%, #C6EAF9 44%, #F4E1B7 100%);
+    .card:hover {
+        color: inherit;
     }
 
-    .secret-hotels__media-inner--coast {
-        background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(19, 54, 99, 0.32) 100%),
-                linear-gradient(135deg, #74A8D7 0%, #87C2E7 45%, #A2C18F 100%);
+    .card__label {
+        position: absolute;
+        padding-inline: 8px;
+        padding-block: 4px;
+        background-color: #C0420C;
+        border-radius: 48px;
+        color: #fff;
+        font-size: 12px;
+        line-height: 16px;
+        left: 18px;
+        top: 18px;
     }
 
-    .secret-hotels__media-inner--lagoon {
-        background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.4) 100%),
-                linear-gradient(135deg, #E4F0F6 0%, #CDEAF7 38%, #8CD3EC 100%);
-    }
-
-    .secret-hotels__badges {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        align-content: flex-start;
-    }
-
-    .secret-hotels__badge {
-        display: inline-flex;
-        align-items: center;
-        min-height: 32px;
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-size: 16px;
-        line-height: 1.1;
-        background: #E96216;
-        color: #FFFFFF;
-    }
-
-    .secret-hotels__badge--light {
-        background: #FFFFFF;
-        color: #4B4B4B;
-    }
-
-    .secret-hotels__content {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        padding: 16px 16px 14px;
-    }
-
-    .secret-hotels__name {
-        margin: 0 0 10px;
-        font-size: 23px;
-        line-height: 1.18;
-        font-weight: 500;
-        color: #2F2F2F;
-        text-transform: uppercase;
-    }
-
-    .secret-hotels__name--normal {
-        text-transform: none;
-    }
-
-    .secret-hotels__stars {
+    .card__location {
         display: flex;
         gap: 4px;
-        margin-bottom: 14px;
-        color: #FFD21E;
-        font-size: 22px;
-        line-height: 1;
+        align-items: center;
     }
 
-    .secret-hotels__prices {
-        display: grid;
-        gap: 10px;
+    .card__location span,
+    .card__concept {
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(0, 0, 0, 0.65);
+    }
+
+    .card__title {
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 600;
+    }
+
+    .card__score {
+        display: flex;
+        gap: 16px;
         margin-top: auto;
     }
 
-    .secret-hotels__price-row {
+    .card__stars {
+        display: flex;
+        gap: 4px;
+    }
+
+    .card__text {
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(0, 0, 0, 0.85);
+    }
+
+
+    .card__price {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        border-radius: 16px;
+        border: 2px solid #EBEBEB;
+        background: #FFF;
+        box-shadow: 0 333px 93px 0 rgba(0, 0, 0, 0.00), 0 213px 85px 0 rgba(0, 0, 0, 0.01), 0 13px 29px 0 rgba(0, 0, 0, 0.10);
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        width: 491px;
+        padding-inline: 16px;
+        padding-block: 12px;
+        justify-content: space-between;
+    }
+
+    /*.card__price::after {*/
+    /*    position: absolute;*/
+    /*    content: '';*/
+    /*    background-image: url("https://b2ccdn.coral.ru/content/landing-pages/calculator/ticket.webp");*/
+    /*    width: 213px;*/
+    /*    height: 154px;*/
+    /*}*/
+
+    .card__price-old,
+    .card__price-new,
+    .card__price-finale,
+    .card__sale,
+    .card__promo {
         display: flex;
         justify-content: space-between;
-        gap: 16px;
+
+        p {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    .card__price-finale {
+        border-top: 1px solid rgba(0, 0, 0, 0.04);
+        padding-top: 4px;
+        margin-top: 4px;
+    }
+
+    .card__price-separator {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 600;
+    }
+
+    .card__img img {
+        width: 100%;
+        border-radius: 8px;
+        height: 190px;
+        object-fit: cover;
+    }
+
+    .card__text {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.85);
+    }
+
+    .card__bold {
+        font-weight: 600;
         font-size: 16px;
-        line-height: 1.25;
-        color: #4B4B4B;
     }
 
-    .secret-hotels__price-value {
-        color: #0A96DC;
-        white-space: nowrap;
+    .card__price-finale-value {
+        color: #077DAD;
+        font-size: 20px;
+        font-weight: 600;
     }
 
-    .secret-hotels__price-value--old {
+    .card__promo-value,
+    .card__sale-value {
+        color: #E84E0F;
+        font-size: 16px;
+    }
+
+    .card__price-old-value {
+        color: #0092D0;
+        font-size: 16px;
         text-decoration: line-through;
     }
 
-    .secret-hotels__price-value--discount {
-        color: #F05A24;
-    }
-
-    .secret-hotels__price-total {
+    .card__timer {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        padding-top: 12px;
-        border-top: 1px solid #E8EEF4;
-        font-size: 18px;
-        line-height: 1.2;
-        color: #2F2F2F;
-    }
-
-    .secret-hotels__price-current {
-        color: #0A96DC;
-        font-size: 21px;
-        font-weight: 500;
-        white-space: nowrap;
-    }
-
-    .secret-hotels__card--locked .secret-hotels__media {
-        background: linear-gradient(145deg, #F0F7FB 0%, #E4F3FB 100%);
-    }
-
-    .secret-hotels__card--locked .secret-hotels__media-inner {
-        filter: blur(3px);
-        transform: scale(1.03);
-        opacity: 0.85;
-    }
-
-    .secret-hotels__locked-overlay {
-        position: absolute;
-        inset: 12px;
-        z-index: 3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
+        gap: 6px;
         border-radius: 16px;
-        background: rgba(255, 255, 255, 0.28);
-        backdrop-filter: blur(5px);
-    }
+        background-color: #E6F4FF;
+        padding: 4px 12px;
+        width: fit-content;
+        margin-top: 8px;
+        margin-bottom: 6px;
 
-    .secret-hotels__lock {
-        position: relative;
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        background: #0A96DC;
-        box-shadow: 0 12px 24px rgba(10, 150, 220, 0.26);
-    }
-
-    .secret-hotels__lock::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 17px;
-        width: 20px;
-        height: 18px;
-        border: 4px solid #FFFFFF;
-        border-bottom: 0;
-        border-radius: 14px 14px 0 0;
-        transform: translateX(-50%);
-    }
-
-    .secret-hotels__lock::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 31px;
-        width: 24px;
-        height: 20px;
-        border-radius: 6px;
-        background: #FFFFFF;
-        transform: translateX(-50%);
-        box-shadow: inset 0 -7px 0 0 rgba(10, 150, 220, 0.15);
-    }
-
-    .secret-hotels__locked-note {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 18px;
-        border-radius: 999px;
-        background: #D9F0FF;
-        font-size: 16px;
-        line-height: 1.1;
-        color: #0A96DC;
-    }
-
-    @media screen and (max-width: 1280px) {
-        .secret-hotels__title {
-            font-size: 46px;
-        }
-
-        .secret-hotels__grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .secret-hotels__title {
-            margin-bottom: 12px;
-            font-size: 36px;
-        }
-
-        .secret-hotels__lead {
+        p {
+            color: #0092D0;
             font-size: 16px;
+            line-height: 20px;
         }
 
-        .secret-hotels__tabs {
-            grid-template-columns: 1fr;
-            border-radius: 28px;
-        }
-
-        .secret-hotels__tab {
-            min-height: 56px;
-            font-size: 17px;
-        }
-
-        .secret-hotels__grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .secret-hotels__media {
-            min-height: 220px;
-        }
-
-        .secret-hotels__name {
+        span {
+            color: #0092D0;
             font-size: 20px;
+            font-weight: 600;
+            line-height: 20px;
         }
     }
-
-    @media screen and (max-width: 480px) {
-        .secret-hotels__header {
-            margin-bottom: 20px;
-        }
-
-        .secret-hotels__title {
-            font-size: 31px;
-        }
-
-        .secret-hotels__tabs {
-            gap: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-
-        .secret-hotels__content {
-            padding: 14px 14px 16px;
-        }
-
-        .secret-hotels__price-row,
-        .secret-hotels__price-total {
-            font-size: 15px;
-        }
-
-        .secret-hotels__price-current {
-            font-size: 19px;
-        }
-    }
-
 </style>
 
-<section class="coral">
+<style>
+    .secret-hotels {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .coral-main {
+        background-image: url("https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/bg.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .secret-inner {
+        display: flex;
+        gap: 16px;
+    }
+
+    .secret-card__img {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .secret-card__icon {
+        position: absolute;
+    }
+</style>
+
+<section class="coral coral-main">
     <article>
         <div class="wrapper">
-            <div class="secret-hotels">
-                <div class="secret-hotels__header">
-                    <h2 class="secret-hotels__title">Распродажа «Секретный отель»</h2>
-                    <p class="secret-hotels__lead">
-                        Мы запустили эксклюзивную отельную распродажу, где размер скидки - приятный сюрприз.
-                        А чтобы ваше путешествие стало еще приятнее, дарим специальный промокод до 20 000 ₽.
-                        Он уже применен к секретным отелям. Удвойте выгоду от отдыха!
-                    </p>
+            <h1 class="title-1 mb-8 text-white">
+                Распродажа «Секретный отель»
+            </h1>
+            <p class="text text-white mb-16">
+                Мы запустили эксклюзивную отельную распродажу, где размер скидки – приятный сюрприз. А чтобы ваше
+                путешествие стало еще приятнее, дарим специальный <strong>промокод до 20 000 ₽</strong>. Он уже применен к секретным
+                отелям. Удвойте выгоду от отдыха!
+            </p>
+            <div class="secret-inner">
+                <div class="secret-hotels">
+                    <a href="" class="card card--loading" target="_blank">
+                        <div class="card__label">
+                            Эксклюзив
+                        </div>
+                        <div class="card__img">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/hotel.webp"
+                                 alt="Xanadu Resort">
+                        </div>
+                        <div class="card__timer">
+                            <p>
+                                Обновится через
+                            </p>
+                            <span>
+                            XX ч
+                        </span>
+                        </div>
+                        <h4 class="card__title mb-8">
+                            Xanadu Resort
+                        </h4>
+                        <div class="card__score mb-8">
+                            <div class="card__stars">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
+                                          fill="#FADB14"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
+                                          fill="#FADB14"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
+                                          fill="#FADB14"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
+                                          fill="#FADB14"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                     fill="none">
+                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
+                                          fill="#FADB14"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card__price-full">
+                            <div class="card__price-old">
+                            <span class="card__text">
+                                Цена
+                            </span>
+                                <span class="card__price-old-value">
+                                133 387 ₽
+                            </span>
+                            </div>
+                            <div class="card__sale">
+                            <span class="card__text">
+                                Скидка
+                            </span>
+                                <span class="card__sale-value">
+                                - 14 387 ₽
+                            </span>
+                            </div>
+                            <div class="card__promo">
+                            <span class="card__text">
+                                Промокод
+                            </span>
+                                <span class="card__promo-value">
+                                - 8 000 ₽
+                            </span>
+                            </div>
+                            <div class="card__price-finale">
+                            <span class="card__bold">
+                                Цена
+                            </span>
+                                <span class="card__price-finale-value">
+                                111 387 ₽
+                            </span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="secret-hotels__tabs" role="tablist" aria-label="Направления секретных отелей">
-                    <button class="secret-hotels__tab" type="button" role="tab" id="secret-hotels-tab-egypt" aria-selected="true" aria-controls="secret-hotels-panel-egypt" data-target="egypt">
-                        Египет
-                    </button>
-                    <button class="secret-hotels__tab" type="button" role="tab" id="secret-hotels-tab-turkey" aria-selected="false" aria-controls="secret-hotels-panel-turkey" data-target="turkey">
-                        Турция
-                    </button>
-                    <button class="secret-hotels__tab" type="button" role="tab" id="secret-hotels-tab-maldives" aria-selected="false" aria-controls="secret-hotels-panel-maldives" data-target="maldives">
-                        Мальдивы
-                    </button>
-                </div>
-
-                <div class="secret-hotels__panel" role="tabpanel" id="secret-hotels-panel-egypt" aria-labelledby="secret-hotels-tab-egypt">
-                    <div class="secret-hotels__grid">
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--sea"></div>
-                                <div class="secret-hotels__badges">
-                                    <span class="secret-hotels__badge">Эксклюзив</span>
-                                    <span class="secret-hotels__badge">Coral Family Club</span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">SEVEN SEAS HOTEL LIFE</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">133 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 14 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 8 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">111 387 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--pool"></div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">LIBERTY FABAY</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">133 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 14 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 8 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">111 387 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--coast"></div>
-                                <div class="secret-hotels__badges">
-                                    <span class="secret-hotels__badge secret-hotels__badge--light">Рекомендуем</span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">BODRUM HOLIDAY RESORT &amp; SPA</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">133 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 14 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 8 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">111 387 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card secret-hotels__card--locked">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--lagoon"></div>
-                                <div class="secret-hotels__locked-overlay">
-                                    <span class="secret-hotels__lock" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <span class="secret-hotels__locked-note">Откроется через XX часов</span>
-                                <h3 class="secret-hotels__name secret-hotels__name--normal">Секретный отель</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">133 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 14 387 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 8 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">111 387 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="card secret-card">
+                    <div class="secret-card__img">
+                        <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/card.webp" alt="">
+                        <div class="secret-card__icon">
+                            <img src="https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/icon.webp" alt="">
                         </div>
                     </div>
-                </div>
-
-                <div class="secret-hotels__panel" role="tabpanel" id="secret-hotels-panel-turkey" aria-labelledby="secret-hotels-tab-turkey" hidden>
-                    <div class="secret-hotels__grid">
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--coast"></div>
-                                <div class="secret-hotels__badges">
-                                    <span class="secret-hotels__badge">Эксклюзив</span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">AQUASIS DE LUXE RESORT</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">146 920 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 16 200 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 8 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">122 720 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--pool"></div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">MAXX ROYAL KEMER</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">189 600 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 22 400 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 10 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">157 200 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--sea"></div>
-                                <div class="secret-hotels__badges">
-                                    <span class="secret-hotels__badge secret-hotels__badge--light">Рекомендуем</span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">NG PHASELIS BAY</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">171 450 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 19 450 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 10 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">142 000 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card secret-hotels__card--locked">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--lagoon"></div>
-                                <div class="secret-hotels__locked-overlay">
-                                    <span class="secret-hotels__lock" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <span class="secret-hotels__locked-note">Откроется через XX часов</span>
-                                <h3 class="secret-hotels__name secret-hotels__name--normal">Секретный отель</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">159 390 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 17 390 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 8 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">134 000 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card__timer">
+                        <p>
+                            Обновится через
+                        </p>
+                        <span>
+                            XX ч
+                        </span>
                     </div>
-                </div>
-
-                <div class="secret-hotels__panel" role="tabpanel" id="secret-hotels-panel-maldives" aria-labelledby="secret-hotels-tab-maldives" hidden>
-                    <div class="secret-hotels__grid">
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--lagoon"></div>
-                                <div class="secret-hotels__badges">
-                                    <span class="secret-hotels__badge">Эксклюзив</span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">SUN SIYAM OLHUVELI</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">228 300 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 24 300 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 12 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">192 000 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--pool"></div>
-                                <div class="secret-hotels__badges">
-                                    <span class="secret-hotels__badge secret-hotels__badge--light">Рекомендуем</span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">SIYAM WORLD</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">254 700 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 26 700 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 12 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">216 000 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--sea"></div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <h3 class="secret-hotels__name">HARD ROCK MALDIVES</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">243 800 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 21 800 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 12 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">210 000 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="secret-hotels__card secret-hotels__card--locked">
-                            <div class="secret-hotels__media">
-                                <div class="secret-hotels__media-inner secret-hotels__media-inner--lagoon"></div>
-                                <div class="secret-hotels__locked-overlay">
-                                    <span class="secret-hotels__lock" aria-hidden="true"></span>
-                                </div>
-                            </div>
-                            <div class="secret-hotels__content">
-                                <span class="secret-hotels__locked-note">Откроется через XX часов</span>
-                                <h3 class="secret-hotels__name secret-hotels__name--normal">Секретный отель</h3>
-                                <div class="secret-hotels__stars" aria-label="Рейтинг 5 из 5">
-                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                </div>
-                                <div class="secret-hotels__prices">
-                                    <div class="secret-hotels__price-row">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--old">239 900 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Скидка</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 23 900 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-row">
-                                        <span>Промокод</span>
-                                        <span class="secret-hotels__price-value secret-hotels__price-value--discount">- 12 000 ₽</span>
-                                    </div>
-                                    <div class="secret-hotels__price-total">
-                                        <span>Цена</span>
-                                        <span class="secret-hotels__price-current">204 000 ₽</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h4 class="card__title mb-8">
+                        Секретный отель
+                    </h4>
                 </div>
             </div>
         </div>
@@ -1081,32 +624,305 @@
 </section>
 
 <script>
-    (function () {
-        const block = document.querySelector('.secret-hotels');
+    async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
+        return new Promise(resolve => {
+            const waiter = () => {
+                const hostEl = document.querySelector(selector);
 
-        if (!block) {
-            return;
-        }
+                if (hostEl?.getBoundingClientRect().height) {
+                    resolve();
+                } else {
+                    setTimeout(waiter, timeout);
+                }
+            };
 
-        const tabs = Array.from(block.querySelectorAll('.secret-hotels__tab'));
-        const panels = Array.from(block.querySelectorAll('.secret-hotels__panel'));
+            waiter();
+        });
+    }
 
-        const activateTab = function (target) {
-            tabs.forEach(function (tab) {
-                const isActive = tab.getAttribute('data-target') === target;
-                tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-            });
+    hostReactAppReady().then(async () => {
+        const hotelsConfig = [
+            {
+                hotelId: '325-7',
+                beginDate: '2026-05-10'
+            },
+            {
+                hotelId: '64951-7',
+                beginDate: '2026-04-13'
+            },
+            {
+                hotelId: '50819-7',
+                beginDate: '2026-06-14'
+            }
+        ];
+        const COUNTDOWN_BASE_END_TIME = new Date('2026-04-05T00:00:00+03:00').getTime();
+        const COUNTDOWN_DAY_STEP_MS = 24 * 60 * 60 * 1000;
 
-            panels.forEach(function (panel) {
-                panel.hidden = panel.id !== 'secret-hotels-panel-' + target;
-            });
+        const departureLocation = {
+            id: '2671-5',
+            name: 'Москва',
+            friendlyUrl: 'moskva',
+            type: 5
         };
 
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                activateTab(tab.getAttribute('data-target'));
+        function formatPrice(value) {
+            const integerValue = Math.round(Number(value) || 0);
+
+            return `${integerValue.toLocaleString('ru-RU')} ₽`;
+        }
+
+        function getHotelDiscount(price) {
+            const roundedPrice = Math.round(Number(price) || 0);
+
+            if (roundedPrice >= 550000) {
+                return 20000;
+            }
+
+            if (roundedPrice >= 350000) {
+                return 15000;
+            }
+
+            if (roundedPrice >= 200000) {
+                return 8000;
+            }
+
+            if (roundedPrice >= 100000) {
+                return 3500;
+            }
+
+            return 0;
+        }
+
+        function formatCountdownTime(totalMs) {
+            const safeTotalMs = Math.max(totalMs, 0);
+            const totalSeconds = Math.floor(safeTotalMs / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return [hours, minutes, seconds]
+                .map(value => String(value).padStart(2, '0'))
+                .join(':');
+        }
+
+        function startCardCountdown(cardEl, endTime) {
+            const timerValueEl = cardEl.querySelector('.card__timer span');
+
+            if (!timerValueEl || !endTime) {
+                return;
+            }
+
+            let timerId = null;
+
+            const updateTimer = () => {
+                const remainingMs = endTime - Date.now();
+                timerValueEl.textContent = formatCountdownTime(remainingMs);
+
+                if (remainingMs <= 0 && timerId) {
+                    clearInterval(timerId);
+                }
+            };
+
+            updateTimer();
+            timerId = setInterval(updateTimer, 1000);
+        }
+
+        function buildSearchCriterias(hotelId, beginDate, reservationType = 0) {
+            return {
+                reservationType,
+                beginDates: [beginDate],
+                nights: [
+                    {
+                        value: 7
+                    }
+                ],
+                roomCriterias: [
+                    {
+                        passengers: [
+                            {
+                                passengerType: 0,
+                                age: 20
+                            },
+                            {
+                                passengerType: 0,
+                                age: 20
+                            }
+                        ]
+                    }
+                ],
+                arrivalLocations: [
+                    {
+                        id: hotelId,
+                        type: 7
+                    }
+                ],
+                departureLocations: [departureLocation],
+                paging: {
+                    hasPreviousPage: false,
+                    hasNextPage: false,
+                    pageNumber: 1,
+                    pageSize: 20,
+                    sortType: 0
+                },
+                imageSizes: [4]
+            };
+        }
+
+        function buildPricePayload(hotelId, beginDate) {
+            return {
+                searchCriterias: buildSearchCriterias(hotelId, beginDate, 0)
+            };
+        }
+
+        async function fetchHotelPriceData(hotelId, beginDate) {
+            const payload = buildPricePayload(hotelId, beginDate);
+
+            console.log('PriceSearchList request payload:', payload);
+
+            const response = await fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchList', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
             });
-        });
-    })();
+
+            const data = await response.json();
+
+            console.log('PriceSearchList response:', data);
+
+            return data;
+        }
+
+        async function fetchHotelHref(hotelId, beginDate) {
+            const response = await fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchEncrypt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(buildSearchCriterias(hotelId, beginDate, 1))
+            });
+
+            const data = await response.json();
+            const qp = data?.result?.queryParam;
+            const baseUrl = data?.result?.redirectionUrl;
+
+            return qp && baseUrl
+                ? `${baseUrl}?${qp}&p=1&w=0&s=0&ws=10`
+                : '';
+        }
+
+        function getHotelCardData(apiData) {
+            const product = apiData?.result?.products?.[0];
+            const hotel = product?.hotel;
+            const offer = product?.offers?.[0];
+            const price = offer?.price;
+            const oldPrice = price?.oldAmount ?? price?.amount ?? null;
+            const priceWithDiscount = price?.amount ?? null;
+            const salePrice = oldPrice !== null && priceWithDiscount !== null
+                ? Math.max(oldPrice - priceWithDiscount, 0)
+                : null;
+            const promoPrice = priceWithDiscount !== null ? getHotelDiscount(priceWithDiscount) : null;
+            const finalPrice = priceWithDiscount !== null && promoPrice !== null
+                ? Math.max(priceWithDiscount - promoPrice, 0)
+                : null;
+
+            return {
+                name: hotel?.name || '',
+                imageUrl: hotel?.images?.[0]?.sizes?.[0]?.url || '',
+                oldPrice,
+                finalPrice,
+                salePrice,
+                promoPrice
+            };
+        }
+
+        function renderHotelCard(cardEl, hotelCardData) {
+            const titleEl = cardEl.querySelector('.card__title');
+            const imageEl = cardEl.querySelector('.card__img img');
+            const oldPriceEl = cardEl.querySelector('.card__price-old-value');
+            const saleEl = cardEl.querySelector('.card__sale-value');
+            const promoEl = cardEl.querySelector('.card__promo-value');
+            const finalPriceEl = cardEl.querySelector('.card__price-finale-value');
+
+            if (titleEl && hotelCardData.name) {
+                titleEl.textContent = hotelCardData.name;
+            }
+
+            if (hotelCardData.href) {
+                cardEl.href = hotelCardData.href;
+            }
+
+            if (imageEl && hotelCardData.imageUrl) {
+                imageEl.src = hotelCardData.imageUrl;
+                imageEl.alt = hotelCardData.name || imageEl.alt;
+            }
+
+            if (oldPriceEl && hotelCardData.oldPrice !== null) {
+                oldPriceEl.textContent = formatPrice(hotelCardData.oldPrice);
+            }
+
+            if (saleEl && hotelCardData.salePrice !== null) {
+                saleEl.textContent = `- ${formatPrice(hotelCardData.salePrice)}`;
+            }
+
+            if (promoEl && hotelCardData.promoPrice !== null) {
+                promoEl.textContent = `- ${formatPrice(hotelCardData.promoPrice)}`;
+            }
+
+            if (finalPriceEl && hotelCardData.finalPrice !== null) {
+                finalPriceEl.textContent = formatPrice(hotelCardData.finalPrice);
+            }
+        }
+
+        async function loadHotelCards() {
+            const hotelsListEl = document.querySelector('.secret-hotels');
+            const cardTemplateEl = hotelsListEl?.querySelector('.card');
+
+            if (!hotelsListEl || !cardTemplateEl) {
+                return;
+            }
+
+            hotelsListEl.innerHTML = '';
+
+            await Promise.all(hotelsConfig.map(async (hotelConfig, index) => {
+                const cardEl = cardTemplateEl.cloneNode(true);
+                const {hotelId, beginDate} = hotelConfig;
+
+                cardEl.dataset.hotelId = hotelId;
+                cardEl.dataset.beginDate = beginDate;
+                cardEl.classList.add('card--loading');
+                hotelsListEl.append(cardEl);
+                startCardCountdown(cardEl, COUNTDOWN_BASE_END_TIME + index * COUNTDOWN_DAY_STEP_MS);
+
+                if (!hotelId || !beginDate) {
+                    cardEl.classList.remove('card--loading');
+                    return;
+                }
+
+                try {
+                    const [apiData, href] = await Promise.all([
+                        fetchHotelPriceData(hotelId, beginDate),
+                        fetchHotelHref(hotelId, beginDate)
+                    ]);
+                    const hotelCardData = getHotelCardData(apiData);
+
+                    hotelCardData.href = href;
+                    renderHotelCard(cardEl, hotelCardData);
+                } catch (error) {
+                    console.warn(`PriceSearchList request failed for ${hotelId}:`, error);
+                } finally {
+                    cardEl.classList.remove('card--loading');
+                }
+            }));
+        }
+
+        try {
+            await loadHotelCards();
+        } catch (error) {
+            console.warn('PriceSearchList request failed:', error);
+        }
+    });
+
 </script>
 </body>
