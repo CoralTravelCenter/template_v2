@@ -1,6 +1,8 @@
 (function () {
     const badgeId = 'secret-hotel-lock-badge';
     const styleId = 'secret-hotel-lock-badge-style';
+    const watcherKey = '__secretHotelLockWatcherInitialized__';
+    const cleanupKey = '__secretHotelLockBadgeCleanup__';
     const openGifUrl = 'https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/open.gif';
     const closeGifUrl = 'https://b2ccdn.coral.ru/content/landing-pages/secret-hotel/close.gif';
     const offerUrl = 'https://www.coral.ru/hot-offers/secret-hotel/';
@@ -8,7 +10,7 @@
 
     function initSecretHotelBadge() {
         if (document.getElementById(badgeId)) {
-            return;
+            return null;
         }
 
         addStyles();
@@ -43,7 +45,11 @@
         link.rel = 'noopener';
         link.textContent = 'Посмотреть';
 
-        popup.append(text, link);
+        const erid = document.createElement('div');
+        erid.className = 'secret-hotel-badge__erid';
+        erid.textContent = 'Реклама. ООО "Центрбронь" erid: 2W5zFJhJSth';
+
+        popup.append(text, link, erid);
         lockButton.append(lockImage);
         badge.append(lockButton, popup);
         document.body.appendChild(badge);
@@ -101,7 +107,7 @@
 
         link.addEventListener('click', sendButtonMetric);
 
-        document.addEventListener('click', event => {
+        const handleDocumentClick = event => {
             if (badge.contains(event.target)) {
                 return;
             }
@@ -109,7 +115,15 @@
             closeBadge();
             cancelDelayedClose();
             lockButton.blur();
-        });
+        };
+
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            cancelDelayedClose();
+            document.removeEventListener('click', handleDocumentClick);
+            badge.remove();
+        };
     }
 
     function sendButtonMetric() {
@@ -226,6 +240,15 @@
                 white-space: nowrap;
             }
 
+            .secret-hotel-badge__erid {
+                position: relative;
+                z-index: 1;
+                margin-top: 6px;
+                font-size: 8px;
+                line-height: 1.2;
+                color: #5f6368;
+            }
+
             .secret-hotel-badge__link {
                 position: relative;
                 z-index: 1;
@@ -281,9 +304,56 @@
         document.head.appendChild(style);
     }
 
+    function isHomePage() {
+        return window.location.origin === 'https://www.coral.ru' && window.location.pathname === '/';
+    }
+
+    function syncBadgeVisibility() {
+        if (isHomePage()) {
+            if (typeof window[cleanupKey] !== 'function') {
+                window[cleanupKey] = initSecretHotelBadge();
+            }
+
+            return;
+        }
+
+        if (typeof window[cleanupKey] === 'function') {
+            window[cleanupKey]();
+            window[cleanupKey] = null;
+        }
+    }
+
+    function subscribeToSpaNavigation(callback) {
+        const originalPushState = history.pushState;
+        const originalReplaceState = history.replaceState;
+
+        history.pushState = function (...args) {
+            originalPushState.apply(this, args);
+            callback();
+        };
+
+        history.replaceState = function (...args) {
+            originalReplaceState.apply(this, args);
+            callback();
+        };
+
+        window.addEventListener('popstate', callback);
+    }
+
+    function start() {
+        if (window[watcherKey]) {
+            syncBadgeVisibility();
+            return;
+        }
+
+        window[watcherKey] = true;
+        syncBadgeVisibility();
+        subscribeToSpaNavigation(syncBadgeVisibility);
+    }
+
     if (document.body) {
-        initSecretHotelBadge();
+        start();
     } else {
-        document.addEventListener('DOMContentLoaded', initSecretHotelBadge, { once: true });
+        document.addEventListener('DOMContentLoaded', start, {once: true});
     }
 })();

@@ -1,5 +1,10 @@
 <body>
 <style>
+    .card__sale[hidden],
+    .card__promo[hidden] {
+        display: none;
+    }
+
     .mb-24 {
         margin-bottom: 24px
     }
@@ -278,8 +283,8 @@
         position: relative;
         overflow: hidden;
         z-index: 3;
-        text-decoration: none;
-        color: inherit;
+        text-decoration: none!important;
+        color: inherit!important;
         min-height: 450px;
     }
 
@@ -471,7 +476,6 @@
         }
     }
 </style>
-
 <style>
     .tabs__pane {
         display: none
@@ -517,6 +521,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
+        width: 1368px;
     }
 
     .coral-main {
@@ -528,6 +533,7 @@
 
     .secret-inner {
         display: block;
+        overflow: auto;
     }
 
     .secret-card__img {
@@ -541,7 +547,6 @@
         position: absolute;
     }
 </style>
-
 <section class="coral coral-main">
     <article>
         <div class="wrapper">
@@ -549,9 +554,7 @@
                 Распродажа «Секретный отель»
             </h1>
             <p class="text text-white mb-16">
-                Мы запустили эксклюзивную отельную распродажу, где размер скидки – приятный сюрприз. А чтобы ваше
-                путешествие стало еще приятнее, дарим специальный <strong>промокод до 20 000 ₽</strong>. Он уже применен к секретным
-                отелям. Удвойте выгоду от отдыха!
+                Мы запустили эксклюзивную отельную распродажу, где размер скидки – приятный сюрприз. А чтобы ваше путешествие стало еще приятнее, дарим специальный <strong>промокод до&nbsp;20&nbsp;000&nbsp;₽</strong>. Его можно будет применить к секретным отелям.
             </p>
             <div class="tabs" data-tabs="">
                 <div class="tabs__nav">
@@ -562,85 +565,74 @@
                     <div class="tabs__pane tabs__pane--active" data-tab="turkey">
                         <div class="secret-inner">
                             <div class="secret-hotels" data-country="turkey" data-country-name="Турция">
-                                <a href="" class="card card--loading" data-hotel-card-template target="_blank">
-                        <div class="card__img">
-                            <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/hotel.webp"
-                                 alt="Xanadu Resort">
-                        </div>
-                        <div class="card__timer">
-                            <p>
-                                Обновится через
-                            </p>
-                            <span>
-                            XX ч
-                        </span>
-                        </div>
-                        <h4 class="card__title mb-8">
-                            Xanadu Resort
-                        </h4>
-                        <div class="card__score mb-8">
-                            <div class="card__stars">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                     fill="none">
-                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
-                                          fill="#FADB14"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                     fill="none">
-                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
-                                          fill="#FADB14"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                     fill="none">
-                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
-                                          fill="#FADB14"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                     fill="none">
-                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
-                                          fill="#FADB14"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                     fill="none">
-                                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z"
-                                          fill="#FADB14"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="card__price-full">
-                            <div class="card__price-old">
-                            <span class="card__text">
-                                Цена
-                            </span>
-                                <span class="card__price-old-value">
-                                133 387 ₽
-                            </span>
-                            </div>
-                            <div class="card__sale">
-                            <span class="card__text">
-                                Скидка
-                            </span>
-                                <span class="card__sale-value">
-                                - 14 387 ₽
-                            </span>
-                            </div>
-                            <div class="card__promo">
-                            <span class="card__text">
-                                Промокод
-                            </span>
-                                <span class="card__promo-value">
-                                - 8 000 ₽
-                            </span>
-                            </div>
-                            <div class="card__price-finale">
-                            <span class="card__bold">
-                                Цена
-                            </span>
-                                <span class="card__price-finale-value">
-                                111 387 ₽
-                            </span>
-                            </div>
-                        </div>
+                                <a href="" class="card card--loading" data-hotel-card-template="" target="_blank">
+                                    <div class="card__img">
+                                        <img src="https://b2ccdn.coral.ru/content/landing-pages/calculator/hotel.webp" alt="Отель загружается">
+                                    </div>
+                                    <div class="card__timer">
+                                        <p>
+                                            Обновится через
+                                        </p>
+                                        <span>
+                                            XX ч
+                                        </span>
+                                    </div>
+                                    <h4 class="card__title mb-8">
+                                        Отель загружается
+                                    </h4>
+                                    <div class="card__score mb-8">
+                                        <div class="card__stars">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="card__price-full">
+                                        <div class="card__price-old">
+                                            <span class="card__text">
+                                                Цена
+                                            </span>
+                                            <span class="card__price-old-value">
+                                                -
+                                            </span>
+                                        </div>
+                                        <div class="card__sale">
+                                            <span class="card__text">
+                                                Скидка
+                                            </span>
+                                            <span class="card__sale-value">
+                                                -
+                                            </span>
+                                        </div>
+                                        <div class="card__promo">
+                                            <span class="card__text">
+                                                Промокод
+                                            </span>
+                                            <span class="card__promo-value">
+                                                -
+                                            </span>
+                                        </div>
+                                        <div class="card__price-finale">
+                                            <span class="card__bold">
+                                                Цена
+                                            </span>
+                                            <span class="card__price-finale-value">
+                                                -
+                                            </span>
+                                        </div>
+                                    </div>
                                 </a>
                                 <div class="card secret-card">
                                     <div class="secret-card__img">
@@ -694,7 +686,6 @@
         </div>
     </article>
 </section>
-
 <script>
     async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
         return new Promise(resolve => {
@@ -714,16 +705,15 @@
 
     hostReactAppReady().then(async () => {
         const hotelBeginDates = [
-            '2026-05-10',
-            '2026-06-13',
-            '2026-06-14'
+            ['2026-04-20T00:00:00Z', '2026-05-20T00:00:00Z'],
+            ['2026-04-20T00:00:00Z', '2026-05-20T00:00:00Z'],
+            ['2026-04-20T00:00:00Z', '2026-05-20T00:00:00Z']
         ];
         const hotelsSchedule = {
-            turkey: [
-                {
-                    hotelId: '875-7',
-                    scheduleDate: '2026-04-09'
-                },
+            turkey: [{
+                hotelId: '875-7',
+                scheduleDate: '2026-04-09'
+            },
                 {
                     hotelId: '626-7',
                     scheduleDate: '2026-04-09'
@@ -773,11 +763,10 @@
                     scheduleDate: '2026-04-19'
                 }
             ],
-            egypt: [
-                {
-                    hotelId: '19936-7',
-                    scheduleDate: '2026-04-09'
-                },
+            egypt: [{
+                hotelId: '19936-7',
+                scheduleDate: '2026-04-09'
+            },
                 {
                     hotelId: '29816-7',
                     scheduleDate: '2026-04-09'
@@ -833,6 +822,7 @@
             ]
         };
         const COUNTDOWN_DAY_STEP_MS = 24 * 60 * 60 * 1000;
+        const REQUEST_RETRY_DELAYS_MS = [0, 1000, 2000];
 
         const departureLocation = {
             id: '2671-5',
@@ -867,6 +857,10 @@
                 return 3500;
             }
 
+            if (roundedPrice >= 50000) {
+                return 1500;
+            }
+
             return 0;
         }
 
@@ -880,6 +874,12 @@
             return [hours, minutes, seconds]
                 .map(value => String(value).padStart(2, '0'))
                 .join(':');
+        }
+
+        function wait(timeoutMs) {
+            return new Promise(resolve => {
+                setTimeout(resolve, timeoutMs);
+            });
         }
 
         function formatLocalDate(date) {
@@ -953,35 +953,90 @@
             });
         }
 
+        function setHotelCardAvailability(cardEl, isAvailable) {
+            const scoreEl = cardEl.querySelector('.card__score');
+            const priceFullEl = cardEl.querySelector('.card__price-full');
+
+            if (scoreEl) {
+                scoreEl.hidden = !isAvailable;
+            }
+
+            if (priceFullEl) {
+                priceFullEl.hidden = !isAvailable;
+            }
+
+            if (isAvailable) {
+                cardEl.removeAttribute('aria-disabled');
+            } else {
+                cardEl.removeAttribute('href');
+                cardEl.removeAttribute('target');
+                cardEl.setAttribute('aria-disabled', 'true');
+            }
+        }
+
+        function renderHotelCardUnavailable(cardEl) {
+            const titleEl = cardEl.querySelector('.card__title');
+            const imageEl = cardEl.querySelector('.card__img img');
+
+            if (titleEl) {
+                titleEl.textContent = 'Отель загружается';
+            }
+
+            if (imageEl) {
+                imageEl.alt = 'Отель загружается';
+            }
+
+            setHotelCardAvailability(cardEl, false);
+        }
+
+        async function fetchJsonWithRetry(url, options) {
+            let lastError = null;
+
+            for (const delayMs of REQUEST_RETRY_DELAYS_MS) {
+                if (delayMs > 0) {
+                    await wait(delayMs);
+                }
+
+                try {
+                    const response = await fetch(url, options);
+
+                    if (!response.ok) {
+                        throw new Error(`Request failed with status ${response.status}`);
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    lastError = error;
+                }
+            }
+
+            throw lastError || new Error('Request failed');
+        }
+
         function buildSearchCriterias(hotelId, beginDate, reservationType = 0) {
+            const beginDates = Array.isArray(beginDate) ? beginDate : [beginDate];
+
             return {
                 reservationType,
-                beginDates: [beginDate],
-                nights: [
-                    {
-                        value: 7
-                    }
-                ],
-                roomCriterias: [
-                    {
-                        passengers: [
-                            {
-                                passengerType: 0,
-                                age: 20
-                            },
-                            {
-                                passengerType: 0,
-                                age: 20
-                            }
-                        ]
-                    }
-                ],
-                arrivalLocations: [
-                    {
-                        id: hotelId,
-                        type: 7
-                    }
-                ],
+                beginDates,
+                nights: [{
+                    value: 7
+                }],
+                roomCriterias: [{
+                    passengers: [{
+                        passengerType: 0,
+                        age: 20
+                    },
+                        {
+                            passengerType: 0,
+                            age: 20
+                        }
+                    ]
+                }],
+                arrivalLocations: [{
+                    id: hotelId,
+                    type: 7
+                }],
                 departureLocations: [departureLocation],
                 paging: {
                     hasPreviousPage: false,
@@ -1003,55 +1058,50 @@
         async function fetchHotelPriceData(hotelId, beginDate) {
             const payload = buildPricePayload(hotelId, beginDate);
 
-            const response = await fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchList', {
+            return fetchJsonWithRetry('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchList', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload)
             });
-
-            const data = await response.json();
-
-            return data;
         }
 
-        async function fetchHotelHref(hotelId, beginDate) {
-            const response = await fetch('https://www.coral.ru/endpoints/PackageTourHotelProduct/PriceSearchEncrypt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(buildSearchCriterias(hotelId, beginDate, 1))
-            });
+        function buildHotelOfferHref(offerLink) {
+            if (!offerLink?.queryParam || !offerLink?.redirectionUrl) {
+                return '';
+            }
 
-            const data = await response.json();
-            const qp = data?.result?.queryParam;
-            const baseUrl = data?.result?.redirectionUrl;
+            const redirectionPath = offerLink.redirectionUrl.startsWith('/hotels/') ?
+                offerLink.redirectionUrl :
+                `/hotels${offerLink.redirectionUrl}`;
 
-            return qp && baseUrl
-                ? `${baseUrl}?${qp}&p=1&w=0&s=0&ws=10`
-                : '';
+            return `${redirectionPath}?${offerLink.queryParam}&p=1&w=0&s=0&ws=10`;
         }
 
         function getHotelCardData(apiData) {
             const product = apiData?.result?.products?.[0];
             const hotel = product?.hotel;
+            const hotelCategories = apiData?.result?.hotelCategories;
+            const hotelCategory = hotel?.categoryKey ? hotelCategories?.[hotel.categoryKey] : null;
             const offer = product?.offers?.[0];
+            const offerLink = offer?.link;
             const price = offer?.price;
             const oldPrice = price?.oldAmount ?? price?.amount ?? null;
             const priceWithDiscount = price?.amount ?? null;
-            const salePrice = oldPrice !== null && priceWithDiscount !== null
-                ? Math.max(oldPrice - priceWithDiscount, 0)
-                : null;
+            const salePrice = oldPrice !== null && priceWithDiscount !== null ?
+                Math.max(oldPrice - priceWithDiscount, 0) :
+                null;
             const promoPrice = priceWithDiscount !== null ? getHotelDiscount(priceWithDiscount) : null;
-            const finalPrice = priceWithDiscount !== null && promoPrice !== null
-                ? Math.max(priceWithDiscount - promoPrice, 0)
-                : null;
+            const finalPrice = priceWithDiscount !== null && promoPrice !== null ?
+                Math.max(priceWithDiscount - promoPrice, 0) :
+                null;
 
             return {
                 name: hotel?.name || '',
                 imageUrl: hotel?.images?.[0]?.sizes?.[0]?.url || '',
+                href: buildHotelOfferHref(offerLink),
+                starCount: Math.max(Number(hotelCategory?.starCount) || 0, 0),
                 oldPrice,
                 finalPrice,
                 salePrice,
@@ -1059,12 +1109,29 @@
             };
         }
 
+        function renderHotelStars(starsEl, starCount) {
+            if (!starsEl) {
+                return;
+            }
+
+            const safeStarCount = Math.max(Math.floor(Number(starCount) || 0), 0);
+
+            starsEl.hidden = safeStarCount <= 0;
+            starsEl.innerHTML = Array.from({ length: safeStarCount }, () => `
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
+                </svg>
+            `).join('');
+        }
+
         function renderHotelCard(cardEl, hotelCardData) {
             const titleEl = cardEl.querySelector('.card__title');
             const imageEl = cardEl.querySelector('.card__img img');
+            const starsEl = cardEl.querySelector('.card__stars');
             const oldPriceEl = cardEl.querySelector('.card__price-old-value');
             const saleRowEl = cardEl.querySelector('.card__sale');
             const saleEl = cardEl.querySelector('.card__sale-value');
+            const promoRowEl = cardEl.querySelector('.card__promo');
             const promoEl = cardEl.querySelector('.card__promo-value');
             const finalPriceEl = cardEl.querySelector('.card__price-finale-value');
 
@@ -1072,14 +1139,19 @@
                 titleEl.textContent = hotelCardData.name;
             }
 
+            setHotelCardAvailability(cardEl, true);
+
             if (hotelCardData.href) {
                 cardEl.href = hotelCardData.href;
+                cardEl.target = '_blank';
             }
 
             if (imageEl && hotelCardData.imageUrl) {
                 imageEl.src = hotelCardData.imageUrl;
                 imageEl.alt = hotelCardData.name || imageEl.alt;
             }
+
+            renderHotelStars(starsEl, hotelCardData.starCount);
 
             if (oldPriceEl && hotelCardData.oldPrice !== null) {
                 oldPriceEl.textContent = formatPrice(hotelCardData.oldPrice);
@@ -1093,7 +1165,11 @@
                 saleEl.textContent = `- ${formatPrice(hotelCardData.salePrice)}`;
             }
 
-            if (promoEl && hotelCardData.promoPrice !== null) {
+            if (promoRowEl) {
+                promoRowEl.hidden = !hotelCardData.promoPrice;
+            }
+
+            if (promoEl && hotelCardData.promoPrice) {
                 promoEl.textContent = `- ${formatPrice(hotelCardData.promoPrice)}`;
             }
 
@@ -1154,42 +1230,48 @@
         }
 
         async function loadHotelCard(hotelsListEl, cardTemplateEl, hotelConfig, index) {
-                const cardEl = cardTemplateEl.cloneNode(true);
-                const countryName = hotelsListEl.dataset.countryName || '';
-                const {hotelId, beginDate} = hotelConfig;
+            const cardEl = cardTemplateEl.cloneNode(true);
+            const countryName = hotelsListEl.dataset.countryName || '';
+            const {
+                hotelId,
+                beginDate
+            } = hotelConfig;
 
-                cardEl.dataset.hotelId = hotelId;
-                cardEl.dataset.beginDate = beginDate;
-                cardEl.dataset.hotelCard = '';
-                cardEl.removeAttribute('data-hotel-card-template');
-                cardEl.addEventListener('click', () => {
-                    const hotelName = cardEl.querySelector('.card__title')?.textContent.trim() || '';
-
-                    sendHotelCardMetric(countryName, hotelName);
-                });
-                cardEl.classList.add('card--loading');
-                hotelsListEl.insertBefore(cardEl, hotelsListEl.querySelector('.secret-card'));
-                startCardCountdown(cardEl, hotelConfig.countdownEndTime || getNextMidnightTime(index));
-
-                if (!hotelId || !beginDate) {
-                    cardEl.classList.remove('card--loading');
+            cardEl.dataset.hotelId = hotelId;
+            cardEl.dataset.beginDate = beginDate;
+            cardEl.dataset.hotelCard = '';
+            cardEl.removeAttribute('data-hotel-card-template');
+            renderHotelCardUnavailable(cardEl);
+            cardEl.addEventListener('click', event => {
+                if (!cardEl.href) {
+                    event.preventDefault();
                     return;
                 }
 
-                try {
-                    const [apiData, href] = await Promise.all([
-                        fetchHotelPriceData(hotelId, beginDate),
-                        fetchHotelHref(hotelId, beginDate)
-                    ]);
-                    const hotelCardData = getHotelCardData(apiData);
+                const hotelName = cardEl.querySelector('.card__title')?.textContent.trim() || '';
 
-                    hotelCardData.href = href;
+                sendHotelCardMetric(countryName, hotelName);
+            });
+            cardEl.classList.add('card--loading');
+            hotelsListEl.insertBefore(cardEl, hotelsListEl.querySelector('.secret-card'));
+            startCardCountdown(cardEl, hotelConfig.countdownEndTime || getNextMidnightTime(index));
+
+            if (!hotelId || !beginDate) {
+                cardEl.classList.remove('card--loading');
+                return;
+            }
+
+            try {
+                const apiData = await fetchHotelPriceData(hotelId, beginDate);
+                const hotelCardData = getHotelCardData(apiData);
+
                     renderHotelCard(cardEl, hotelCardData);
-                } catch (error) {
-                    console.warn(`PriceSearchList request failed for ${hotelId}:`, error);
-                } finally {
-                    cardEl.classList.remove('card--loading');
-                }
+            } catch (error) {
+                renderHotelCardUnavailable(cardEl);
+                console.warn(`PriceSearchList request failed for ${hotelId}:`, error);
+            } finally {
+                cardEl.classList.remove('card--loading');
+            }
         }
 
         async function loadHotelCards() {
@@ -1233,6 +1315,5 @@
             console.warn('PriceSearchList request failed:', error);
         }
     });
-
 </script>
 </body>
