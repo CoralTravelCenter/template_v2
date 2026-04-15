@@ -44,6 +44,41 @@ hostReactAppReady().then(async () => {
     };
     const ELITE_POPUP_LAST_SHOWN_KEY = 'elitePopupLastShownAt';
     const ELITE_POPUP_COOLDOWN_MS = 5 * 60 * 1000;
+    const ELITE_SHIELD_VISIBLE_KEY = 'eliteShieldVisible';
+    const ELITE_DISMISSED_KEY = 'eliteDismissedPermanently';
+
+    function readStoredBoolean(key) {
+        try {
+            return localStorage.getItem(key) === '1' || sessionStorage.getItem(key) === '1';
+        } catch (e) {
+            try {
+                return sessionStorage.getItem(key) === '1';
+            } catch (e2) {
+                return false;
+            }
+        }
+    }
+
+    function writeStoredBoolean(key, value) {
+        try {
+            if (value) {
+                localStorage.setItem(key, '1');
+                sessionStorage.setItem(key, '1');
+            } else {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            }
+        } catch (e) {
+            try {
+                if (value) {
+                    sessionStorage.setItem(key, '1');
+                } else {
+                    sessionStorage.removeItem(key);
+                }
+            } catch (e2) {
+            }
+        }
+    }
 
     function canAutoOpenElitePopup() {
         try {
@@ -371,7 +406,7 @@ hostReactAppReady().then(async () => {
               </div>
             </div>
 
-            <a href="#" target="_blank" class="elite-popup__link" data-elite-popup-link aria-disabled="true">
+            <a href="#" class="elite-popup__link" data-elite-popup-link aria-disabled="true">
               Посмотреть подборку
             </a>
 
@@ -412,14 +447,15 @@ hostReactAppReady().then(async () => {
 
         const closePopupAndShowShield = () => {
             trackPopupClose();
-            shouldShowShield = true;
+            setEliteDismissedPermanently(false);
+            setShouldShowShield(true);
             closePopup();
             ensureShields();
         };
 
         const dismissElitePermanently = () => {
-            eliteDismissedPermanently = true;
-            shouldShowShield = false;
+            setEliteDismissedPermanently(true);
+            setShouldShowShield(false);
             closePopup();
             removeShields();
         };
@@ -526,6 +562,9 @@ hostReactAppReady().then(async () => {
                 link.href = nextUrl.toString();
             } catch (error) {
             }
+
+            setEliteDismissedPermanently(false);
+            setShouldShowShield(true);
 
             reachGoal('personalization_elite_pop_up_click', {
                 button: 'view_hotels',
@@ -639,10 +678,42 @@ hostReactAppReady().then(async () => {
     const MOBILE_CONTAINER_SELECTOR = '[class*=HeaderMobile_rightGroup]';
 
     let eliteSegmentGoalSent = false;
-    let shouldShowShield = false;
-    let eliteDismissedPermanently = false;
+    let shouldShowShield = readStoredBoolean(ELITE_SHIELD_VISIBLE_KEY);
+    let eliteDismissedPermanently = readStoredBoolean(ELITE_DISMISSED_KEY);
     let eliteUserName = "";
     let isSyncingShields = false;
+
+    function syncShieldStateFromStorage() {
+        shouldShowShield = readStoredBoolean(ELITE_SHIELD_VISIBLE_KEY);
+        eliteDismissedPermanently = readStoredBoolean(ELITE_DISMISSED_KEY);
+    }
+
+    function setShouldShowShield(value) {
+        shouldShowShield = value;
+        writeStoredBoolean(ELITE_SHIELD_VISIBLE_KEY, value);
+    }
+
+    function setEliteDismissedPermanently(value) {
+        eliteDismissedPermanently = value;
+        writeStoredBoolean(ELITE_DISMISSED_KEY, value);
+    }
+
+    function subscribeToSpaUrlChanges(callback) {
+        const originalPushState = history.pushState;
+        const originalReplaceState = history.replaceState;
+
+        history.pushState = function (...args) {
+            originalPushState.apply(this, args);
+            callback(window.location.href);
+        };
+
+        history.replaceState = function (...args) {
+            originalReplaceState.apply(this, args);
+            callback(window.location.href);
+        };
+
+        window.addEventListener('popstate', () => callback(window.location.href));
+    }
 
     function removeShields() {
         document.querySelectorAll('.elite-shield[data-elite-shield]').forEach((shield) => shield.remove());
@@ -696,12 +767,17 @@ hostReactAppReady().then(async () => {
         isSyncingShields = true;
 
         try {
+            syncShieldStateFromStorage();
+
             if (eliteDismissedPermanently) {
                 removeShields();
                 return;
             }
 
-            if (!shouldShowShield) return;
+            if (!shouldShowShield) {
+                removeShields();
+                return;
+            }
 
             const desktopContainer = document.querySelector(DESKTOP_CONTAINER_SELECTOR);
             if (desktopContainer && !desktopContainer.querySelector('.elite-shield[data-elite-shield="desktop"]')) {
@@ -741,13 +817,11 @@ hostReactAppReady().then(async () => {
         }
     }
 
-    await Promise.all([
-        waitForElement(DESKTOP_CONTAINER_SELECTOR, {timeout: 20000, interval: 200}),
-        waitForElement(MOBILE_CONTAINER_SELECTOR, {timeout: 20000, interval: 200}),
-    ]);
-
     ensureShields();
-    if (canAutoOpenElitePopup()) {
+    waitForElement(DESKTOP_CONTAINER_SELECTOR, {timeout: 20000, interval: 200}).then(() => ensureShields());
+    waitForElement(MOBILE_CONTAINER_SELECTOR, {timeout: 20000, interval: 200}).then(() => ensureShields());
+
+    if (!eliteDismissedPermanently && canAutoOpenElitePopup()) {
         markElitePopupAutoOpened();
         openElitePopup({isAutoOpen: true});
     }
@@ -768,6 +842,10 @@ hostReactAppReady().then(async () => {
         ensureShields();
     });
     obs.observe(document.body, {childList: true, subtree: true});
+    subscribeToSpaUrlChanges(() => {
+        syncShieldStateFromStorage();
+        ensureShields();
+    });
 
     mindbox("sync", {
         operation: "getUserName",
@@ -796,6 +874,8 @@ hostReactAppReady().then(async () => {
         {type: 21, values: [{id: "2", value: "2"}], providers: []},
     ];
     const ELITE_CHAIN_KEY = 'eliteSearchActive';
+    const ELITE_SHIELD_VISIBLE_KEY = 'eliteShieldVisible';
+    const ELITE_DISMISSED_KEY = 'eliteDismissedPermanently';
     const ELITE_URL_PARAM = 'elite';
 
     const parseJson = (value) => {
@@ -864,6 +944,13 @@ hostReactAppReady().then(async () => {
         if (url.searchParams.get(ELITE_URL_PARAM) !== '1') return;
 
         setEliteChainActive(true);
+        try {
+            localStorage.setItem(ELITE_SHIELD_VISIBLE_KEY, '1');
+            sessionStorage.setItem(ELITE_SHIELD_VISIBLE_KEY, '1');
+            localStorage.removeItem(ELITE_DISMISSED_KEY);
+            sessionStorage.removeItem(ELITE_DISMISSED_KEY);
+        } catch (e) {
+        }
         url.searchParams.delete(ELITE_URL_PARAM);
         history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
     };
