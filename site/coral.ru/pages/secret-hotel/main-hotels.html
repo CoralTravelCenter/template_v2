@@ -475,6 +475,10 @@
             line-height: 20px;
         }
     }
+
+    .card__timer[hidden] {
+        display: none !important;
+    }
 </style>
 <style>
     .tabs__pane {
@@ -711,9 +715,9 @@
         ];
         const hotelsSchedule = {
             turkey: [{
-                hotelId: '875-7',
-                scheduleDate: '2026-04-09'
-            },
+                    hotelId: '875-7',
+                    scheduleDate: '2026-04-09'
+                },
                 {
                     hotelId: '626-7',
                     scheduleDate: '2026-04-09'
@@ -761,6 +765,50 @@
                 {
                     hotelId: '11754-7',
                     scheduleDate: '2026-04-19'
+                },
+                {
+                    hotelId: '972-7',
+                    scheduleDate: '2026-04-20'
+                },
+                {
+                    hotelId: '674-7',
+                    scheduleDate: '2026-04-21'
+                },
+                {
+                    hotelId: '948-7',
+                    scheduleDate: '2026-04-22'
+                },
+                {
+                    hotelId: '453-7',
+                    scheduleDate: '2026-04-23'
+                },
+                {
+                    hotelId: '4139-7',
+                    scheduleDate: '2026-04-24'
+                },
+                {
+                    hotelId: '947-7',
+                    scheduleDate: '2026-04-25'
+                },
+                {
+                    hotelId: '9910-7',
+                    scheduleDate: '2026-04-26'
+                },
+                {
+                    hotelId: '703-7',
+                    scheduleDate: '2026-04-27'
+                },
+                {
+                    hotelId: '973-7',
+                    scheduleDate: '2026-04-28'
+                },
+                {
+                    hotelId: '679-7',
+                    scheduleDate: '2026-04-29'
+                },
+                {
+                    hotelId: '8116-7',
+                    scheduleDate: '2026-04-30'
                 }
             ],
             egypt: [{
@@ -818,6 +866,46 @@
                 {
                     hotelId: '82642-7',
                     scheduleDate: '2026-04-20'
+                },
+                {
+                    hotelId: '19937-7',
+                    scheduleDate: '2026-04-21'
+                },
+                {
+                    hotelId: '78-7',
+                    scheduleDate: '2026-04-22'
+                },
+                {
+                    hotelId: '8387-7',
+                    scheduleDate: '2026-04-23'
+                },
+                {
+                    hotelId: '98-7',
+                    scheduleDate: '2026-04-24'
+                },
+                {
+                    hotelId: '49757-7',
+                    scheduleDate: '2026-04-25'
+                },
+                {
+                    hotelId: '187-7',
+                    scheduleDate: '2026-04-26'
+                },
+                {
+                    hotelId: '126-7',
+                    scheduleDate: '2026-04-27'
+                },
+                {
+                    hotelId: '64951-7',
+                    scheduleDate: '2026-04-28'
+                },
+                {
+                    hotelId: '19943-7',
+                    scheduleDate: '2026-04-29'
+                },
+                {
+                    hotelId: '90-7',
+                    scheduleDate: '2026-04-30'
                 }
             ]
         };
@@ -914,14 +1002,26 @@
             return Math.min(Math.max(passedDays, 0), maxStartIndex);
         }
 
+        function isFinalScheduleState(countrySchedule) {
+            if (!countrySchedule.length) {
+                return false;
+            }
+
+            const maxStartIndex = Math.max(countrySchedule.length - 3, 0);
+
+            return getScheduleStartIndex(countrySchedule) >= maxStartIndex;
+        }
+
         function getScheduledHotels(country) {
             const countrySchedule = hotelsSchedule[country] || [];
             const startIndex = getScheduleStartIndex(countrySchedule);
+            const isFinalState = isFinalScheduleState(countrySchedule);
 
             return countrySchedule.slice(startIndex, startIndex + 3).map((hotelConfig, index) => ({
                 ...hotelConfig,
                 beginDate: hotelBeginDates[index] || hotelBeginDates[0],
-                countdownEndTime: getNextMidnightTime(index)
+                countdownEndTime: isFinalState ? null : getNextMidnightTime(index),
+                hideCountdown: isFinalState
             }));
         }
 
@@ -947,8 +1047,30 @@
             timerId = setInterval(updateTimer, 1000);
         }
 
+        function setCardCountdownVisibility(cardEl, isVisible) {
+            const timerEl = cardEl.querySelector('.card__timer');
+
+            if (timerEl) {
+                timerEl.hidden = !isVisible;
+            }
+        }
+
+        function setSecretCardCountdownVisibility(hotelsListEl, isVisible) {
+            const secretCardEl = hotelsListEl.querySelector('.secret-card');
+
+            if (secretCardEl) {
+                setCardCountdownVisibility(secretCardEl, isVisible);
+            }
+        }
+
         function startSecretCardCountdowns() {
             document.querySelectorAll('.secret-card').forEach(cardEl => {
+                const timerEl = cardEl.querySelector('.card__timer');
+
+                if (timerEl?.hidden) {
+                    return;
+                }
+
                 startCardCountdown(cardEl, getNextMidnightTime());
             });
         }
@@ -1254,7 +1376,11 @@
             });
             cardEl.classList.add('card--loading');
             hotelsListEl.insertBefore(cardEl, hotelsListEl.querySelector('.secret-card'));
-            startCardCountdown(cardEl, hotelConfig.countdownEndTime || getNextMidnightTime(index));
+            setCardCountdownVisibility(cardEl, !hotelConfig.hideCountdown);
+
+            if (!hotelConfig.hideCountdown) {
+                startCardCountdown(cardEl, hotelConfig.countdownEndTime || getNextMidnightTime(index));
+            }
 
             if (!hotelId || !beginDate) {
                 cardEl.classList.remove('card--loading');
@@ -1284,6 +1410,10 @@
             await Promise.all(Array.from(hotelsListEls).map(async hotelsListEl => {
                 const country = hotelsListEl.dataset.country;
                 const countryHotelsConfig = getScheduledHotels(country);
+                const countrySchedule = hotelsSchedule[country] || [];
+                const isFinalState = isFinalScheduleState(countrySchedule);
+
+                setSecretCardCountdownVisibility(hotelsListEl, !isFinalState);
 
                 hotelsListEl
                     .querySelectorAll('[data-hotel-card], [data-hotel-card-template]')
