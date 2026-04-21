@@ -4,13 +4,14 @@ import monkey from 'vite-plugin-monkey';
 export default defineConfig({
   plugins: [
     monkey({
-      entry: 'src/eliteSearch.js',
+      entry: 'src/miniPage.js',
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
         match: [
-          'https://www.coral.ru/packagetours*',
-          'https://www.coral.ru/packagetours/*',
+          // 'https://www.coral.ru/hotels/turkey/*',
+          // 'https://www.coral.ru/booking/add-passenger*'
+            'https://www.sunmar.ru/'
         ],
       },
     }),
