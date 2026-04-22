@@ -15,6 +15,55 @@
         }
     };
 
+    const LOG_PREFIX = '[eventsV2]';
+
+    function cloneForLog(value) {
+        try {
+            return JSON.parse(JSON.stringify(value));
+        } catch (_) {
+            return value;
+        }
+    }
+
+    function log(message, payload) {
+        if (payload === undefined) {
+            console.log(LOG_PREFIX, message);
+            return;
+        }
+        console.log(LOG_PREFIX, message, cloneForLog(payload));
+    }
+
+    function sendMindbox(asyncMode, payload, onSuccess, onError, meta = {}) {
+        log('Mindbox send attempt', {
+            meta,
+            payload
+        });
+
+        if (typeof window.mindbox !== 'function') {
+            log('Mindbox is unavailable, send skipped', {
+                meta,
+                payload,
+                mindboxType: typeof window.mindbox
+            });
+            return;
+        }
+
+        try {
+            window.mindbox(asyncMode, payload, onSuccess, onError);
+            log('Mindbox send dispatched', {
+                meta,
+                operation: payload?.operation
+            });
+        } catch (error) {
+            console.error(LOG_PREFIX, 'Mindbox send failed', {
+                meta,
+                payload: cloneForLog(payload),
+                error
+            });
+            throw error;
+        }
+    }
+
     function hook() {
         if (!Array.isArray(window.dataLayer)) window.dataLayer = [];
         const dl = window.dataLayer;
@@ -26,6 +75,7 @@
         function wrappedPush(...args) {
             for (const evt of args) {
                 if (!evt || typeof evt !== 'object') continue;
+                log('dataLayer.push received event', evt);
                 for (const [name, fn] of H.listeners) {
                     try {
                         if (H.mark(evt, name)) fn(evt);
@@ -47,8 +97,14 @@
             at: Date.now()
         };
 
+        log('dataLayer hook attached', {
+            version: dl.__dlHub.version,
+            queuedEvents: dl.length
+        });
+
         try {
             dl.forEach(evt => {
+                log('Processing pre-existing dataLayer event', evt);
                 for (const [n, fn] of H.listeners) {
                     if (H.mark(evt, n)) fn(evt);
                 }
@@ -70,6 +126,7 @@
 
     H.add('searchHandlers', function handleSearch(evt) {
         if (!evt || (evt.event !== 'search_tour' && evt.event !== 'search_onlyhotel')) return;
+        log('searchHandlers matched event', evt);
         const item = evt?.ecommerce?.items?.[0];
         if (!item || !Array.isArray(item.destination_id)) return;
 
@@ -113,7 +170,12 @@
                     }
                 },
             };
-            if (typeof window.mindbox === 'function') window.mindbox("async", payload, payload.onSuccess, payload.onError);
+            sendMindbox("async", payload, payload.onSuccess, payload.onError, {
+                handler: 'searchHandlers',
+                event: evt.event,
+                targetType: 'country',
+                targetId: destId
+            });
         });
 
         // Отели
@@ -145,12 +207,18 @@
                         }
                     },
                 };
-                if (typeof window.mindbox === 'function') window.mindbox("async", payload, payload.onSuccess, payload.onError);
+                sendMindbox("async", payload, payload.onSuccess, payload.onError, {
+                    handler: 'searchHandlers',
+                    event: evt.event,
+                    targetType: 'hotel',
+                    targetId: hotelId
+                });
             });
     });
 
     H.add('viewItemHandler', function handleViewItem(evt) {
         if (!evt || evt.event !== 'view_item') return;
+        log('viewItemHandler matched event', evt);
         const item = evt?.ecommerce?.items?.[0];
         if (!item) return;
 
@@ -184,11 +252,19 @@
                 }
             }
         };
-        if (typeof window.mindbox === 'function') window.mindbox("async", payload, payload.onSuccess, payload.onError);
+        sendMindbox("async", payload, payload.onSuccess, payload.onError, {
+            handler: 'viewItemHandler',
+            event: evt.event,
+            itemId: item.item_id
+        });
     });
 
     H.add('mappingHandler', function handleMapping(evt) {
         if (!evt || typeof evt !== 'object' || !evt.event) return;
+        log('mappingHandler inspecting event', {
+            event: evt.event,
+            payload: evt
+        });
 
         function compactObject(obj) {
             return Object.fromEntries(
@@ -314,6 +390,11 @@
         const mapping = eventMapping[evt.event];
         if (!mapping) return;
 
+        log('mappingHandler matched event', {
+            event: evt.event,
+            mapping: Array.isArray(mapping) ? mapping.map(({operation}) => operation) : [mapping.operation]
+        });
+
         const handlers = Array.isArray(mapping) ? mapping : [mapping];
         handlers.forEach(({
                               operation,
@@ -346,16 +427,35 @@
                                    context
                                }, attempt = 1, maxAttempts = 5) {
             const delay = Math.pow(2, attempt) * 1000;
+            log('Scheduling Mindbox retry/send', {
+                operation,
+                attempt,
+                maxAttempts,
+                delay,
+                event: context?.evt?.event,
+                itemId: context?.item?.item_id
+            });
             setTimeout(() => {
                 try {
                     const data = buildRequest();
-                    if (typeof window.mindbox === 'function') {
-                        window.mindbox('async', {
-                            operation,
-                            data
-                        });
-                    }
+                    sendMindbox('async', {
+                        operation,
+                        data
+                    }, undefined, undefined, {
+                        handler: 'mappingHandler',
+                        attempt,
+                        event: context?.evt?.event,
+                        itemId: context?.item?.item_id
+                    });
                 } catch (e) {
+                    console.error(LOG_PREFIX, 'sendWithRetry failed', {
+                        operation,
+                        attempt,
+                        maxAttempts,
+                        event: context?.evt?.event,
+                        itemId: context?.item?.item_id,
+                        error: e
+                    });
                     if (attempt < maxAttempts) sendWithRetry({
                         operation,
                         buildRequest,
