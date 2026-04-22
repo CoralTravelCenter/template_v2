@@ -11,7 +11,7 @@ export default defineConfig({
         match: [
           // 'https://www.coral.ru/hotels/turkey/*',
           // 'https://www.coral.ru/booking/add-passenger*'
-            'https://www.sunmar.ru/'
+            'https://www.sunmar.ru/preview/9db04aca-cd69-47cb-9610-f45d7e4ec4f3/ru-RU/'
         ],
       },
     }),

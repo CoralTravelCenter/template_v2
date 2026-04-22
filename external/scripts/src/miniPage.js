@@ -3,7 +3,7 @@ const SLIDE_SELECTOR = '.swiper-wrapper > .swiper-slide';
 const REMOVABLE_BLOCK_SELECTORS = ['.js-timer-block', '.sunmar-bento', '.chain-hotels', '.ease-online'];
 const HOT_DEALS_SELECTOR = '.hot-deals-block';
 const HOT_DEALS_TITLE = 'Горящие предложения';
-const DIRECT_REMOVABLE_SELECTORS = ['#section-row-16', '#holiday-guide-block', '#section-row-9'];
+const DIRECT_REMOVABLE_SELECTORS = ['#section-row-16', '#holiday-guide-block', '#section-row-9', '.news-slider-block'];
 const HOTELS_OF_WEEK_SWIPER_SELECTOR = '.hotels-of-the-week .swiper';
 const MAX_SLIDES = 5;
 const STYLE_ELEMENT_ID = 'mini-page-overrides';
@@ -178,12 +178,40 @@ function runCleanup() {
 hostReactAppReady().then(() => {
     runCleanup();
 
-    const bootstrapObserver = new MutationObserver(() => {
+    ym(215233, 'reachGoal', 'min_home_page_group_B');
+
+    const observer = new MutationObserver(() => {
         runCleanup();
     });
 
-    bootstrapObserver.observe(document.body, {
+    observer.observe(document.body, {
         childList: true,
         subtree: true,
     });
 });
+
+// async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
+//     return new Promise(resolve => {
+//         const waiter = () => {
+//             const host_el = document.querySelector(selector);
+//             if (host_el?.getBoundingClientRect().height) {
+//                 resolve();
+//             } else {
+//                 setTimeout(waiter, timeout);
+//             }
+//         };
+//         waiter();
+//     });
+// }
+//
+// hostReactAppReady().then(() => {
+//     const deleteBlocks = document.querySelectorAll('.to-hide-ab');
+//
+//     if (deleteBlocks.length > 0) {
+//         deleteBlocks.forEach((block) => {
+//             block.remove();
+//         });
+//     }
+//
+//     ym(215233, 'reachGoal', 'min_home_page_group_A');
+// });
