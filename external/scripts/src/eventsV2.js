@@ -287,10 +287,11 @@
             return compactObject({
                 adultCount: item.item_adult_count,
                 childCount: item.item_child_count,
-                flightDateFrom: dateFrom,
-                flightDateTo: dateTo,
-                hotelDateFrom: dateFrom,
-                hotelDateTo: dateTo,
+                country: item.item_brand,
+                flightDateFrom: searchType === 1 ? dateFrom : undefined,
+                flightDateTo: searchType === 1 ? dateTo : undefined,
+                hotelDateFrom: searchType === 2 ? dateFrom : undefined,
+                hotelDateTo: searchType === 2 ? dateTo : undefined,
                 nights: item.item_nights ?? item.nights,
                 searchType,
                 departures: item.item_departure
