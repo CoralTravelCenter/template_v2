@@ -2,11 +2,28 @@ const ROOT_SELECTOR = '[class*="BannerMainBanner_bannerMainBanner"]';
 const SLIDE_SELECTOR = '.swiper-wrapper > .swiper-slide';
 const REMOVABLE_BLOCK_SELECTORS = ['.js-timer-block', '.sunmar-bento', '.chain-hotels', '.ease-online'];
 const HOT_DEALS_SELECTOR = '.hot-deals-block';
-const HOT_DEALS_TITLE = 'Горящие предложения';
+const HOT_DEALS_TITLE = 'Раннее бронирование 2026';
 const DIRECT_REMOVABLE_SELECTORS = ['#section-row-16', '#holiday-guide-block', '#section-row-9', '.news-slider-block'];
 const HOTELS_OF_WEEK_SWIPER_SELECTOR = '.hotels-of-the-week .swiper';
 const MAX_SLIDES = 5;
 const STYLE_ELEMENT_ID = 'mini-page-overrides';
+const MINI_PAGE_BLOCKS = [
+    {
+        blockName: 'actions',
+        renderName: 'renderActions',
+        selector: '#actions-ab-test',
+    },
+    {
+        blockName: 'living-hotel',
+        renderName: 'renderHotels',
+        selector: '#living-hotel-ab',
+    },
+    {
+        blockName: 'bonus',
+        renderName: 'renderBonus',
+        selector: '#bonus-ab',
+    },
+];
 
 async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
     return new Promise(resolve => {
@@ -149,6 +166,32 @@ function fixHotelsOfWeekSwiperHeight() {
     });
 }
 
+function renderIntoPlaceholder({ selector, blockName, renderName }) {
+    const target = document.querySelector(selector);
+    const render = window.MiniPageBlocks?.[renderName];
+
+    if (
+        !target ||
+        typeof render !== 'function' ||
+        target.querySelector(`[data-mini-page-block="${blockName}"]`)
+    ) {
+        return false;
+    }
+
+    target.replaceChildren();
+    return render(target);
+}
+
+function renderMiniPageBlocks() {
+    let renderedAny = false;
+
+    MINI_PAGE_BLOCKS.forEach(block => {
+        renderedAny = renderIntoPlaceholder(block) || renderedAny;
+    });
+
+    return renderedAny;
+}
+
 function ensureStyleOverrides() {
     let styleElement = document.getElementById(STYLE_ELEMENT_ID);
 
@@ -163,6 +206,18 @@ function ensureStyleOverrides() {
             min-height: 350px !important;
             height: 350px;
         }
+        
+        section.hotels-of-the-week>article .contenu .swiper-slide .content {
+            padding: 16px!important;
+        }
+        
+        section.hotels-of-the-week>article .contenu .swiper-slide .content .top {
+            align-items: center;
+        }
+        
+        section.hotels-of-the-week>article .contenu .swiper-slide .content .actions {
+            margin-top: 0!important;
+        }
     `;
 }
 
@@ -173,12 +228,16 @@ function runCleanup() {
     removeHotDealsBlocks();
     removeDirectBlocks();
     fixHotelsOfWeekSwiperHeight();
+    renderMiniPageBlocks();
 }
+
+window.renderMiniPageBlocks = renderMiniPageBlocks;
+document.addEventListener('miniPageBlockRegistered', renderMiniPageBlocks);
 
 hostReactAppReady().then(() => {
     runCleanup();
 
-    ym(215233, 'reachGoal', 'min_home_page_group_B');
+    window.ym?.(215233, 'reachGoal', 'min_home_page_group_B');
 
     const observer = new MutationObserver(() => {
         runCleanup();
@@ -189,29 +248,3 @@ hostReactAppReady().then(() => {
         subtree: true,
     });
 });
-
-// async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
-//     return new Promise(resolve => {
-//         const waiter = () => {
-//             const host_el = document.querySelector(selector);
-//             if (host_el?.getBoundingClientRect().height) {
-//                 resolve();
-//             } else {
-//                 setTimeout(waiter, timeout);
-//             }
-//         };
-//         waiter();
-//     });
-// }
-//
-// hostReactAppReady().then(() => {
-//     const deleteBlocks = document.querySelectorAll('.to-hide-ab');
-//
-//     if (deleteBlocks.length > 0) {
-//         deleteBlocks.forEach((block) => {
-//             block.remove();
-//         });
-//     }
-//
-//     ym(215233, 'reachGoal', 'min_home_page_group_A');
-// });
