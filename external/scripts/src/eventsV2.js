@@ -15,51 +15,14 @@
         }
     };
 
-    const LOG_PREFIX = '[eventsV2]';
-
-    function cloneForLog(value) {
-        try {
-            return JSON.parse(JSON.stringify(value));
-        } catch (_) {
-            return value;
-        }
-    }
-
-    function log(message, payload) {
-        if (payload === undefined) {
-            console.log(LOG_PREFIX, message);
-            return;
-        }
-        console.log(LOG_PREFIX, message, cloneForLog(payload));
-    }
-
     function sendMindbox(asyncMode, payload, onSuccess, onError, meta = {}) {
-        log('Mindbox send attempt', {
-            meta,
-            payload
-        });
-
         if (typeof window.mindbox !== 'function') {
-            log('Mindbox is unavailable, send skipped', {
-                meta,
-                payload,
-                mindboxType: typeof window.mindbox
-            });
             return;
         }
 
         try {
             window.mindbox(asyncMode, payload, onSuccess, onError);
-            log('Mindbox send dispatched', {
-                meta,
-                operation: payload?.operation
-            });
         } catch (error) {
-            console.error(LOG_PREFIX, 'Mindbox send failed', {
-                meta,
-                payload: cloneForLog(payload),
-                error
-            });
             throw error;
         }
     }
@@ -75,12 +38,10 @@
         function wrappedPush(...args) {
             for (const evt of args) {
                 if (!evt || typeof evt !== 'object') continue;
-                log('dataLayer.push received event', evt);
                 for (const [name, fn] of H.listeners) {
                     try {
                         if (H.mark(evt, name)) fn(evt);
-                    } catch (e) {
-                        console.error(`[DL-HUB] listener "${name}" error`, e);
+                    } catch (_) {
                     }
                 }
             }
@@ -97,20 +58,13 @@
             at: Date.now()
         };
 
-        log('dataLayer hook attached', {
-            version: dl.__dlHub.version,
-            queuedEvents: dl.length
-        });
-
         try {
             dl.forEach(evt => {
-                log('Processing pre-existing dataLayer event', evt);
                 for (const [n, fn] of H.listeners) {
                     if (H.mark(evt, n)) fn(evt);
                 }
             });
-        } catch (e) {
-            console.error('[DL-HUB] forEach error', e);
+        } catch (_) {
         }
 
         setInterval(() => {
@@ -126,7 +80,6 @@
 
     H.add('searchHandlers', function handleSearch(evt) {
         if (!evt || (evt.event !== 'search_tour' && evt.event !== 'search_onlyhotel')) return;
-        log('searchHandlers matched event', evt);
         const item = evt?.ecommerce?.items?.[0];
         if (!item || !Array.isArray(item.destination_id)) return;
 
@@ -218,7 +171,6 @@
 
     H.add('viewItemHandler', function handleViewItem(evt) {
         if (!evt || evt.event !== 'view_item') return;
-        log('viewItemHandler matched event', evt);
         const item = evt?.ecommerce?.items?.[0];
         if (!item) return;
 
@@ -261,10 +213,6 @@
 
     H.add('mappingHandler', function handleMapping(evt) {
         if (!evt || typeof evt !== 'object' || !evt.event) return;
-        log('mappingHandler inspecting event', {
-            event: evt.event,
-            payload: evt
-        });
 
         function compactObject(obj) {
             return Object.fromEntries(
@@ -288,11 +236,14 @@
                 adultCount: item.item_adult_count,
                 childCount: item.item_child_count,
                 country: item.item_brand,
-                flightDateFrom: searchType === 1 ? dateFrom : undefined,
-                flightDateTo: searchType === 1 ? dateTo : undefined,
-                hotelDateFrom: searchType === 2 ? dateFrom : undefined,
-                hotelDateTo: searchType === 2 ? dateTo : undefined,
+                dateFrom,
+                dateTo,
+                // flightDateFrom: searchType === 1 ? dateFrom : undefined,
+                // flightDateTo: searchType === 1 ? dateTo : undefined,
+                // hotelDateFrom: searchType === 2 ? dateFrom : undefined,
+                // hotelDateTo: searchType === 2 ? dateTo : undefined,
                 nights: item.item_nights ?? item.nights,
+                paxCount: item.item_pax,
                 searchType,
                 departures: item.item_departure
             });
@@ -391,11 +342,6 @@
         const mapping = eventMapping[evt.event];
         if (!mapping) return;
 
-        log('mappingHandler matched event', {
-            event: evt.event,
-            mapping: Array.isArray(mapping) ? mapping.map(({operation}) => operation) : [mapping.operation]
-        });
-
         const handlers = Array.isArray(mapping) ? mapping : [mapping];
         handlers.forEach(({
                               operation,
@@ -428,14 +374,6 @@
                                    context
                                }, attempt = 1, maxAttempts = 5) {
             const delay = Math.pow(2, attempt) * 1000;
-            log('Scheduling Mindbox retry/send', {
-                operation,
-                attempt,
-                maxAttempts,
-                delay,
-                event: context?.evt?.event,
-                itemId: context?.item?.item_id
-            });
             setTimeout(() => {
                 try {
                     const data = buildRequest();
@@ -449,14 +387,6 @@
                         itemId: context?.item?.item_id
                     });
                 } catch (e) {
-                    console.error(LOG_PREFIX, 'sendWithRetry failed', {
-                        operation,
-                        attempt,
-                        maxAttempts,
-                        event: context?.evt?.event,
-                        itemId: context?.item?.item_id,
-                        error: e
-                    });
                     if (attempt < maxAttempts) sendWithRetry({
                         operation,
                         buildRequest,
