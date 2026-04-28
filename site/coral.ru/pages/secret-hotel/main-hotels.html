@@ -986,6 +986,14 @@
             return nextMidnight.getTime();
         }
 
+        function getPromoEndTime() {
+            return new Date('2026-05-01T00:00:00').getTime();
+        }
+
+        function getHotelCountdownEndTime(dayOffset = 0) {
+            return Math.min(getNextMidnightTime(dayOffset), getPromoEndTime());
+        }
+
         function getScheduleStartIndex(countrySchedule) {
             const today = new Date();
             const scheduleStartDate = countrySchedule[0]?.scheduleDate;
@@ -1015,14 +1023,17 @@
         function getScheduledHotels(country) {
             const countrySchedule = hotelsSchedule[country] || [];
             const startIndex = getScheduleStartIndex(countrySchedule);
-            const isFinalState = isFinalScheduleState(countrySchedule);
 
-            return countrySchedule.slice(startIndex, startIndex + 3).map((hotelConfig, index) => ({
-                ...hotelConfig,
-                beginDate: hotelBeginDates[index] || hotelBeginDates[0],
-                countdownEndTime: isFinalState ? null : getNextMidnightTime(index),
-                hideCountdown: isFinalState
-            }));
+            return countrySchedule.slice(startIndex, startIndex + 3).map((hotelConfig, index) => {
+                const countdownEndTime = getHotelCountdownEndTime(index);
+
+                return {
+                    ...hotelConfig,
+                    beginDate: hotelBeginDates[index] || hotelBeginDates[0],
+                    countdownEndTime,
+                    hideCountdown: Date.now() >= countdownEndTime
+                };
+            });
         }
 
         function startCardCountdown(cardEl, endTime) {
