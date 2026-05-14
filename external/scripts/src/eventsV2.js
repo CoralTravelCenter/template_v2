@@ -27,6 +27,29 @@
         }
     }
 
+    function normalizeArray(value) {
+        return Array.isArray(value) ? value.filter(item => item !== undefined && item !== null && item !== '') : [];
+    }
+
+    function parseFilterPriceRange(priceValue) {
+        if (typeof priceValue !== 'string') {
+            return {
+                minFilterPrice: undefined,
+                maxFilterPrice: undefined
+            };
+        }
+
+        const parts = priceValue
+            .split('-')
+            .map(part => part.replace(/[^\d]/g, ''))
+            .filter(Boolean);
+
+        return {
+            minFilterPrice: parts[0],
+            maxFilterPrice: parts[1]
+        };
+    }
+
     function hook() {
         if (!Array.isArray(window.dataLayer)) window.dataLayer = [];
         const dl = window.dataLayer;
@@ -41,8 +64,7 @@
                 for (const [name, fn] of H.listeners) {
                     try {
                         if (H.mark(evt, name)) fn(evt);
-                    } catch (_) {
-                    }
+                    } catch (_) {}
                 }
             }
             return origPush(...args);
@@ -64,15 +86,13 @@
                     if (H.mark(evt, n)) fn(evt);
                 }
             });
-        } catch (_) {
-        }
+        } catch (_) {}
 
         setInterval(() => {
             try {
                 const cur = window.dataLayer;
                 if (!cur || typeof cur.push !== 'function' || !cur.__dlHub) hook();
-            } catch (_) {
-            }
+            } catch (_) {}
         }, 1000);
 
         return dl;
@@ -96,16 +116,14 @@
                 childCount: item.item_child_count,
                 nights: item.nights,
                 searchType,
-                ...(isTourEvent ?
-                    {
-                        departures: item.departure,
-                        flightDateFrom: item.period_flight?.[0],
-                        flightDateTo: item.period_flight?.[1]
-                    } :
-                    {
-                        hotelDateFrom: item.period_hotel?.[0],
-                        hotelDateTo: item.period_hotel?.[1]
-                    })
+                ...(isTourEvent ? {
+                    departures: item.departure,
+                    flightDateFrom: item.period_flight?.[0],
+                    flightDateTo: item.period_flight?.[1]
+                } : {
+                    hotelDateFrom: item.period_hotel?.[0],
+                    hotelDateTo: item.period_hotel?.[1]
+                })
             };
 
             const payload = {
@@ -140,16 +158,14 @@
                     nights: item.nights,
                     hotelId,
                     searchType,
-                    ...(isTourEvent ?
-                        {
-                            departures: item.departure,
-                            flightDateFrom: item.period_flight?.[0],
-                            flightDateTo: item.period_flight?.[1]
-                        } :
-                        {
-                            hotelDateFrom: item.period_hotel?.[0],
-                            hotelDateTo: item.period_hotel?.[1]
-                        })
+                    ...(isTourEvent ? {
+                        departures: item.departure,
+                        flightDateFrom: item.period_flight?.[0],
+                        flightDateTo: item.period_flight?.[1]
+                    } : {
+                        hotelDateFrom: item.period_hotel?.[0],
+                        hotelDateTo: item.period_hotel?.[1]
+                    })
                 };
 
                 const payload = {
@@ -218,6 +234,40 @@
             return Object.fromEntries(
                 Object.entries(obj).filter(([, value]) => value !== undefined && value !== null)
             );
+        }
+
+        function buildAppliedFiltersCustomFields(eventData) {
+            const {
+                minFilterPrice,
+                maxFilterPrice
+            } = parseFilterPriceRange(eventData.price);
+
+            return compactObject({
+                ...(eventData?.customerAction?.customFields || {}),
+                hotelCategoryNames: normalizeArray(eventData.hotel_category),
+                hotelConcepts: normalizeArray(eventData.item_concept),
+                mealTypes: normalizeArray(eventData.meal),
+                minFilterPrice,
+                maxFilterPrice
+            });
+        }
+
+        function buildAppliedFiltersRequest(eventData) {
+            const customFields = buildAppliedFiltersCustomFields(eventData);
+            const productCategoryId = normalizeArray(eventData.item_destination_id)[0];
+
+            return {
+                viewProductCategory: {
+                    productCategory: {
+                        ids: {
+                            hotels: productCategoryId
+                        }
+                    },
+                    customerAction: {
+                        customFields
+                    }
+                }
+            };
         }
 
         function getSearchType(item) {
@@ -301,7 +351,7 @@
             },
             view_item: {
                 operation: 'Website.ViewHotel',
-                buildRequest: (itemID, itemPrice /*, roomName*/) => ({
+                buildRequest: (itemID, itemPrice /*, roomName*/ ) => ({
                     viewProduct: {
                         price: itemPrice,
                         product: {
@@ -336,6 +386,10 @@
                         }
                     }
                 })
+            },
+            applied_filters: {
+                operation: 'Website.ViewCategory',
+                buildRequest: (eventData) => buildAppliedFiltersRequest(eventData)
             }
         };
 
@@ -350,13 +404,11 @@
             const item = evt.ecommerce?.items?.[0] || {};
             const listActionCustomFields = buildListActionCustomFields(item);
             const args =
-                operation === 'Website.AddToFavourites'
-                    ? [item.item_id, listActionCustomFields]
-                    : (operation === 'Website.RemoveFromFavourites' ||
+                operation === 'Website.AddToFavourites' ? [item.item_id, listActionCustomFields] :
+                    operation === 'Website.ViewCategory' && evt.event === 'applied_filters' ? [evt] :
+                    (operation === 'Website.RemoveFromFavourites' ||
                         operation === 'Website.AddToComparison' ||
-                        operation === 'Website.RemoveFromComparison')
-                        ? [item.item_id]
-                        : [item.item_id, item.price, item.room_name, item.item_nights];
+                        operation === 'Website.RemoveFromComparison') ? [item.item_id] : [item.item_id, item.price, item.room_name, item.item_nights];
 
             sendWithRetry({
                 operation,
