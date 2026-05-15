@@ -1,274 +1,255 @@
 (() => {
-    const DESKTOP_CONTAINER_SELECTOR =
-        '[class*="HeaderMenuNonProductSearch_nonProductSearchContainer"]';
-    const DESKTOP_SEARCH_PANEL_SELECTOR =
-        '[class*="HeaderMenuNonProductSearchContent_nonProductSearchContainer"]';
-    const DESKTOP_TEXT_HIDE_BREAKPOINT = 1280;
     const STORIES_ROOT_SELECTOR = '#stories';
-    const DESKTOP_BLOCK_ATTRIBUTE = 'data-flamingo-desktop-block';
-    const DESKTOP_ROTATION_INTERVAL = 3 * 1000;
-    const DESKTOP_TEXT_REVEAL_DELAY = 180;
-    const DESKTOP_LINKS = [
+    const STORIES_WIDGET_ATTRIBUTE = 'data-stories-widget';
+    const STORIES_WIDGET_TITLE = 'Выгодные путешествия в июне!';
+    const STORIES_PALM_IMAGE_URL =
+        'https://b2ccdn.coral.ru/content/landing-pages/june-company/2026/bg.webp';
+    const STORIES_PHONE_IMAGE_URL =
+        'https://b2ccdn.coral.ru/content/landing-pages/june-company/2026/phone.webp';
+    const METRIKA_COUNTER_ID = 96674199;
+    const STORIES_ITEMS = [
         {
             image: 'https://b2ccdn.coral.ru/content/circle-1.webp',
             label: 'Семьей',
+            segment: 'family',
             storyIds: ['family'],
         },
         {
             image: 'https://b2ccdn.coral.ru/content/circle-2.webp',
             label: 'Парой',
+            segment: 'couple',
             storyIds: ['couple'],
         },
         {
             image: 'https://b2ccdn.coral.ru/content/circle-3.webp',
             label: 'Соло',
+            segment: 'solo',
             storyIds: ['solo'],
         },
     ];
-    let resizeObserver = null;
-    let desktopRotationIntervalId = null;
-    let desktopTextRevealTimeoutId = null;
 
     function ensureStyles() {
-        if (document.getElementById('flamingo-block-styles')) {
+        if (document.getElementById('stories-widget-styles')) {
             return;
         }
 
         const style = document.createElement('style');
-        style.id = 'flamingo-block-styles';
+        style.id = 'stories-widget-styles';
         style.textContent = `
-      .flamingo-block {
-        margin-left: auto;
-        margin-right: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-sizing: border-box;
-        flex-shrink: 0;
-        transition: margin-right 0.2s ease;
-      }
+          ${STORIES_ROOT_SELECTOR} {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            margin: -1px !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            clip: rect(0 0 0 0) !important;
+            clip-path: inset(100%) !important;
+            border: 0 !important;
+            white-space: nowrap !important;
+          }
 
-      .flamingo-block.flamingo-block--compact .flamingo-block__text {
-        max-width: 0;
-        opacity: 0;
-        margin-right: -8px;
-      }
+          .stories-widget {
+            position: fixed;
+            left: 50%;
+            bottom: -101px;
+            z-index: 40;
+            width: 348px;
+            height: 200px;
+            transform: translateX(-50%);
+            pointer-events: auto;
+          }
 
-      .flamingo-block__text {
-        color: #242424;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        white-space: nowrap;
-        max-width: 240px;
-        opacity: 1;
-        overflow: hidden;
-        transition:
-          max-width 0.22s ease,
-          opacity 0.16s ease,
-          margin-right 0.22s ease;
-      }
+          .stories-widget:hover .stories-widget__inner,
+          .stories-widget:focus-within .stories-widget__inner {
+            transform: translateY(-115px);
+          }
 
-      .flamingo-block:not(.flamingo-block--text-visible) .flamingo-block__text {
-        transition:
-          max-width 0.16s ease,
-          opacity 0.12s ease,
-          margin-right 0.16s ease;
-      }
+          .stories-widget__inner {
+            position: absolute;
+            
+            width: 100%;
+            height: 100%;
+            transition: transform 0.34s ease;
+            
+            background-image: url('${STORIES_PALM_IMAGE_URL}');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 348px 197px;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+          }
 
-      @media screen and (max-width: 991px) {
-        .flamingo-block {
-          display: none;
-        }
-      }
+          .stories-widget__title {
+            position: absolute;
+            bottom: 110px;
+            color: #141414;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.1;
+            text-align: center;
+            white-space: nowrap;
+          }
 
-      .flamingo-block__link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        min-width: 102px;
-        color: #242424;
-        border: 0;
-        padding: 0;
-        background: transparent;
-        cursor: pointer;
-        font: inherit;
-      }
+          .stories-widget__phone {
+            position: absolute;
+            bottom: -16px;
+            width: 265px;
+            height: 120px;
+            opacity: 0;
+            transition: opacity 0.22s ease;
+            pointer-events: none;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+          }
 
-      .flamingo-block__image {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
-        flex-shrink: 0;
-      }
+          .stories-widget:hover .stories-widget__phone,
+          .stories-widget:focus-within .stories-widget__phone {
+            opacity: 1;
+            pointer-events: auto;
+          }
 
-      .flamingo-block__label {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        white-space: nowrap;
-      }
-    `;
+          .stories-widget__phone-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            user-select: none;
+            pointer-events: none;
+          }
+
+          .stories-widget__stories {
+            position: absolute;
+            
+            bottom: 6px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            width: 210px;
+            
+          }
+
+          .stories-widget__story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #141414;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+            font: inherit;
+          }
+
+          .stories-widget__story-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+          }
+
+          .stories-widget__story-label {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.1;
+            text-align: center;
+            white-space: nowrap;
+          }
+
+          .stories-widget__story:focus-visible {
+            outline: 2px solid #141414;
+            outline-offset: 6px;
+            border-radius: 16px;
+          }
+          
+          .stories-widget__ads {
+            z-index: 2;
+            font-size: 6px;
+            line-height: 1;
+            position: absolute;
+            bottom: 97px;
+            color: white;
+          }
+
+          @media screen and (max-width: 991px) {
+            .stories-widget {
+              display: none;
+            }
+          }
+        `;
 
         document.head.appendChild(style);
     }
 
-    function insertDesktopBlock(target) {
-        if (!target) {
+    function renderStoriesButtons() {
+        return STORIES_ITEMS.map(
+            (item, index) => `
+              <button
+                type="button"
+                class="stories-widget__story"
+                data-story-index="${index}"
+              >
+                <img
+                  src="${item.image}"
+                  alt="${item.label}"
+                  class="stories-widget__story-image"
+                />
+                <span class="stories-widget__story-label">${item.label}</span>
+              </button>
+            `
+        ).join('');
+    }
+
+    function reachGoal(goalName, params) {
+        if (typeof window.ym !== 'function') {
+            return;
+        }
+
+        if (params) {
+            window.ym(METRIKA_COUNTER_ID, 'reachGoal', goalName, params);
+            return;
+        }
+
+        window.ym(METRIKA_COUNTER_ID, 'reachGoal', goalName);
+    }
+
+    function insertStoriesWidget() {
+        if (!document.body) {
             return false;
         }
 
-        if (
-            target.previousElementSibling?.hasAttribute(DESKTOP_BLOCK_ATTRIBUTE) ||
-            document.querySelector(`[${DESKTOP_BLOCK_ATTRIBUTE}]`)
-        ) {
+        if (document.querySelector(`[${STORIES_WIDGET_ATTRIBUTE}]`)) {
             return true;
         }
 
-        target.insertAdjacentHTML(
-            'beforebegin',
-            `<div ${DESKTOP_BLOCK_ATTRIBUTE} class="flamingo-block" data-link-index="0">
-        <span class="flamingo-block__text">Отправиться в путешествие:</span>
-        <button
-          type="button"
-          class="flamingo-block__link"
-        >
-          <img
-            src="${DESKTOP_LINKS[0].image}"
-            alt="${DESKTOP_LINKS[0].label}"
-            class="flamingo-block__image"
-          />
-          <span class="flamingo-block__label">${DESKTOP_LINKS[0].label}</span>
-        </button>
-      </div>`
+        document.body.insertAdjacentHTML(
+            'beforeend',
+            `<div ${STORIES_WIDGET_ATTRIBUTE} class="stories-widget">
+              <div class="stories-widget__inner">
+                <div class="stories-widget__phone">
+                  <img
+                    src="${STORIES_PHONE_IMAGE_URL}"
+                    alt=""
+                    class="stories-widget__phone-image"
+                  />
+                  <div class="stories-widget__stories">
+                    ${renderStoriesButtons()}
+                  </div>
+                </div>
+                <span class="stories-widget__title">${STORIES_WIDGET_TITLE}</span>
+                <span class="stories-widget__ads">Реклама. ООО «Центрбронь» erid: 2W5zFJmhQEu</span>
+              </div>
+            </div>`
         );
 
+        reachGoal('june_26_group_B');
+
         return true;
-    }
-
-    function rotateDesktopLink() {
-        const desktopBlock = document.querySelector(`[${DESKTOP_BLOCK_ATTRIBUTE}]`);
-        const desktopLink = desktopBlock?.querySelector('.flamingo-block__link');
-        const desktopImage = desktopBlock?.querySelector('.flamingo-block__image');
-        const desktopLabel = desktopBlock?.querySelector('.flamingo-block__label');
-
-        if (!desktopLink || !desktopImage || !desktopLabel) {
-            return;
-        }
-
-        const currentIndex = Number(desktopBlock.dataset.linkIndex || '0');
-        const nextIndex = (currentIndex + 1) % DESKTOP_LINKS.length;
-        const nextLink = DESKTOP_LINKS[nextIndex];
-
-        desktopImage.src = nextLink.image;
-        desktopImage.alt = nextLink.label;
-        desktopLabel.textContent = nextLink.label;
-        desktopBlock.dataset.linkIndex = String(nextIndex);
-    }
-
-    function startDesktopLinkRotation() {
-        const desktopBlock = document.querySelector(`[${DESKTOP_BLOCK_ATTRIBUTE}]`);
-        if (!desktopBlock) {
-            return;
-        }
-
-        if (desktopRotationIntervalId) {
-            return;
-        }
-
-        desktopRotationIntervalId = window.setInterval(() => {
-            rotateDesktopLink();
-        }, DESKTOP_ROTATION_INTERVAL);
-    }
-
-    function clearDesktopTextRevealTimeout() {
-        if (!desktopTextRevealTimeoutId) {
-            return;
-        }
-
-        window.clearTimeout(desktopTextRevealTimeoutId);
-        desktopTextRevealTimeoutId = null;
-    }
-
-    function setDesktopCompactState(desktopBlock, shouldHideText) {
-        const hasCompactClass = desktopBlock.classList.contains('flamingo-block--compact');
-
-        if (shouldHideText) {
-            clearDesktopTextRevealTimeout();
-
-            if (desktopBlock.classList.contains('flamingo-block--text-visible')) {
-                desktopBlock.classList.remove('flamingo-block--text-visible');
-            }
-
-            if (!hasCompactClass) {
-                desktopBlock.classList.add('flamingo-block--compact');
-            }
-
-            return;
-        }
-
-        if (!hasCompactClass) {
-            return;
-        }
-
-        clearDesktopTextRevealTimeout();
-        desktopTextRevealTimeoutId = window.setTimeout(() => {
-            desktopBlock.classList.add('flamingo-block--text-visible');
-            desktopBlock.classList.remove('flamingo-block--compact');
-            desktopTextRevealTimeoutId = null;
-        }, DESKTOP_TEXT_REVEAL_DELAY);
-    }
-
-    function updateDesktopBlockOffset() {
-        const desktopContainer = document.querySelector(DESKTOP_CONTAINER_SELECTOR);
-        const desktopBlock = document.querySelector(`[${DESKTOP_BLOCK_ATTRIBUTE}]`);
-
-        if (!desktopContainer || !desktopBlock) {
-            return;
-        }
-
-        const searchPanel = desktopContainer.querySelector(DESKTOP_SEARCH_PANEL_SELECTOR);
-        if (!searchPanel) {
-            if (desktopBlock.style.marginRight) {
-                desktopBlock.style.marginRight = '';
-            }
-
-            setDesktopCompactState(desktopBlock, false);
-
-            return;
-        }
-
-        const searchPanelWidth = searchPanel.getBoundingClientRect().width;
-        const offset = Math.max(searchPanelWidth - 40, 0);
-        const nextMarginRight = `${offset + 8}px`;
-        if (desktopBlock.style.marginRight !== nextMarginRight) {
-            desktopBlock.style.marginRight = nextMarginRight;
-        }
-
-        const shouldHideText =
-            window.innerWidth < DESKTOP_TEXT_HIDE_BREAKPOINT && searchPanelWidth > 40;
-        setDesktopCompactState(desktopBlock, shouldHideText);
-    }
-
-    function observeDesktopSearchPanelSize() {
-        const desktopContainer = document.querySelector(DESKTOP_CONTAINER_SELECTOR);
-        const searchPanel = desktopContainer?.querySelector(DESKTOP_SEARCH_PANEL_SELECTOR);
-
-        if (resizeObserver) {
-            resizeObserver.disconnect();
-            resizeObserver = null;
-        }
-
-        if (!searchPanel || typeof ResizeObserver === 'undefined') {
-            return;
-        }
-
-        resizeObserver = new ResizeObserver(() => {
-            updateDesktopBlockOffset();
-        });
-
-        resizeObserver.observe(searchPanel);
     }
 
     function openStoryById(storyIds) {
@@ -290,72 +271,73 @@
         }
     }
 
-    function bindDesktopClickHandler() {
-        const desktopBlock = document.querySelector(`[${DESKTOP_BLOCK_ATTRIBUTE}]`);
-        const desktopLink = document.querySelector(`[${DESKTOP_BLOCK_ATTRIBUTE}] .flamingo-block__link`);
-
-        if (!desktopBlock || !desktopLink || desktopLink.dataset.goalBound === 'true') {
+    function bindStoriesWidget() {
+        const widget = document.querySelector(`[${STORIES_WIDGET_ATTRIBUTE}]`);
+        if (!widget || widget.dataset.bound === 'true') {
             return;
         }
 
-        desktopLink.dataset.goalBound = 'true';
-        desktopLink.addEventListener('click', () => {
-            const currentIndex = Number(desktopBlock.dataset.linkIndex || '0');
-            const currentLink = DESKTOP_LINKS[currentIndex] || DESKTOP_LINKS[0];
-            openStoryById(currentLink.storyIds);
-        });
-    }
+        widget.dataset.bound = 'true';
+        widget.dataset.showGoalSent = 'false';
 
-    function syncDesktopUi() {
-        ensureStyles();
-
-        const desktopContainer = document.querySelector(DESKTOP_CONTAINER_SELECTOR);
-        if (!insertDesktopBlock(desktopContainer)) {
-            return false;
-        }
-
-        updateDesktopBlockOffset();
-        observeDesktopSearchPanelSize();
-        startDesktopLinkRotation();
-        bindDesktopClickHandler();
-        return true;
-    }
-
-    function initDesktop() {
-        if (syncDesktopUi()) {
-            const desktopObserver = new MutationObserver(() => {
-                syncDesktopUi();
-            });
-
-            desktopObserver.observe(document.documentElement, {
-                childList: true,
-                subtree: true,
-            });
-
-            return;
-        }
-
-        const desktopBootstrapObserver = new MutationObserver(() => {
-            if (!syncDesktopUi()) {
+        const sendShowGoal = () => {
+            if (widget.dataset.showGoalSent === 'true') {
                 return;
             }
 
-            desktopBootstrapObserver.disconnect();
+            widget.dataset.showGoalSent = 'true';
+            reachGoal('june_26_sticky_bar_show');
+        };
 
-            const desktopObserver = new MutationObserver(() => {
-                syncDesktopUi();
+        widget.addEventListener('mouseenter', sendShowGoal);
+        widget.addEventListener('focusin', sendShowGoal);
+        widget.addEventListener('click', (event) => {
+            const button = event.target instanceof Element
+                ? event.target.closest('.stories-widget__story')
+                : null;
+
+            if (!(button instanceof HTMLElement)) {
+                return;
+            }
+
+            const storyIndex = Number(button.dataset.storyIndex || '-1');
+            const storyItem = STORIES_ITEMS[storyIndex];
+            if (!storyItem) {
+                return;
+            }
+
+            reachGoal('june_26_stories_click_sticky_bar', {
+                segment: storyItem.segment,
             });
-
-            desktopObserver.observe(document.documentElement, {
-                childList: true,
-                subtree: true,
-            });
-        });
-
-        desktopBootstrapObserver.observe(document.documentElement, {
-            childList: true,
-            subtree: true,
+            openStoryById(storyItem.storyIds);
         });
     }
-    initDesktop();
+
+    function initStoriesWidget() {
+        ensureStyles();
+
+        if (!insertStoriesWidget()) {
+            return false;
+        }
+
+        bindStoriesWidget();
+        return true;
+    }
+
+    function bootstrap() {
+        if (document.body) {
+            initStoriesWidget();
+            return;
+        }
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            () => {
+                initStoriesWidget();
+            },
+            { once: true }
+        );
+    }
+
+    bootstrap();
 })();
