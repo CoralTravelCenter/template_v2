@@ -1,6 +1,8 @@
 (() => {
     const STORIES_ROOT_SELECTOR = '#stories';
     const STORIES_WIDGET_ATTRIBUTE = 'data-stories-widget';
+    const STORIES_WIDGET_ACTIVE_ATTRIBUTE = 'data-stories-widget-active';
+    const STORIES_LOCATION_CHANGE_EVENT = 'stories-widget-location-change';
     const STORIES_WIDGET_TITLE = 'Выгодные путешествия в июне!';
     const STORIES_PALM_IMAGE_URL =
         'https://b2ccdn.coral.ru/content/landing-pages/june-company/2026/bg.webp';
@@ -36,7 +38,7 @@
         const style = document.createElement('style');
         style.id = 'stories-widget-styles';
         style.textContent = `
-          ${STORIES_ROOT_SELECTOR} {
+          body[${STORIES_WIDGET_ACTIVE_ATTRIBUTE}="true"] ${STORIES_ROOT_SELECTOR} {
             position: absolute !important;
             width: 1px !important;
             height: 1px !important;
@@ -223,6 +225,8 @@
             return false;
         }
 
+        document.body.setAttribute(STORIES_WIDGET_ACTIVE_ATTRIBUTE, 'true');
+
         if (document.querySelector(`[${STORIES_WIDGET_ATTRIBUTE}]`)) {
             return true;
         }
@@ -250,6 +254,16 @@
         reachGoal('june_26_group_B');
 
         return true;
+    }
+
+    function removeStoriesWidget() {
+        const widget = document.querySelector(`[${STORIES_WIDGET_ATTRIBUTE}]`);
+        widget?.remove();
+        document.body?.removeAttribute(STORIES_WIDGET_ACTIVE_ATTRIBUTE);
+    }
+
+    function isHomePage() {
+        return window.location.pathname === '/';
     }
 
     function openStoryById(storyIds) {
@@ -316,6 +330,11 @@
     function initStoriesWidget() {
         ensureStyles();
 
+        if (!isHomePage()) {
+            removeStoriesWidget();
+            return false;
+        }
+
         if (!insertStoriesWidget()) {
             return false;
         }
@@ -324,7 +343,40 @@
         return true;
     }
 
+    function setupLocationChangeSync() {
+        if (window.__storiesWidgetLocationSyncBound) {
+            return;
+        }
+
+        window.__storiesWidgetLocationSyncBound = true;
+
+        const syncOnLocationChange = () => {
+            initStoriesWidget();
+        };
+
+        const wrapHistoryMethod = (methodName) => {
+            const originalMethod = window.history[methodName];
+            if (typeof originalMethod !== 'function') {
+                return;
+            }
+
+            window.history[methodName] = function (...args) {
+                const result = originalMethod.apply(this, args);
+                window.dispatchEvent(new Event(STORIES_LOCATION_CHANGE_EVENT));
+                return result;
+            };
+        };
+
+        wrapHistoryMethod('pushState');
+        wrapHistoryMethod('replaceState');
+
+        window.addEventListener('popstate', syncOnLocationChange);
+        window.addEventListener(STORIES_LOCATION_CHANGE_EVENT, syncOnLocationChange);
+    }
+
     function bootstrap() {
+        setupLocationChangeSync();
+
         if (document.body) {
             initStoriesWidget();
             return;
