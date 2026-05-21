@@ -26,9 +26,9 @@
       desktop:
         'https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/main-page/turkey_1440.webp',
       tablet:
-        'https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/main-page/turkey_992.webp',
-      mobile:
         'https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/main-page/turkey_768.webp',
+      mobile:
+        'https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/main-page/turkey_992.webp',
     },
   ];
 
@@ -140,6 +140,7 @@
         background-color: #fff;
         border-radius: 48px;
         font-weight: 600;
+        text-decoration: none;
       }
 
       ${BANNER_ROOT_SELECTOR} .elite-main-banner-button:hover {
@@ -246,7 +247,7 @@
         <div class="elite-main-banner-content">
           <h2 class="elite-main-banner-title">${escapeHtml(slide.title || '')}</h2>
           <p class="elite-main-banner-description">${escapeHtml(slide.description || '')}</p>
-          <a class="elite-main-banner-link elite-main-banner-button" href="${escapeHtml(href)}" aria-label="${escapeHtml(slide.buttonText || slide.alt)}">
+          <a class="elite-main-banner-button" href="${escapeHtml(href)}" aria-label="${escapeHtml(slide.buttonText || slide.alt)}">
             ${escapeHtml(slide.buttonText || 'Подробнее')}
           </a>
         </div>
