@@ -7,9 +7,10 @@
       alt: 'Elite Service Turkey',
       href: 'https://www.coral.ru/main/turkey/elite/',
       erid: '2W5zFGRaL6m',
+      bannerMetricName: 'turkey',
       title: 'Премиальный уровень комфорта в Турции',
       description: 'Выбирайте отдых, продуманный до мелочей',
-      buttonText: 'Выбрать тур',
+      buttonText: 'Выбрать отель',
       desktop:
         'https://b2ccdn.coral.ru/content/landing-pages/elite-service/2026/main-page/turkey_1440.webp',
       tablet:
@@ -22,6 +23,7 @@
       alt: 'Elite Service Egypt',
       href: 'https://www.coral.ru/main/egypt/elite/',
       erid: '2W5zFGYzGWV',
+      bannerMetricName: 'egypt',
       title: 'Элитный отдых в Египте',
       description: 'Премиальное питание, виллы и консьерж-сервис',
       buttonText: 'Выбрать отель',
@@ -336,7 +338,7 @@
     const href = slide.href || 'javascript:void(0)';
 
     return `
-      <a class="elite-main-banner-card" href="${escapeHtml(href)}" aria-label="${escapeHtml(slide.alt)}" target="_blank">
+      <a class="elite-main-banner-card" href="${escapeHtml(href)}" aria-label="${escapeHtml(slide.alt)}" target="_blank" data-banner-metric-name="${escapeHtml(slide.bannerMetricName || slide.id || '')}">
         <div class="elite-main-banner-picture">
           <img
             src="${escapeHtml(getSlideImageByBreakpoint(slide))}"
@@ -546,6 +548,33 @@
     });
   }
 
+  function initBannerAnalytics(root) {
+    const cards = root.querySelectorAll('.elite-main-banner-card');
+
+    cards.forEach((card) => {
+      if (card.dataset.analyticsInitialized === 'true') {
+        return;
+      }
+
+      card.dataset.analyticsInitialized = 'true';
+
+      card.addEventListener('click', () => {
+        if (typeof window.ym !== 'function') {
+          return;
+        }
+
+        window.ym(
+          96674199,
+          'reachGoal',
+          'personalization_elite_select_promotion',
+          {
+            name_banner: card.dataset.bannerMetricName || '',
+          }
+        );
+      });
+    });
+  }
+
   function getSwiperHost(root) {
     return (
       root.querySelector('swiper-container') ||
@@ -638,6 +667,7 @@
     if (hasCustomSlides(root)) {
       updateResponsiveImages(root);
       initAdvControls(root);
+      initBannerAnalytics(root);
       return true;
     }
 
@@ -654,6 +684,7 @@
     if (replaced) {
       updateResponsiveImages(root);
       initAdvControls(root);
+      initBannerAnalytics(root);
     }
 
     return replaced;
