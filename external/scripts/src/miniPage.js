@@ -7,6 +7,7 @@ const DIRECT_REMOVABLE_SELECTORS = ['#section-row-16', '#holiday-guide-block', '
 const HOTELS_OF_WEEK_SWIPER_SELECTOR = '.hotels-of-the-week .swiper';
 const MAX_SLIDES = 5;
 const STYLE_ELEMENT_ID = 'mini-page-overrides';
+const SCROLL_GOAL_PERCENT = 20;
 const MINI_PAGE_BLOCKS = [
     {
         blockName: 'actions',
@@ -231,11 +232,53 @@ function runCleanup() {
     renderMiniPageBlocks();
 }
 
+function getScrollProgressPercent() {
+    const documentElement = document.documentElement;
+    const scrollTop = window.scrollY || documentElement.scrollTop || 0;
+    const viewportHeight = window.innerHeight || documentElement.clientHeight || 0;
+    const scrollHeight = documentElement.scrollHeight || 0;
+    const maxScrollableDistance = scrollHeight - viewportHeight;
+
+    if (maxScrollableDistance <= 0) {
+        return 100;
+    }
+
+    return (scrollTop / (scrollHeight - viewportHeight)) * 100;
+}
+
+function initScrollGoalTracking() {
+    if (window.__miniPageScrollGoalInitialized) {
+        return;
+    }
+
+    window.__miniPageScrollGoalInitialized = true;
+
+    const onScroll = () => {
+        if (window.__miniPageScrollGoalSent) {
+            return;
+        }
+
+        if (getScrollProgressPercent() < SCROLL_GOAL_PERCENT) {
+            return;
+        }
+
+        window.__miniPageScrollGoalSent = true;
+        window.ym?.(215233, 'reachGoal', 'min_home_page_group_B', { scroll: String(SCROLL_GOAL_PERCENT) });
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+}
+
 window.renderMiniPageBlocks = renderMiniPageBlocks;
 document.addEventListener('miniPageBlockRegistered', renderMiniPageBlocks);
 
 hostReactAppReady().then(() => {
     runCleanup();
+    initScrollGoalTracking();
 
     window.ym?.(215233, 'reachGoal', 'min_home_page_group_B');
 
