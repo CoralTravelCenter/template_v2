@@ -1,4 +1,3 @@
-<body>
 <style>
     .card__sale[hidden],
     .card__promo[hidden] {
@@ -398,6 +397,7 @@
     .card__promo {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         p {
             font-size: 16px;
@@ -409,12 +409,31 @@
         border-top: 1px solid rgba(0, 0, 0, 0.04);
         padding-top: 4px;
         margin-top: 4px;
+        justify-content: flex-start;
     }
 
     .card__price-separator {
         font-size: 24px;
         line-height: 32px;
         font-weight: 600;
+    }
+
+    .card__days {
+        font-size: 12px;
+    }
+
+    .card__adults {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        gap: 2px;
+        margin-left: 4px;
+    }
+
+    .card__spec {
+        display: flex;
+        align-items: center;
+        margin-left: 4px;
     }
 
     .card__img img {
@@ -438,6 +457,7 @@
         color: #077DAD;
         font-size: 20px;
         font-weight: 600;
+        margin-left: auto;
     }
 
     .card__promo-value,
@@ -475,21 +495,20 @@
             line-height: 20px;
         }
     }
-
+</style>
+<style>
     .card__timer[hidden] {
         display: none !important;
     }
-</style>
-<style>
-    .tabs__pane {
+    .coral-main .tabs__pane {
         display: none
     }
 
-    .tabs__pane--active {
+    .coral-main .tabs__pane--active {
         display: block
     }
 
-    .tabs__tab {
+    .coral-main .tabs__tab {
         height: 40px;
         color: inherit;
         cursor: pointer;
@@ -505,12 +524,12 @@
         display: flex
     }
 
-    .tabs__tab--active {
+    .coral-main .tabs__tab--active {
         color: #000;
         background-color: #D2E9FB
     }
 
-    .tabs__nav {
+    .coral-main .tabs__nav {
         background-color: #f5f5f8;
         border-radius: 40px;
         flex-wrap: wrap;
@@ -575,7 +594,7 @@
                                     </div>
                                     <div class="card__timer">
                                         <p>
-                                            Обновится через
+                                            Скидка действует еще
                                         </p>
                                         <span>
                                             XX ч
@@ -632,6 +651,23 @@
                                             <span class="card__bold">
                                                 Цена
                                             </span>
+                                            <div class="card__spec">
+                                                <span class="card__days">
+                                                    за 7 ночей
+                                                </span>
+                                                <div class="card__adults">
+                                                    <span>
+                                                        •
+                                                    </span>
+                                                    <span>
+                                                        2
+                                                    </span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 8.5C6.895 8.5 5.83526 8.93896 5.05391 9.72031C4.27256 10.5017 3.8336 11.5614 3.8336 12.6664V13.3336C3.8336 13.4662 3.78092 13.5934 3.68716 13.6872C3.59339 13.7809 3.46621 13.8336 3.3336 13.8336C3.20099 13.8336 3.07382 13.7809 2.98005 13.6872C2.88628 13.5934 2.8336 13.4662 2.8336 13.3336V12.6664C2.8336 11.2962 3.37792 9.98209 4.34681 9.0132C5.31569 8.04432 6.62979 7.5 8 7.5C9.37022 7.5 10.6843 8.04432 11.6532 9.0132C12.6221 9.98209 13.1664 11.2962 13.1664 12.6664V13.3336C13.1664 13.4662 13.1137 13.5934 13.02 13.6872C12.9262 13.7809 12.799 13.8336 12.6664 13.8336C12.5338 13.8336 12.4066 13.7809 12.3128 13.6872C12.2191 13.5934 12.1664 13.4662 12.1664 13.3336V12.6664C12.1664 11.5614 11.7274 10.5017 10.9461 9.72031C10.1647 8.93896 9.105 8.5 8 8.5Z" fill="black" fill-opacity="0.85"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 3.16644C7.71545 3.16644 7.43369 3.22248 7.1708 3.33137C6.90792 3.44027 6.66905 3.59987 6.46784 3.80108C6.26664 4.00228 6.10703 4.24115 5.99814 4.50404C5.88925 4.76693 5.8332 5.04869 5.8332 5.33324C5.8332 5.61778 5.88925 5.89955 5.99814 6.16243C6.10703 6.42532 6.26664 6.66419 6.46784 6.8654C6.66905 7.0666 6.90792 7.22621 7.1708 7.3351C7.43369 7.44399 7.71545 7.50004 8 7.50004C8.57467 7.50004 9.12581 7.27175 9.53216 6.8654C9.93852 6.45904 10.1668 5.90791 10.1668 5.33324C10.1668 4.75857 9.93852 4.20743 9.53216 3.80108C9.12581 3.39472 8.57467 3.16644 8 3.16644ZM4.8336 5.33364C4.8336 4.49385 5.16721 3.68847 5.76102 3.09465C6.35484 2.50084 7.16022 2.16724 8 2.16724C8.83978 2.16724 9.64517 2.50084 10.239 3.09465C10.8328 3.68847 11.1664 4.49385 11.1664 5.33364C11.1664 6.17342 10.8328 6.9788 10.239 7.57262C9.64517 8.16643 8.83978 8.50004 8 8.50004C7.16022 8.50004 6.35484 8.16643 5.76102 7.57262C5.16721 6.9788 4.8336 6.17342 4.8336 5.33364Z" fill="black" fill-opacity="0.85"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
                                             <span class="card__price-finale-value">
                                                 -
                                             </span>
@@ -647,7 +683,7 @@
                                     </div>
                                     <div class="card__timer">
                                         <p>
-                                            Обновится через
+                                            Новый отель через
                                         </p>
                                         <span>
                                             XX ч
@@ -672,7 +708,7 @@
                                     </div>
                                     <div class="card__timer">
                                         <p>
-                                            Обновится через
+                                            Новый отель через
                                         </p>
                                         <span>
                                             XX ч
@@ -709,203 +745,565 @@
 
     hostReactAppReady().then(async () => {
         const hotelBeginDates = [
-            ['2026-04-20T00:00:00Z', '2026-05-20T00:00:00Z'],
-            ['2026-04-20T00:00:00Z', '2026-05-20T00:00:00Z'],
-            ['2026-04-20T00:00:00Z', '2026-05-20T00:00:00Z']
+            ['2026-05-25T00:00:00Z', '2026-06-25T00:00:00Z'],
+            ['2026-05-25T00:00:00Z', '2026-06-25T00:00:00Z'],
+            ['2026-05-25T00:00:00Z', '2026-06-25T00:00:00Z']
         ];
         const hotelsSchedule = {
-            turkey: [{
-                    hotelId: '875-7',
-                    scheduleDate: '2026-04-09'
+            turkey: [
+                {
+                    hotelId: '853-7',
+                    scheduleDate: '2026-05-25'
                 },
                 {
-                    hotelId: '626-7',
-                    scheduleDate: '2026-04-09'
+                    hotelId: '21627-7',
+                    scheduleDate: '2026-05-25'
                 },
                 {
-                    hotelId: '623-7',
-                    scheduleDate: '2026-04-09'
+                    hotelId: '345-7',
+                    scheduleDate: '2026-05-25'
                 },
                 {
-                    hotelId: '975-7',
-                    scheduleDate: '2026-04-10'
+                    hotelId: '21796-7',
+                    scheduleDate: '2026-05-26'
                 },
                 {
-                    hotelId: '30511-7',
-                    scheduleDate: '2026-04-11'
-                },
-                {
-                    hotelId: '325-7',
-                    scheduleDate: '2026-04-12'
-                },
-                {
-                    hotelId: '24420-7',
-                    scheduleDate: '2026-04-13'
-                },
-                {
-                    hotelId: '13570-7',
-                    scheduleDate: '2026-04-14'
-                },
-                {
-                    hotelId: '983-7',
-                    scheduleDate: '2026-04-15'
-                },
-                {
-                    hotelId: '33799-7',
-                    scheduleDate: '2026-04-16'
-                },
-                {
-                    hotelId: '476-7',
-                    scheduleDate: '2026-04-17'
-                },
-                {
-                    hotelId: '8194-7',
-                    scheduleDate: '2026-04-18'
-                },
-                {
-                    hotelId: '11754-7',
-                    scheduleDate: '2026-04-19'
-                },
-                {
-                    hotelId: '972-7',
-                    scheduleDate: '2026-04-20'
-                },
-                {
-                    hotelId: '674-7',
-                    scheduleDate: '2026-04-21'
-                },
-                {
-                    hotelId: '948-7',
-                    scheduleDate: '2026-04-22'
-                },
-                {
-                    hotelId: '453-7',
-                    scheduleDate: '2026-04-23'
-                },
-                {
-                    hotelId: '4139-7',
-                    scheduleDate: '2026-04-24'
-                },
-                {
-                    hotelId: '947-7',
-                    scheduleDate: '2026-04-25'
+                    hotelId: '57116-7',
+                    scheduleDate: '2026-05-27'
                 },
                 {
                     hotelId: '9910-7',
-                    scheduleDate: '2026-04-26'
+                    scheduleDate: '2026-05-28'
                 },
                 {
-                    hotelId: '703-7',
-                    scheduleDate: '2026-04-27'
+                    hotelId: '682-7',
+                    scheduleDate: '2026-05-29'
                 },
                 {
-                    hotelId: '973-7',
-                    scheduleDate: '2026-04-28'
+                    hotelId: '875-7',
+                    scheduleDate: '2026-05-30'
+                },
+                {
+                    hotelId: '22140-7',
+                    scheduleDate: '2026-05-31'
+                },
+                {
+                    hotelId: '4407-7',
+                    scheduleDate: '2026-06-01'
+                },
+                {
+                    hotelId: '947-7',
+                    scheduleDate: '2026-06-02'
+                },
+                {
+                    hotelId: '4138-7',
+                    scheduleDate: '2026-06-03'
+                },
+                {
+                    hotelId: '1000-7',
+                    scheduleDate: '2026-06-04'
+                },
+                {
+                    hotelId: '30718-7',
+                    scheduleDate: '2026-06-05'
+                },
+                {
+                    hotelId: '52247-7',
+                    scheduleDate: '2026-06-06'
+                },
+                {
+                    hotelId: '768-7',
+                    scheduleDate: '2026-06-07'
+                },
+                {
+                    hotelId: '18408-7',
+                    scheduleDate: '2026-06-08'
+                },
+                {
+                    hotelId: '983-7',
+                    scheduleDate: '2026-06-09'
+                },
+                {
+                    hotelId: '748-7',
+                    scheduleDate: '2026-06-10'
+                },
+                {
+                    hotelId: '737-7',
+                    scheduleDate: '2026-06-11'
+                },
+                {
+                    hotelId: '749-7',
+                    scheduleDate: '2026-06-12'
+                },
+                {
+                    hotelId: '9132-7',
+                    scheduleDate: '2026-06-13'
+                },
+                {
+                    hotelId: '8384-7',
+                    scheduleDate: '2026-06-14'
+                },
+                {
+                    hotelId: '11051-7',
+                    scheduleDate: '2026-06-15'
+                },
+                {
+                    hotelId: '30511-7',
+                    scheduleDate: '2026-06-16'
+                },
+                {
+                    hotelId: '26682-7',
+                    scheduleDate: '2026-06-17'
+                },
+                {
+                    hotelId: '330-7',
+                    scheduleDate: '2026-06-18'
+                },
+                {
+                    hotelId: '1004-7',
+                    scheduleDate: '2026-06-19'
+                },
+                {
+                    hotelId: '5174-7',
+                    scheduleDate: '2026-06-20'
+                },
+                {
+                    hotelId: '21795-7',
+                    scheduleDate: '2026-06-21'
+                },
+                {
+                    hotelId: '628-7',
+                    scheduleDate: '2026-06-22'
+                },
+                {
+                    hotelId: '73847-7',
+                    scheduleDate: '2026-06-23'
+                },
+                {
+                    hotelId: '49865-7',
+                    scheduleDate: '2026-06-24'
+                },
+                {
+                    hotelId: '54629-7',
+                    scheduleDate: '2026-06-25'
+                },
+                {
+                    hotelId: '906-7',
+                    scheduleDate: '2026-06-26'
                 },
                 {
                     hotelId: '679-7',
-                    scheduleDate: '2026-04-29'
+                    scheduleDate: '2026-06-27'
                 },
                 {
-                    hotelId: '8116-7',
-                    scheduleDate: '2026-04-30'
+                    hotelId: '476-7',
+                    scheduleDate: '2026-06-28'
+                },
+                {
+                    hotelId: '6455-7',
+                    scheduleDate: '2026-06-29'
+                },
+                {
+                    hotelId: '12879-7',
+                    scheduleDate: '2026-06-30'
+                },
+                {
+                    hotelId: '13570-7',
+                    scheduleDate: '2026-07-01'
+                },
+                {
+                    hotelId: '988-7',
+                    scheduleDate: '2026-07-02'
+                },
+                {
+                    hotelId: '29657-7',
+                    scheduleDate: '2026-07-03'
+                },
+                {
+                    hotelId: '17813-7',
+                    scheduleDate: '2026-07-04'
+                },
+                {
+                    hotelId: '4305-7',
+                    scheduleDate: '2026-07-05'
+                },
+                {
+                    hotelId: '460-7',
+                    scheduleDate: '2026-07-06'
+                },
+                {
+                    hotelId: '588-7',
+                    scheduleDate: '2026-07-07'
+                },
+                {
+                    hotelId: '358-7',
+                    scheduleDate: '2026-07-08'
+                },
+                {
+                    hotelId: '311-7',
+                    scheduleDate: '2026-07-09'
+                },
+                {
+                    hotelId: '12880-7',
+                    scheduleDate: '2026-07-10'
+                },
+                {
+                    hotelId: '11768-7',
+                    scheduleDate: '2026-07-11'
+                },
+                {
+                    hotelId: '76483-7',
+                    scheduleDate: '2026-07-12'
+                },
+                {
+                    hotelId: '20518-7',
+                    scheduleDate: '2026-07-13'
+                },
+                {
+                    hotelId: '52437-7',
+                    scheduleDate: '2026-07-14'
+                },
+                {
+                    hotelId: '21298-7',
+                    scheduleDate: '2026-07-15'
+                },
+                {
+                    hotelId: '15815-7',
+                    scheduleDate: '2026-07-16'
+                },
+                {
+                    hotelId: '21863-7',
+                    scheduleDate: '2026-07-17'
+                },
+                {
+                    hotelId: '987-7',
+                    scheduleDate: '2026-07-18'
+                },
+                {
+                    hotelId: '8232-7',
+                    scheduleDate: '2026-07-19'
+                },
+                {
+                    hotelId: '10825-7',
+                    scheduleDate: '2026-07-20'
+                },
+                {
+                    hotelId: '970-7',
+                    scheduleDate: '2026-07-21'
+                },
+                {
+                    hotelId: '983-7',
+                    scheduleDate: '2026-07-22'
+                },
+                {
+                    hotelId: '15801-7',
+                    scheduleDate: '2026-07-23'
+                },
+                {
+                    hotelId: '24420-7',
+                    scheduleDate: '2026-07-24'
+                },
+                {
+                    hotelId: '942-7',
+                    scheduleDate: '2026-07-25'
+                },
+                {
+                    hotelId: '17847-7',
+                    scheduleDate: '2026-07-26'
+                },
+                {
+                    hotelId: '975-7',
+                    scheduleDate: '2026-07-27'
+                },
+                {
+                    hotelId: '565-7',
+                    scheduleDate: '2026-07-28'
+                },
+                {
+                    hotelId: '915-7',
+                    scheduleDate: '2026-07-29'
+                },
+                {
+                    hotelId: '841-7',
+                    scheduleDate: '2026-07-30'
                 }
             ],
-            egypt: [{
-                hotelId: '19936-7',
-                scheduleDate: '2026-04-09'
-            },
+            egypt: [
                 {
-                    hotelId: '29816-7',
-                    scheduleDate: '2026-04-09'
+                    hotelId: '7538-7',
+                    scheduleDate: '2026-05-25'
                 },
                 {
-                    hotelId: '58-7',
-                    scheduleDate: '2026-04-09'
-                },
-                {
-                    hotelId: '50000-7',
-                    scheduleDate: '2026-04-10'
-                },
-                {
-                    hotelId: '13279-7',
-                    scheduleDate: '2026-04-11'
-                },
-                {
-                    hotelId: '157-7',
-                    scheduleDate: '2026-04-12'
-                },
-                {
-                    hotelId: '84-7',
-                    scheduleDate: '2026-04-13'
-                },
-                {
-                    hotelId: '78607-7',
-                    scheduleDate: '2026-04-14'
-                },
-                {
-                    hotelId: '50799-7',
-                    scheduleDate: '2026-04-15'
-                },
-                {
-                    hotelId: '15577-7',
-                    scheduleDate: '2026-04-16'
-                },
-                {
-                    hotelId: '7568-7',
-                    scheduleDate: '2026-04-17'
-                },
-                {
-                    hotelId: '31420-7',
-                    scheduleDate: '2026-04-18'
-                },
-                {
-                    hotelId: '129-7',
-                    scheduleDate: '2026-04-19'
-                },
-                {
-                    hotelId: '82642-7',
-                    scheduleDate: '2026-04-20'
-                },
-                {
-                    hotelId: '19937-7',
-                    scheduleDate: '2026-04-21'
-                },
-                {
-                    hotelId: '78-7',
-                    scheduleDate: '2026-04-22'
-                },
-                {
-                    hotelId: '8387-7',
-                    scheduleDate: '2026-04-23'
-                },
-                {
-                    hotelId: '98-7',
-                    scheduleDate: '2026-04-24'
-                },
-                {
-                    hotelId: '49757-7',
-                    scheduleDate: '2026-04-25'
+                    hotelId: '35251-7',
+                    scheduleDate: '2026-05-25'
                 },
                 {
                     hotelId: '187-7',
-                    scheduleDate: '2026-04-26'
+                    scheduleDate: '2026-05-25'
                 },
                 {
-                    hotelId: '126-7',
-                    scheduleDate: '2026-04-27'
+                    hotelId: '7537-7',
+                    scheduleDate: '2026-05-26'
+                },
+                {
+                    hotelId: '105-7',
+                    scheduleDate: '2026-05-27'
+                },
+                {
+                    hotelId: '3923-7',
+                    scheduleDate: '2026-05-28'
+                },
+                {
+                    hotelId: '7601-7',
+                    scheduleDate: '2026-05-29'
+                },
+                {
+                    hotelId: '50799-7',
+                    scheduleDate: '2026-05-30'
+                },
+                {
+                    hotelId: '33392-7',
+                    scheduleDate: '2026-05-31'
+                },
+                {
+                    hotelId: '74919-7',
+                    scheduleDate: '2026-06-01'
+                },
+                {
+                    hotelId: '195-7',
+                    scheduleDate: '2026-06-02'
+                },
+                {
+                    hotelId: '30463-7',
+                    scheduleDate: '2026-06-03'
+                },
+                {
+                    hotelId: '35661-7',
+                    scheduleDate: '2026-06-04'
+                },
+                {
+                    hotelId: '54272-7',
+                    scheduleDate: '2026-06-05'
+                },
+                {
+                    hotelId: '153-7',
+                    scheduleDate: '2026-06-06'
+                },
+                {
+                    hotelId: '49757-7',
+                    scheduleDate: '2026-06-07'
+                },
+                {
+                    hotelId: '181-7',
+                    scheduleDate: '2026-06-08'
+                },
+                {
+                    hotelId: '78-7',
+                    scheduleDate: '2026-06-09'
+                },
+                {
+                    hotelId: '94-7',
+                    scheduleDate: '2026-06-10'
+                },
+                {
+                    hotelId: '129-7',
+                    scheduleDate: '2026-06-11'
+                },
+                {
+                    hotelId: '119-7',
+                    scheduleDate: '2026-06-12'
+                },
+                {
+                    hotelId: '3930-7',
+                    scheduleDate: '2026-06-13'
+                },
+                {
+                    hotelId: '101-7',
+                    scheduleDate: '2026-06-14'
+                },
+                {
+                    hotelId: '19935-7',
+                    scheduleDate: '2026-06-15'
+                },
+                {
+                    hotelId: '3743-7',
+                    scheduleDate: '2026-06-16'
+                },
+                {
+                    hotelId: '11612-7',
+                    scheduleDate: '2026-06-17'
+                },
+                {
+                    hotelId: '74918-7',
+                    scheduleDate: '2026-06-18'
+                },
+                {
+                    hotelId: '3910-7',
+                    scheduleDate: '2026-06-19'
+                },
+                {
+                    hotelId: '34314-7',
+                    scheduleDate: '2026-06-20'
+                },
+                {
+                    hotelId: '10187-7',
+                    scheduleDate: '2026-06-21'
+                },
+                {
+                    hotelId: '10796-7',
+                    scheduleDate: '2026-06-22'
+                },
+                {
+                    hotelId: '131-7',
+                    scheduleDate: '2026-06-23'
                 },
                 {
                     hotelId: '64951-7',
-                    scheduleDate: '2026-04-28'
+                    scheduleDate: '2026-06-24'
+                },
+                {
+                    hotelId: '9008-7',
+                    scheduleDate: '2026-06-25'
+                },
+                {
+                    hotelId: '13279-7',
+                    scheduleDate: '2026-06-26'
+                },
+                {
+                    hotelId: '49757-7',
+                    scheduleDate: '2026-06-27'
+                },
+                {
+                    hotelId: '14774-7',
+                    scheduleDate: '2026-06-28'
                 },
                 {
                     hotelId: '19943-7',
-                    scheduleDate: '2026-04-29'
+                    scheduleDate: '2026-06-29'
                 },
                 {
-                    hotelId: '90-7',
-                    scheduleDate: '2026-04-30'
+                    hotelId: '196-7',
+                    scheduleDate: '2026-06-30'
+                },
+                {
+                    hotelId: '7891-7',
+                    scheduleDate: '2026-07-01'
+                },
+                {
+                    hotelId: '4085-7',
+                    scheduleDate: '2026-07-02'
+                },
+                {
+                    hotelId: '58-7',
+                    scheduleDate: '2026-07-03'
+                },
+                {
+                    hotelId: '108-7',
+                    scheduleDate: '2026-07-04'
+                },
+                {
+                    hotelId: '125-7',
+                    scheduleDate: '2026-07-05'
+                },
+                {
+                    hotelId: '29367-7',
+                    scheduleDate: '2026-07-06'
+                },
+                {
+                    hotelId: '97-7',
+                    scheduleDate: '2026-07-07'
+                },
+                {
+                    hotelId: '135-7',
+                    scheduleDate: '2026-07-08'
+                },
+                {
+                    hotelId: '191-7',
+                    scheduleDate: '2026-07-09'
+                },
+                {
+                    hotelId: '23179-7',
+                    scheduleDate: '2026-07-10'
+                },
+                {
+                    hotelId: '35583-7',
+                    scheduleDate: '2026-07-11'
+                },
+                {
+                    hotelId: '13320-7',
+                    scheduleDate: '2026-07-12'
+                },
+                {
+                    hotelId: '143-7',
+                    scheduleDate: '2026-07-13'
+                },
+                {
+                    hotelId: '3916-7',
+                    scheduleDate: '2026-07-14'
+                },
+                {
+                    hotelId: '133-7',
+                    scheduleDate: '2026-07-15'
+                },
+                {
+                    hotelId: '3928-7',
+                    scheduleDate: '2026-07-16'
+                },
+                {
+                    hotelId: '142-7',
+                    scheduleDate: '2026-07-17'
+                },
+                {
+                    hotelId: '96-7',
+                    scheduleDate: '2026-07-18'
+                },
+                {
+                    hotelId: '74919-7',
+                    scheduleDate: '2026-07-19'
+                },
+                {
+                    hotelId: '3905-7',
+                    scheduleDate: '2026-07-20'
+                },
+                {
+                    hotelId: '3913-7',
+                    scheduleDate: '2026-07-21'
+                },
+                {
+                    hotelId: '80-7',
+                    scheduleDate: '2026-07-22'
+                },
+                {
+                    hotelId: '29367-7',
+                    scheduleDate: '2026-07-23'
+                },
+                {
+                    hotelId: '122-7',
+                    scheduleDate: '2026-07-24'
+                },
+                {
+                    hotelId: '8426-7',
+                    scheduleDate: '2026-07-25'
+                },
+                {
+                    hotelId: '13318-7',
+                    scheduleDate: '2026-07-26'
+                },
+                {
+                    hotelId: '9965-7',
+                    scheduleDate: '2026-07-27'
+                },
+                {
+                    hotelId: '102-7',
+                    scheduleDate: '2026-07-28'
+                },
+                {
+                    hotelId: '3911-7',
+                    scheduleDate: '2026-07-29'
+                },
+                {
+                    hotelId: '192-7',
+                    scheduleDate: '2026-07-30'
                 }
             ]
         };
@@ -1020,20 +1418,15 @@
             return getScheduleStartIndex(countrySchedule) >= maxStartIndex;
         }
 
-        function getScheduledHotels(country) {
-            const countrySchedule = hotelsSchedule[country] || [];
-            const startIndex = getScheduleStartIndex(countrySchedule);
+        function getHotelDisplayConfig(hotelConfig, displayIndex) {
+            const countdownEndTime = getHotelCountdownEndTime(displayIndex);
 
-            return countrySchedule.slice(startIndex, startIndex + 3).map((hotelConfig, index) => {
-                const countdownEndTime = getHotelCountdownEndTime(index);
-
-                return {
-                    ...hotelConfig,
-                    beginDate: hotelBeginDates[index] || hotelBeginDates[0],
-                    countdownEndTime,
-                    hideCountdown: Date.now() >= countdownEndTime
-                };
-            });
+            return {
+                ...hotelConfig,
+                beginDate: hotelBeginDates[displayIndex] || hotelBeginDates[0],
+                countdownEndTime,
+                hideCountdown: Date.now() >= countdownEndTime
+            };
         }
 
         function startCardCountdown(cardEl, endTime) {
@@ -1218,6 +1611,11 @@
             const hotelCategories = apiData?.result?.hotelCategories;
             const hotelCategory = hotel?.categoryKey ? hotelCategories?.[hotel.categoryKey] : null;
             const offer = product?.offers?.[0];
+
+            if (!product || !hotel || !offer) {
+                return null;
+            }
+
             const offerLink = offer?.link;
             const price = offer?.price;
             const oldPrice = price?.oldAmount ?? price?.amount ?? null;
@@ -1250,7 +1648,9 @@
             const safeStarCount = Math.max(Math.floor(Number(starCount) || 0), 0);
 
             starsEl.hidden = safeStarCount <= 0;
-            starsEl.innerHTML = Array.from({ length: safeStarCount }, () => `
+            starsEl.innerHTML = Array.from({
+                length: safeStarCount
+            }, () => `
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M15.0728 5.1625L10.5389 4.50358L8.51212 0.394646C8.45676 0.282146 8.36569 0.191075 8.25319 0.135717C7.97104 -0.00356831 7.62819 0.112503 7.48711 0.394646L5.46033 4.50358L0.926401 5.1625C0.801401 5.18036 0.687115 5.23929 0.599615 5.32857C0.493832 5.4373 0.435541 5.58358 0.43755 5.73526C0.439559 5.88694 0.501704 6.03162 0.610329 6.1375L3.89069 9.33572L3.11569 13.8518C3.09751 13.9568 3.10914 14.0649 3.14924 14.1637C3.18935 14.2625 3.25633 14.348 3.34259 14.4107C3.42886 14.4733 3.53095 14.5106 3.63729 14.5181C3.74364 14.5257 3.84998 14.5034 3.94426 14.4536L7.99962 12.3214L12.055 14.4536C12.1657 14.5125 12.2943 14.5321 12.4175 14.5107C12.7282 14.4571 12.9371 14.1625 12.8835 13.8518L12.1085 9.33572L15.3889 6.1375C15.4782 6.05 15.5371 5.93572 15.555 5.81072C15.6032 5.49822 15.3853 5.20893 15.0728 5.1625Z" fill="#FADB14"></path>
                 </svg>
@@ -1394,18 +1794,26 @@
             }
 
             if (!hotelId || !beginDate) {
-                cardEl.classList.remove('card--loading');
-                return;
+                cardEl.remove();
+                return false;
             }
 
             try {
                 const apiData = await fetchHotelPriceData(hotelId, beginDate);
                 const hotelCardData = getHotelCardData(apiData);
 
-                    renderHotelCard(cardEl, hotelCardData);
+                if (!hotelCardData) {
+                    cardEl.remove();
+                    console.warn(`PriceSearchList returned no offers for ${hotelId}`);
+                    return false;
+                }
+
+                renderHotelCard(cardEl, hotelCardData);
+                return true;
             } catch (error) {
-                renderHotelCardUnavailable(cardEl);
+                cardEl.remove();
                 console.warn(`PriceSearchList request failed for ${hotelId}:`, error);
+                return false;
             } finally {
                 cardEl.classList.remove('card--loading');
             }
@@ -1420,9 +1828,11 @@
 
             await Promise.all(Array.from(hotelsListEls).map(async hotelsListEl => {
                 const country = hotelsListEl.dataset.country;
-                const countryHotelsConfig = getScheduledHotels(country);
                 const countrySchedule = hotelsSchedule[country] || [];
+                const startIndex = getScheduleStartIndex(countrySchedule);
+                const countryHotelsConfig = countrySchedule.slice(startIndex);
                 const isFinalState = isFinalScheduleState(countrySchedule);
+                let renderedCount = 0;
 
                 setSecretCardCountdownVisibility(hotelsListEl, !isFinalState);
 
@@ -1430,9 +1840,23 @@
                     .querySelectorAll('[data-hotel-card], [data-hotel-card-template]')
                     .forEach(cardEl => cardEl.remove());
 
-                await Promise.all(countryHotelsConfig.map((hotelConfig, index) => (
-                    loadHotelCard(hotelsListEl, hotelCardTemplateEl, hotelConfig, index)
-                )));
+                for (const hotelConfig of countryHotelsConfig) {
+                    if (renderedCount >= 3) {
+                        break;
+                    }
+
+                    const displayConfig = getHotelDisplayConfig(hotelConfig, renderedCount);
+                    const isRendered = await loadHotelCard(
+                        hotelsListEl,
+                        hotelCardTemplateEl,
+                        displayConfig,
+                        renderedCount
+                    );
+
+                    if (isRendered) {
+                        renderedCount += 1;
+                    }
+                }
             }));
         }
 
@@ -1457,4 +1881,3 @@
         }
     });
 </script>
-</body>
