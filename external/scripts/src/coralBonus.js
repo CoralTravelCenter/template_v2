@@ -90,7 +90,7 @@
             url: 'https://coralbonus.ru/promo/xanadu-makadi-bay/?erid=2W5zFHaQvuW',
         },
         {
-            hotel: 'THE LAND OF LEGENDS NICKELODEON HOTELS & RESORTS ANTALYA',
+            hotel: 'THE LAND OF LEGENDS NICKELODEON HOTEL & RESORT',
             bonus: '10000',
             dates: '01.04.2026-23.10.2026',
             url: 'https://coralbonus.ru/promo/the-land-of-legends-nickelodeon-hotels-resorts-antalya/?erid=2W5zFGDZKQd',
@@ -153,7 +153,7 @@
     function normalizeHotelName(value) {
         return String(value || '')
             .replace(/\u00a0/g, ' ')
-            .replace(/[’']/g, '')
+            .replace(/['']/g, '')
             .replace(/\s+/g, ' ')
             .replace(/\b\d+\*\b/g, '')
             .replace(/[*]/g, '')
@@ -476,6 +476,18 @@
         };
     }
 
+    function updateDetailRenovationPosition() {
+        const detailGalleryWrapper = document.querySelector(HOTEL_DETAIL_GALLERY_WRAPPER_SELECTOR);
+        const renovationBlock = detailGalleryWrapper?.querySelector('.renovation');
+
+        if (!renovationBlock) {
+            return;
+        }
+
+        renovationBlock.style.top = '46px';
+        renovationBlock.style.left = '12px';
+    }
+
     function findExistingBadge(container) {
         return container?.querySelector(`.${'coral-bonus-badge'}`) || null;
     }
@@ -718,6 +730,8 @@
         const detailOptions = {
             isDetailFloating: Boolean(detailRenderTarget && !detailRenderTarget.hasHotelBadges),
         };
+
+        updateDetailRenovationPosition();
 
         if (!titleElement || !container || !isVisible(container)) {
             if (container) {
