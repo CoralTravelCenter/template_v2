@@ -113,7 +113,10 @@
             <span>Похожие отели</span>
         `;
 
-        button.addEventListener('click', scrollToTarget);
+        button.addEventListener('click', () => {
+            scrollToTarget();
+            ym(96674199, 'reachGoal', 'personalization_elite_similar_hotels');
+        });
 
         return button;
     }
