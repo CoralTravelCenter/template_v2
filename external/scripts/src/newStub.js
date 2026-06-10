@@ -13,23 +13,15 @@ async function hostReactAppReady(selector = '#__next > div', timeout = 500) {
 }
 
 hostReactAppReady().then(() => {
+    const modal = document.getElementById('modal_action');
 
+    if (modal) {
+        modal.classList.add('is-active');
+
+        const close = document.getElementById('close-button');
+
+        close.addEventListener('click', () => {
+            modal.classList.remove('is-active');
+        });
+    }
 });
-
-const obs = new MutationObserver(() => {
-
-});
-
-obs.observe(document, {
-    childList: true,
-    subtree: true
-});
-
-const styles = document.createElement('style');
-    styles.textContent = `
-    
-    `;
-
-document.head.appendChild(styles);
-
-(() => {})();
